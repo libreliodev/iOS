@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>FileName</key>
+		<string>wind_370/wind_370_.pdf</string>
+		<key>Subtitle</key>
+		<string>Novembre 2012</string>
+		<key>Title</key>
+		<string>Wind 370</string>
+	</dict>
+	<dict>
+		<key>FileName</key>
+		<string>wind_369/wind_369_.pdf</string>
+		<key>Subtitle</key>
+		<string>Septembre Octobre 2012</string>
+		<key>Title</key>
+		<string>Wind 369</string>
+	</dict>
+	<dict>
+		<key>FileName</key>
+		<string>wind_368/wind_368_.pdf</string>
+		<key>Subtitle</key>
+		<string>Août 2012</string>
+		<key>Title</key>
+		<string>Wind 368</string>
+	</dict>
+	<dict>
+		<key>FileName</key>
+		<string>wind_367/wind_367_.pdf</string>
+		<key>Subtitle</key>
+		<string>Juillet 2012</string>
+		<key>Title</key>
+		<string>Wind 367</string>
+	</dict>
+	<dict>
+		<key>FileName</key>
+		<string>wind_366/wind_366_.pdf</string>
+		<key>Subtitle</key>
+		<string>Juin 2012</string>
+		<key>Title</key>
+		<string>Wind 366</string>
+	</dict>
+	<dict>
+		<key>FileName</key>
+		<string>wind_365/wind_365_.pdf</string>
+		<key>Subtitle</key>
+		<string>Mai 2012</string>
+		<key>Title</key>
+		<string>Wind 365</string>
+	</dict>
+	<dict>
+		<key>FileName</key>
+		<string>wind_364/wind_364_.pdf</string>
+		<key>Subtitle</key>
+		<string>Avril 2012</string>
+		<key>Title</key>
+		<string>Wind 364</string>
+	</dict>
+	<dict>
+		<key>FileName</key>
+		<string>wind_363/wind_363_.pdf</string>
+		<key>Subtitle</key>
+		<string>Février Mars 2012</string>
+		<key>Title</key>
+		<string>Wind 363</string>
+	</dict>
+	<dict>
+		<key>FileName</key>
+		<string>wind_362/wind_362_.pdf</string>
+		<key>Subtitle</key>
+		<string>Décembre Janvier 2012</string>
+		<key>Title</key>
+		<string>Wind 362</string>
+	</dict>
+	<dict>
+		<key>FileName</key>
+		<string>wind_358/wind_358_.pdf</string>
+		<key>Subtitle</key>
+		<string>Juillet 2011</string>
+		<key>Title</key>
+		<string>Wind 358</string>
+	</dict>
+	<dict>
+		<key>FileName</key>
+		<string>wind_357/wind_357_.pdf</string>
+		<key>Subtitle</key>
+		<string>Juin 2011</string>
+		<key>Title</key>
+		<string>Wind 357</string>
+	</dict>
+	<dict>
+		<key>FileName</key>
+		<string>wind_356/wind_356_.pdf</string>
+		<key>Subtitle</key>
+		<string>Mai 2011</string>
+		<key>Title</key>
+		<string>Wind 356</string>
+	</dict>
+	<dict>
+		<key>FileName</key>
+		<string>wind_355/wind_355.pdf</string>
+		<key>Subtitle</key>
+		<string>Avril 2011</string>
+		<key>Title</key>
+		<string>Wind 355</string>
+	</dict>
+</array>
+</plist>

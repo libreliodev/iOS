@@ -1,0 +1,45 @@
+/* 
+  */
+
+"Connecting..." = "Connexion...";
+"Download failed, please check your connection" = "Le téléchargement a échoué, veuillez vérifier votre connection internet";
+"Please check your connection" = "Veuillez vérifier votre connection internet";
+"Download in progress" = "Téléchargement en cours";
+"Caching operation in progress" = "Opération de cache en cours";
+"What do you want to buy?" = "Que souhaitez-vous acheter?";
+"Cancel" = "Annuler";
+"Done" = "Terminé";
+"The order failed" = "La commande a échoué";
+"Buy and download" = "Télécharger";
+"Try again" = "Réessayer";
+"Downloads" = "Téléchargements";
+"Downloaded" = "Téléchargé";
+"Free Download"= "Téléchargement gratuit";
+"Download ..." = "Télécharger ...";
+"Free sample" = "Extrait gratuit";
+" (Sample)"= " (Extrait)";
+"Read"="Lire";
+"Magazines" = "Magazines";
+"Do you really want to quit this app?"="Voulez-vous vraiment quitter cette application?";
+"Yes" = "Oui";
+"I have a subscriber code" = "J'ai un code abonné";
+"I have a promo code" = "J'ai un code promo";
+"Restore my purchases" = "Restaurer mes achats";
+"Restore completed" = "Restauration effectuée";
+"Free subscription" = "Abonnement gratuit";
+"Subscriber Code" = "Code abonné";
+"Please enter your  code" = "Veuillez saisir votre code";
+"Invalid Code" = "Code non valide";
+"Share on Facebook"="Partager sur Facebook";
+"Share on Twitter"="Partager sur Twitter";
+"Share by Mail"="Partager par mail";
+"Languages"="Langues";
+"iOS 6 required"="Désolé, iOS 6 est requis pour cette opération";
+"month"="mois";
+"months"="mois";
+"week"="semaine";
+"year"="an";
+
+
+
+

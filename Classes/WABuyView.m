@@ -1,0 +1,400 @@
+//  Copyright 2011 WidgetAvenue - Librelio. All rights reserved.
+
+
+#import "WABuyView.h"
+#import "WAUtilities.h"
+#import "WAModuleViewController.h"
+#import "NSBundle+WAAdditions.h"
+#import "NSString+WAURLString.h"
+
+#import "SHKActivityIndicator.h"
+#import <QuartzCore/QuartzCore.h>
+
+
+
+@implementation WABuyView
+
+@synthesize currentViewController,products;
+
+
+- (NSString *) urlString
+{
+    return urlString;
+}
+
+- (void) setUrlString: (NSString *) theString
+{
+	//Receive notification when transaction status changed
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transactionStatusDidChangeWithNotification:) name:@"transactionStatusDidChange" object:nil];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restoreCompletedTransactionsFinishedWithNotification:) name:@"restoreCompletedTransactionsFinished" object:nil];
+
+	
+	urlString = [[NSString alloc]initWithString: theString];
+
+	//Add SHKActivityIndicator
+
+    [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Connecting...",@"")];
+
+    NSString * receipt = [urlString receiptForUrlString];
+	
+    if (receipt){
+		//We have a receipt, proceed to download
+		[self startDownload];
+	}
+	else {
+        //Get the ID of the product. Our convention is that it is always the name of the file without extension 
+        NSString * shortID = [[urlString urlByRemovingFinalUnderscoreInUrlString] nameOfFileWithoutExtensionOfUrlString];
+        //SLog(@"ShortID:%@, theString:%@",shortID,theString);
+
+        //get product data
+        NSString * itemID = [NSString stringWithFormat:@"%@.%@",[[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"],shortID];
+        //SLog(@"ItemID:%@",itemID);
+        SKProductsRequest *request;
+        //Add all subscriptions, only if we have a secret key
+        NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];
+        NSString * sharedSecret = [NSString string];
+        if (credentials) sharedSecret = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"SharedSecret"];
+        if (sharedSecret){
+            NSMutableSet * productIdentifiers = [NSMutableSet set];
+            NSSet * relevantIDs = [urlString relevantSKProductIDsForUrlString];
+            //SLog(@"Relevant ids:%@",relevantIDs);
+            for (NSString * curentID in relevantIDs){
+                NSString * tempID = [NSString stringWithFormat:@"%@.%@",[[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"],curentID];
+                [productIdentifiers addObject:tempID];
+            }
+            //Request the data 
+            request = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers];
+        }
+        else {
+            request = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObjects:
+                                                                             itemID,
+                                                                             nil]];
+            
+        }
+        request.delegate = self;
+        [request start];
+
+    }
+
+	
+	
+	
+
+
+	
+
+}
+
+
+
+
+- (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[SHKActivityIndicator currentIndicator] hide];
+    
+	[products release];
+	[urlString release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark ModuleView protocol
+
+- (void)moduleViewWillAppear:(BOOL)animated{
+}
+- (void) moduleViewDidAppear{
+}
+
+- (void) moduleViewWillDisappear:(BOOL)animated{
+}
+
+
+
+- (void) moduleWillRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+}
+
+- (void) moduleWillAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+}
+
+- (void) jumpToRow:(int)row{
+    
+}
+
+# pragma mark -
+# pragma mark SKProductsRequestDelegate
+
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
+{
+    [[SHKActivityIndicator currentIndicator] hide];
+
+    NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];
+    
+	//Create actionSheet
+    NSString * theTitle = NSLocalizedString(@"What do you want to buy?",@"" );
+    NSString * customTitle = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"TextForBuyTitle"];
+     if (customTitle) theTitle = NSLocalizedString(customTitle,@"" );
+    
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:theTitle
+															 delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil 
+													otherButtonTitles:nil]; 
+	
+	
+	//Parse response
+	products = [[NSArray alloc] initWithArray: response.products];
+	for (SKProduct *product in products) {
+		//SLog(@"Product received:%@",product);
+        
+        //Format the price
+		NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+		[numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+		[numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+		[numberFormatter setLocale:product.priceLocale];
+		NSString *formattedString = [numberFormatter stringFromNumber:product.price];
+		[numberFormatter release];
+        
+        //Append duration to description if needed
+        NSString * completeTitle = [product.localizedTitle titleWithSubscriptionLengthForId:product.productIdentifier] ;
+        
+		[actionSheet addButtonWithTitle:[NSString stringWithFormat:@"%@: %@",completeTitle, formattedString]];
+		
+		
+		;
+	}
+	//Add a Restore my purchases button
+	 NSString * locTitle0 = NSLocalizedString(@"Restore my purchases",@"" );//This is the default title
+    [actionSheet addButtonWithTitle:locTitle0];
+	
+	//Add a Code Enter button in case we have a CodeHash key in Application_.plist
+	NSString * codeHash = nil ;
+	if (credentials) codeHash = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"CodeHash"];
+	if (codeHash) {
+        //SLog(@"Code Hash:%@",codeHash);
+        NSString * locTitle = NSLocalizedString(@"I have a subscriber code",@"" );//This is the default title
+        NSString * TextForSubscribers = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"TextForSubscribers"];
+        if (TextForSubscribers) locTitle = NSLocalizedString(TextForSubscribers,@"" );
+        
+		[actionSheet addButtonWithTitle:locTitle];
+        //    actionSheet.cancelButtonIndex = destructiveIndex;//was buggy
+
+
+	}
+	
+	//Add the cancel button. It will not be displayed on the iPad.
+	NSInteger destructiveIndex = [actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel",@"" )];
+	actionSheet.destructiveButtonIndex = destructiveIndex;
+    actionSheet.cancelButtonIndex = destructiveIndex;
+
+	
+	
+	
+	for (NSString * invalidS in response.invalidProductIdentifiers){
+		//SLog(@"invalidS:%@",invalidS);
+	}
+	//[actionSheet showInView:self.superview];
+    if (self.superview)//The superview may have been released if a refresh download has taken place
+    {
+        if ([WAUtilities isBigScreen]) [actionSheet showFromRect:self.frame inView:self.superview animated:YES];
+        else [actionSheet showFromTabBar:self.currentViewController.tabBarController.tabBar];   
+
+        
+    }	
+    [actionSheet release];
+	
+ 
+}
+
+- (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
+	
+	UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
+												   message:NSLocalizedString(@"Please check your connection",@"")
+												  delegate:nil 
+										 cancelButtonTitle:@"OK"
+										 otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+	
+	[self removeFromSuperview];
+
+	
+}
+
+
+#pragma mark -
+#pragma mark UIActionSheet protocol
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+	if (buttonIndex == actionSheet.numberOfButtons-1){
+		//The cancel button was clicked
+		[self removeFromSuperview];
+	}
+	else if ((buttonIndex == actionSheet.numberOfButtons-2)&&(buttonIndex==[products count]+1)){
+		//The enter code button was clicked
+		[self createPasswordAlert];
+		
+	}
+	else if (buttonIndex==[products count]){
+		//The restore purchases button was clicked
+        [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Connecting...",@"")];
+        [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+
+        
+		
+	}
+	else {
+		SKProduct  * product = [products objectAtIndex:buttonIndex];
+		NSString * itemID = product.productIdentifier;
+		SKPayment *payment = [SKPayment paymentWithProductIdentifier:itemID];
+		// Add storeObserver in LibrelioAppDelegate
+		[[SKPaymentQueue defaultQueue] addPayment:payment];	
+		
+	}
+
+				
+	
+}
+
+#pragma mark -
+#pragma mark UIAlertView protocol
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+	if (buttonIndex == 0) {
+		//Cancel button was clicked
+		[self removeFromSuperview];
+	}
+	
+	else if (buttonIndex == 1) {
+		//OK button was clicked
+		UITextField * psField = (UITextField *)[alertView viewWithTag:111];
+		[[NSUserDefaults standardUserDefaults] setObject:[psField text] forKey:@"Subscription-code"];
+		[self startDownload];
+	}
+	
+}
+
+
+#pragma mark -
+#pragma mark Notifications
+- (void) transactionStatusDidChangeWithNotification:(NSNotification *) notification
+{
+	//Check whether the transaction is for a product requested here or a subscription
+	NSSet * acceptableIDs = [urlString relevantSKProductIDsForUrlString];
+	
+	SKPaymentTransaction *transaction = notification.object;
+	NSString * productId = transaction.payment.productIdentifier;
+	NSArray *parts = [productId componentsSeparatedByString:@"."];
+	NSString *shortID2 = [parts objectAtIndex:[parts count]-1];
+	
+	
+	if ([acceptableIDs containsObject:shortID2]){
+		switch (transaction.transactionState)
+		{
+			case SKPaymentTransactionStateRestored:{
+                //Do nothing, wait for restoreCompletedTransactionsFinished notification
+                break;
+            }
+			case SKPaymentTransactionStatePurchased:{
+				[self startDownload];
+				break;
+			}
+			case SKPaymentTransactionStateFailed:{
+					if (transaction.error.code != SKErrorPaymentCancelled){
+					//Inform user if he did not cancel the order himself
+					UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
+																   message:NSLocalizedString(@"The order failed",@"")
+																  delegate:nil 
+														 cancelButtonTitle:@"OK"
+														 otherButtonTitles:nil];
+					[alert show];
+					[alert release];
+				}
+						
+				[self removeFromSuperview];
+				break;
+			}
+			default:
+				break;
+		}
+		
+	}
+		
+		
+	
+	
+	
+	
+	
+}
+
+
+- (void) restoreCompletedTransactionsFinishedWithNotification:(NSNotification *) notification{
+	//SLog(@"restore Transaction finished with notification %@",notification);
+    
+
+    
+    NSString * receipt = [urlString receiptForUrlString];
+	
+    if (receipt){
+        //SLog(@"Receipt found: %@",receipt);
+		//We have a receipt, proceed to download
+		[self startDownload];
+	}
+	else {
+          [self removeFromSuperview];
+ 		
+	}
+ 
+}
+#pragma mark -
+#pragma mark Helper methods
+
+- (void) startDownload{
+	NSString * newUrlString = [urlString stringByReplacingOccurrencesOfString:@"buy://localhost" withString:@""];
+	WAModuleViewController * loadingViewController = [[WAModuleViewController alloc]init];
+	loadingViewController.moduleUrlString= newUrlString;
+	loadingViewController.initialViewController= self.currentViewController;
+	loadingViewController.containingView= self.superview;
+	loadingViewController.containingRect= CGRectZero;
+	[loadingViewController pushViewControllerIfNeededAndLoadModuleView];
+	[loadingViewController release];
+	[self removeFromSuperview];
+	
+	
+}
+
+- (void) createPasswordAlert{
+	
+	UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Code",@"" ) message:@"\n\n\n" delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
+	
+	UILabel *passwordLabel = [[UILabel alloc] initWithFrame:CGRectMake(12,40,260,25)];
+	passwordLabel.font = [UIFont systemFontOfSize:16];
+	passwordLabel.textColor = [UIColor whiteColor];
+	passwordLabel.backgroundColor = [UIColor clearColor];
+	passwordLabel.shadowColor = [UIColor blackColor];
+	passwordLabel.shadowOffset = CGSizeMake(0,-1);
+	passwordLabel.textAlignment = UITextAlignmentCenter;
+	passwordLabel.text = NSLocalizedString(@"Please enter your  code",@"" );
+	[passwordAlert addSubview:passwordLabel];
+    [passwordLabel release];
+	
+	
+	UITextField *passwordField = [[UITextField alloc] initWithFrame:CGRectMake(16,78,252,30)];
+	passwordField.secureTextEntry = YES;
+	passwordField.borderStyle = UITextBorderStyleRoundedRect;
+	passwordField.keyboardAppearance = UIKeyboardAppearanceAlert;
+	//passwordField.delegate = self;
+	[passwordField becomeFirstResponder];
+	[passwordAlert addSubview:passwordField];
+	passwordField.tag = 111;
+    [passwordField release];
+	
+	[passwordAlert show];
+	[passwordAlert release];
+	
+	
+}
+
+
+
+@end
+

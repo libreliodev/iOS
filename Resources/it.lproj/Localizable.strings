@@ -1,0 +1,41 @@
+/* 
+   Copyright 2011 WidgetAvenue - Librelio. All rights reserved.
+ */
+
+"Connecting..." = "Connessione in corso...";
+"Download failed, please check your connection" = "Download non riuscito, controlla la tua connessione";
+"Please check your connection" = "Controlla la tua connessione";
+"Download in progress" = "Download in corso";
+"Caching operation in progress" = "Caching in corso";
+"What do you want to buy?" = "Cosa vuoi comprare?";
+"Cancel" = "Annulla";
+"Done" = "OK";
+"The order failed" = "Ordine non riuscita";
+"Buy and download" = "Download";
+"Try again" = "Prova di nuovo";
+"Downloads" = "Downloads";
+"Downloaded"="Scaritato";
+"Free Download"= "Download gratuito";
+"Download ..." = "Download ...";
+"Free sample" = "Anteprima gratuita";
+" (Sample)"= " (Anteprima)";
+"Read"="Leggi";
+"Magazines" = "Periodici";
+"Do you really want to quit this app?"="Vuoi davvero uscire da questa app?";
+"Yes" = "Si";
+"I have a subscriber code" = "Ho un codice abbonato";
+"I have a promo code" = "Ho un codice promo";
+"Subscriber Code" = "Codice abbonato";
+"Free subscription" = "Abbonamente gratuito";
+"Please enter your  code" = "Inserisci il tuo codice";
+"Invalid Code" = "Codice non valido";
+"Share on Facebook"="Share on Facebook";
+"Share on Twitter"="Share on Twitter";
+"Share by Mail"="Share by Mail";
+"Languages"="Lingue";
+"iOS 6 required"="iOS 6 necessario";
+"month"="mese";
+"months"="mesi";
+"week"="settimana";
+"year"="anno";
+

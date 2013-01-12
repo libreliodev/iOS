@@ -1,0 +1,41 @@
+/* 
+   Copyright 2011 WidgetAvenue - Librelio. All rights reserved.
+ */
+
+"Connecting..." = "Verbindung...";
+"Download failed, please check your connection" = "Download fehlgeschlagen, bitte überprüfen Sie Ihre Internetverbindung";
+"Please check your connection" = "Bitte überprüfen Sie Ihre Internetverbindung";
+"Download in progress" = "Download läuft";
+"Caching operation in progress" = "Caching laüft";
+"What do you want to buy?" = "Was möchten Sie kaufen?";
+"Cancel" = "Abbrechen";
+"Done" = "OK";
+"The order failed" = "Bestellung fehlgeschlagen";
+"Try again" = "Wiederholen";
+"Downloads" = "Downloads";
+"Downloaded"="Heruntergeladen";
+"Free Download"= "Gratis Download";
+"Download ..." = "Download ...";
+"Free sample" = "Gratis probelesen";
+" (Sample)"= " (Probelesen)";
+"Read"="Lesen";
+"Magazines" = "Magazine";
+"Do you really want to quit this app?"="Möchten Sie wirklich diese Applikation beeden?";
+"Yes" = "Ja";
+"I have a subscriber code" = "Ich habe einen Abo- Code";
+"I have a promo code" = "Ich habe einen Promo- Code";
+"Subscriber Code" = "Abo- Code";
+"Free subscription" = "Gratis Abo";
+"Please enter your  code" = "Bitte geben Sie den Code";
+"Invalid Code" = "Ungültiger Code";
+"Share on Facebook"="Auf Facebook teilen";
+"Share on Twitter"="Auf Twitter teilen";
+"Share by Mail"="Auf E-Mail teilen";
+"Languages"="Sprachen";
+"iOS 6 required"="iOS 6 erforderlich";
+"month"="Monat";
+"months"="Monate";
+"week"="Woche";
+"year"="Jahr";
+
+

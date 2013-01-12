@@ -1,0 +1,40 @@
+//  Copyright 2011 WidgetAvenue - Librelio. All rights reserved.
+
+#import <Foundation/Foundation.h>
+#import "WAParserProtocol.h"
+#import "WAModuleProtocol.h"
+
+
+
+
+
+@interface WAUtilities : NSObject {
+
+}
+
++ (NSString *)cacheFolderPath;
++ (NSString *) hashPartOfUrlString:(NSString*)urlString; //Returns the part after the # sign
++ (NSDate *) dateOfFileWithUrlString:(NSString*)name;
++ (NSString*)directoryUrlOfUrlString:(NSString*)urlString;//Returns the Url of the directory
++ (NSString*) absoluteUrlOfRelativeUrl:(NSString*)relativeUrl relativeToUrl:(NSString*)baseUrl;
++ (NSString*) urlByChangingExtensionOfUrlString:(NSString*)urlString toSuffix:(NSString*)newExtension;
++ (NSString*) urlByRemovingContainingFolderIfSameNameInUrlString:(NSString*)urlString ;//If the url is in the form http://site/document/document.ext, returns http://site/document.ext
++ (BOOL) isCheckUpdateNeededForUrlString:(NSString*)urlString;//Returns true if the server should be queried to check wether a file is up to date
+
++ (BOOL)isDownloadMissingResourcesNeededForUrlString :(NSString*)urlString;
+
++ (NSString *) completeDownloadUrlforUrlString:(NSString*)urlString;
++ (NSString *) completeCheckAppStoreUrlforUrlString:(NSString*)urlString;
++ (NSString *) completeCheckPasswordUrlforUrlString:(NSString*)urlString;
++(NSArray*) arrayOfImageUrlStringsForUrlString:(NSString *)lastImageUrlString;
++ (void) storeFileWithUrlString:(NSString*)urlString withData:(NSData *) data;
++ (void) storeFileWithUrlString:(NSString*)urlString withFileAtPath:(NSString*)tempFilePath;
++ (void) clearTempDirectory;
++ (void) deleteCorruptedResourceWithPath:(NSString*)path ForMainFileWithUrlString:(NSString*)urlString;
++ (NSString*) urlOfCacheFileWithName:(NSString*)fileName forDocumentWithUrlString:(NSString*)urlString;
++ (BOOL) isBigScreen;
++ (BOOL) isScreenHigherThan500;
++ (void) resizeNibView:(NSString*) nibName defaultNib:(NSString*) defaultNibName inView:(UIView*) containingView;
++ (CGSize) sizeForResizedNibView:(NSString*) nibName defaultNib:(NSString*) defaultNibName inRect:(CGRect)contaningRect;
+
+@end

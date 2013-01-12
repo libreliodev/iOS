@@ -1,0 +1,108 @@
+//  Copyright 2011 WidgetAvenue - Librelio. All rights reserved.
+
+
+#import "WAPaymentTransactionObserver.h"
+
+
+@implementation WAPaymentTransactionObserver
+
+#pragma mark -
+#pragma mark SKPaymentTransactionObserver Protocol
+
+
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
+{
+	//SLog(@"Updated transactions %@",transactions);
+    for (SKPaymentTransaction *transaction in transactions)
+	{
+		NSString * productId = transaction.payment.productIdentifier;
+		NSArray *parts = [productId componentsSeparatedByString:@"."];
+		NSString *shortID = [parts objectAtIndex:[parts count]-1];
+		NSString *tempKey = [NSString stringWithFormat:@"%@-receipt",shortID];
+		switch (transaction.transactionState)
+		{
+			case SKPaymentTransactionStatePurchased:{
+				//Store the receipt
+				NSString *jsonObjectString = [self encode:(uint8_t *)transaction.transactionReceipt.bytes length:transaction.transactionReceipt.length];  
+				//SLog(@"Transaction Succceded for product id %@",transaction.payment.productIdentifier);
+				[[NSUserDefaults standardUserDefaults] setObject:jsonObjectString forKey:tempKey];
+				// Remove the transaction from the payment queue.
+				[[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+				break;}
+			case SKPaymentTransactionStateRestored:{
+				//Store the  receipt
+				//NSString *jsonObjectString = [self encode:(uint8_t *)transaction.originalTransaction.transactionReceipt.bytes length:transaction.originalTransaction.transactionReceipt.length];  Do not use original receipt, an empty string is returned for some reason
+				NSString *jsonObjectString = [self encode:(uint8_t *)transaction.transactionReceipt.bytes length:transaction.transactionReceipt.length];  
+				//SLog(@"Transaction restored  and for product id %@ and receipt %@ ",transaction.payment.productIdentifier,jsonObjectString);
+				[[NSUserDefaults standardUserDefaults] setObject:jsonObjectString forKey:tempKey];
+				// Remove the transaction from the payment queue.
+				[[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+				break;}
+			case SKPaymentTransactionStateFailed:
+				//SLog(@"TransactionFailed with error %@", transaction.error);
+				// Remove the transaction from the payment queue.
+				[[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+				break;
+			default:
+				break;
+		}
+ 		//Send notification
+		[[NSNotificationCenter defaultCenter] postNotificationName:@"transactionStatusDidChange" object:transaction];
+        
+		
+		
+
+		
+	}
+}
+
+- (void)paymentQueueRestoreCompletedTransactionsFinished:(SKPaymentQueue *)queue{
+    //SLog(@"Will post restoreCompletedTransactionsFinished notification");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"restoreCompletedTransactionsFinished" object:nil];
+    
+}
+
+
+- (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"restoreCompletedTransactionsFinished" object:error];
+    
+}
+
+
+#pragma mark -
+#pragma mark Encoding 
+
+
+- (NSString *)encode:(const uint8_t *)input length:(NSInteger)length {
+    static char table[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+	
+    NSMutableData *data = [NSMutableData dataWithLength:((length + 2) / 3) * 4];
+    uint8_t *output = (uint8_t *)data.mutableBytes;
+	
+    for (NSInteger i = 0; i < length; i += 3) {
+        NSInteger value = 0;
+        for (NSInteger j = i; j < (i + 3); j++) {
+			value <<= 8;
+			
+			if (j < length) {
+				value |= (0xFF & input[j]);
+			}
+        }
+		
+        NSInteger index = (i / 3) * 4;
+        output[index + 0] =                    table[(value >> 18) & 0x3F];
+        output[index + 1] =                    table[(value >> 12) & 0x3F];
+        output[index + 2] = (i + 1) < length ? table[(value >> 6)  & 0x3F] : '=';
+        output[index + 3] = (i + 2) < length ? table[(value >> 0)  & 0x3F] : '=';
+    }
+	
+    return [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease];
+}
+
+
+
+-(void)dealloc
+{
+	[super dealloc];
+}
+@end

@@ -1,0 +1,57 @@
+//
+//  NSString+NSString_WAURLString.h
+//  Librelio
+//
+//  Copyright (c) 2011 WidgetAvenue - Librelio. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+
+
+@interface NSString (WAURLString)
+
+- (BOOL) isLocalUrl;
+- (NSString *) noHashPartOfUrlString;
+- (NSString *) noArgsPartOfUrlString;
+- (NSString *) schemePartOfUrlString;
+- (NSString *) rootDirectoryNameOfUrlString;
+- (NSString *) nameOfFileWithoutExtensionOfUrlString;
+- (NSString *) titleOfUrlString;
+- (NSString *) pathOfStorageForUrlString;
+- (NSString*) urlByChangingSchemeOfUrlStringToScheme:(NSString*)newScheme;
+- (NSString*) urlByRemovingFinalUnderscoreInUrlString;
+- (BOOL) isUrlStringOfSameFileAsUrlString:(NSString*) otherUrlString;
+- (NSString *) valueOfParameterInUrlStringforKey:(NSString*)key;
+- (NSString *) urlByAddingParameterInUrlStringWithKey:(NSString*)key withValue:(NSString*)value;
+- (LinkType) typeOfLinkOfUrlString;
+- (NSString*) classNameOfModuleOfUrlString;
+- (ParserType) typeOfParserOfUrlString;
+- (NSString*) classNameOfParserOfUrlString;
+- (BOOL) shouldUseNewsstandForUrlString;
+
+- (NSSet*) relevantSKProductIDsForUrlString;
+- (NSString *) titleWithSubscriptionLengthForId:(NSString*)theId;
+/*!
+ @description: checks wether the product corresponding to urlString has already been purchased or if there is an active subscription; returns the corresponding receipt if yes
+ */
+- (NSString*) receiptForUrlString;
+
+
+/*!
+ @attention: will work only if value is a single word
+ @discussion: For example, if Test = @"SELECT * FROM TableA", [Test queryStringByReplacingClause:@"FROM" withValue:@"TableB"] returns @"SELECT * FROM TableB"
+ */
+- (NSString*) queryStringByReplacingClause:(NSString*)clause withValue:(NSString*)newValue;
+
+/*!
+ @attention: will work only if value is a single word
+ */
+- (NSString*) valueOfClause:(NSString*)clause;
+
+- (NSString*) gaVirtualUrlForModuleWithName:(NSString*)moduleName withPage:(NSString*)pageName;
+
+- (NSString *)device;
++ (NSString *)orientation;
+
+@end

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CodeHash</key>
+	<string>sha</string>
+	<key>SharedSecret</key>
+	<string>026defcdebf5490893fbe5661224ef30</string>
+	<key>Splash</key>
+	<string>S3</string>
+	<key>GoogleAnalyticsCode</key>
+	<string>UA-13029323-20</string>
+</dict>
+</plist>
