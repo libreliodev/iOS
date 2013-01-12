@@ -1179,13 +1179,6 @@
 		14A80C39168EC3DB006B0AA4 /* ico-facebook-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BDE168EC3DB006B0AA4 /* ico-facebook-black.png */; };
 		14A80C3A168EC3DB006B0AA4 /* ico-facebook-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BDE168EC3DB006B0AA4 /* ico-facebook-black.png */; };
 		14A80C3B168EC3DB006B0AA4 /* ico-facebook-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BDE168EC3DB006B0AA4 /* ico-facebook-black.png */; };
-		14A80C3C168EC3DB006B0AA4 /* Icon in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BDF168EC3DB006B0AA4 /* Icon */; };
-		14A80C3D168EC3DB006B0AA4 /* Icon in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BDF168EC3DB006B0AA4 /* Icon */; };
-		14A80C3E168EC3DB006B0AA4 /* Icon in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BDF168EC3DB006B0AA4 /* Icon */; };
-		14A80C3F168EC3DB006B0AA4 /* Icon in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BDF168EC3DB006B0AA4 /* Icon */; };
-		14A80C40168EC3DB006B0AA4 /* Icon in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BDF168EC3DB006B0AA4 /* Icon */; };
-		14A80C41168EC3DB006B0AA4 /* Icon in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BDF168EC3DB006B0AA4 /* Icon */; };
-		14A80C42168EC3DB006B0AA4 /* Icon in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BDF168EC3DB006B0AA4 /* Icon */; };
 		14A80C43168EC3DB006B0AA4 /* information.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BE0168EC3DB006B0AA4 /* information.png */; };
 		14A80C44168EC3DB006B0AA4 /* information.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BE0168EC3DB006B0AA4 /* information.png */; };
 		14A80C45168EC3DB006B0AA4 /* information.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BE0168EC3DB006B0AA4 /* information.png */; };
@@ -1465,7 +1458,6 @@
 		14D1035F16978EDF000919BA /* folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BDC168EC3DB006B0AA4 /* folder.png */; };
 		14D1036016978EDF000919BA /* globe.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BDD168EC3DB006B0AA4 /* globe.png */; };
 		14D1036116978EDF000919BA /* ico-facebook-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BDE168EC3DB006B0AA4 /* ico-facebook-black.png */; };
-		14D1036216978EDF000919BA /* Icon in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BDF168EC3DB006B0AA4 /* Icon */; };
 		14D1036316978EDF000919BA /* information.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BE0168EC3DB006B0AA4 /* information.png */; };
 		14D1036416978EDF000919BA /* iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BE1168EC3DB006B0AA4 /* iphone.png */; };
 		14D1036516978EDF000919BA /* Loader.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BE2168EC3DB006B0AA4 /* Loader.png */; };
@@ -1635,7 +1627,6 @@
 		14D1041916978EE3000919BA /* folder.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BDC168EC3DB006B0AA4 /* folder.png */; };
 		14D1041A16978EE3000919BA /* globe.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BDD168EC3DB006B0AA4 /* globe.png */; };
 		14D1041B16978EE3000919BA /* ico-facebook-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BDE168EC3DB006B0AA4 /* ico-facebook-black.png */; };
-		14D1041C16978EE3000919BA /* Icon in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BDF168EC3DB006B0AA4 /* Icon */; };
 		14D1041D16978EE3000919BA /* information.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BE0168EC3DB006B0AA4 /* information.png */; };
 		14D1041E16978EE3000919BA /* iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BE1168EC3DB006B0AA4 /* iphone.png */; };
 		14D1041F16978EE3000919BA /* Loader.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BE2168EC3DB006B0AA4 /* Loader.png */; };
@@ -2635,7 +2626,6 @@
 		14A80BDC168EC3DB006B0AA4 /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = folder.png; path = Resources/folder.png; sourceTree = "<group>"; };
 		14A80BDD168EC3DB006B0AA4 /* globe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = globe.png; path = Resources/globe.png; sourceTree = "<group>"; };
 		14A80BDE168EC3DB006B0AA4 /* ico-facebook-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ico-facebook-black.png"; path = "Resources/ico-facebook-black.png"; sourceTree = "<group>"; };
-		14A80BDF168EC3DB006B0AA4 /* Icon */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Icon; path = Resources/Icon; sourceTree = "<group>"; };
 		14A80BE0168EC3DB006B0AA4 /* information.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = information.png; path = Resources/information.png; sourceTree = "<group>"; };
 		14A80BE1168EC3DB006B0AA4 /* iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = iphone.png; path = Resources/iphone.png; sourceTree = "<group>"; };
 		14A80BE2168EC3DB006B0AA4 /* Loader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Loader.png; path = Resources/Loader.png; sourceTree = "<group>"; };
@@ -4093,7 +4083,6 @@
 				14A80BDC168EC3DB006B0AA4 /* folder.png */,
 				14A80BDD168EC3DB006B0AA4 /* globe.png */,
 				14A80BDE168EC3DB006B0AA4 /* ico-facebook-black.png */,
-				14A80BDF168EC3DB006B0AA4 /* Icon */,
 				14A80BE0168EC3DB006B0AA4 /* information.png */,
 				14A80BE1168EC3DB006B0AA4 /* iphone.png */,
 				14A80BE2168EC3DB006B0AA4 /* Loader.png */,
@@ -4807,7 +4796,6 @@
 				14A80C29168EC3DB006B0AA4 /* folder.png in Resources */,
 				14A80C30168EC3DB006B0AA4 /* globe.png in Resources */,
 				14A80C37168EC3DB006B0AA4 /* ico-facebook-black.png in Resources */,
-				14A80C3E168EC3DB006B0AA4 /* Icon in Resources */,
 				14A80C45168EC3DB006B0AA4 /* information.png in Resources */,
 				14A80C4C168EC3DB006B0AA4 /* iphone.png in Resources */,
 				14A80C53168EC3DB006B0AA4 /* Loader.png in Resources */,
@@ -4894,7 +4882,6 @@
 				14A80C2B168EC3DB006B0AA4 /* folder.png in Resources */,
 				14A80C32168EC3DB006B0AA4 /* globe.png in Resources */,
 				14A80C39168EC3DB006B0AA4 /* ico-facebook-black.png in Resources */,
-				14A80C40168EC3DB006B0AA4 /* Icon in Resources */,
 				14A80C47168EC3DB006B0AA4 /* information.png in Resources */,
 				14A80C4E168EC3DB006B0AA4 /* iphone.png in Resources */,
 				14A80C55168EC3DB006B0AA4 /* Loader.png in Resources */,
@@ -4981,7 +4968,6 @@
 				14A80C2C168EC3DB006B0AA4 /* folder.png in Resources */,
 				14A80C33168EC3DB006B0AA4 /* globe.png in Resources */,
 				14A80C3A168EC3DB006B0AA4 /* ico-facebook-black.png in Resources */,
-				14A80C41168EC3DB006B0AA4 /* Icon in Resources */,
 				14A80C48168EC3DB006B0AA4 /* information.png in Resources */,
 				14A80C4F168EC3DB006B0AA4 /* iphone.png in Resources */,
 				14A80C56168EC3DB006B0AA4 /* Loader.png in Resources */,
@@ -5067,7 +5053,6 @@
 				14A80C2D168EC3DB006B0AA4 /* folder.png in Resources */,
 				14A80C34168EC3DB006B0AA4 /* globe.png in Resources */,
 				14A80C3B168EC3DB006B0AA4 /* ico-facebook-black.png in Resources */,
-				14A80C42168EC3DB006B0AA4 /* Icon in Resources */,
 				14A80C49168EC3DB006B0AA4 /* information.png in Resources */,
 				14A80C50168EC3DB006B0AA4 /* iphone.png in Resources */,
 				14A80C57168EC3DB006B0AA4 /* Loader.png in Resources */,
@@ -5124,7 +5109,6 @@
 				14A80C27168EC3DB006B0AA4 /* folder.png in Resources */,
 				14A80C2E168EC3DB006B0AA4 /* globe.png in Resources */,
 				14A80C35168EC3DB006B0AA4 /* ico-facebook-black.png in Resources */,
-				14A80C3C168EC3DB006B0AA4 /* Icon in Resources */,
 				14A80C43168EC3DB006B0AA4 /* information.png in Resources */,
 				14A80C4A168EC3DB006B0AA4 /* iphone.png in Resources */,
 				14A80C51168EC3DB006B0AA4 /* Loader.png in Resources */,
@@ -5489,7 +5473,6 @@
 				14A80C28168EC3DB006B0AA4 /* folder.png in Resources */,
 				14A80C2F168EC3DB006B0AA4 /* globe.png in Resources */,
 				14A80C36168EC3DB006B0AA4 /* ico-facebook-black.png in Resources */,
-				14A80C3D168EC3DB006B0AA4 /* Icon in Resources */,
 				14A80C44168EC3DB006B0AA4 /* information.png in Resources */,
 				14A80C4B168EC3DB006B0AA4 /* iphone.png in Resources */,
 				14A80C52168EC3DB006B0AA4 /* Loader.png in Resources */,
@@ -5554,7 +5537,6 @@
 				14D1035F16978EDF000919BA /* folder.png in Resources */,
 				14D1036016978EDF000919BA /* globe.png in Resources */,
 				14D1036116978EDF000919BA /* ico-facebook-black.png in Resources */,
-				14D1036216978EDF000919BA /* Icon in Resources */,
 				14D1036316978EDF000919BA /* information.png in Resources */,
 				14D1036416978EDF000919BA /* iphone.png in Resources */,
 				14D1036516978EDF000919BA /* Loader.png in Resources */,
@@ -5637,7 +5619,6 @@
 				14D1041916978EE3000919BA /* folder.png in Resources */,
 				14D1041A16978EE3000919BA /* globe.png in Resources */,
 				14D1041B16978EE3000919BA /* ico-facebook-black.png in Resources */,
-				14D1041C16978EE3000919BA /* Icon in Resources */,
 				14D1041D16978EE3000919BA /* information.png in Resources */,
 				14D1041E16978EE3000919BA /* iphone.png in Resources */,
 				14D1041F16978EE3000919BA /* Loader.png in Resources */,
@@ -5744,7 +5725,6 @@
 				14A80C2A168EC3DB006B0AA4 /* folder.png in Resources */,
 				14A80C31168EC3DB006B0AA4 /* globe.png in Resources */,
 				14A80C38168EC3DB006B0AA4 /* ico-facebook-black.png in Resources */,
-				14A80C3F168EC3DB006B0AA4 /* Icon in Resources */,
 				14A80C46168EC3DB006B0AA4 /* information.png in Resources */,
 				14A80C4D168EC3DB006B0AA4 /* iphone.png in Resources */,
 				14A80C54168EC3DB006B0AA4 /* Loader.png in Resources */,
