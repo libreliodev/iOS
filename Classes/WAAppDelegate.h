@@ -8,6 +8,7 @@
 #import "WASplashScreenViewController.h"
 
 
+
 @interface WAAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> {
 	UIWindow *window;
 	UITabBarController *appTabBarController;
