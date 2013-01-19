@@ -8,6 +8,7 @@
 #import "NSString+WAURLString.h"
 #import "WAParserProtocol.h"
 #import "WAModuleProtocol.h"
+#import "WAUtilities.h"
 #import <NewsstandKit/NewsstandKit.h>
 
 @implementation NSString (WAURLString)
@@ -548,13 +549,18 @@
 //Created by Vladimir
 - (NSString *)device
 {
+    NSString * ret = [NSString stringWithFormat:@"%@Ipad", self];//Default
+    if (![WAUtilities isBigScreen]) ret = [NSString stringWithFormat:@"%@Iphone", self];
+    return ret;
+    
+    /**Seems to have caused problems with Apple 
     switch(UIDevice.currentDevice.userInterfaceIdiom)
     {
         case UIUserInterfaceIdiomPhone:
             return [NSString stringWithFormat:@"%@Iphone", self];
         default:
             return [NSString stringWithFormat:@"%@Ipad", self];
-    }
+    }**/
 }
 //Created by Vladimir
 + (NSString *)orientation
