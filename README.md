@@ -1,4 +1,3 @@
-
 Customization
 ==
 
@@ -10,13 +9,13 @@ The customization is done by adding a new target. In order to do so:
 
 3- add the application resources directory to the new target
 
-<img alt="build" src="README0.png" width="800">
+<img alt="build" src="http://www.librelio.com/images/readme/readme0.png" width="800">
 
 4- in the target build settings, under Packaging, change info.plist File, and change Product Name
 
-<img alt="build" src="README1.png" width="800">
+<img alt="build" src="http://www.librelio.com/images/readme/readme1.png" width="800">
 
 5- in the target summary, enter the Bundle Identifier for your app 
 
-<img alt="build" src="README2.png" width="800">
+<img alt="build" src="http://www.librelio.com/images/readme/readme2.png" width="800">
 
