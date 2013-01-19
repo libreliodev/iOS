@@ -3,7 +3,7 @@ Customization
 
 The customization is done by adding a new target. In order to do so:
 
-1- create a directory with all specific resources for the app. This should include a file called application.plist, and specific pngs to be listed later.
+1- create a directory with all specific resources for the app. This should include a file called application.plist, and specific pngs  listed at http://www.librelio.com/how-it-works/customization.
 
 2- create a new target by duplicating the "empty" target. The empty target contains all common resources and classes required.
 
