@@ -86,6 +86,11 @@
     if ([app_Dic objectForKey:@"Splash"])
     {
         // Check device
+        NSString * nibName = @"WASplashScreenViewController_iPad";//Default
+        if (![WAUtilities isBigScreen]) nibName = @"WASplashScreenViewController_iPhone";
+        splashScreenViewController = [[WASplashScreenViewController alloc]initWithNibName:nibName bundle:nil];
+        
+        /**Old code, may have caused problems with Apple's reviews
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
         {
             // iPhone
@@ -98,7 +103,7 @@
             
             splashScreenViewController = [[WASplashScreenViewController alloc]initWithNibName:@"WASplashScreenViewController_iPad" bundle:nil];
             
-        }
+        }**/
         
         
         
