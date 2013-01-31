@@ -201,11 +201,11 @@
         
         if ([[UIDevice currentDevice]userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
         {
-            webViewController = [[[WASplashWebViewController alloc]initWithNibName:@"WebViewBasedViewController_iPhone" bundle:nil]autorelease];
+            webViewController = [[[WASplashWebViewController alloc]initWithNibName:@"WASplashWebViewController_iPhone" bundle:nil]autorelease];
         }
         else
         {
-            webViewController = [[[WASplashWebViewController alloc]initWithNibName:@"WebViewBasedViewController_iPad" bundle:nil]autorelease];
+            webViewController = [[[WASplashWebViewController alloc]initWithNibName:@"WASplashWebViewController_iPad" bundle:nil]autorelease];
         }
         
         if (adLinkUrlString)
