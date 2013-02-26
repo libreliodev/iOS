@@ -89,6 +89,7 @@
 
 }
 - (void)dealloc {
+    //NSLog(@"Will dealloc");
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
     [movieViewController.moviePlayer stop];
 	[movieViewController release];

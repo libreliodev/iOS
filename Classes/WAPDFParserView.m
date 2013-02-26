@@ -5,6 +5,7 @@
 #import "WAUtilities.h"
 #import "WAButtonWithLink.h"
 #import "WAOperationsManager.h"
+#import "WAVideoView.h"
 
 #import "NSString+WAURLString.h"
 #import "NSBundle+WAAdditions.h"
@@ -203,7 +204,26 @@
 
 - (void) didBecomeInvisible {
 
+    //Check if a movie is playing fullscreen; if it is the case, it means that the page became invisible because a video went full screen, so we should not remove the submodules from the page. See issue #6
+    for (UIView * view in [self subviews]){
+        WAVideoView * videoView = (WAVideoView *) view;
+        if ( [videoView respondsToSelector: @selector(setMovieViewController:)] )
+        {
+            NSLog(@"Found video");
+            
+            if (videoView.movieViewController.moviePlayer.fullscreen)
+            {
+                NSLog(@"Video is playing full screen");
+                return;
+            }
+            
+        }
+
+	}
+
+    
 	//Stop movie
+    /* This is no longer needed, handled by Movie module*/
 	
 	//Stop sound
 	[audioPlayer stop];

@@ -471,6 +471,7 @@
 
 
 - (void) moduleViewWillDisappear:(BOOL)animated{
+    //SLog(@"Module view will disappear");
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"didChangeVisiblePageViews" object:[NSArray array]]; 	
 }
 
