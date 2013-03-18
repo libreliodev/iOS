@@ -21,6 +21,8 @@
 		1425322B13606BF200F6BB3D /* WATabTabParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425322713606BF200F6BB3D /* WATabTabParser.m */; };
 		1425324E13606F9000F6BB3D /* WAFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425324A13606F9000F6BB3D /* WAFileManager.m */; };
 		1425331B1361BEFE00F6BB3D /* WAFileManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142533121361BEFE00F6BB3D /* WAFileManagerCell.xib */; };
+		143BD6BF16F66CEF0075B19E /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 143BD6BE16F66CEF0075B19E /* back.png */; };
+		143BD6C016F66CEF0075B19E /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 143BD6BE16F66CEF0075B19E /* back.png */; };
 		14443FC215465D3200F1D227 /* WAHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 14443FC115465D3200F1D227 /* WAHTMLParser.m */; };
 		1448779C143F4B1D00CF2748 /* WAChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14487798143F4B1D00CF2748 /* WAChartView.m */; };
 		144B16451365BE9000C47C92 /* WAKMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 144B16411365BE9000C47C92 /* WAKMLParser.m */; };
@@ -416,6 +418,7 @@
 		14353EF5162035A300F03A6D /* WAAnalyticsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAAnalyticsView.h; sourceTree = "<group>"; };
 		143725AB128574FE00EB176B /* WAPDFParserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAPDFParserView.h; sourceTree = "<group>"; };
 		143725AC128574FE00EB176B /* WAPDFParserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAPDFParserView.m; sourceTree = "<group>"; };
+		143BD6BE16F66CEF0075B19E /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		14443FC015465D3200F1D227 /* WAHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAHTMLParser.h; sourceTree = "<group>"; };
 		14443FC115465D3200F1D227 /* WAHTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAHTMLParser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		14487798143F4B1D00CF2748 /* WAChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAChartView.m; sourceTree = "<group>"; };
@@ -1250,6 +1253,7 @@
 				14A80BD9168EC3DB006B0AA4 /* favoris-button-remove.png */,
 				14A80BDA168EC3DB006B0AA4 /* favoris-button.png */,
 				14A80BDB168EC3DB006B0AA4 /* feed.png */,
+				143BD6BE16F66CEF0075B19E /* back.png */,
 				14A80BDC168EC3DB006B0AA4 /* folder.png */,
 				14A80BDD168EC3DB006B0AA4 /* globe.png */,
 				14A80BDE168EC3DB006B0AA4 /* ico-facebook-black.png */,
@@ -1758,6 +1762,7 @@
 				14A80C9E168EC3DB006B0AA4 /* video.png in Resources */,
 				14A80CA5168EC3DB006B0AA4 /* white.png in Resources */,
 				1489B609168ECC3D00404BA6 /* Localizable.strings in Resources */,
+				143BD6BF16F66CEF0075B19E /* back.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1845,6 +1850,7 @@
 				14A80CA1168EC3DB006B0AA4 /* video.png in Resources */,
 				14A80CA8168EC3DB006B0AA4 /* white.png in Resources */,
 				1489B60C168ECC3D00404BA6 /* Localizable.strings in Resources */,
+				143BD6C016F66CEF0075B19E /* back.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

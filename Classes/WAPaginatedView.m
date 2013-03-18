@@ -454,7 +454,7 @@
         
         //Check if the document has an outline; if yes, add the bar button
         if ([pdfDocument countSearchResultsForQueryDic:[NSDictionary dictionaryWithObjectsAndKeys:@"Outline",@"From", nil]]) 
-            [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks andLink:[urlString urlByChangingSchemeOfUrlStringToScheme:@"search"]];
+            [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks orImageNamed:@"" orString:@"" andLink:[urlString urlByChangingSchemeOfUrlStringToScheme:@"search"]];
        
 
 

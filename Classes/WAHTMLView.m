@@ -15,7 +15,7 @@
 
 @implementation WAHTMLView
 
-@synthesize activityIndicator,splashView,currentViewController;
+@synthesize activityIndicator,splashView,currentViewController,backButton;
 
 - (id)init {
 	if (self = [super init]) {
@@ -162,6 +162,10 @@
 	[splashView removeFromSuperview];
     [activityIndicator stopAnimating];
 	[activityIndicator removeFromSuperview];
+    
+    if ([self canGoBack]) backButton.enabled=YES;
+    else backButton.enabled=NO;
+    //NSLog(@"finished loading");
 	
 }
 
@@ -236,6 +240,7 @@
 - (void)dealloc {
 	[activityIndicator release];
     [splashView release];
+    [backButton release];
 	[urlString release];
     [super dealloc];
 }
@@ -276,6 +281,32 @@
 #pragma mark ModuleView protocol
 
 - (void)moduleViewWillAppear:(BOOL)animated{
+    if ([self isRootModule]){
+        /*WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];
+        [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"back.png" orString:@"" andLink:[urlString urlByChangingSchemeOfUrlStringToScheme:@"search"]];*/
+        
+        //Add back button
+        WAModuleViewController * vc = (WAModuleViewController * )[(UIView <WAModuleProtocol>*)self currentViewController];
+        NSMutableArray* buttons = [[NSMutableArray alloc] initWithArray:vc.rightToolBar.items];
+        UIImage* btnImage = [UIImage imageNamed:@"back.png"];
+        backButton = [[WABarButtonItemWithLink alloc]initWithImage:btnImage style:UIBarButtonItemStyleBordered target:self action:@selector(goBack)];
+        backButton.enabled = NO;
+            
+        [buttons addObject:backButton];
+        
+        // create a spacer
+        UIBarButtonItem * bi = [[WABarButtonItemWithLink alloc]
+              initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+        [buttons addObject:bi];
+        [bi release];
+        vc.rightToolBar.frame = CGRectMake(vc.rightToolBar.frame.origin.x, vc.rightToolBar.frame.origin.y, 45*([buttons count]/2), vc.navigationController.navigationBar.frame.size.height+0.01);
+        [vc.rightToolBar setItems:buttons animated:NO];
+        [buttons release];
+
+        
+        
+    }
+
   
 }
 - (void) moduleViewDidAppear{

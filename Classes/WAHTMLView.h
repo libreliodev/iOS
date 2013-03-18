@@ -10,9 +10,11 @@
 	UIViewController* currentViewController;
 	UIActivityIndicatorView*activityIndicator;
     UIImageView * splashView;
+    UIBarButtonItem* backButton;
 }
 @property (nonatomic, retain)	UIActivityIndicatorView*activityIndicator;
 @property (nonatomic, retain)	 UIImageView * splashView;
+@property (nonatomic, retain)	 UIBarButtonItem* backButton;
 
 - (void) loadTabFile;
 

@@ -248,13 +248,24 @@
 	
 }
 
--(void) addButtonWithBarButtonSystemItem:(UIBarButtonSystemItem)systemItem andLink:(NSString*)linkString{
+-(void) addButtonWithBarButtonSystemItem:(UIBarButtonSystemItem)systemItem orImageNamed:(NSString*)imageName orString:(NSString*)buttonString  andLink:(NSString*)linkString;{
     // create the button
     NSMutableArray* buttons = [[NSMutableArray alloc] initWithArray:rightToolBar.items];
     WABarButtonItemWithLink* bi = [[WABarButtonItemWithLink alloc]
                                    initWithBarButtonSystemItem:systemItem target:self action:@selector(performButtonAction:)];
     bi.style = UIBarButtonItemStyleBordered;
     bi.link = linkString;
+    if (systemItem == UIBarButtonSystemItemFixedSpace){
+        //Conventionally, in this case, we take either an image and a string button
+        if (![imageName isEqualToString:@""]){
+            UIImage * btnImage = [UIImage imageNamed:imageName];
+            bi = [[WABarButtonItemWithLink alloc]initWithImage:btnImage style:UIBarButtonItemStyleBordered target:self action:@selector(performButtonAction:)];
+        }
+        else{
+            bi = [[WABarButtonItemWithLink alloc]initWithTitle:@"buttonString" style:UIBarButtonItemStyleBordered target:self action:@selector(performButtonAction:)];
+        }
+        
+    }
     [buttons addObject:bi];
     [bi release];
     

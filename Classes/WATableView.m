@@ -163,15 +163,14 @@
 #pragma mark ModuleView protocol
 
 - (void)moduleViewWillAppear:(BOOL)animated{
-    WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];
+    //WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];
     
     //NSString * searchLink = [parser getHeaderForDataCol:@"SearchLink"];
-    NSString * searchLink = @"search://localhost/testskis2012/Guide_.sqlite";
+    //NSString * searchLink = @"search://localhost/testskis2012/Guide_.sqlite";
     //SLog(@"SearchLink:%@",searchLink);
-    if (searchLink) {
+    /*if (searchLink) {
         [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemSearch andLink:searchLink];
-    }
-    
+    }*/
     /*NSString * shareLink = [parser getHeaderForDataCol:@"ShareLink"];
     if (shareLink) {
         [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemAdd andLink:shareLink];

@@ -234,7 +234,7 @@
 
 - (void)dismissAd
 {
-    //SLog(@"Should dismiss now");
+    NSLog(@"Should dismiss now");
     [rootViewController dismissModalViewControllerAnimated:YES];
 }
 
