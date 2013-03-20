@@ -309,23 +309,27 @@
             
             [self connection:connection didFailWithError:statusError];
         }
-        
-        // Checking content type. It must be an image
-        NSDictionary *headers = [(NSHTTPURLResponse *)response allHeaderFields];
-        NSString *contentType = [headers objectForKey:@"Content-Type"];
-        NSRange range = [contentType rangeOfString:@"image" options:NSCaseInsensitiveSearch];
-        
-        if (range.location == NSNotFound)
-        {
-            // It is not an image
-            [connection cancel];
+        else{
+            // Checking content type. It must be an image
+            NSDictionary *headers = [(NSHTTPURLResponse *)response allHeaderFields];
+            NSString *contentType = [headers objectForKey:@"Content-Type"];
+            NSRange range = [contentType rangeOfString:@"image" options:NSCaseInsensitiveSearch];
             
-            NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:@"The server returned not an image for the splash screeen" forKey:NSLocalizedDescriptionKey];
-            NSError *statusError = [NSError errorWithDomain:@"NotAnImage" code:0 userInfo:errorInfo];
+            if (range.location == NSNotFound)
+            {
+                // It is not an image
+                [connection cancel];
+                
+                NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:@"The server returned not an image for the splash screeen" forKey:NSLocalizedDescriptionKey];
+                NSError *statusError = [NSError errorWithDomain:@"NotAnImage" code:0 userInfo:errorInfo];
+                
+                [self connection:connection didFailWithError:statusError];
+            }
+
             
-            [self connection:connection didFailWithError:statusError];
         }
-    }
+        
+     }
 }
 
 
