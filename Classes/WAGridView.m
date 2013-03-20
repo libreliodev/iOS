@@ -300,7 +300,37 @@
 
 - (void)moduleViewWillAppear:(BOOL)animated{
     
+    //Deselect selected cover if any
     [_gridView deselectItemAtIndex:[_gridView indexOfSelectedItem] animated:NO];
+    
+    //Add subscribe button if relevant
+    //First, check if the app offers subscriptions
+    NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];
+	if (credentials){
+        NSString * sharedSecret = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"SharedSecret"];
+        NSString * codeHash = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"CodeHash"];
+        //If the app offers subscriptions, either sharedSecret or CodeHash should be set
+        if (sharedSecret||codeHash){
+            //Now check if subscriptions are already active
+            NSString * nodownloadUrlString = @"http://localhost/wanodownload.pdf";
+            NSString * receipt = [nodownloadUrlString receiptForUrlString];
+            if (receipt){
+                NSLog(@"receipt found:%@",receipt);
+                //Subscriptions are already active, don't show button
+            }
+            else{
+                WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];
+                [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"" orString:NSLocalizedString(@"Subscription",@"" ) andLink:@"buy://localhost/wanodownload.pdf"];
+            }
+            
+            
+        }
+
+ 
+    }
+    
+    
+
 }
 
 - (void) moduleViewDidAppear{

@@ -32,19 +32,22 @@
 
 - (NSSet*) relevantSKProductIDsForUrlString;
 - (NSString *) titleWithSubscriptionLengthForId:(NSString*)theId;
-/*!
- @description: checks wether the product corresponding to urlString has already been purchased or if there is an active subscription; returns the corresponding receipt if yes
+
+/**
+ Checks wether the product corresponding to urlString has already been purchased or if there is an active subscription; returns the corresponding receipt if yes
  */
 - (NSString*) receiptForUrlString;
 
 
-/*!
- @attention: will work only if value is a single word
+/**
+ Deprecated
+ @attention: Will work only if value is a single word
  @discussion: For example, if Test = @"SELECT * FROM TableA", [Test queryStringByReplacingClause:@"FROM" withValue:@"TableB"] returns @"SELECT * FROM TableB"
  */
 - (NSString*) queryStringByReplacingClause:(NSString*)clause withValue:(NSString*)newValue;
 
-/*!
+/**
+ Deprecated
  @attention: will work only if value is a single word
  */
 - (NSString*) valueOfClause:(NSString*)clause;

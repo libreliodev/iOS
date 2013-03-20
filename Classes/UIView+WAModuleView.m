@@ -47,11 +47,11 @@
  **/
 - (void) showActionSheet:(UIActionSheet*)actionSheet animated:(BOOL)animated{
     //SLog(@"View height:%f",self.frame.size.height);
-   if (self.frame.size.height>0.01f){
+   if (self.frame.size.height>1.0f){
        [actionSheet showFromRect:self.frame inView:self.superview animated:YES];
    } 
    else {
-       //If the height  of the view is 0, we assume that it is the contentView of a BarButton
+       //If the height  of the view is 1.0, we assume that it is the contentView of a BarButton
        WAModuleViewController * curModuleViewController = (WAModuleViewController * )[(UIView <WAModuleProtocol>*)self currentViewController];
         [actionSheet showInView:curModuleViewController.moduleView]; 
    }
@@ -60,15 +60,16 @@
 
 - (void) showPopover:(UIPopoverController*)popover animated:(BOOL)animated{
     WAModuleViewController * curModuleViewController = (WAModuleViewController * )[(UIView <WAModuleProtocol>*)self currentViewController];
-    if (self.frame.size.height>0.01f){
-        [popover  presentPopoverFromRect:self.frame inView:self.superview permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    if (self.frame.size.height>1.0f){
+         [popover  presentPopoverFromRect:self.frame inView:self.superview permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     } 
     else {
-        //If the height  of the view is 0, we assume that it is the contentView of a BarButton; let's try to find it 
+        //If the height  of the view is 1.0, we assume that it is the contentView of a BarButton; let's try to find it 
         UIToolbar * toolBar = curModuleViewController.rightToolBar;
 
         for (WABarButtonItemWithLink * currentBarButton in toolBar.items){
              if ([currentBarButton.link isEqualToString:[(UIView <WAModuleProtocol>*)self urlString]]){
+                 NSLog(@"Button item found, will present popover");
                  [popover presentPopoverFromBarButtonItem:currentBarButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
             }
         }

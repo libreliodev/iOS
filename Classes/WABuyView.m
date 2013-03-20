@@ -6,6 +6,8 @@
 #import "WAModuleViewController.h"
 #import "NSBundle+WAAdditions.h"
 #import "NSString+WAURLString.h"
+#import "UIView+WAModuleView.m"
+
 
 #import "SHKActivityIndicator.h"
 #import <QuartzCore/QuartzCore.h>
@@ -194,8 +196,12 @@
 	//[actionSheet showInView:self.superview];
     if (self.superview)//The superview may have been released if a refresh download has taken place
     {
-        if ([WAUtilities isBigScreen]) [actionSheet showFromRect:self.frame inView:self.superview animated:YES];
-        else [actionSheet showFromTabBar:self.currentViewController.tabBarController.tabBar];   
+        if ([WAUtilities isBigScreen]){
+            NSLog(@"will show from rect with width %f and x %f and y %f",self.frame.size.width,self.frame.origin.x, self.frame.origin.y);
+            [actionSheet showFromRect:self.frame inView:self.superview animated:YES];
+
+        }
+        else [actionSheet showFromTabBar:self.currentViewController.tabBarController.tabBar];
 
         
     }	
@@ -349,14 +355,23 @@
 #pragma mark Helper methods
 
 - (void) startDownload{
-	NSString * newUrlString = [urlString stringByReplacingOccurrencesOfString:@"buy://localhost" withString:@""];
-	WAModuleViewController * loadingViewController = [[WAModuleViewController alloc]init];
-	loadingViewController.moduleUrlString= newUrlString;
-	loadingViewController.initialViewController= self.currentViewController;
-	loadingViewController.containingView= self.superview;
-	loadingViewController.containingRect= CGRectZero;
-	[loadingViewController pushViewControllerIfNeededAndLoadModuleView];
-	[loadingViewController release];
+    if ([[urlString nameOfFileWithoutExtensionOfUrlString]isEqualToString:@"wanodownload"]){
+        //Refresh dispaly so that Subscribe button is no longer shown
+        WAModuleViewController * moduleViewController = (WAModuleViewController *) [self traverseResponderChainForUIViewController];
+        [moduleViewController viewWillAppear:YES];
+
+        
+    }
+    else{
+        NSString * newUrlString = [urlString stringByReplacingOccurrencesOfString:@"buy://localhost" withString:@""];
+        WAModuleViewController * loadingViewController = [[WAModuleViewController alloc]init];
+        loadingViewController.moduleUrlString= newUrlString;
+        loadingViewController.initialViewController= self.currentViewController;
+        loadingViewController.containingView= self.superview;
+        loadingViewController.containingRect= CGRectZero;
+        [loadingViewController pushViewControllerIfNeededAndLoadModuleView];
+        [loadingViewController release];
+    }
 	[self removeFromSuperview];
 	
 	

@@ -282,6 +282,7 @@
 
 - (void)moduleViewWillAppear:(BOOL)animated{
     if ([self isRootModule]){
+        //The following code which would be recommended cannot be used because the delegate is not WAModuleViewControler but self
         /*WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];
         [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"back.png" orString:@"" andLink:[urlString urlByChangingSchemeOfUrlStringToScheme:@"search"]];*/
         

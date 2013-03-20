@@ -7,7 +7,10 @@
 
 
 
-
+/**
+ This class contains utility methods, and should be imported in all other classes.
+ We now prefer to use categories, so most utilty methods are now in categories.
+ */
 @interface WAUtilities : NSObject {
 
 }
@@ -23,6 +26,11 @@
 
 + (BOOL)isDownloadMissingResourcesNeededForUrlString :(NSString*)urlString;
 
+/**
+ Retrieves UUID, generates one if needed.
+ See http://stackoverflow.com/questions/11930425/send-a-unique-identifier-from-ios-device-to-a-webservice?rq=1
+ */
++ (NSString *)getUUID;
 + (NSString *) completeDownloadUrlforUrlString:(NSString*)urlString;
 + (NSString *) completeCheckAppStoreUrlforUrlString:(NSString*)urlString;
 + (NSString *) completeCheckPasswordUrlforUrlString:(NSString*)urlString;

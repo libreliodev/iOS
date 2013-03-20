@@ -11,7 +11,7 @@
 
 #define kDownloadUrl @"http://librelio-europe.s3.amazonaws.com"
 #define kCheckAppStoreUrl @"http://download.librelio.com/downloads/appstorev2.php?receipt=%@&sharedsecret=%@&urlstring=%@&userkey=%@"
-#define kCheckPasswordUrl @"http://download.librelio.com/downloads/pswd.php?code=%@&hash=%@&urlstring=%@&client=%@&app=%@"
+#define kCheckPasswordUrl @"http://download.librelio.com/downloads/pswd.php?code=%@&hash=%@&urlstring=%@&client=%@&app=%@&uid=%@"
 
 
 @implementation WAUtilities
@@ -327,7 +327,27 @@
 
 
 #pragma mark -
-#pragma mark Download URL generators
+#pragma mark Download URL generators and UUID
+
++ (NSString *)getUUID {
+    NSString *string = [[NSUserDefaults standardUserDefaults] objectForKey:@"deviceUUID"];
+    if (string == nil) {
+        CFUUIDRef   uuid;
+        CFStringRef uuidStr;
+        
+        uuid = CFUUIDCreate(NULL);
+        uuidStr = CFUUIDCreateString(NULL, uuid);
+        
+        string = [NSString stringWithFormat:@"%@", uuidStr];
+        [[NSUserDefaults standardUserDefaults] setObject:string forKey:@"deviceUUID"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        CFRelease(uuidStr);
+        CFRelease(uuid);
+    }
+    
+    return string;
+}
 
 + (NSString *) completeDownloadUrlforUrlString:(NSString*)urlString{
     //Check if parameter waurl exists; in this case, use the speicified url, instead of the s3
@@ -397,8 +417,8 @@
 	NSString * clientShortID = [parts objectAtIndex:[parts count]-2];
 	if ([clientShortID isEqualToString:@"widgetavenue"]) clientShortID = @"librelio";//this is for back compatibility reasons
 	
-	
-	NSString * retUrl = [NSString stringWithFormat:kCheckPasswordUrl,password,codeHash,encodedUrl,clientShortID,appShortID];
+    NSString * uid = [self getUUID];
+	NSString * retUrl = [NSString stringWithFormat:kCheckPasswordUrl,password,codeHash,encodedUrl,clientShortID,appShortID,uid];
 	//SLog(@"retpassUrl=%@",retUrl);
 	return retUrl;
 	

@@ -26,6 +26,8 @@
 "I have a subscriber code" = "Ho un codice abbonato";
 "I have a promo code" = "Ho un codice promo";
 "Subscriber Code" = "Codice abbonato";
+"Subscription" = "Abbonamente";
+"Your subscription is activated"="Il tuo abbonamento è attivato";
 "Free subscription" = "Abbonamente gratuito";
 "Please enter your  code" = "Inserisci il tuo codice";
 "Invalid Code" = "Codice non valido";

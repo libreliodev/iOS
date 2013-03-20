@@ -27,15 +27,9 @@
 
 @synthesize moduleUrlString,containingView,moduleView,initialViewController,containingRect,rightToolBar;
 
-/**	@property searchNavigationController
- *	@brief A navigation controller retained to keep track of last search actions
- **/
 @synthesize searchNavigationController;
 
 
-/**	@property lastKnownOrientation
- *	@brief The last orientation the controller is aware of.
- **/
 @synthesize lastKnownOrientation;
 
 
@@ -254,7 +248,6 @@
     WABarButtonItemWithLink* bi = [[WABarButtonItemWithLink alloc]
                                    initWithBarButtonSystemItem:systemItem target:self action:@selector(performButtonAction:)];
     bi.style = UIBarButtonItemStyleBordered;
-    bi.link = linkString;
     if (systemItem == UIBarButtonSystemItemFixedSpace){
         //Conventionally, in this case, we take either an image and a string button
         if (![imageName isEqualToString:@""]){
@@ -262,20 +255,39 @@
             bi = [[WABarButtonItemWithLink alloc]initWithImage:btnImage style:UIBarButtonItemStyleBordered target:self action:@selector(performButtonAction:)];
         }
         else{
-            bi = [[WABarButtonItemWithLink alloc]initWithTitle:@"buttonString" style:UIBarButtonItemStyleBordered target:self action:@selector(performButtonAction:)];
+            bi = [[WABarButtonItemWithLink alloc]initWithTitle:buttonString style:UIBarButtonItemStyleBordered target:self action:@selector(performButtonAction:)];
         }
         
     }
+    bi.link = linkString;
     [buttons addObject:bi];
-    [bi release];
+     [bi release];
+
     
     // create a spacer
-    bi = [[WABarButtonItemWithLink alloc]
+    WABarButtonItemWithLink* bi2 = [[WABarButtonItemWithLink alloc]
           initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    [buttons addObject:bi];
-    [bi release];
-    rightToolBar.frame = CGRectMake(rightToolBar.frame.origin.x, rightToolBar.frame.origin.y, 45*([buttons count]/2), self.navigationController.navigationBar.frame.size.height+0.01);
+    [buttons addObject:bi2];
+     [bi2 release];
+    
     [rightToolBar setItems:buttons animated:NO];
+ 
+    //Calculate the width needed
+    CGFloat widthNeeded = 4.0;
+    for (WABarButtonItemWithLink* button in buttons){
+        UIView *view = [button valueForKey:@"view"];
+        CGFloat width = view? [view frame].size.width : (CGFloat)0.0;
+        NSLog(@"Button  width:%f" , width);
+        widthNeeded += width;
+        
+    }
+    
+    rightToolBar.frame = CGRectMake(rightToolBar.frame.origin.x, rightToolBar.frame.origin.y, widthNeeded, self.navigationController.navigationBar.frame.size.height+0.01);
+  
+    
+ 
+    
+   
     [buttons release];
 
     
@@ -397,9 +409,11 @@
 #pragma mark Button methods
 - (void) performButtonAction:(id)sender{
     WABarButtonItemWithLink * buttonItem = ( WABarButtonItemWithLink *) sender;
+    NSLog(@"Performing action for button %@ with link: %@",buttonItem.title,buttonItem.link);
+
+    
     WAModuleViewController * moduleViewController = [[WAModuleViewController alloc]init];
  	moduleViewController.moduleUrlString= buttonItem.link;
-    //SLog(@"Sending button link: %@",buttonItem.link);
 
     //Release existing module if any
     UIView * modView = [self.navigationItem.rightBarButtonItem.customView viewWithTag:999];
@@ -408,9 +422,9 @@
     
 	moduleViewController.initialViewController= self;
 	//moduleViewController.containingView= buttonItem.customView;
-    //UIView * bView = [self.navigationItem.rightBarButtonItem valueForKey:@"view"]; //See http://stackoverflow.com/questions/5066847/get-the-width-of-a-uibarbuttonitem 
+    UIView * bView = [buttonItem valueForKey:@"view"]; //See http://stackoverflow.com/questions/5066847/get-the-width-of-a-uibarbuttonitem 
     moduleViewController.containingView= self.navigationItem.rightBarButtonItem.customView;
-	moduleViewController.containingRect= CGRectMake(0,0,0.01,0);//Hack: we need to set height to 0 popover to display correctly
+	moduleViewController.containingRect= CGRectMake(bView.frame.origin.x,bView.frame.origin.y,bView.frame.size.width,1.0f);//Hack: we need to set height to 1.0 for popover to display correctly
 	[moduleViewController pushViewControllerIfNeededAndLoadModuleView];
     moduleViewController.moduleView.tag = 999;
 	[moduleViewController release];

@@ -24,6 +24,10 @@
     
 }
 @property (nonatomic, retain)	NSString *moduleUrlString;
+
+/**
+ A navigation controller retained to keep track of last search actions
+ **/
 @property (nonatomic, retain)   UINavigationController * searchNavigationController;
 
 
@@ -32,6 +36,10 @@
 @property (nonatomic, assign) UIViewController * initialViewController;
 
 @property CGRect containingRect;
+
+/**
+ The last orientation the controller is aware of.
+ **/
 @property UIInterfaceOrientation lastKnownOrientation;
 
 @property (nonatomic, retain) WATransparentToolbar* rightToolBar;
