@@ -491,7 +491,7 @@
 }
 
 - (void)queryDidReceiveNotification:(NSNotification *)notification {
-    //SLog(@"Did receive iCloud notif");
+    /**SLog(@"Did receive iCloud notif");
     NSArray *results = [self.metadataQuery results];
     
     for(NSMetadataItem *item in results) {
@@ -499,7 +499,7 @@
         NSNumber *filesize = [item valueForAttribute:NSMetadataItemFSSizeKey];
         NSDate *updated = [item valueForAttribute:NSMetadataItemFSContentChangeDateKey];
         //SLog(@"%@ (%@ bytes, updated %@)", filename, filesize, updated);
-    }
+    }**/
 }
 
 
