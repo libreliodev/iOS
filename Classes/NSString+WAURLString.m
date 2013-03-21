@@ -532,15 +532,10 @@
     
 }
 
-- (NSString*) gaVirtualUrlForModuleWithName:(NSString*)moduleName withPage:(NSString*)pageName{
-    NSString * appLongID = [[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"];
-    NSArray *parts = [appLongID componentsSeparatedByString:@"."];
-    NSString * appName = [parts objectAtIndex:[parts count]-1];
-    //NSString * clientShortID = [parts objectAtIndex:[parts count]-2];
-    //if ([clientShortID isEqualToString:@"widgetavenue"]) clientShortID = @"librelio";//this is for back compatibility reasons
+- (NSString*) gaScreenForModuleWithName:(NSString*)moduleName withPage:(NSString*)pageName{
     NSString * fileName = [self nameOfFileWithoutExtensionOfUrlString];
     
-    NSString * completeUrl = [NSString stringWithFormat:@"%@/ios/%@/%@",appName,moduleName,fileName];
+    NSString * completeUrl = [NSString stringWithFormat:@"%@/%@",moduleName,fileName];
     if (pageName) completeUrl = [NSString stringWithFormat:@"%@/%@",completeUrl,pageName];
     return completeUrl;
 

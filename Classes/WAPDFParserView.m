@@ -11,7 +11,7 @@
 #import "NSBundle+WAAdditions.h"
 #import "UIImage+WAAdditions.h"
 
-#import "GANTracker.h"
+#import "GAI.h"
 
 
 @implementation WAPDFParserView
@@ -175,13 +175,9 @@
         
         //Register page View with Google Analytics, only if page>0 (which sometimes happen erroneously)
         if (page>0){
-            NSString * pageString = [pdfDocument.urlString gaVirtualUrlForModuleWithName:@"documents" withPage:[NSString stringWithFormat:@"page%i",page]];
+            NSString * viewString = [pdfDocument.urlString gaScreenForModuleWithName:@"PDFReader" withPage:[NSString stringWithFormat:@"page%i",page]];
             
-            NSError *error;
-            if (![[GANTracker sharedTracker] trackPageview:pageString
-                                                 withError:&error]) {
-                NSLog(@"error in trackPageview");
-            }
+            [[[GAI sharedInstance] defaultTracker]sendView:viewString];
             
         }
 
@@ -209,11 +205,11 @@
         WAVideoView * videoView = (WAVideoView *) view;
         if ( [videoView respondsToSelector: @selector(setMovieViewController:)] )
         {
-            NSLog(@"Found video");
+            //SLog(@"Found video");
             
             if (videoView.movieViewController.moviePlayer.fullscreen)
             {
-                NSLog(@"Video is playing full screen");
+                //SLog(@"Video is playing full screen");
                 return;
             }
             

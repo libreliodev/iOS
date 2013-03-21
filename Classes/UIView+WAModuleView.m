@@ -69,7 +69,7 @@
 
         for (WABarButtonItemWithLink * currentBarButton in toolBar.items){
              if ([currentBarButton.link isEqualToString:[(UIView <WAModuleProtocol>*)self urlString]]){
-                 NSLog(@"Button item found, will present popover");
+                 //SLog(@"Button item found, will present popover");
                  [popover presentPopoverFromBarButtonItem:currentBarButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
             }
         }

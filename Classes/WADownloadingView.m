@@ -13,7 +13,7 @@
 #import "NSBundle+WAAdditions.h"
 #import "NSDate+WAAdditions.h"
 
-#import "GANTracker.h"
+#import "GAI.h"
 
 
 @implementation WADownloadingView
@@ -97,6 +97,13 @@
     timer = [[NSTimer scheduledTimerWithTimeInterval: 0.5 target:self selector:@selector(updateDisplay) userInfo:nil repeats:YES]retain];
 
 	
+    //Register screen view only if visible; this could not be the case, because download occurs in the background if it is an update
+    if (!self.hidden){
+        NSString * viewString = [urlString gaScreenForModuleWithName:@"Downloading" withPage:nil];
+        
+        [[[GAI sharedInstance] defaultTracker]sendView:viewString];
+
+    }
 	
 	
 	
@@ -192,7 +199,7 @@
     NSDictionary *notificatedDic = notification.object;
     NSString *notificatedUrl = [notificatedDic objectForKey:@"urlString"];
     if ([notificatedUrl isEqualToString:self.urlString  ]){
-        NSLog(@"Download failed for url:%@",self.urlString );
+        //SLog(@"Download failed for url:%@",self.urlString );
       	//If this view is visible, and only in this case, display error message
         if (self.hidden ==NO){
             NSString * httpStatus = [notificatedDic objectForKey:@"httpStatus"];
@@ -230,14 +237,7 @@
         //Register event with Google Analytics
         NSString * action = @"Download succeeded";
         NSString * label = [NSString stringWithFormat:@"%@/%@",[[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"],[urlString stringByReplacingOccurrencesOfString:@"http://localhost/" withString:@""]];
-        NSError *error;
-        if (![[GANTracker sharedTracker] trackEvent:@"Download"
-                                             action:action
-                                              label:label
-                                              value:1
-                                          withError:&error]) {
-            NSLog(@"error in trackEvent");
-        }
+        [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"Downloader" withAction:action withLabel:label withValue:[NSNumber numberWithInt:1]];
 
 
         

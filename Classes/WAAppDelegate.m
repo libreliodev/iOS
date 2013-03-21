@@ -15,7 +15,7 @@
 
 
 
-#import "GANTracker.h"
+#import "GAI.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -50,13 +50,12 @@
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"DocsMoved"])[self moveDocumentsToCache];       
     
     //Launch Google analytics
-    NSString * googleCode = @"UA-1732003-22";//This is the default Librelio code
+    NSString * googleCode = @"UA-1732003-23";//This is the default Librelio code
     NSDictionary * app_Dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"]];
     if ([app_Dic objectForKey:@"GoogleAnalyticsCode"]) googleCode = [app_Dic objectForKey:@"GoogleAnalyticsCode"];
-    [[GANTracker sharedTracker] startTrackerWithAccountID:googleCode
-                                           dispatchPeriod:10
-                                                 delegate:nil];
-
+    [[GAI sharedInstance] trackerWithTrackingId:googleCode];
+    [GAI sharedInstance].trackUncaughtExceptions = YES; // Enable exceptions tracking
+ 
     
     
 	
@@ -131,14 +130,7 @@
     
     
     //Register event with GA
-    NSError *error;
-    if (![[GANTracker sharedTracker] trackEvent:@"Application iOS"
-                                         action:@"Became active"
-                                          label:[[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"]
-                                          value:1
-                                      withError:&error]) {
-        NSLog(@"error in trackEvent");
-    }
+    [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"Application iOS" withAction:@"Became active" withLabel:@"App" withValue:[NSNumber numberWithInt:1]];
 
 
     
@@ -506,7 +498,7 @@
         NSString *filename = [item valueForAttribute:NSMetadataItemDisplayNameKey];
         NSNumber *filesize = [item valueForAttribute:NSMetadataItemFSSizeKey];
         NSDate *updated = [item valueForAttribute:NSMetadataItemFSContentChangeDateKey];
-        NSLog(@"%@ (%@ bytes, updated %@)", filename, filesize, updated);
+        //SLog(@"%@ (%@ bytes, updated %@)", filename, filesize, updated);
     }
 }
 

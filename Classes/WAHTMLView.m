@@ -8,7 +8,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIColor+WAAdditions.m"
 #import "NSString+WAURLString.h"
-#import "GANTracker.h"
+#import "GAI.h"
 
 
 
@@ -104,13 +104,9 @@
         }
         
         //Tracking
-        NSString * pageString = [urlString gaVirtualUrlForModuleWithName:@"html" withPage:nil];
+        NSString * viewString = [urlString gaScreenForModuleWithName:@"Browser" withPage:nil];
         
-        NSError *error;
-        if (![[GANTracker sharedTracker] trackPageview:pageString
-                                             withError:&error]) {
-            NSLog(@"error in trackPageview");
-        }
+        [[[GAI sharedInstance] defaultTracker]sendView:viewString];
 
 	}
 	
@@ -165,7 +161,7 @@
     
     if ([self canGoBack]) backButton.enabled=YES;
     else backButton.enabled=NO;
-    //NSLog(@"finished loading");
+    //SLog(@"finished loading");
 	
 }
 

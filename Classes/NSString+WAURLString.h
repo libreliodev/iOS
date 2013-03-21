@@ -52,7 +52,7 @@
  */
 - (NSString*) valueOfClause:(NSString*)clause;
 
-- (NSString*) gaVirtualUrlForModuleWithName:(NSString*)moduleName withPage:(NSString*)pageName;
+- (NSString*) gaScreenForModuleWithName:(NSString*)moduleName withPage:(NSString*)pageName;
 
 - (NSString *)device;
 + (NSString *)orientation;

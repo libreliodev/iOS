@@ -197,7 +197,7 @@
     if (self.superview)//The superview may have been released if a refresh download has taken place
     {
         if ([WAUtilities isBigScreen]){
-            NSLog(@"will show from rect with width %f and x %f and y %f",self.frame.size.width,self.frame.origin.x, self.frame.origin.y);
+            //SLog(@"will show from rect with width %f and x %f and y %f",self.frame.size.width,self.frame.origin.x, self.frame.origin.y);
             [actionSheet showFromRect:self.frame inView:self.superview animated:YES];
 
         }

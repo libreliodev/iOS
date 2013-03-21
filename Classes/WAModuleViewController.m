@@ -20,7 +20,7 @@
 #import "NSString+WAURLString.h"
 #import "NSBundle+WAAdditions.h"
 
-#import "GANTracker.h"
+#import "GAI.h"
 
 @implementation WAModuleViewController
 
@@ -227,15 +227,8 @@
             action = @"Module opened automatically";
           }
         NSString * label = [NSString stringWithFormat:@"%@/%@",[[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"],[moduleUrlString stringByReplacingOccurrencesOfString:@"http://localhost/" withString:@""]];
-        NSError *error;
-        if (![[GANTracker sharedTracker] trackEvent:@"Module"
-                                             action:action
-                                              label:label
-                                              value:1
-                                          withError:&error]) {
-            //SLog(@"error in trackEvent");
-        }
-
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker sendEventWithCategory:@"Module" withAction:action withLabel:label withValue:[NSNumber numberWithInt:1]];
 
 	}
 
@@ -277,7 +270,7 @@
     for (WABarButtonItemWithLink* button in buttons){
         UIView *view = [button valueForKey:@"view"];
         CGFloat width = view? [view frame].size.width : (CGFloat)0.0;
-        NSLog(@"Button  width:%f" , width);
+        //SLog(@"Button  width:%f" , width);
         widthNeeded += width;
         
     }
@@ -352,7 +345,9 @@
 }
 
 - (void)viewDidLoad {
-	self.view.backgroundColor = [UIColor blackColor];
+    //self.trackedViewName = [[moduleUrlString classNameOfModuleOfUrlString]stringByReplacingCharactersInRange:NSMakeRange(0,2) withString:@""];
+	
+    self.view.backgroundColor = [UIColor blackColor];
 	if (!containingView){//This happens when LoadingView controller is instantiated from LibrelioAppDelegate
 		containingView = self.view;
 		containingRect = self.view.frame;
@@ -409,7 +404,7 @@
 #pragma mark Button methods
 - (void) performButtonAction:(id)sender{
     WABarButtonItemWithLink * buttonItem = ( WABarButtonItemWithLink *) sender;
-    NSLog(@"Performing action for button %@ with link: %@",buttonItem.title,buttonItem.link);
+    //SLog(@"Performing action for button %@ with link: %@",buttonItem.title,buttonItem.link);
 
     
     WAModuleViewController * moduleViewController = [[WAModuleViewController alloc]init];

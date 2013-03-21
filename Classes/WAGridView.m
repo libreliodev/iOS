@@ -11,7 +11,7 @@
 #import "UIView+WAModuleView.m"
 #import "NSString+WAURLString.h"
 #import "NSBundle+WAAdditions.h"
-#import "GANTracker.h"
+#import "GAI.h"
 
 
 
@@ -100,13 +100,9 @@
 		 */
 		
         //Tracking
-        NSString * pageString = [urlString gaVirtualUrlForModuleWithName:@"libraries" withPage:nil];
+        NSString * viewString = [urlString gaScreenForModuleWithName:@"Library" withPage:nil];
         
-        NSError *error;
-        if (![[GANTracker sharedTracker] trackPageview:pageString
-                                             withError:&error]) {
-            NSLog(@"error in trackPageview");
-        }
+        [[[GAI sharedInstance] defaultTracker]sendView:viewString];
 
 		
 		
@@ -315,7 +311,7 @@
             NSString * nodownloadUrlString = @"http://localhost/wanodownload.pdf";
             NSString * receipt = [nodownloadUrlString receiptForUrlString];
             if (receipt){
-                NSLog(@"receipt found:%@",receipt);
+                //SLog(@"receipt found:%@",receipt);
                 //Subscriptions are already active, don't show button
             }
             else{

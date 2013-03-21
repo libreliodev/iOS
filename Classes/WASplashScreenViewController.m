@@ -16,7 +16,7 @@
 
 #import "WAUtilities.h"
 
-#import "GANTracker.h"
+#import "GAI.h"
 
 
 @implementation WASplashScreenViewController
@@ -234,7 +234,7 @@
 
 - (void)dismissAd
 {
-    NSLog(@"Should dismiss now");
+    //SLog(@"Should dismiss now");
     [rootViewController dismissModalViewControllerAnimated:YES];
 }
 
@@ -374,13 +374,9 @@
     if(![rootViewController.modalViewController isEqual:self]) [rootViewController presentModalViewController:self animated:YES];//This happens when the app did become active after being in the background
     
     //Tracking
-    NSString * pageString = [urlString gaVirtualUrlForModuleWithName:@"ads" withPage:nil];
+    NSString * pageString = [urlString gaScreenForModuleWithName:@"Interstitial" withPage:nil];
     
-    NSError *error;
-    if (![[GANTracker sharedTracker] trackPageview:pageString
-                                         withError:&error]) {
-        NSLog(@"error in trackPageview");
-    }
+    [[[GAI sharedInstance] defaultTracker]sendView:pageString];
 
     
     // Load plist file with a link to a web-page
