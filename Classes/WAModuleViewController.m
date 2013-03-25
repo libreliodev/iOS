@@ -148,7 +148,7 @@
 - (void)checkUpdate{
 
     if ([WAUtilities isCheckUpdateNeededForUrlString:moduleUrlString]||[WAUtilities isDownloadMissingResourcesNeededForUrlString:moduleUrlString]){
-        //SLog(@"Update needed");
+        //SLog(@"Update needed for url %@",moduleUrlString);
 		//Update needed, we load a loadingView to handle it
 		WADownloadingView * loadingView = [[WADownloadingView alloc]init];
 		loadingView.currentViewController = self;
@@ -192,6 +192,7 @@
 - (void)loadModuleViewAndCheckUpdate{
 	
 	[self loadModuleView];
+    //SLog(@"will check update for module %@",moduleUrlString);
     [self checkUpdate];
 
 	
@@ -311,7 +312,7 @@
     if (shouldHideUpperBar) self.navigationController.navigationBarHidden = YES;
 
 
-
+    NSLog(@"ModuleViewController will trigger moduleViewWillAppear");
 	[moduleView moduleViewWillAppear:animated];
 
 

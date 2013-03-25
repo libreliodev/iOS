@@ -233,6 +233,7 @@
 - (LinkType) typeOfLinkOfUrlString{
     NSString * scheme = [self schemePartOfUrlString];    
 	NSString * extension = [[self noArgsPartOfUrlString] pathExtension];
+    //SLog(@"extension:%@ for url %@",extension,self);
 	NSRange RSSrange = [self rangeOfString :@"feeds"];
 	NSRange MAPrange = [self rangeOfString :@"maps.google"];
 	NSRange iTunesRange = [self rangeOfString :@"itunes.apple"];
@@ -415,7 +416,7 @@
 			break;
 		}
 		case ParserTypeRSS:{
-			ret = @"RSSParser";
+			ret = @"WARSSParser";
 			break;
 		}
         case ParserTypeAtom:{
@@ -446,9 +447,13 @@
         if ([NKLibrary sharedLibrary]){
             //Then check the type of link
             LinkType  moduleType = [self typeOfLinkOfUrlString];
-            if ((moduleType == LinkTypePaginated)||(moduleType == LinkTypeSearch)) return YES;
+            if ((moduleType == LinkTypePaginated)||(moduleType == LinkTypeSearch)){
+                 //SLog(@"will return yes for url:%@",self);
+                return YES;
+            }
         }
      }
+    //SLog(@"will return no");
     return NO;
 }
 

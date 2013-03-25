@@ -216,7 +216,10 @@
             
             //Use a local url to force image storage
             else {
-                NSString * imageName = [NSString stringWithFormat:@"img%i.jpg",row];
+                ret = [ret  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                //Use a local url to force image storage
+                NSString * ext = [[ret noArgsPartOfUrlString] pathExtension];
+                NSString * imageName = [NSString stringWithFormat:@"%@/img%lu.%@",[urlString nameOfFileWithoutExtensionOfUrlString],(unsigned long)[ret hash],ext];
                 ret = [imageName urlByAddingParameterInUrlStringWithKey:@"waurl" withValue:ret];
                 
             }

@@ -24,7 +24,7 @@
 	NSData * feedData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:urlString]];
 	doc = xmlReadMemory([feedData bytes], [feedData length], "", NULL, HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR);
 	xpathCtx = xmlXPathNewContext(doc); 
-    xmlXPathRegisterNs(xpathCtx, (xmlChar *)"a", (xmlChar *)"http://www.w3.org/2005/Atom");
+    //xmlXPathRegisterNs(xpathCtx, (xmlChar *)"a", (xmlChar *)"http://www.w3.org/2005/Atom");
 }
 
 - (void)dealloc
@@ -52,7 +52,14 @@
 - (NSString*) getStringForXPath:(xmlChar *)xPathExp2 inHtmlNodeForXpath:(xmlChar *)xPathExp1{
 	//Get the HTML
 	xmlXPathObjectPtr xpathObjHtml = xmlXPathEvalExpression(xPathExp1, xpathCtx);
-	xmlChar *Html = (xmlChar *)xpathObjHtml->nodesetval->nodeTab[0]->children->content;
+	/*xmlChar *Html = (xmlChar *)"<html><body>";
+    xmlChar * innerHtml = (xmlChar *)xpathObjHtml->nodesetval->nodeTab[0]->children->content;
+    xmlStrcat(Html,innerHtml);
+    xmlStrcat(Html,(xmlChar *)"</body></html>");*/
+    xmlChar * Html = (xmlChar *)xpathObjHtml->nodesetval->nodeTab[0]->children->content;
+
+
+    
 	//Create a new doc with the HTML and apply XPath expression
 	xmlDocPtr htmlDoc = htmlReadDoc(Html, "", "utf-8", HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR);
 	//In case coder needs to access html, here is how:
@@ -83,83 +90,6 @@
 
 
 
-- (NSDictionary*) getFeedDictionary {
-	/*
-     //Get the title of the feed
-     NSString *feedTitle = [self getStringForXPath:(xmlChar *)[[proxyDic objectForKey:@"TitleXPath"]UTF8String]];
-     
-     //Get the icon of the feed
-     NSString *feedIcon = [self getStringForXPath:(xmlChar *)[[proxyDic objectForKey:@"ImageXPath"]UTF8String]];
-     
-     //Get the baseURL of the feed
-     NSString *baseURL = [self getStringForXPath:(xmlChar *)[[proxyDic objectForKey:@"BaseURLXPath"]UTF8String]];	
-     //Get the entries
-     xmlXPathObjectPtr xpathEntries = xmlXPathEvalExpression((xmlChar *)[[proxyDic objectForKey:@"ItemsXPath"]UTF8String], xpathCtx);//Find all entries
-     */
-	
-	//Get the title of the feed
-	NSString *feedTitle = [self getStringForXPath:(xmlChar *)"//a:feed/a:title"];
-	
-	//Get the icon of the feed
-	NSString *feedIcon = [self getStringForXPath:(xmlChar *)"//a:feed/a:logo"];
-	
-	//Get the baseURL of the feed
-	NSString *baseURL = [self getStringForXPath:(xmlChar *)"//a:feed/a:link/@href"];
-	
-	//Get the entries
-	xmlXPathObjectPtr xpathEntries = xmlXPathEvalExpression((xmlChar *)"//a:feed/a:entry", xpathCtx);//Find all entries
-	
-    
-	NSMutableArray *tempArray= [NSMutableArray array];
-	
-	if(xpathEntries == NULL) {
-	}
-	else {
-		int size;
-		int i;
-		size = xpathEntries->nodesetval->nodeNr;
-		for(i = 0; i < size; ++i) {
-			NSMutableDictionary *tempDictionary = [NSMutableDictionary dictionary];
-			xpathCtx->node = xpathEntries->nodesetval->nodeTab[i];//Change the context to the current node
-			
-			//Get the title 
-			NSString *curTitle = [self getStringForXPath:(xmlChar *)".//a:title"];
-			[tempDictionary setObject:curTitle forKey:@"ItemTextLabel"];
-            
-			//Get the link 
-			NSString *curLink = [self getStringForXPath:(xmlChar *)".//a:link/@href"];
-			NSString *completeLink = ([curLink hasPrefix:@"http://"])?curLink:[NSString stringWithFormat:@"%@%@",baseURL,curLink];
-			[tempDictionary setObject:completeLink forKey:@"ItemLink"];
-			
-			//Get the date 
-			NSString *curDate = [self getStringForXPath:(xmlChar *)".//a:published"];
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZ"];
-			[tempDictionary setObject:curDate forKey:@"ItemDetailTextLabel"];
-			
-			//Get the first image in the HTML
-			NSString* imageURL = [self getStringForXPath:(xmlChar *)"//@src" inHtmlNodeForXpath:(xmlChar *)".//a:content"];
-			if (imageURL) [tempDictionary setObject:imageURL forKey:@"ImageURL"];
-            
-			//Get the first paragraph
-			NSString* pString = [self getStringForXPath:(xmlChar *)"//a[text()]" inHtmlNodeForXpath:(xmlChar *)".//a:content"];
-			if (([curTitle length]<2)&&(pString)) [tempDictionary setObject:pString forKey:@"ItemTextLabel"];//Hack for Facebook (and maybe other feeds) which often returns empty Title elements
-			
-			[tempArray addObject:tempDictionary];
-			
-			
-			
-			
-			
-		}
-		
-	}
-	
-	xmlXPathFreeObject(xpathEntries);
-	NSDictionary * ret = [NSDictionary dictionaryWithObjectsAndKeys:feedTitle, @"HeaderTitle",feedIcon,@"HeaderIcon",tempArray,@"ItemsArray",nil];
-	return (ret);
-    
-}
 
 
 
@@ -175,56 +105,68 @@
     return nil;
 }
 - (NSString*) getDataAtRow:(int)row forDataCol:(DataCol)dataCol{
-	NSString * xPathBegin = [NSString stringWithFormat: @"//a:feed/a:entry[position()=%i]",row];
+	NSString * xPathBegin = [NSString stringWithFormat: @"//rss/channel/item[position()=%i]",row];
 	switch (dataCol) {
 		case DataColTitle:{
-			NSString * xPath = [xPathBegin stringByAppendingString:@"/a:title"];
+			NSString * xPath = [xPathBegin stringByAppendingString:@"/title"];
 			NSString * ret = [self getStringForXPath:(xmlChar *)[xPath cStringUsingEncoding: NSASCIIStringEncoding ]];
+            //SLog(@"title found:%@",ret);
             
-			//Get the first paragraph
-            NSString* pString = [self getStringForXPath:(xmlChar *)"//a[text()]" inHtmlNodeForXpath:(xmlChar *)".//a:content"];
-			if (([ret length]<2)&&(pString)) ret=pString;//Hack for Facebook (and maybe other feeds) which often returns empty Title elements
 			
 			return ret;
 		}
            
- 			
+ 		case DataColSubTitle:{
+			NSString * xPath = [xPathBegin stringByAppendingString:@"/description"];
+           // NSString* ret = [self getStringForXPath:(xmlChar *)"//body/text()" inHtmlNodeForXpath:(xmlChar *)[xPath cStringUsingEncoding: NSASCIIStringEncoding ]];
+ 			NSString * ret = [self getStringForXPath:(xmlChar *)[xPath cStringUsingEncoding: NSASCIIStringEncoding ]];
+            
+
+             NSLog(@"subtitle found:%@",ret);
+            
+			
+			return ret;
+		}
+			
 
 		case DataColDate:{
-			NSString *ret = [self getStringForXPath:(xmlChar *)".//a:published"];
+            NSString * xPath = [xPathBegin stringByAppendingString:@"/pubDate"];
+			NSString * ret = [self getStringForXPath:(xmlChar *)[xPath cStringUsingEncoding: NSASCIIStringEncoding ]];
             //NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             //[dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZ"];
 			if (!ret) ret= nil;
+            //SLog(@"date found:%@",ret);
+
 			return ret;
 		}
 		case DataColImage: {
 			//Get the first image in the HTML
-			NSString* ret = [self getStringForXPath:(xmlChar *)"//@src" inHtmlNodeForXpath:(xmlChar *)".//a:content"];
+			NSString * xPath = [xPathBegin stringByAppendingString:@"/description"];
+			NSString* ret = [self getStringForXPath:(xmlChar *)"//@src" inHtmlNodeForXpath:(xmlChar *)[xPath cStringUsingEncoding: NSASCIIStringEncoding ]];
 			if (!ret) ret= nil;
+            else {
+                ret = [ret  stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                 //Use a local url to force image storage
+                NSString * ext = [[ret noArgsPartOfUrlString] pathExtension];
+                NSString * imageName = [NSString stringWithFormat:@"%@/img%lu.%@",[urlString nameOfFileWithoutExtensionOfUrlString],(unsigned long)[ret hash],ext];
+                ret = [imageName urlByAddingParameterInUrlStringWithKey:@"waurl" withValue:ret];
+                
+            }
 			return ret;
 			
 		}
         case DataColDetailLink:{
-            //Get the link 
-			NSString *curLink = [self getStringForXPath:(xmlChar *)".//a:link/@href"];
-            NSString * baseURL = [self getHeaderForDataCol:DataColDetailLink];
-			NSString *ret = ([curLink hasPrefix:@"http://"])?curLink:[NSString stringWithFormat:@"%@%@",baseURL,curLink];
+            //Get the link
+            NSString * xPath = [xPathBegin stringByAppendingString:@"/link"];
+ 			NSString * ret = [self getStringForXPath:(xmlChar *)[xPath cStringUsingEncoding: NSASCIIStringEncoding ]];
 			if (!ret) ret= nil;
+            //SLog(@"link found:%@",ret);
+
 			return ret;
 
         }
 		case DataColHTML:{
-			NSString * xPath = [xPathBegin stringByAppendingString:@"/k:name"];
-			NSString * title = [self getStringForXPath:(xmlChar *)[xPath cStringUsingEncoding: NSASCIIStringEncoding ]];
-            
-			xPath = [xPathBegin stringByAppendingString:@"/k:description"];
-			NSString * htmlBody = [self getStringForXPath:(xmlChar *)[xPath cStringUsingEncoding: NSASCIIStringEncoding ]];
-            
-			//Get the template html
-			NSString * templatePath = [[NSBundle mainBundle] pathOfFileWithUrl:[WAUtilities urlByChangingExtensionOfUrlString:urlString toSuffix:@".html"]];
-			if (!templatePath) templatePath = [[NSBundle mainBundle] pathOfFileWithUrl:@"HTMLTemplate.html"];
-			NSString * templateString = [NSString stringWithContentsOfFile:templatePath encoding:NSUTF8StringEncoding error:nil];
-			NSString * ret = [NSString stringWithFormat:templateString,title,htmlBody]; 
+            NSString *ret = nil;
 			return ret;
 		}
 			
@@ -233,8 +175,9 @@
 	}
 }
 - (int) countData{
-	xmlXPathObjectPtr xpathEntries = xmlXPathEvalExpression((xmlChar *)"//a:feed/a:entry", xpathCtx);//Find all entries
+	xmlXPathObjectPtr xpathEntries = xmlXPathEvalExpression((xmlChar *)"//rss/channel/item", xpathCtx);//Find all entries
 	int size = xpathEntries->nodesetval->nodeNr;
+    //SLog(@"entries found %i",size);
 	return size;
 	
 }
@@ -274,7 +217,16 @@
 }
 
 - (NSArray*) getRessources{
-    return nil;
+    NSMutableArray *tempArray2= [NSMutableArray array];
+    for (int i = 0; i < [self countData]; i++) {
+        NSString * imgUrlString = [self getDataAtRow:(i+1) forDataCol:DataColImage];
+        //SLog(@"Image URL: %@",imgUrlString);
+        if (imgUrlString) [tempArray2 addObject:imgUrlString];
+    }
+    
+    NSLog (@"Resources for %@: %@",urlString,tempArray2);
+    
+    return tempArray2;
 }
 
 - (CGFloat) cacheProgress{

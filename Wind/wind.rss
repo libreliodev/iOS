@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
+    <channel>
+        <title><![CDATA[Titre du flux]]></title>
+        <link>http://www.windmag.com/feed/all</link>
+        <description></description>
+        <pubDate>Thu, 21 Mar 2013 11:12:41 +0100</pubDate>
+        <generator>Inneair Origami</generator>
+        <language>fr</language>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <item>
+            <title><![CDATA[Video: Gwada Family Trip...]]></title>
+            <link>http://www.windmag.com/actu-video-gwada-family-trip</link>
+            <guid isPermaLink="false">e073da97f66c5e7e0339dbbea54bee55</guid>
+            <description><![CDATA[<img src="http://www.windmag.com/media/news/2013/Mars 13/fred__prop_200x150.png" style="float: left; margin: 10px;" alt="Floating image" />Le windsurfeur Morbihanais Fred Debuire est parti en vacances familiales en Gaudeloupe au mois de février. Au programme détente, baignade, SUP mais bien évidemment windsurf dans les conditions...]]></description>
+            <pubDate>Thu, 21 Mar 2013 03:40:20 +0100</pubDate>
+        </item>
+     </channel>
+</rss>

@@ -76,7 +76,7 @@
     
     //Trigger error if one of the following statusCodes is returned
     if (([response statusCode]==304)||([response statusCode]==401)||([response statusCode]==402)||([response statusCode]==403)){
-        //SLog(@"Connection error %i",[response statusCode]);
+        NSLog(@"Connection error %i",[response statusCode]);
         NSDictionary * userDic = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%i",[response statusCode]] forKey:@"SSErrorHTTPStatusCodeKey"];
 		NSError * error = [NSError errorWithDomain:@"Librelio" code:2 userInfo:userDic];
 
@@ -109,7 +109,7 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     
-    //SLog(@"Download error for connection %@:%@",connection,error);    
+    NSLog(@"Download error for connection %@:%@",connection,error);
     NSDictionary * userInfo = error.userInfo;
     NSString * httpStatus = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"SSErrorHTTPStatusCodeKey"]];
     //SLog(@"Status %@",httpStatus);
@@ -384,7 +384,7 @@
 		currentUrlString = [[NSString alloc]initWithString: nextUrlString];
 
         NSString*completeUrl = [WAUtilities completeDownloadUrlforUrlString:nextUrlString];
-        //SLog(@"complete Url: %@",completeUrl);
+        NSLog(@"complete asset Url: %@",completeUrl);
 		[self launchConnectionWithUrlString:completeUrl];
 
         
@@ -541,7 +541,7 @@
 
     
 	NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:urlRequest  delegate:self];
-    //SLog(@"will launch connection for %@ with connexion %@",completeUrl,conn);
+    NSLog(@"will launch connection for %@ with connexion %@",completeUrl,conn);
     
 	//Add connection to download queue
 	[[[WAFileDownloadsManager sharedManager] downloadQueue] addObject:conn];

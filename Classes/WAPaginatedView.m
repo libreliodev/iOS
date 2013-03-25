@@ -450,6 +450,9 @@
             thumbnailsView.hidden = YES;
         }
         
+        //Reset toolbar
+        [vc.rightToolBar setItems:nil];
+
        //[vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemAdd andLink:[urlString urlByChangingSchemeOfUrlStringToScheme:@"share"]];
         
         //Check if the document has an outline; if yes, add the bar button

@@ -299,6 +299,7 @@
     //Deselect selected cover if any
     [_gridView deselectItemAtIndex:[_gridView indexOfSelectedItem] animated:NO];
     
+ 
     //Add subscribe button if relevant
     //First, check if the app offers subscriptions
     NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];
@@ -315,7 +316,10 @@
                 //Subscriptions are already active, don't show button
             }
             else{
-                WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];
+               WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];
+                //Reset toolbar
+                [vc.rightToolBar setItems:nil];
+                //Add button
                 [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"" orString:NSLocalizedString(@"Subscription",@"" ) andLink:@"buy://localhost/wanodownload.pdf"];
             }
             

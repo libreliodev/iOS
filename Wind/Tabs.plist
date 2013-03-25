@@ -42,5 +42,21 @@
 		<key>Icon</key>
 		<string>information.png</string>
 	</dict>
+	<dict>
+		<key>Title</key>
+		<string>RSS</string>
+		<key>FileName</key>
+		<string>wind.rss?waview=13&amp;waurl=http%3A%2F%2Fwww.windmag.com%2Ffeed%2Fall&amp;waupdate=2</string>
+		<key>Icon</key>
+		<string>feed.png</string>
+	</dict>
+	<dict>
+		<key>Title</key>
+		<string>Nouveautés</string>
+		<key>FileName</key>
+		<string>facebook.atom?waview=13&amp;waurl=http%3A%2F%2Fwww.facebook.com%2Ffeeds%2Fpage.php%3Fformat%3Datom10%26id%3D179135060761&amp;waupdate=10</string>
+		<key>Icon</key>
+		<string>feed.png</string>
+	</dict>
 </array>
 </plist>

@@ -85,10 +85,12 @@
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 	if(cell == nil) 
 	{
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier] autorelease];
 	}
     
 	cell.textLabel.text = [parser getDataAtRow:indexPath.row+1 forDataCol:DataColTitle];
+    cell.detailTextLabel.text = [parser getDataAtRow:indexPath.row+1 forDataCol:DataColSubTitle];
+
     NSString * imageUrlString = [parser getDataAtRow:indexPath.row+1 forDataCol:DataColImage];
     //SLog(@"Should show image %@",imageUrlString);
     cell.imageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:imageUrlString]];
@@ -271,6 +273,7 @@
 
 - (void) didSucceedResourceDownloadWithNotification:(NSNotification *) notification{
     
+    //SLog(@"didSucceedResourceDownload");
     NSString *notificatedUrl = notification.object;
     if ([[notificatedUrl noArgsPartOfUrlString]isEqualToString:[urlString noArgsPartOfUrlString]])     [self reloadData];
     
