@@ -24,7 +24,6 @@
 	NSData * feedData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:urlString]];
 	doc = xmlReadMemory([feedData bytes], [feedData length], "", NULL, HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR);
 	xpathCtx = xmlXPathNewContext(doc); 
-    //xmlXPathRegisterNs(xpathCtx, (xmlChar *)"a", (xmlChar *)"http://www.w3.org/2005/Atom");
 }
 
 - (void)dealloc
@@ -52,22 +51,20 @@
 - (NSString*) getStringForXPath:(xmlChar *)xPathExp2 inHtmlNodeForXpath:(xmlChar *)xPathExp1{
 	//Get the HTML
 	xmlXPathObjectPtr xpathObjHtml = xmlXPathEvalExpression(xPathExp1, xpathCtx);
-	/*xmlChar *Html = (xmlChar *)"<html><body>";
-    xmlChar * innerHtml = (xmlChar *)xpathObjHtml->nodesetval->nodeTab[0]->children->content;
-    xmlStrcat(Html,innerHtml);
-    xmlStrcat(Html,(xmlChar *)"</body></html>");*/
+ 
     xmlChar * Html = (xmlChar *)xpathObjHtml->nodesetval->nodeTab[0]->children->content;
-
+    //xmlChar * Html = (xmlChar *)"<div><img/>essaiEP2</div>";
 
     
 	//Create a new doc with the HTML and apply XPath expression
 	xmlDocPtr htmlDoc = htmlReadDoc(Html, "", "utf-8", HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR);
 	//In case coder needs to access html, here is how:
-	/**xmlChar *xmlbuff;
+	xmlChar *xmlbuff;
 	 int buffersize;
 	 xmlDocDumpFormatMemory(htmlDoc, &xmlbuff, &buffersize, 1);
-	 xmlFree(xmlbuff);**/
-	xmlXPathContextPtr xpathCtx2 = xmlXPathNewContext(htmlDoc); 
+     NSLog(@"html: %s", xmlbuff);
+	 xmlFree(xmlbuff);
+	xmlXPathContextPtr xpathCtx2 = xmlXPathNewContext(htmlDoc);
 	xmlXPathObjectPtr xpathImg = xmlXPathEvalExpression(xPathExp2, xpathCtx2);
 	NSString* ret = nil; 
 	if(xpathImg == NULL) {
@@ -76,7 +73,8 @@
 		if (xpathImg->nodesetval->nodeNr){
 			xmlChar * cRet = xpathImg->nodesetval->nodeTab[0]->children->content;
 			if (cRet) ret = [NSString stringWithCString:(const char *)cRet encoding:NSUTF8StringEncoding];
-			
+            //TODO we need to handle case where nodeTab[0] is empty
+ 			
 		}
 		
 	}
@@ -118,8 +116,8 @@
            
  		case DataColSubTitle:{
 			NSString * xPath = [xPathBegin stringByAppendingString:@"/description"];
-           // NSString* ret = [self getStringForXPath:(xmlChar *)"//body/text()" inHtmlNodeForXpath:(xmlChar *)[xPath cStringUsingEncoding: NSASCIIStringEncoding ]];
- 			NSString * ret = [self getStringForXPath:(xmlChar *)[xPath cStringUsingEncoding: NSASCIIStringEncoding ]];
+           NSString* ret = [self getStringForXPath:(xmlChar *)"//div" inHtmlNodeForXpath:(xmlChar *)[xPath cStringUsingEncoding: NSASCIIStringEncoding ]];
+ 			//NSString * ret = [self getStringForXPath:(xmlChar *)[xPath cStringUsingEncoding: NSASCIIStringEncoding ]];
             
 
              NSLog(@"subtitle found:%@",ret);
@@ -152,6 +150,8 @@
                 ret = [imageName urlByAddingParameterInUrlStringWithKey:@"waurl" withValue:ret];
                 
             }
+            NSLog(@"image found:%@",ret);
+
 			return ret;
 			
 		}
