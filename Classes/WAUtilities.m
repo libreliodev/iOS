@@ -12,6 +12,7 @@
 #define kDownloadUrl @"http://librelio-europe.s3.amazonaws.com"
 #define kCheckAppStoreUrl @"http://download.librelio.com/downloads/appstorev2.php?receipt=%@&sharedsecret=%@&urlstring=%@&userkey=%@"
 #define kCheckPasswordUrl @"http://download.librelio.com/downloads/pswd.php?code=%@&hash=%@&urlstring=%@&client=%@&app=%@&uid=%@"
+#define kCheckUsernamePasswordUrl @"http://download.librelio.com/downloads/subscribers.php?user=%@&pswd=%@&urlstring=%@&client=%@&app=%@&service=biwing&uid=%@"
 
 
 @implementation WAUtilities
@@ -366,6 +367,16 @@
     }
 }
 
++ (NSString *) getCompleteUrlForUrlString:(NSString*)urlString{
+    
+    NSString* completeUrl = [WAUtilities completeCheckAppStoreUrlforUrlString:urlString];
+    if (!completeUrl)
+        completeUrl = [WAUtilities completeCheckPasswordUrlforUrlString:urlString];
+    if (!completeUrl)
+        completeUrl = [WAUtilities completeCheckUsernamePasswordUrlforUrlString:urlString];
+    return completeUrl;
+}
+
 + (NSString *) completeCheckAppStoreUrlforUrlString:(NSString*)urlString{
 	//Retrieve receipt if it has been stored
     NSSet * relevantIDs = [urlString relevantSKProductIDsForUrlString];
@@ -419,6 +430,30 @@
 	
     NSString * uid = [self getUUID];
 	NSString * retUrl = [NSString stringWithFormat:kCheckPasswordUrl,password,codeHash,encodedUrl,clientShortID,appShortID,uid];
+	//SLog(@"retpassUrl=%@",retUrl);
+	return retUrl;
+	
+}
+
++ (NSString *) completeCheckUsernamePasswordUrlforUrlString:(NSString*)urlString{
+	//Get the subscription code
+	NSString * username = [[NSUserDefaults standardUserDefaults] objectForKey:@"Username"];
+	if (!username) return nil;//If there is no password, no need to check app store => return nil
+    
+	NSString * password = [[NSUserDefaults standardUserDefaults] objectForKey:@"Password"];
+	
+	//Get the encoded URL
+	NSString * encodedUrl = [[urlString noArgsPartOfUrlString] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    
+	//Get the client and app names
+	NSString * appLongID = [[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"];
+	NSArray *parts = [appLongID componentsSeparatedByString:@"."];
+	NSString * appShortID = [parts objectAtIndex:[parts count]-1];
+	NSString * clientShortID = [parts objectAtIndex:[parts count]-2];
+	if ([clientShortID isEqualToString:@"widgetavenue"]) clientShortID = @"librelio";//this is for back compatibility reasons
+	
+    NSString * uid = [self getUUID];
+	NSString * retUrl = [NSString stringWithFormat:kCheckUsernamePasswordUrl,username,password,encodedUrl,clientShortID,appShortID,uid];
 	//SLog(@"retpassUrl=%@",retUrl);
 	return retUrl;
 	

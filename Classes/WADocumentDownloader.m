@@ -137,11 +137,13 @@
 		
 	}
     
-	//If a status code 401 is returned, it comes from pswd.php, and means that the credentails were not fine
+	//If a status code 401 is returned, it comes from pswd.php/subscribers.php, and means that the credentials were not fine
 	if ([httpStatus isEqualToString:@"401"]){
 		[connection cancel];
-		//Remove the subscription code from the standard user defaults, since it is not or no longer valid
+		//Remove the subscription code and username/password from the standard user defaults, since they are no longer valid
 		[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Subscription-code"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Username"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Password"];
     }
 
     
@@ -198,11 +200,8 @@
     [[[WAFileDownloadsManager sharedManager] downloadQueue] removeObjectIdenticalTo:connection];
 	[connection cancel];
 	
-    
 	//Launch the new connection
-	NSString*completeUrl = [WAUtilities completeCheckAppStoreUrlforUrlString:currentUrlString];
-	if (!completeUrl) 
-        completeUrl = [WAUtilities completeCheckPasswordUrlforUrlString:currentUrlString];
+	NSString*completeUrl = [WAUtilities getCompleteUrlForUrlString:currentUrlString];
 	if (completeUrl){
         //SLog(@"Will launch complete url: %@",completeUrl);
 		//Try to get file after approval by Apple or Password check

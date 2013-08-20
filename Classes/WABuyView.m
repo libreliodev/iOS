@@ -172,14 +172,27 @@
 	if (credentials) codeHash = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"CodeHash"];
 	if (codeHash) {
         //SLog(@"Code Hash:%@",codeHash);
-        NSString * locTitle = NSLocalizedString(@"I have a subscriber code",@"" );//This is the default title
+        subscriberCodeTitle = NSLocalizedString(@"I have a subscriber code",@"" );//This is the default title
         NSString * TextForSubscribers = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"TextForSubscribers"];
-        if (TextForSubscribers) locTitle = NSLocalizedString(TextForSubscribers,@"" );
+        if (TextForSubscribers) subscriberCodeTitle = NSLocalizedString(TextForSubscribers,@"" );
         
-		[actionSheet addButtonWithTitle:locTitle];
+		[actionSheet addButtonWithTitle:subscriberCodeTitle];
         //    actionSheet.cancelButtonIndex = destructiveIndex;//was buggy
 
 
+	}
+    bool usernamePasswordEnabled = NO;
+    if (credentials) usernamePasswordEnabled = [[[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"UsernamePasswordEnabled"] boolValue];
+    if (usernamePasswordEnabled) {
+        //SLog(@"Code Hash:%@",codeHash);
+        usernamePasswordTitle = NSLocalizedString(@"I have a username and password",@"" );//This is the default title
+        NSString * TextForSubscribers = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"TextForSubscribers"];
+        if (TextForSubscribers) usernamePasswordTitle = NSLocalizedString(TextForSubscribers,@"" );
+        
+		[actionSheet addButtonWithTitle:usernamePasswordTitle];
+        //    actionSheet.cancelButtonIndex = destructiveIndex;//was buggy
+        
+        
 	}
 	
 	//Add the cancel button. It will not be displayed on the iPad.
@@ -230,24 +243,22 @@
 #pragma mark UIActionSheet protocol
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
 	if (buttonIndex == actionSheet.numberOfButtons-1){
 		//The cancel button was clicked
 		[self removeFromSuperview];
-	}
-	else if ((buttonIndex == actionSheet.numberOfButtons-2)&&(buttonIndex==[products count]+1)){
-		//The enter code button was clicked
-		[self createPasswordAlert];
-		
-	}
-	else if (buttonIndex==[products count]){
+	} else if (buttonIndex==[products count]) {
 		//The restore purchases button was clicked
         [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Connecting...",@"")];
         [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
-
-        
-		
-	}
-	else {
+    } else if ([buttonTitle isEqualToString:subscriberCodeTitle]) {
+            //The enter code button was clicked
+            [self createPasswordAlert];
+    } else if ([buttonTitle isEqualToString:usernamePasswordTitle]) {
+            //The enter username and password button was clicked
+            [self createUsernamePasswordAlert];
+    } else {
 		SKProduct  * product = [products objectAtIndex:buttonIndex];
 		NSString * itemID = product.productIdentifier;
 		SKPayment *payment = [SKPayment paymentWithProductIdentifier:itemID];
@@ -268,11 +279,19 @@
 		//Cancel button was clicked
 		[self removeFromSuperview];
 	}
-	
-	else if (buttonIndex == 1) {
+    
+    if (alertView.tag == 1 && buttonIndex == 1) {
 		//OK button was clicked
-		UITextField * psField = (UITextField *)[alertView viewWithTag:111];
+		UITextField *psField = (UITextField *)[alertView viewWithTag:111];
 		[[NSUserDefaults standardUserDefaults] setObject:[psField text] forKey:@"Subscription-code"];
+		[self startDownload];
+	}
+    if (alertView.tag == 2 && buttonIndex == 1) {
+		//OK button was clicked
+		UITextField *usernameField = (UITextField *)[alertView viewWithTag:111];
+		UITextField *passwordField = (UITextField *)[alertView viewWithTag:222];
+		[[NSUserDefaults standardUserDefaults] setObject:[usernameField text] forKey:@"Username"];
+		[[NSUserDefaults standardUserDefaults] setObject:[passwordField text] forKey:@"Password"];
 		[self startDownload];
 	}
 	
@@ -388,7 +407,7 @@
 	passwordLabel.shadowColor = [UIColor blackColor];
 	passwordLabel.shadowOffset = CGSizeMake(0,-1);
 	passwordLabel.textAlignment = UITextAlignmentCenter;
-	passwordLabel.text = NSLocalizedString(@"Please enter your  code",@"" );
+	passwordLabel.text = NSLocalizedString(@"Please enter your code",@"" );
 	[passwordAlert addSubview:passwordLabel];
     [passwordLabel release];
 	
@@ -403,9 +422,39 @@
 	passwordField.tag = 111;
     [passwordField release];
 	
+    passwordAlert.tag = 1;
 	[passwordAlert show];
 	[passwordAlert release];
 	
+	
+}
+
+- (void) createUsernamePasswordAlert{
+	
+	UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Login",@"" ) message:@"\n\n\n" delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
+    
+    UITextField *usernameField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 50.0, 260.0, 25.0)];
+    [usernameField setBackgroundColor:[UIColor whiteColor]];
+    [usernameField setPlaceholder:@"Username"];
+    usernameField.borderStyle = UITextBorderStyleRoundedRect;
+    usernameField.keyboardAppearance = UIKeyboardAppearanceAlert;
+    usernameField.tag = 111;
+    [passwordAlert addSubview:usernameField];
+    
+    UITextField *passwordField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 85.0, 260.0, 25.0)];
+    [passwordField setBackgroundColor:[UIColor whiteColor]];
+    [passwordField setPlaceholder:@"Password"];
+    [passwordField setSecureTextEntry:YES];
+    passwordField.borderStyle = UITextBorderStyleRoundedRect;
+    passwordField.keyboardAppearance = UIKeyboardAppearanceAlert;
+    passwordField.tag = 222;
+    [passwordAlert addSubview:passwordField];
+    
+    passwordAlert.tag = 2;
+	[passwordAlert show];
+	[passwordAlert release];
+	
+    [usernameField becomeFirstResponder];
 	
 }
 

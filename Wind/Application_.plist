@@ -8,6 +8,8 @@
 	<string>026defcdebf5490893fbe5661224ef30</string>
 	<key>Splash</key>
 	<string>S3</string>
+	<key>UsernamePasswordEnabled</key>
+	<true/>
 	<key>GoogleAnalyticsCode</key>
 	<string>UA-1732003-23</string>
 </dict>
