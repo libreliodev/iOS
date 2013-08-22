@@ -11,8 +11,8 @@
 
 #define kDownloadUrl @"http://librelio-europe.s3.amazonaws.com"
 #define kCheckAppStoreUrl @"http://download.librelio.com/downloads/appstorev2.php?receipt=%@&sharedsecret=%@&urlstring=%@&userkey=%@"
-#define kCheckPasswordUrl @"http://download.librelio.com/downloads/pswd.php?code=%@&hash=%@&urlstring=%@&client=%@&app=%@&uid=%@"
-#define kCheckUsernamePasswordUrl @"http://download.librelio.com/downloads/subscribers.php?user=%@&pswd=%@&urlstring=%@&client=%@&app=%@&service=biwing&uid=%@"
+#define kCheckPasswordUrl @"http://download.librelio.com/downloads/pswd.php?code=%@&hash=%@&urlstring=%@&client=%@&app=%@&deviceid=%@"
+#define kCheckUsernamePasswordUrl @"http://download.librelio.com/downloads/subscribers.php?user=%@&pswd=%@&urlstring=%@&client=%@&app=%@&service=biwing&deviceid=%@"
 
 
 @implementation WAUtilities
@@ -410,7 +410,7 @@
 + (NSString *) completeCheckPasswordUrlforUrlString:(NSString*)urlString{
 	//Get the subscription code
 	NSString * password = [[NSUserDefaults standardUserDefaults] objectForKey:@"Subscription-code"];
-	if (!password) return nil;//If there is no password, no need to check app store => return nil
+	if (!password) return nil;//If there is no subscriber code, no need to check subscriber code => return nil
 
 	
 	//Get the hash method
@@ -428,8 +428,8 @@
 	NSString * clientShortID = [parts objectAtIndex:[parts count]-2];
 	if ([clientShortID isEqualToString:@"widgetavenue"]) clientShortID = @"librelio";//this is for back compatibility reasons
 	
-    NSString * uid = [self getUUID];
-	NSString * retUrl = [NSString stringWithFormat:kCheckPasswordUrl,password,codeHash,encodedUrl,clientShortID,appShortID,uid];
+    NSString * deviceid = [self getUUID];
+	NSString * retUrl = [NSString stringWithFormat:kCheckPasswordUrl,password,codeHash,encodedUrl,clientShortID,appShortID,deviceid];
 	//SLog(@"retpassUrl=%@",retUrl);
 	return retUrl;
 	
@@ -438,7 +438,7 @@
 + (NSString *) completeCheckUsernamePasswordUrlforUrlString:(NSString*)urlString{
 	//Get the subscription code
 	NSString * username = [[NSUserDefaults standardUserDefaults] objectForKey:@"Username"];
-	if (!username) return nil;//If there is no password, no need to check app store => return nil
+	if (!username) return nil;//If there is no password, no need to check username and password => return nil
     
 	NSString * password = [[NSUserDefaults standardUserDefaults] objectForKey:@"Password"];
 	
@@ -452,8 +452,8 @@
 	NSString * clientShortID = [parts objectAtIndex:[parts count]-2];
 	if ([clientShortID isEqualToString:@"widgetavenue"]) clientShortID = @"librelio";//this is for back compatibility reasons
 	
-    NSString * uid = [self getUUID];
-	NSString * retUrl = [NSString stringWithFormat:kCheckUsernamePasswordUrl,username,password,encodedUrl,clientShortID,appShortID,uid];
+    NSString * deviceid = [self getUUID];
+	NSString * retUrl = [NSString stringWithFormat:kCheckUsernamePasswordUrl,username,password,encodedUrl,clientShortID,appShortID,deviceid];
 	//SLog(@"retpassUrl=%@",retUrl);
 	return retUrl;
 	
