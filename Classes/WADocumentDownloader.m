@@ -75,7 +75,7 @@
     //SLog(@"Did respond to selector");
     
     //Trigger error if one of the following statusCodes is returned
-    if (([response statusCode]==304)||([response statusCode]==401)||([response statusCode]==402)||([response statusCode]==403)){
+    if (([response statusCode]==304)||([response statusCode]==401)||([response statusCode]==402)||([response statusCode]==403)||([response statusCode]==461)||([response statusCode]==462)||([response statusCode]==463)){
         NSLog(@"Connection error %i",[response statusCode]);
         NSDictionary * userDic = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%i",[response statusCode]] forKey:@"SSErrorHTTPStatusCodeKey"];
 		NSError * error = [NSError errorWithDomain:@"Librelio" code:2 userInfo:userDic];
@@ -137,15 +137,28 @@
 		
 	}
     
-	//If a status code 401 is returned, it comes from pswd.php/subscribers.php, and means that the credentials were not fine
+	//If a status code 401 is returned, it comes from pswd.php, and means that the credentials were not fine
 	if ([httpStatus isEqualToString:@"401"]){
 		[connection cancel];
-		//Remove the subscription code and username/password from the standard user defaults, since they are no longer valid
+		//Remove the subscription code from the standard user defaults, since they are no longer valid
 		[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Subscription-code"];
+    }
+
+    //If a status code 461 is returned, it comes from subscribers.php, and means that the credentials were not fine
+	if ([httpStatus isEqualToString:@"461"]){
+		[connection cancel];
+		//Remove the username and password from the standard user defaults, since they are no longer valid
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Username"];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Password"];
     }
-
+    
+    //Temporary: If a status code 462 is returned, wipe credentials so that issue can be bought
+	if ([httpStatus isEqualToString:@"462"]){
+		[connection cancel];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Subscription-code"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Username"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Password"];
+    }
     
      
      [[[WAFileDownloadsManager sharedManager] downloadQueue] removeObjectIdenticalTo:connection];
