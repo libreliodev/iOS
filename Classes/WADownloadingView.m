@@ -212,7 +212,7 @@
                                                            message:theMessage
                                                           delegate:self 
                                                  cancelButtonTitle:@"OK"
-                                                 otherButtonTitles:NSLocalizedString(@"Try again",@""),nil];
+                                                 otherButtonTitles:nil];
             [alert show];
             [alert release];
         }
