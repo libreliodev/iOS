@@ -435,7 +435,7 @@
     
     UITextField *usernameField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 50.0, 260.0, 25.0)];
     [usernameField setBackgroundColor:[UIColor whiteColor]];
-    [usernameField setPlaceholder:@"Username"];
+    [usernameField setPlaceholder:NSLocalizedString(@"Username",@"" )];
     usernameField.borderStyle = UITextBorderStyleRoundedRect;
     usernameField.keyboardAppearance = UIKeyboardAppearanceAlert;
     usernameField.tag = 111;
@@ -443,7 +443,7 @@
     
     UITextField *passwordField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 85.0, 260.0, 25.0)];
     [passwordField setBackgroundColor:[UIColor whiteColor]];
-    [passwordField setPlaceholder:@"Password"];
+    [passwordField setPlaceholder:NSLocalizedString(@"Password",@"" )];
     [passwordField setSecureTextEntry:YES];
     passwordField.borderStyle = UITextBorderStyleRoundedRect;
     passwordField.keyboardAppearance = UIKeyboardAppearanceAlert;
