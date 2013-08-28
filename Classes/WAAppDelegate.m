@@ -404,8 +404,12 @@
         
         
   
-        //Check if the user is an Magazine subscriber with a password; if he is, method completeCheckPasswordUrlforUrlString will return a string, otherwise null will be returned
+        //Check if the user is an Magazine subscriber with a subscriber code; if he is, method completeCheckPasswordUrlforUrlString will return a string, otherwise null will be returned
         NSString * isMagSubscriber = [WAUtilities completeCheckPasswordUrlforUrlString:urlString];
+        // if no subscription code then test for username and password
+        if (!isMagSubscriber) {
+            isMagSubscriber = [WAUtilities completeCheckUsernamePasswordUrlforUrlString:urlString];
+        }
         //SLog(@"Mag Subscriber :%@",isMagSubscriber);
         
         

@@ -147,7 +147,8 @@ INTERRUPTION OF OPERATIONS.
 	
 	// Get the users Device Model, Display Name, Unique ID, Token & Version Number
 	UIDevice *dev = [UIDevice currentDevice];
-	NSString *deviceUuid = dev.uniqueIdentifier;
+	NSString *deviceUuid = @"unknown";
+    if ([dev respondsToSelector:@selector(identifierForVendor)]) deviceUuid = [[dev identifierForVendor] UUIDString];
     NSString *deviceName = dev.name;
 	NSString *deviceModel = dev.model;
 	NSString *deviceSystemVersion = dev.systemVersion;

@@ -41,6 +41,17 @@
 "months"="mois";
 "week"="semaine";
 "year"="an";
+"I have a username and password"="Je suis abonné au magazine papier";
+"Login"="Mes identifiants d'abonné";
+"Username"="Code client";
+"Password"="Mot de passe";
+"Invalid Code"="Code non valide";
+"You don't own this issue"="Votre abonnement ne vous autorise pas à télécharger ce numéro";
+"Invalid Username Or Password"="Identifiant ou mot de passe incorrect";
+"Too Many Devices"="Ce numéro a été téléchargé sur un nombre trop important d'appareils. Merci de contacter license@librelio.com pour plus d'infos";
+
+
+
 
 
 

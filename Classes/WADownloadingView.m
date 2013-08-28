@@ -205,11 +205,14 @@
             NSString * httpStatus = [notificatedDic objectForKey:@"httpStatus"];
             NSString * theMessage = NSLocalizedString(@"Download failed, please check your connection",@"");
             if ([httpStatus isEqualToString:@"401"]) theMessage = NSLocalizedString(@"Invalid Code",@"");
+            if ([httpStatus isEqualToString:@"462"]) theMessage = NSLocalizedString(@"You don't own this issue",@"");
+            if ([httpStatus isEqualToString:@"461"]) theMessage = NSLocalizedString(@"Invalid Username Or Password",@"");
+            if ([httpStatus isEqualToString:@"463"]) theMessage = NSLocalizedString(@"Too Many Devices",@"");
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
                                                            message:theMessage
                                                           delegate:self 
                                                  cancelButtonTitle:@"OK"
-                                                 otherButtonTitles:NSLocalizedString(@"Try again",@""),nil];
+                                                 otherButtonTitles:nil];
             [alert show];
             [alert release];
         }

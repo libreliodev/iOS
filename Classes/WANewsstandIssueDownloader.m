@@ -69,12 +69,7 @@
     NSString * noUnderscoreCompleteUrl = [completeUrl urlByRemovingFinalUnderscoreInUrlString];
     if(![completeUrl isEqualToString:noUnderscoreCompleteUrl]){
         //The file is protected, we need to change the query so that background downloads can work
-        NSString*appStoreUrl = [WAUtilities completeCheckAppStoreUrlforUrlString:currentUrlString];
-        if (appStoreUrl) completeUrl = appStoreUrl;
-        else{
-            NSString * checkPasswordUrl = [WAUtilities completeCheckPasswordUrlforUrlString:currentUrlString];
-            if (checkPasswordUrl) completeUrl = checkPasswordUrl;
-        }
+        completeUrl = [WAUtilities getCompleteUrlForUrlString:currentUrlString];
     }
     
 	

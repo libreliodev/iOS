@@ -83,7 +83,7 @@
    
     //Create the outlineArray
     outlineArray = [[NSMutableArray alloc]init];
-    [self buildOutlineArray];
+    //[self buildOutlineArray];
     //SLog(@"Outline array built:%@",outlineArray);
 
     /*

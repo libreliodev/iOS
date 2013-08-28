@@ -32,8 +32,10 @@
  */
 + (NSString *)getUUID;
 + (NSString *) completeDownloadUrlforUrlString:(NSString*)urlString;
++ (NSString *) getCompleteUrlForUrlString:(NSString*)urlString;
 + (NSString *) completeCheckAppStoreUrlforUrlString:(NSString*)urlString;
 + (NSString *) completeCheckPasswordUrlforUrlString:(NSString*)urlString;
++ (NSString *) completeCheckUsernamePasswordUrlforUrlString:(NSString*)urlString;
 +(NSArray*) arrayOfImageUrlStringsForUrlString:(NSString *)lastImageUrlString;
 + (void) storeFileWithUrlString:(NSString*)urlString withData:(NSData *) data;
 + (void) storeFileWithUrlString:(NSString*)urlString withFileAtPath:(NSString*)tempFilePath;

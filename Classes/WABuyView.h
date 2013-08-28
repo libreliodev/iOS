@@ -11,7 +11,8 @@
 	NSString *urlString;
 	UIViewController* currentViewController;
 	NSArray *products;
-	
+	NSString *subscriberCodeTitle;
+    NSString *usernamePasswordTitle;
 	
 }
 @property (nonatomic, retain)	NSArray *products;
