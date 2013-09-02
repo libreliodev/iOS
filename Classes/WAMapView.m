@@ -38,6 +38,7 @@
 - (void) setUrlString: (NSString *) theString
 {
     urlString = [[NSString alloc]initWithString: theString];
+
 	self.delegate = self;
 	//self.showsUserLocation = YES;
 	
@@ -47,7 +48,8 @@
 	if ([extension isEqualToString:@"kml"]){
 		parser = [[WAKMLParser alloc]init];
 		parser.urlString = urlString;
-
+        
+ 
 		//Set the type of map (satellite or standard, or both)
 		NSString * mapType = [urlString valueOfParameterInUrlStringforKey:@"wamaptype"];
 		if ([mapType isEqualToString:@"k"]) self.mapType =  MKMapTypeSatellite;
