@@ -328,7 +328,7 @@
         window.rootViewController = nil;
         [appTabBarController release];
     }
-	appTabBarController = [[UITabBarController alloc]init];
+	appTabBarController = [[WARootViewController alloc]init];
 	appTabBarController.moreNavigationController.navigationBar.barStyle = UIBarStyleBlack;
     appTabBarController.delegate = self;
 	appTabBarController.viewControllers = 	tabviews;

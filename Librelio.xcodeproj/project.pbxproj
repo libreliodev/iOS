@@ -21,6 +21,8 @@
 		1425322B13606BF200F6BB3D /* WATabTabParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425322713606BF200F6BB3D /* WATabTabParser.m */; };
 		1425324E13606F9000F6BB3D /* WAFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425324A13606F9000F6BB3D /* WAFileManager.m */; };
 		1425331B1361BEFE00F6BB3D /* WAFileManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142533121361BEFE00F6BB3D /* WAFileManagerCell.xib */; };
+		142F533017E0BF6D00E69AAC /* WARootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 142F532F17E0BF6D00E69AAC /* WARootViewController.m */; };
+		142F533117E0BF6D00E69AAC /* WARootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 142F532F17E0BF6D00E69AAC /* WARootViewController.m */; };
 		143BD6BF16F66CEF0075B19E /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 143BD6BE16F66CEF0075B19E /* back.png */; };
 		143BD6C016F66CEF0075B19E /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 143BD6BE16F66CEF0075B19E /* back.png */; };
 		14443FC215465D3200F1D227 /* WAHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 14443FC115465D3200F1D227 /* WAHTMLParser.m */; };
@@ -414,6 +416,8 @@
 		142533121361BEFE00F6BB3D /* WAFileManagerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WAFileManagerCell.xib; sourceTree = "<group>"; };
 		1425CA7D124D125200E16625 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		1425CAB4124D1AB200E16625 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		142F532E17E0BF6D00E69AAC /* WARootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WARootViewController.h; sourceTree = "<group>"; };
+		142F532F17E0BF6D00E69AAC /* WARootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WARootViewController.m; sourceTree = "<group>"; };
 		1434385E129F7B9A00C06282 /* WAButtonWithLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAButtonWithLink.h; sourceTree = "<group>"; };
 		1434385F129F7B9A00C06282 /* WAButtonWithLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAButtonWithLink.m; sourceTree = "<group>"; };
 		14343A1D12A02A5700C06282 /* WAMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WAMapView.h; path = Classes/WAMapView.h; sourceTree = "<group>"; };
@@ -1299,6 +1303,8 @@
 				1424382614BC381B005ABB4A /* SplashScreen */,
 				1D3623240D0F684500981E51 /* WAAppDelegate.h */,
 				1D3623250D0F684500981E51 /* WAAppDelegate.m */,
+				142F532E17E0BF6D00E69AAC /* WARootViewController.h */,
+				142F532F17E0BF6D00E69AAC /* WARootViewController.m */,
 				14E007DF1274716F005514AA /* WAUtilities.h */,
 				14E007E01274716F005514AA /* WAUtilities.m */,
 			);
@@ -1895,6 +1901,7 @@
 				148BD69612E9C23600930FC5 /* WAAppDelegate.m in Sources */,
 				148BD69712E9C23600930FC5 /* WAPaginatedView.m in Sources */,
 				148BD69812E9C23600930FC5 /* WAScreenView.m in Sources */,
+				142F533017E0BF6D00E69AAC /* WARootViewController.m in Sources */,
 				148BD69912E9C23600930FC5 /* WAPDFParser.m in Sources */,
 				148BD69A12E9C23600930FC5 /* WAThumbnailsView.m in Sources */,
 				148BD69C12E9C23600930FC5 /* WARSSViewController.m in Sources */,
@@ -2001,6 +2008,7 @@
 				14DB1196164BEDC3001FE76B /* WAAppDelegate.m in Sources */,
 				14DB1197164BEDC3001FE76B /* WAPaginatedView.m in Sources */,
 				14DB1198164BEDC3001FE76B /* WAScreenView.m in Sources */,
+				142F533117E0BF6D00E69AAC /* WARootViewController.m in Sources */,
 				14DB1199164BEDC3001FE76B /* WAPDFParser.m in Sources */,
 				14DB119A164BEDC3001FE76B /* WAThumbnailsView.m in Sources */,
 				14DB119B164BEDC3001FE76B /* WARSSViewController.m in Sources */,

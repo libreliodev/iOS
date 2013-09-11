@@ -6,12 +6,13 @@
 #import "EAAppSubDelegate.h"
 
 #import "WASplashScreenViewController.h"
+#import "WARootViewController.h"
 
 
 
 @interface WAAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> {
 	UIWindow *window;
-	UITabBarController *appTabBarController;
+	WARootViewController *appTabBarController;
     WASplashScreenViewController * splashScreenViewController;
 	WAPaymentTransactionObserver *observer;
     EAAppSubDelegate * apnsSubDelegate;
