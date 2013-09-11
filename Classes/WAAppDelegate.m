@@ -76,6 +76,7 @@
     
     //Add window and RootViwController
     window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]; //We are not using a Xib
+
     [self updateRootViewController];
 
     

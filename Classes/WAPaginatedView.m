@@ -443,7 +443,16 @@
     //Hide navbar if rootview
     if ([self isRootModule]){
         WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];
-        vc.navigationController.navigationBar.barStyle = UIBarStyleBlack;//Using this style AND setting translucent property to YES prevents the navigationBar from "pushing" the view below, which is what we want here.
+        //Depending on system version, we have a white or black nav bar
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+            
+            vc.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+        }
+        else{
+            vc.navigationController.navigationBar.barStyle = UIBarStyleBlack;//Using this style AND setting translucent property to YES prevents the navigationBar from "pushing" the view below, which is what we want here.
+           
+        }
+
         vc.navigationController.navigationBar.translucent = YES;
         if (![timer isValid]){
             vc.navigationController.navigationBarHidden = YES;	

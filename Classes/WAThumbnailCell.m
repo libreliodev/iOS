@@ -27,7 +27,16 @@
 	self.textLabel.font = [UIFont systemFontOfSize:12];
 	self.textLabel.textAlignment = UITextAlignmentCenter;
 	self.textLabel.transform = CGAffineTransformMakeRotation(M_PI/2);
-	self.textLabel.textColor = [UIColor whiteColor];
+    //Depending on system version, we have a white or black nav bar
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        
+        self.textLabel.textColor = [UIColor blackColor];
+    }
+    else{
+        self.textLabel.textColor = [UIColor whiteColor];
+        
+    }
+
 
 	self.textLabel.backgroundColor = [UIColor clearColor];
 	
