@@ -282,8 +282,16 @@
     
     if (alertView.tag == 1 && buttonIndex == 1) {
 		//OK button was clicked
-		UITextField *psField = (UITextField *)[alertView viewWithTag:111];
-		[[NSUserDefaults standardUserDefaults] setObject:[psField text] forKey:@"Subscription-code"];
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5) {
+            UITextField *psField  = [alertView textFieldAtIndex:0];
+            [[NSUserDefaults standardUserDefaults] setObject:[psField text] forKey:@"Subscription-code"];
+
+        }
+        else{
+            UITextField *psField = (UITextField *)[alertView viewWithTag:111];
+            [[NSUserDefaults standardUserDefaults] setObject:[psField text] forKey:@"Subscription-code"];
+            
+        }
 		[self startDownload];
 	}
     if (alertView.tag == 2 && buttonIndex == 1) {
@@ -398,34 +406,56 @@
 
 - (void) createPasswordAlert{
 	
-	UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Code",@"" ) message:@"\n\n\n" delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
+    
+    //Depending on system version, we have UIAlertViewStyleSecureTextInput or not
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5) {
+        UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Code",@"" ) message:NSLocalizedString(@"Please enter your code",@"" ) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
+        
+        passwordAlert.alertViewStyle =  UIAlertViewStylePlainTextInput;
+        UITextField *passwordField = [passwordAlert textFieldAtIndex:0];
+        [passwordField becomeFirstResponder];
+        passwordAlert.tag = 1;
+        [passwordAlert show];
+        [passwordAlert release];
+        
+
+    }
+    else{
+        //This will soon be deprecated
+        UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Code",@"" ) message:@"\n\n\n" delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
+        UILabel *passwordLabel = [[UILabel alloc] initWithFrame:CGRectMake(12,40,260,25)];
+        passwordLabel.font = [UIFont systemFontOfSize:16];
+        passwordLabel.textColor = [UIColor whiteColor];
+        passwordLabel.backgroundColor = [UIColor clearColor];
+        passwordLabel.shadowColor = [UIColor blackColor];
+        passwordLabel.shadowOffset = CGSizeMake(0,-1);
+        passwordLabel.textAlignment = UITextAlignmentCenter;
+        passwordLabel.text = NSLocalizedString(@"Please enter your code",@"" );
+        [passwordAlert addSubview:passwordLabel];
+        [passwordLabel release];
+        
+        
+        UITextField *passwordField = [[UITextField alloc] initWithFrame:CGRectMake(16,78,252,30)];
+        passwordField.secureTextEntry = YES;
+        passwordField.borderStyle = UITextBorderStyleRoundedRect;
+        passwordField.keyboardAppearance = UIKeyboardAppearanceAlert;
+        //passwordField.delegate = self;
+        [passwordField becomeFirstResponder];
+        [passwordAlert addSubview:passwordField];
+        passwordField.tag = 111;
+        [passwordField release];
+        
+        passwordAlert.tag = 1;
+        [passwordAlert show];
+        [passwordAlert release];
+        
+
+    }
+
+    //UITextField *passwordTextField = [alertView textFieldAtIndex:0];
+    //[alertView show];
 	
-	UILabel *passwordLabel = [[UILabel alloc] initWithFrame:CGRectMake(12,40,260,25)];
-	passwordLabel.font = [UIFont systemFontOfSize:16];
-	passwordLabel.textColor = [UIColor whiteColor];
-	passwordLabel.backgroundColor = [UIColor clearColor];
-	passwordLabel.shadowColor = [UIColor blackColor];
-	passwordLabel.shadowOffset = CGSizeMake(0,-1);
-	passwordLabel.textAlignment = UITextAlignmentCenter;
-	passwordLabel.text = NSLocalizedString(@"Please enter your code",@"" );
-	[passwordAlert addSubview:passwordLabel];
-    [passwordLabel release];
-	
-	
-	UITextField *passwordField = [[UITextField alloc] initWithFrame:CGRectMake(16,78,252,30)];
-	passwordField.secureTextEntry = YES;
-	passwordField.borderStyle = UITextBorderStyleRoundedRect;
-	passwordField.keyboardAppearance = UIKeyboardAppearanceAlert;
-	//passwordField.delegate = self;
-	[passwordField becomeFirstResponder];
-	[passwordAlert addSubview:passwordField];
-	passwordField.tag = 111;
-    [passwordField release];
-	
-    passwordAlert.tag = 1;
-	[passwordAlert show];
-	[passwordAlert release];
-	
+
 	
 }
 
