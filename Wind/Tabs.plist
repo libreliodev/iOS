@@ -8,7 +8,7 @@
 		<key>FileName</key>
 		<string>Magazines.plist?waupdate=1500</string>
 		<key>Icon</key>
-		<string>receive.png</string>
+		<string>download.png</string>
 	</dict>
 	<dict>
 		<key>Title</key>
@@ -32,7 +32,7 @@
 		<key>FileName</key>
 		<string>https://www.facebook.com/windmag?waubar=no</string>
 		<key>Icon</key>
-		<string>ico-facebook-black.png</string>
+		<string>facebook.png</string>
 	</dict>
 	<dict>
 		<key>Title</key>
