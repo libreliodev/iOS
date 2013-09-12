@@ -296,10 +296,21 @@
 	}
     if (alertView.tag == 2 && buttonIndex == 1) {
 		//OK button was clicked
-		UITextField *usernameField = (UITextField *)[alertView viewWithTag:111];
-		UITextField *passwordField = (UITextField *)[alertView viewWithTag:222];
-		[[NSUserDefaults standardUserDefaults] setObject:[usernameField text] forKey:@"Username"];
-		[[NSUserDefaults standardUserDefaults] setObject:[passwordField text] forKey:@"Password"];
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5) {
+            UITextField *usernameField = [alertView textFieldAtIndex:0];
+            UITextField *passwordField = [alertView textFieldAtIndex:1];
+            [[NSUserDefaults standardUserDefaults] setObject:[usernameField text] forKey:@"Username"];
+            [[NSUserDefaults standardUserDefaults] setObject:[passwordField text] forKey:@"Password"];
+           
+        }
+        else{
+            UITextField *usernameField = (UITextField *)[alertView viewWithTag:111];
+            UITextField *passwordField = (UITextField *)[alertView viewWithTag:222];
+            [[NSUserDefaults standardUserDefaults] setObject:[usernameField text] forKey:@"Username"];
+            [[NSUserDefaults standardUserDefaults] setObject:[passwordField text] forKey:@"Password"];
+            
+        }
+
 		[self startDownload];
 	}
 	
@@ -452,39 +463,66 @@
 
     }
 
-    //UITextField *passwordTextField = [alertView textFieldAtIndex:0];
-    //[alertView show];
-	
+ 	
 
 	
 }
 
 - (void) createUsernamePasswordAlert{
+    
+    
+    //Depending on system version, we have UIAlertViewStyleSecureTextInput or not
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5) {
+        UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Login",@"" ) message:@"" delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
+        
+        passwordAlert.alertViewStyle =  UIAlertViewStyleLoginAndPasswordInput;
+        UITextField *usernameField = [passwordAlert textFieldAtIndex:0];
+        [usernameField setPlaceholder:NSLocalizedString(@"Username",@"" )];
+        [usernameField becomeFirstResponder];
+        
+        UITextField *passwordField = [passwordAlert textFieldAtIndex:1];
+        [passwordField setPlaceholder:NSLocalizedString(@"Password",@"" )];
+        [passwordField setSecureTextEntry:YES];
+        
+        
+        passwordAlert.tag = 2;
+        [passwordAlert show];
+        [passwordAlert release];
+        
+        
+    }
+    else{
+        //This will soon be deprecated
+        UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Login",@"" ) message:@"\n\n\n" delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
+        
+        UITextField *usernameField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 50.0, 260.0, 25.0)];
+        [usernameField setBackgroundColor:[UIColor whiteColor]];
+        [usernameField setPlaceholder:NSLocalizedString(@"Username",@"" )];
+        usernameField.borderStyle = UITextBorderStyleRoundedRect;
+        usernameField.keyboardAppearance = UIKeyboardAppearanceAlert;
+        usernameField.tag = 111;
+        [passwordAlert addSubview:usernameField];
+        
+        UITextField *passwordField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 85.0, 260.0, 25.0)];
+        [passwordField setBackgroundColor:[UIColor whiteColor]];
+        [passwordField setPlaceholder:NSLocalizedString(@"Password",@"" )];
+        [passwordField setSecureTextEntry:YES];
+        passwordField.borderStyle = UITextBorderStyleRoundedRect;
+        passwordField.keyboardAppearance = UIKeyboardAppearanceAlert;
+        passwordField.tag = 222;
+        [passwordAlert addSubview:passwordField];
+        
+        passwordAlert.tag = 2;
+        [passwordAlert show];
+        [passwordAlert release];
+        
+        [usernameField becomeFirstResponder];
+        
+        
+    }
+    
+    
 	
-	UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Login",@"" ) message:@"\n\n\n" delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
-    
-    UITextField *usernameField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 50.0, 260.0, 25.0)];
-    [usernameField setBackgroundColor:[UIColor whiteColor]];
-    [usernameField setPlaceholder:NSLocalizedString(@"Username",@"" )];
-    usernameField.borderStyle = UITextBorderStyleRoundedRect;
-    usernameField.keyboardAppearance = UIKeyboardAppearanceAlert;
-    usernameField.tag = 111;
-    [passwordAlert addSubview:usernameField];
-    
-    UITextField *passwordField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 85.0, 260.0, 25.0)];
-    [passwordField setBackgroundColor:[UIColor whiteColor]];
-    [passwordField setPlaceholder:NSLocalizedString(@"Password",@"" )];
-    [passwordField setSecureTextEntry:YES];
-    passwordField.borderStyle = UITextBorderStyleRoundedRect;
-    passwordField.keyboardAppearance = UIKeyboardAppearanceAlert;
-    passwordField.tag = 222;
-    [passwordAlert addSubview:passwordField];
-    
-    passwordAlert.tag = 2;
-	[passwordAlert show];
-	[passwordAlert release];
-	
-    [usernameField becomeFirstResponder];
 	
 }
 
