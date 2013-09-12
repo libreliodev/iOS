@@ -61,6 +61,10 @@
 		146E000117E20F49000EE3DB /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 146EFFFE17E20F49000EE3DB /* back.png */; };
 		146E000217E20F49000EE3DB /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 146EFFFF17E20F49000EE3DB /* back@2x.png */; };
 		146E000317E20F49000EE3DB /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 146EFFFF17E20F49000EE3DB /* back@2x.png */; };
+		146E000617E22654000EE3DB /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 146E000417E22654000EE3DB /* list.png */; };
+		146E000717E22654000EE3DB /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 146E000417E22654000EE3DB /* list.png */; };
+		146E000817E22654000EE3DB /* list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 146E000517E22654000EE3DB /* list@2x.png */; };
+		146E000917E22654000EE3DB /* list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 146E000517E22654000EE3DB /* list@2x.png */; };
 		146F6A9D154E52AA0044821A /* WASearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146F6A9A154E52AA0044821A /* WASearchView.m */; };
 		146F6AA9154E52AA0044821A /* WASearchListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 146F6A9C154E52AA0044821A /* WASearchListController.m */; };
 		147AEBC913799B6B00E209A9 /* WALabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 147AEBC213799B6B00E209A9 /* WALabelView.m */; };
@@ -501,6 +505,8 @@
 		1469EE5D153BE35C00465AB7 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = Classes/libGoogleAnalytics.a; sourceTree = "<group>"; };
 		146DAA791543D077000B7B69 /* WAAtomParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAAtomParser.h; sourceTree = "<group>"; };
 		146DAA7A1543D077000B7B69 /* WAAtomParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAAtomParser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		146E000417E22654000EE3DB /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list.png; path = Resources/list.png; sourceTree = "<group>"; };
+		146E000517E22654000EE3DB /* list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "list@2x.png"; path = "Resources/list@2x.png"; sourceTree = "<group>"; };
 		146EFFFE17E20F49000EE3DB /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = Resources/back.png; sourceTree = "<group>"; };
 		146EFFFF17E20F49000EE3DB /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "back@2x.png"; path = "Resources/back@2x.png"; sourceTree = "<group>"; };
 		146F6A99154E52AA0044821A /* WASearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WASearchView.h; sourceTree = "<group>"; };
@@ -1277,6 +1283,8 @@
 		1485882C168EBA6E00A323B5 /* Common resources */ = {
 			isa = PBXGroup;
 			children = (
+				146E000417E22654000EE3DB /* list.png */,
+				146E000517E22654000EE3DB /* list@2x.png */,
 				146EFFFE17E20F49000EE3DB /* back.png */,
 				146EFFFF17E20F49000EE3DB /* back@2x.png */,
 				1462318917E1FE1C0066084C /* facebook.png */,
@@ -1774,6 +1782,7 @@
 				1462330617E1FE210066084C /* top-list@2x.png in Resources */,
 				1424381A14BC36BE005ABB4A /* WASplashWebViewController_iPhone.xib in Resources */,
 				1424381C14BC36BE005ABB4A /* WASplashScreenViewController_iPad.xib in Resources */,
+				146E000617E22654000EE3DB /* list.png in Resources */,
 				1424381E14BC36BE005ABB4A /* WASplashScreenViewController_iPhone.xib in Resources */,
 				BCE3280914D1E832009AAE23 /* WAPrixIpad.xib in Resources */,
 				8CA81E9E14D8192F00D735E0 /* WAPrixIphone.xib in Resources */,
@@ -1782,6 +1791,7 @@
 				8CD009CA14DAD994003D4E73 /* WALexiqueIpad.xib in Resources */,
 				8CA9B83714DC043000DE9B1E /* WALexiqueIphone.xib in Resources */,
 				BCA0551314F4DBA3008AB289 /* WADetailsIphone.xib in Resources */,
+				146E000817E22654000EE3DB /* list@2x.png in Resources */,
 				BC2E46F914F8F03600F44BCA /* WAPopoverView.xib in Resources */,
 				1462330417E1FE210066084C /* top-list.png in Resources */,
 				146E000217E20F49000EE3DB /* back@2x.png in Resources */,
@@ -1887,6 +1897,7 @@
 				14DB13AD164C52C4001FE76B /* wind_370.png in Resources */,
 				14A80BCF168EC39C006B0AA4 /* black.png in Resources */,
 				14A80BF2168EC3DB006B0AA4 /* BottomBarBackground.png in Resources */,
+				146E000717E22654000EE3DB /* list.png in Resources */,
 				1462330117E1FE210066084C /* information@2x.png in Resources */,
 				14A80BF9168EC3DB006B0AA4 /* button-question.png in Resources */,
 				14A80C00168EC3DB006B0AA4 /* damier.png in Resources */,
@@ -1904,6 +1915,7 @@
 				14A80C54168EC3DB006B0AA4 /* Loader.png in Resources */,
 				14A80C5B168EC3DB006B0AA4 /* newspaper.png in Resources */,
 				14A80C69168EC3DB006B0AA4 /* Placeholder.png in Resources */,
+				146E000917E22654000EE3DB /* list@2x.png in Resources */,
 				14A80C77168EC3DB006B0AA4 /* rotate.png in Resources */,
 				14A80C85168EC3DB006B0AA4 /* share-button.png in Resources */,
 				146E000317E20F49000EE3DB /* back@2x.png in Resources */,

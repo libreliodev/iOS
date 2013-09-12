@@ -20,6 +20,14 @@
 	</dict>
 	<dict>
 		<key>Title</key>
+		<string>News</string>
+		<key>FileName</key>
+		<string>wind.rss?waurl=http%3A%2F%2Fwww.windmag.com%2Ffeed%2Fall&amp;waupdate=1500</string>
+		<key>Icon</key>
+		<string>list.png</string>
+	</dict>
+	<dict>
+		<key>Title</key>
 		<string>Site</string>
 		<key>FileName</key>
 		<string>http://www.windmag.com?wabar=bo</string>
@@ -33,14 +41,6 @@
 		<string>https://www.facebook.com/windmag?waubar=no</string>
 		<key>Icon</key>
 		<string>facebook.png</string>
-	</dict>
-	<dict>
-		<key>Title</key>
-		<string>Editeur</string>
-		<key>FileName</key>
-		<string>http://www.windmag.com/wind-ipad?waubar=no</string>
-		<key>Icon</key>
-		<string>information.png</string>
 	</dict>
 </array>
 </plist>
