@@ -87,7 +87,6 @@
 	{
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier] autorelease];
 	}
-    
 	cell.textLabel.text = [parser getDataAtRow:indexPath.row+1 forDataCol:DataColTitle];
     cell.detailTextLabel.text = [parser getDataAtRow:indexPath.row+1 forDataCol:DataColSubTitle];
 

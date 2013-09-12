@@ -53,7 +53,7 @@
 	xmlXPathObjectPtr xpathObjHtml = xmlXPathEvalExpression(xPathExp1, xpathCtx);
  
     xmlChar * Html = (xmlChar *)xpathObjHtml->nodesetval->nodeTab[0]->children->content;
-    //xmlChar * Html = (xmlChar *)"<div><img/>essaiEP2</div>";
+    //xmlChar * Html = (xmlChar *)"<div><div2>qqq</div2><img2/>essai00</div>";
 
     
 	//Create a new doc with the HTML and apply XPath expression
@@ -66,15 +66,24 @@
 	 xmlFree(xmlbuff);
 	xmlXPathContextPtr xpathCtx2 = xmlXPathNewContext(htmlDoc);
 	xmlXPathObjectPtr xpathImg = xmlXPathEvalExpression(xPathExp2, xpathCtx2);
-	NSString* ret = nil; 
+	NSString* ret = @"";
 	if(xpathImg == NULL) {
 	}
 	else {
 		if (xpathImg->nodesetval->nodeNr){
-			xmlChar * cRet = xpathImg->nodesetval->nodeTab[0]->children->content;
-			if (cRet) ret = [NSString stringWithCString:(const char *)cRet encoding:NSUTF8StringEncoding];
-            //TODO we need to handle case where nodeTab[0] is empty
- 			
+            
+            
+            int i = 0;
+            for(xmlNodePtr node = xpathImg->nodesetval->nodeTab[0]->children;node;node = node->next){
+                i++;
+                xmlChar * cRet = node->content;
+                NSLog(@"cRet:%s",cRet);
+                if (cRet) ret = [ret stringByAppendingString:[NSString stringWithCString:(const char *)cRet encoding:NSUTF8StringEncoding]];
+
+            }
+            NSLog(@"Nb nodes %i",i );
+            
+  			
 		}
 		
 	}
@@ -116,7 +125,7 @@
            
  		case DataColSubTitle:{
 			NSString * xPath = [xPathBegin stringByAppendingString:@"/description"];
-           NSString* ret = [self getStringForXPath:(xmlChar *)"//div" inHtmlNodeForXpath:(xmlChar *)[xPath cStringUsingEncoding: NSASCIIStringEncoding ]];
+           NSString* ret = [self getStringForXPath:(xmlChar *)"//body" inHtmlNodeForXpath:(xmlChar *)[xPath cStringUsingEncoding: NSASCIIStringEncoding ]];
  			//NSString * ret = [self getStringForXPath:(xmlChar *)[xPath cStringUsingEncoding: NSASCIIStringEncoding ]];
             
 
@@ -129,11 +138,19 @@
 
 		case DataColDate:{
             NSString * xPath = [xPathBegin stringByAppendingString:@"/pubDate"];
-			NSString * ret = [self getStringForXPath:(xmlChar *)[xPath cStringUsingEncoding: NSASCIIStringEncoding ]];
-            //NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            //[dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZ"];
-			if (!ret) ret= nil;
-            //SLog(@"date found:%@",ret);
+			NSString * dateString = [self getStringForXPath:(xmlChar *)[xPath cStringUsingEncoding: NSASCIIStringEncoding ]];
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"EEE, d MMM yyyy HH:mm:ss Z"];
+            NSDate *dateDate = [dateFormatter dateFromString:dateString];
+            [dateFormatter release];
+            
+            
+              NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
+             [formatter setDateStyle:NSDateFormatterMediumStyle];
+             [formatter setTimeStyle:NSDateFormatterNoStyle];
+             NSString * ret = [formatter stringFromDate:dateDate];
+             [formatter release];
+
 
 			return ret;
 		}
@@ -165,7 +182,7 @@
 			return ret;
 
         }
-		case DataColHTML:{
+  		case DataColHTML:{
             NSString *ret = nil;
 			return ret;
 		}
