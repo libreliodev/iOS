@@ -5,6 +5,7 @@
 #import "NSString+WAURLString.h"
 #import "UIView+WAModuleView.h"
 #import "UIColor+WAAdditions.h"
+#import "UIImage+WAAdditions.h"
 #import "NSBundle+WAAdditions.h"
 #import "WAUtilities.h"
 
@@ -45,8 +46,7 @@
     urlString = [[NSString alloc]initWithString: theString];
 	self.delegate = self;//UITableView delegate
 	self.dataSource = self;//UITableViewDataSource delegate
-    
-    //NSString * queryStringInUrl = [urlString valueOfParameterInUrlStringforKey:@"waquery"];
+    self.rowHeight = 120;    //NSString * queryStringInUrl = [urlString valueOfParameterInUrlStringforKey:@"waquery"];
     //if (queryStringInUrl) self.currentQueryDic = queryStringInUrl;
     
     [self initParser];
@@ -88,11 +88,14 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier] autorelease];
 	}
 	cell.textLabel.text = [parser getDataAtRow:indexPath.row+1 forDataCol:DataColTitle];
-    cell.detailTextLabel.text = [parser getDataAtRow:indexPath.row+1 forDataCol:DataColSubTitle];
+    cell.textLabel.textColor = [UIColor colorWithRed:0.0627  green:0.4863 blue:0.9647 alpha:1];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@",[parser getDataAtRow:indexPath.row+1 forDataCol:DataColDate],[parser getDataAtRow:indexPath.row+1 forDataCol:DataColSubTitle]];
+    cell.detailTextLabel.numberOfLines = 3;
+
 
     NSString * imageUrlString = [parser getDataAtRow:indexPath.row+1 forDataCol:DataColImage];
     //SLog(@"Should show image %@",imageUrlString);
-    cell.imageView.image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:imageUrlString]];
+    cell.imageView.image = [[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:imageUrlString]]squareImageWithSize:CGSizeMake(100,100)] ;
     //cell.imageView.image = [UIImage imageNamed:@"Default.png"];
 	
 	

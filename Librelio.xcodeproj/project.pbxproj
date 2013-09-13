@@ -120,8 +120,12 @@
 		148BD6C312E9C23600930FC5 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E002BB127077F6005514AA /* libxml2.dylib */; };
 		148BD6C412E9C23600930FC5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14577FC8129C35D100E75640 /* MapKit.framework */; };
 		148BD6C512E9C23600930FC5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14C062D212B13EF000EADEAA /* AVFoundation.framework */; };
+		1490866D17E332A200943DD2 /* rss.png in Resources */ = {isa = PBXBuildFile; fileRef = 1490866B17E332A200943DD2 /* rss.png */; };
+		1490866E17E332A200943DD2 /* rss.png in Resources */ = {isa = PBXBuildFile; fileRef = 1490866B17E332A200943DD2 /* rss.png */; };
+		1490866F17E332A200943DD2 /* rss@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1490866C17E332A200943DD2 /* rss@2x.png */; };
+		1490867017E332A200943DD2 /* rss@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1490866C17E332A200943DD2 /* rss@2x.png */; };
 		1494A1AB16FAC24100DE034A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E0178B16F9CC5B007EC00E /* CoreData.framework */; };
-		1494B53016FB0D2300DE034A /* wind.rss in Resources */ = {isa = PBXBuildFile; fileRef = 1494B52F16FB0D2300DE034A /* wind.rss */; };
+		1494B53016FB0D2300DE034A /* news.rss in Resources */ = {isa = PBXBuildFile; fileRef = 1494B52F16FB0D2300DE034A /* news.rss */; };
 		149633B1150DE7CE0058E086 /* EAAppSubDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 149633B0150DE7CE0058E086 /* EAAppSubDelegate.m */; };
 		14A1DB4A145F04B1005366C7 /* Scanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A1DB46145F04B1005366C7 /* Scanner.m */; };
 		14A1DB68145F1F24005366C7 /* Font.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A1DB62145F1F23005366C7 /* Font.m */; };
@@ -543,8 +547,10 @@
 		1489B615168ECDB300404BA6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		148BD6CA12E9C23700930FC5 /* Empty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Empty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		148DD9461638FFF200C429A4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		1490866B17E332A200943DD2 /* rss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rss.png; path = Resources/rss.png; sourceTree = "<group>"; };
+		1490866C17E332A200943DD2 /* rss@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rss@2x.png"; path = "Resources/rss@2x.png"; sourceTree = "<group>"; };
 		1491964D1328A31C00DD54B1 /* WAModuleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAModuleProtocol.h; sourceTree = "<group>"; };
-		1494B52F16FB0D2300DE034A /* wind.rss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = wind.rss; sourceTree = "<group>"; };
+		1494B52F16FB0D2300DE034A /* news.rss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = news.rss; sourceTree = "<group>"; };
 		149633AF150DE7CE0058E086 /* EAAppSubDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAAppSubDelegate.h; sourceTree = "<group>"; };
 		149633B0150DE7CE0058E086 /* EAAppSubDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAAppSubDelegate.m; sourceTree = "<group>"; };
 		14A1DB45145F04B1005366C7 /* Scanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scanner.h; sourceTree = "<group>"; };
@@ -1283,6 +1289,8 @@
 		1485882C168EBA6E00A323B5 /* Common resources */ = {
 			isa = PBXGroup;
 			children = (
+				1490866B17E332A200943DD2 /* rss.png */,
+				1490866C17E332A200943DD2 /* rss@2x.png */,
 				146E000417E22654000EE3DB /* list.png */,
 				146E000517E22654000EE3DB /* list@2x.png */,
 				146EFFFE17E20F49000EE3DB /* back.png */,
@@ -1544,7 +1552,7 @@
 			isa = PBXGroup;
 			children = (
 				1454580116FC6A5700EC3DFD /* facebook.atom */,
-				1494B52F16FB0D2300DE034A /* wind.rss */,
+				1494B52F16FB0D2300DE034A /* news.rss */,
 				14DB136E164C52C4001FE76B /* Application.plist */,
 				14DB136F164C52C4001FE76B /* Application_.plist */,
 				14DB1370164C52C4001FE76B /* Default-568h@2x.png */,
@@ -1779,6 +1787,7 @@
 				1425331B1361BEFE00F6BB3D /* WAFileManagerCell.xib in Resources */,
 				14FD065E14222B1D002F9E35 /* WAGridCell.xib in Resources */,
 				1424381814BC36BE005ABB4A /* WASplashWebViewController_iPad.xib in Resources */,
+				1490866F17E332A200943DD2 /* rss@2x.png in Resources */,
 				1462330617E1FE210066084C /* top-list@2x.png in Resources */,
 				1424381A14BC36BE005ABB4A /* WASplashWebViewController_iPhone.xib in Resources */,
 				1424381C14BC36BE005ABB4A /* WASplashScreenViewController_iPad.xib in Resources */,
@@ -1801,6 +1810,7 @@
 				14C1C3391623723A00184920 /* WAAnalyticsView.xib in Resources */,
 				14AC87AD16240C1600CB9C18 /* WATableSelectionIpad.xib in Resources */,
 				14AC87BA16240C1600CB9C18 /* WATableSelectionCell.xib in Resources */,
+				1490866D17E332A200943DD2 /* rss.png in Resources */,
 				14A80BCC168EC39C006B0AA4 /* black.png in Resources */,
 				14A80BEF168EC3DB006B0AA4 /* BottomBarBackground.png in Resources */,
 				146232F817E1FE210066084C /* download.png in Resources */,
@@ -1850,6 +1860,7 @@
 				14DB1173164BEDC3001FE76B /* WASplashScreenViewController_iPhone.xib in Resources */,
 				14DB1174164BEDC3001FE76B /* WAPrixIpad.xib in Resources */,
 				14DB1177164BEDC3001FE76B /* WAPrixIphone.xib in Resources */,
+				1490867017E332A200943DD2 /* rss@2x.png in Resources */,
 				14DB1178164BEDC3001FE76B /* WATableSelectionIphone.xib in Resources */,
 				14DB1179164BEDC3001FE76B /* WAResultsViewIpad.xib in Resources */,
 				14DB117A164BEDC3001FE76B /* WALexiqueIpad.xib in Resources */,
@@ -1898,6 +1909,7 @@
 				14A80BCF168EC39C006B0AA4 /* black.png in Resources */,
 				14A80BF2168EC3DB006B0AA4 /* BottomBarBackground.png in Resources */,
 				146E000717E22654000EE3DB /* list.png in Resources */,
+				1490866E17E332A200943DD2 /* rss.png in Resources */,
 				1462330117E1FE210066084C /* information@2x.png in Resources */,
 				14A80BF9168EC3DB006B0AA4 /* button-question.png in Resources */,
 				14A80C00168EC3DB006B0AA4 /* damier.png in Resources */,
@@ -1927,7 +1939,7 @@
 				14A80CA8168EC3DB006B0AA4 /* white.png in Resources */,
 				146E000117E20F49000EE3DB /* back.png in Resources */,
 				1489B60C168ECC3D00404BA6 /* Localizable.strings in Resources */,
-				1494B53016FB0D2300DE034A /* wind.rss in Resources */,
+				1494B53016FB0D2300DE034A /* news.rss in Resources */,
 				1454580216FC6A5700EC3DFD /* facebook.atom in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
