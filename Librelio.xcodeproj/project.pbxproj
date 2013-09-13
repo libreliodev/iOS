@@ -1955,6 +1955,7 @@
 			buildConfigurationList = 1490873117E375D700943DD2 /* Build configuration list for PBXNativeTarget "Script" */;
 			buildPhases = (
 				1490867917E375D700943DD2 /* Resources */,
+				1490873B17E37ED700943DD2 /* ShellScript */,
 				149086B517E375D700943DD2 /* Sources */,
 				1490871A17E375D700943DD2 /* Frameworks */,
 			);
@@ -2260,6 +2261,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1490873B17E37ED700943DD2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "PATH_TO_SOURCE=\"/Users/Emmanuel/Dropbox/Librelio Clients/Niveales-Librelio/SOURCES/iOS/BigBike\"\n\nfind -L \"$PATH_TO_SOURCE\" \\\n-type f -not -name \".*\" \\\n-not -name \"`basename ${INFOPLIST_FILE}`\" \\\n| xargs -t -I {} \\\ncp {} ${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		148BD69412E9C23600930FC5 /* Sources */ = {
