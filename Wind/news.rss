@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
     <channel>
-        <title><![CDATA[Titre du flux]]></title>
-        <link>http://www.windmag.com/feed/all</link>
+        <title><![CDATA[Chargement]]></title>
+        <link></link>
         <description></description>
-        <pubDate>Thu, 21 Mar 2013 11:12:41 +0100</pubDate>
-        <generator>Inneair Origami</generator>
+        <pubDate></pubDate>
+        <generator></generator>
         <language>fr</language>
-        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <docs></docs>
         <item>
             <title><![CDATA[Chargement en cours...]]></title>
             <link></link>
             <guid isPermaLink="false">e073da97f66c5e7e0339dbbea54bee55</guid>
-            <description><![CDATA[aa]]></description>
-            <pubDate>Thu, 21 Mar 2013 03:40:20 +0100</pubDate>
+            <description><![CDATA[]]></description>
+            <pubDate></pubDate>
         </item>
      </channel>
 </rss>
