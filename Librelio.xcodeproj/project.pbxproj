@@ -306,6 +306,7 @@
 		1490872F17E375D700943DD2 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F94D61160C557200A68F2A /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		1490873017E375D700943DD2 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14B9F1A9160DBA7400E9C188 /* libCorePlot-CocoaTouch.a */; };
 		1490873A17E37BE100943DD2 /* ScriptTempApplication_.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1490873817E37BE100943DD2 /* ScriptTempApplication_.plist */; };
+		1490873D17E43B3B00943DD2 /* path.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1490873C17E43B3B00943DD2 /* path.txt */; };
 		1494A1AB16FAC24100DE034A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E0178B16F9CC5B007EC00E /* CoreData.framework */; };
 		1494B53016FB0D2300DE034A /* news.rss in Resources */ = {isa = PBXBuildFile; fileRef = 1494B52F16FB0D2300DE034A /* news.rss */; };
 		149633B1150DE7CE0058E086 /* EAAppSubDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 149633B0150DE7CE0058E086 /* EAAppSubDelegate.m */; };
@@ -734,6 +735,7 @@
 		1490873517E375D700943DD2 /* ScriptTempProductName.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScriptTempProductName.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1490873717E37BE100943DD2 /* ScriptTempApplication.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ScriptTempApplication.plist; sourceTree = "<group>"; };
 		1490873817E37BE100943DD2 /* ScriptTempApplication_.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ScriptTempApplication_.plist; sourceTree = "<group>"; };
+		1490873C17E43B3B00943DD2 /* path.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = path.txt; sourceTree = "<group>"; };
 		1491964D1328A31C00DD54B1 /* WAModuleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAModuleProtocol.h; sourceTree = "<group>"; };
 		1494B52F16FB0D2300DE034A /* news.rss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = news.rss; sourceTree = "<group>"; };
 		149633AF150DE7CE0058E086 /* EAAppSubDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAAppSubDelegate.h; sourceTree = "<group>"; };
@@ -1565,6 +1567,7 @@
 			isa = PBXGroup;
 			children = (
 				1490873717E37BE100943DD2 /* ScriptTempApplication.plist */,
+				1490873C17E43B3B00943DD2 /* path.txt */,
 				1490873817E37BE100943DD2 /* ScriptTempApplication_.plist */,
 			);
 			path = ScriptTarget;
@@ -2103,6 +2106,7 @@
 				1490867B17E375D700943DD2 /* WAFileManagerCell.xib in Resources */,
 				1490867C17E375D700943DD2 /* WAGridCell.xib in Resources */,
 				1490867D17E375D700943DD2 /* WASplashWebViewController_iPad.xib in Resources */,
+				1490873D17E43B3B00943DD2 /* path.txt in Resources */,
 				1490867E17E375D700943DD2 /* rss@2x.png in Resources */,
 				1490867F17E375D700943DD2 /* top-list@2x.png in Resources */,
 				1490868017E375D700943DD2 /* WASplashWebViewController_iPhone.xib in Resources */,
@@ -2274,7 +2278,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "PATH_TO_SOURCE=\"/Users/Emmanuel/Dropbox/Librelio Clients/Niveales-Librelio/SOURCES/iOS/BigBike\"\n\nfind -L \"$PATH_TO_SOURCE\" \\\n-type f -not -name \".*\" \\\n-not -name \"`basename ${INFOPLIST_FILE}`\" \\\n| xargs -t -I {} \\\ncp {} ${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/";
+			shellScript = "PATH_TO_SOURCE=$(<\"${SRCROOT}/ScriptTarget/path.txt\")\n\nfind -L \"$PATH_TO_SOURCE\" \\\n-type f -not -name \".*\" \\\n-not -name \"`basename ${INFOPLIST_FILE}`\" \\\n| xargs -t -I {} \\\ncp {} ${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/";
 		};
 /* End PBXShellScriptBuildPhase section */
 
