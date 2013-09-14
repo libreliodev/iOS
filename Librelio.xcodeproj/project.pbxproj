@@ -305,7 +305,6 @@
 		1490872E17E375D700943DD2 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1469EE5D153BE35C00465AB7 /* libGoogleAnalytics.a */; };
 		1490872F17E375D700943DD2 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F94D61160C557200A68F2A /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		1490873017E375D700943DD2 /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14B9F1A9160DBA7400E9C188 /* libCorePlot-CocoaTouch.a */; };
-		1490873A17E37BE100943DD2 /* ScriptTempApplication_.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1490873817E37BE100943DD2 /* ScriptTempApplication_.plist */; };
 		1490873D17E43B3B00943DD2 /* path.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1490873C17E43B3B00943DD2 /* path.txt */; };
 		1494A1AB16FAC24100DE034A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E0178B16F9CC5B007EC00E /* CoreData.framework */; };
 		1494B53016FB0D2300DE034A /* news.rss in Resources */ = {isa = PBXBuildFile; fileRef = 1494B52F16FB0D2300DE034A /* news.rss */; };
@@ -733,8 +732,7 @@
 		1490866B17E332A200943DD2 /* rss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rss.png; path = Resources/rss.png; sourceTree = "<group>"; };
 		1490866C17E332A200943DD2 /* rss@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rss@2x.png"; path = "Resources/rss@2x.png"; sourceTree = "<group>"; };
 		1490873517E375D700943DD2 /* ScriptTempProductName.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScriptTempProductName.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1490873717E37BE100943DD2 /* ScriptTempApplication.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ScriptTempApplication.plist; sourceTree = "<group>"; };
-		1490873817E37BE100943DD2 /* ScriptTempApplication_.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ScriptTempApplication_.plist; sourceTree = "<group>"; };
+		1490873717E37BE100943DD2 /* Application.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Application.plist; sourceTree = "<group>"; };
 		1490873C17E43B3B00943DD2 /* path.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = path.txt; sourceTree = "<group>"; };
 		1491964D1328A31C00DD54B1 /* WAModuleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAModuleProtocol.h; sourceTree = "<group>"; };
 		1494B52F16FB0D2300DE034A /* news.rss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = news.rss; sourceTree = "<group>"; };
@@ -1566,9 +1564,8 @@
 		1490873617E37BE100943DD2 /* ScriptTarget */ = {
 			isa = PBXGroup;
 			children = (
-				1490873717E37BE100943DD2 /* ScriptTempApplication.plist */,
+				1490873717E37BE100943DD2 /* Application.plist */,
 				1490873C17E43B3B00943DD2 /* path.txt */,
-				1490873817E37BE100943DD2 /* ScriptTempApplication_.plist */,
 			);
 			path = ScriptTarget;
 			sourceTree = "<group>";
@@ -1957,8 +1954,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1490873117E375D700943DD2 /* Build configuration list for PBXNativeTarget "Script" */;
 			buildPhases = (
+				1490873B17E37ED700943DD2 /* Run Script */,
 				1490867917E375D700943DD2 /* Resources */,
-				1490873B17E37ED700943DD2 /* ShellScript */,
 				149086B517E375D700943DD2 /* Sources */,
 				1490871A17E375D700943DD2 /* Frameworks */,
 			);
@@ -2101,7 +2098,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1490873A17E37BE100943DD2 /* ScriptTempApplication_.plist in Resources */,
 				1490867A17E375D700943DD2 /* HTMLTemplate.html in Resources */,
 				1490867B17E375D700943DD2 /* WAFileManagerCell.xib in Resources */,
 				1490867C17E375D700943DD2 /* WAGridCell.xib in Resources */,
@@ -2267,13 +2263,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1490873B17E37ED700943DD2 /* ShellScript */ = {
+		1490873B17E37ED700943DD2 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2732,13 +2729,12 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2/**";
-				INFOPLIST_FILE = "$(SRCROOT)/Wind/Application.plist";
+				INFOPLIST_FILE = ScriptTarget/Application.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
+					"$(SRCROOT)/Classes",
 					"$(SRCROOT)",
-					"\\\"$(SRCROOT)/Classes\\\"",
-					"/Users/Emmanuel/Dropbox/librelio-ios-git/Classes",
+					"$(inherited)",
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
@@ -2764,13 +2760,12 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2/**";
-				INFOPLIST_FILE = "$(SRCROOT)/Wind/Application.plist";
+				INFOPLIST_FILE = ScriptTarget/Application.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
+					"$(SRCROOT)/Classes",
 					"$(SRCROOT)",
-					"\\\"$(SRCROOT)/Classes\\\"",
-					"/Users/Emmanuel/Dropbox/librelio-ios-git/Classes",
+					"$(inherited)",
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
@@ -2795,13 +2790,12 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2/**";
-				INFOPLIST_FILE = "Empty copy-Info.plist";
+				INFOPLIST_FILE = ScriptTarget/Application.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
+					"$(SRCROOT)/Classes",
 					"$(SRCROOT)",
-					"\\\"$(SRCROOT)/Classes\\\"",
-					"/Users/Emmanuel/Dropbox/librelio-ios-git/Classes",
+					"$(inherited)",
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
@@ -2837,11 +2831,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../Librelio Clients/Niveales-Librelio/SOURCES/iOS/SkiDigital\"",
-					"\"$(SRCROOT)/../Librelio Clients/WidgetAvenue-Librelio/InstantScan\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2855,7 +2845,6 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"\\\"$(SRCROOT)/Classes\\\"",
-					"\\\"$(SRCROOT)/../Librelio\\ Clients/Niveales-Librelio/SOURCES/iOS/SkiDigital\\\"",
 					"/Users/Emmanuel/Dropbox/librelio-ios-git/Classes",
 				);
 				OTHER_CFLAGS = "";
@@ -2878,11 +2867,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../Librelio Clients/Niveales-Librelio/SOURCES/iOS/SkiDigital\"",
-					"\"$(SRCROOT)/../Librelio Clients/WidgetAvenue-Librelio/InstantScan\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2896,7 +2881,6 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"\\\"$(SRCROOT)/Classes\\\"",
-					"\\\"$(SRCROOT)/../Librelio\\ Clients/Niveales-Librelio/SOURCES/iOS/SkiDigital\\\"",
 					"/Users/Emmanuel/Dropbox/librelio-ios-git/Classes",
 				);
 				OTHER_CFLAGS = "";
@@ -2919,11 +2903,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../Librelio Clients/Niveales-Librelio/SOURCES/iOS/SkiDigital\"",
-					"\"$(SRCROOT)/../Librelio Clients/WidgetAvenue-Librelio/InstantScan\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = WA_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
@@ -2935,7 +2915,6 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"\\\"$(SRCROOT)/Classes\\\"",
-					"\\\"$(SRCROOT)/../Librelio\\ Clients/Niveales-Librelio/SOURCES/iOS/SkiDigital\\\"",
 					"/Users/Emmanuel/Dropbox/librelio-ios-git/Classes",
 				);
 				OTHER_CFLAGS = "";
