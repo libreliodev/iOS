@@ -39,11 +39,19 @@
 #pragma mark Utility functions
 
 - (NSString*) getStringForXPath:(xmlChar *)xPathExp{
+    NSString *ret =@"";
 	xmlXPathObjectPtr xPathMainTitle = xmlXPathEvalExpression(xPathExp, xpathCtx);//Find all entries
-	NSString *ret = [NSString stringWithCString:(const char *)xPathMainTitle->nodesetval->nodeTab[0]->children->content encoding:NSUTF8StringEncoding];
-	xmlXPathFreeObject(xPathMainTitle);
-    ret = [ret stringByReplacingOccurrencesOfString:@"&#039;" withString:@"'"];//Hack
-    ret = [ret stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];//Hack
+    if (xPathMainTitle->nodesetval->nodeTab[0]->children==NULL){
+        
+    }
+    else{
+        ret = [NSString stringWithCString:(const char *)xPathMainTitle->nodesetval->nodeTab[0]->children->content encoding:NSUTF8StringEncoding];
+        xmlXPathFreeObject(xPathMainTitle);
+        ret = [ret stringByReplacingOccurrencesOfString:@"&#039;" withString:@"'"];//Hack
+        ret = [ret stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];//Hack
+        
+    }
+
 	return ret;
 	
 }
@@ -69,6 +77,9 @@
 	NSString* ret = @"";
 	if(xpathImg == NULL) {
 	}
+    else if (xpathImg->nodesetval==NULL){
+        
+    }
 	else {
 		if (xpathImg->nodesetval->nodeNr){
             
