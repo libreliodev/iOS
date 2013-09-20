@@ -312,7 +312,7 @@
     if (shouldHideUpperBar) self.navigationController.navigationBarHidden = YES;
 
 
-    NSLog(@"ModuleViewController will trigger moduleViewWillAppear");
+    //SLog(@"ModuleViewController will trigger moduleViewWillAppear");
 	[moduleView moduleViewWillAppear:animated];
 
 

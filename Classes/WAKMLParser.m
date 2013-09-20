@@ -166,7 +166,7 @@
 - (int) countData{
 	xmlXPathObjectPtr xpathEntries = xmlXPathEvalExpression((xmlChar *)"//k:kml/k:Document/k:Placemark", xpathCtx);//Find all entries
 	int size = xpathEntries->nodesetval->nodeNr;
-    NSLog(@"Found %i placemarks",size);
+    //SLog(@"Found %i placemarks",size);
 
 	return size;
 	

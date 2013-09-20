@@ -333,6 +333,7 @@
 	appTabBarController.moreNavigationController.navigationBar.barStyle = UIBarStyleBlack;
     appTabBarController.delegate = self;
 	appTabBarController.viewControllers = 	tabviews;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) appTabBarController.tabBar.translucent = NO;
 	
     window.rootViewController = appTabBarController;
 	window.backgroundColor = [UIColor blackColor];
