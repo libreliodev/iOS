@@ -19,9 +19,9 @@
     urlString = [[NSString alloc]initWithString: theString];
 	NSString *plistName = [urlString noArgsPartOfUrlString];
 	NSString * plistPath = [[NSBundle mainBundle] pathOfFileWithUrl:plistName];
-    //SLog(@"plistname:%@, plistpath:%@",plistName,plistPath);
+    NSLog(@"plistname:%@, plistpath:%@",plistName,plistPath);
 	dataArray = [[NSArray alloc ]initWithContentsOfFile:plistPath];
-    //SLog(@"plist dataArray %@",dataArray);
+    NSLog(@"plist dataArray %@",dataArray);
     //If dataArray count is zero, it means that the root level of the plist is a dictionary, with a "Lines" key
     if(![dataArray count]){
         //SLog(@"dataArray count is null");
