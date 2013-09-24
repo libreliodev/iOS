@@ -1328,8 +1328,8 @@ NSString * const AQGridViewSelectionDidChangeNotification = @"AQGridViewSelectio
 		switch ( [recognizer state] )
 		{
 			case UIGestureRecognizerStateEnded:
-			case UIGestureRecognizerStateCancelled:
-			case UIGestureRecognizerStateFailed:
+			//case UIGestureRecognizerStateCancelled: Removed by Librelio, produces a warning
+			//case UIGestureRecognizerStateFailed:Removed by Librelio, produces a warning
 				continue;
 
 			default:

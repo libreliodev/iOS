@@ -70,7 +70,7 @@
 	xmlChar *xmlbuff;
 	 int buffersize;
 	 xmlDocDumpFormatMemory(htmlDoc, &xmlbuff, &buffersize, 1);
-     NSLog(@"html: %s", xmlbuff);
+     //SLog(@"html: %s", xmlbuff);
 	 xmlFree(xmlbuff);
 	xmlXPathContextPtr xpathCtx2 = xmlXPathNewContext(htmlDoc);
 	xmlXPathObjectPtr xpathImg = xmlXPathEvalExpression(xPathExp2, xpathCtx2);
@@ -88,11 +88,11 @@
             for(xmlNodePtr node = xpathImg->nodesetval->nodeTab[0]->children;node;node = node->next){
                 i++;
                 xmlChar * cRet = node->content;
-                NSLog(@"cRet:%s",cRet);
+                //SLog(@"cRet:%s",cRet);
                 if (cRet) ret = [ret stringByAppendingString:[NSString stringWithCString:(const char *)cRet encoding:NSUTF8StringEncoding]];
 
             }
-            NSLog(@"Nb nodes %i",i );
+            //SLog(@"Nb nodes %i",i );
             
   			
 		}
@@ -140,7 +140,7 @@
  			//NSString * ret = [self getStringForXPath:(xmlChar *)[xPath cStringUsingEncoding: NSASCIIStringEncoding ]];
             
 
-             NSLog(@"subtitle found:%@",ret);
+             //SLog(@"subtitle found:%@",ret);
             
 			
 			return ret;
@@ -178,7 +178,7 @@
                 ret = [imageName urlByAddingParameterInUrlStringWithKey:@"waurl" withValue:ret];
                 
             }
-            NSLog(@"image found:%@",ret);
+            //SLog(@"image found:%@",ret);
 
 			return ret;
 			
@@ -252,7 +252,7 @@
         if (imgUrlString) [tempArray2 addObject:imgUrlString];
     }
     
-    NSLog (@"Resources for %@: %@",urlString,tempArray2);
+    //SLog (@"Resources for %@: %@",urlString,tempArray2);
     
     return tempArray2;
 }
