@@ -15,7 +15,7 @@
 
 @implementation WAHTMLView
 
-@synthesize activityIndicator,splashView,currentViewController,backButton;
+@synthesize activityIndicator,splashView,currentViewController,backButton,forwardButton;
 
 - (id)init {
 	if (self = [super init]) {
@@ -161,7 +161,15 @@
     
     if ([self canGoBack]) backButton.enabled=YES;
     else backButton.enabled=NO;
-    //SLog(@"finished loading");
+ 
+    if ([self canGoForward]) forwardButton.enabled=YES;
+    else forwardButton.enabled=NO;
+
+    if ([self isRootModule]){
+        WAModuleViewController * vc = (WAModuleViewController * )[(UIView <WAModuleProtocol>*)self currentViewController];
+        vc.navigationItem.title =[self stringByEvaluatingJavaScriptFromString:@"document.title"];
+    }
+
 	
 }
 
@@ -237,6 +245,7 @@
 	[activityIndicator release];
     [splashView release];
     [backButton release];
+    [forwardButton release];
 	[urlString release];
     [super dealloc];
 }
@@ -285,11 +294,17 @@
         //Add back button
         WAModuleViewController * vc = (WAModuleViewController * )[(UIView <WAModuleProtocol>*)self currentViewController];
         NSMutableArray* buttons = [[NSMutableArray alloc] initWithArray:vc.rightToolBar.items];
-        UIImage* btnImage = [UIImage imageNamed:@"back.png"];
-        backButton = [[WABarButtonItemWithLink alloc]initWithImage:btnImage style:UIBarButtonItemStyleBordered target:self action:@selector(goBack)];
+        UIImage* backImage = [UIImage imageNamed:@"back.png"];
+        backButton = [[WABarButtonItemWithLink alloc]initWithImage:backImage style:UIBarButtonItemStyleBordered target:self action:@selector(goBack)];
         backButton.enabled = NO;
             
         [buttons addObject:backButton];
+        UIImage* forwardImage = [UIImage imageNamed:@"forward.png"];
+        forwardButton = [[WABarButtonItemWithLink alloc]initWithImage:forwardImage style:UIBarButtonItemStyleBordered target:self action:@selector(goForward)];
+        forwardButton.enabled = NO;
+        
+        [buttons addObject:forwardButton];
+
         
         // create a spacer
         UIBarButtonItem * bi = [[WABarButtonItemWithLink alloc]
@@ -299,6 +314,9 @@
         vc.rightToolBar.frame = CGRectMake(vc.rightToolBar.frame.origin.x, vc.rightToolBar.frame.origin.y, 45*([buttons count]/2), vc.navigationController.navigationBar.frame.size.height+0.01);
         [vc.rightToolBar setItems:buttons animated:NO];
         [buttons release];
+        
+        [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"" orString:NSLocalizedString(@"Subscription",@"" ) andLink:@"buy://localhost/wanodownload.pdf"];
+        
 
         
         
