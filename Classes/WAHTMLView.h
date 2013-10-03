@@ -11,12 +11,17 @@
 	UIActivityIndicatorView*activityIndicator;
     UIImageView * splashView;
     UIBarButtonItem* backButton;
+    NSString * previousPageTitle;
+    NSString * currentPageTitle;
     UIBarButtonItem* forwardButton;
 }
 @property (nonatomic, retain)	UIActivityIndicatorView*activityIndicator;
 @property (nonatomic, retain)	 UIImageView * splashView;
 @property (nonatomic, retain)	 UIBarButtonItem* backButton;
+@property (nonatomic, retain)	 NSString * previousPageTitle;
+@property (nonatomic, retain)	 NSString * currentPageTitle;
 @property (nonatomic, retain)	 UIBarButtonItem* forwardButton;
+
 
 - (void) loadTabFile;
 

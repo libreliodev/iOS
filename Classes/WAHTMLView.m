@@ -15,7 +15,7 @@
 
 @implementation WAHTMLView
 
-@synthesize activityIndicator,splashView,currentViewController,backButton,forwardButton;
+@synthesize activityIndicator,splashView,currentViewController,backButton,previousPageTitle,currentPageTitle,forwardButton;
 
 - (id)init {
 	if (self = [super init]) {
@@ -137,6 +137,9 @@
     [self addSubview:toolbar];
     [toolbar release];
      **/
+    
+    self.previousPageTitle = [[NSString alloc]initWithString: @""];
+    self.currentPageTitle = [[NSString alloc]initWithString: @""];
 
 	
 	
@@ -159,15 +162,41 @@
     [activityIndicator stopAnimating];
 	[activityIndicator removeFromSuperview];
     
-    if ([self canGoBack]) backButton.enabled=YES;
-    else backButton.enabled=NO;
- 
-    if ([self canGoForward]) forwardButton.enabled=YES;
-    else forwardButton.enabled=NO;
 
     if ([self isRootModule]){
+        
+
         WAModuleViewController * vc = (WAModuleViewController * )[(UIView <WAModuleProtocol>*)self currentViewController];
         vc.navigationItem.title =[self stringByEvaluatingJavaScriptFromString:@"document.title"];
+        
+        NSLog(@"navTitle: %@, currentPage: %@",vc.navigationItem.title,self.currentPageTitle);
+        if (![vc.navigationItem.title isEqualToString:self.currentPageTitle]){
+            self.previousPageTitle= currentPageTitle;
+            NSLog(@"Did set previous title to %@",self.previousPageTitle);
+            
+            self.currentPageTitle = vc.navigationItem.title;
+        }
+
+        
+        //Reset toolbar
+        [vc.rightToolBar setItems:nil];
+        if ([self canGoBack]){
+            NSMutableArray* buttons = [[NSMutableArray alloc] initWithArray:vc.rightToolBar.items];
+            NSString * backString = [NSString stringWithFormat:@"< %@...",[self.previousPageTitle substringToIndex:5]];
+            UIBarButtonItem * bi = [[WABarButtonItemWithLink alloc]initWithTitle:backString style:UIBarButtonItemStyleBordered target:self action:@selector(goBack)];
+            [buttons addObject:bi];
+            [bi release];
+            [vc.rightToolBar setItems:buttons animated:NO];
+            [buttons release];
+            vc.rightToolBar.frame = CGRectMake(vc.rightToolBar.frame.origin.x, vc.rightToolBar.frame.origin.y, 80, vc.navigationController.navigationBar.frame.size.height+0.01);
+            
+
+            
+        }
+ 
+
+        
+        
     }
 
 	
@@ -234,6 +263,7 @@
         }
         
     }
+
 	return YES;
 }
 
@@ -245,6 +275,8 @@
 	[activityIndicator release];
     [splashView release];
     [backButton release];
+    [previousPageTitle release];
+    [currentPageTitle release];
     [forwardButton release];
 	[urlString release];
     [super dealloc];
@@ -311,13 +343,9 @@
               initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
         [buttons addObject:bi];
         [bi release];
-        vc.rightToolBar.frame = CGRectMake(vc.rightToolBar.frame.origin.x, vc.rightToolBar.frame.origin.y, 45*([buttons count]/2), vc.navigationController.navigationBar.frame.size.height+0.01);
-        [vc.rightToolBar setItems:buttons animated:NO];
+          [vc.rightToolBar setItems:buttons animated:NO];
         [buttons release];
-        
-        [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"" orString:NSLocalizedString(@"Subscription",@"" ) andLink:@"buy://localhost/wanodownload.pdf"];
-        
-
+ 
         
         
     }
