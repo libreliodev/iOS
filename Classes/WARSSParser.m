@@ -161,7 +161,8 @@
              [formatter setTimeStyle:NSDateFormatterNoStyle];
              NSString * ret = [formatter stringFromDate:dateDate];
              [formatter release];
-
+            NSLog(@"ret:%@",ret);
+            if ([ret length]<7) ret = @"";//Hack, we want to avoid (null) value
 
 			return ret;
 		}

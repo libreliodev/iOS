@@ -6,14 +6,17 @@
 #  Copyright (c) 2013 WidgetAvenue - Librelio. All rights reserved.
 
 PATH_TO_SOURCE=$(<"${SRCROOT}/ScriptTarget/path.txt")
+echo "$PATH_TO_SOURCE"
+cd "$PATH_TO_SOURCE"
 
 #Compile xibs
-for f in $(find "$PATH_TO_SOURCE" -type f -name "*.xib")
+for f in $(find "./" -type f -name "*.xib")
 do
 echo "Processing $f"
-filename=$(basename "$f")
-extension="${filename##*.}"
-filename="${filename%.*}"
+#filename=$(basename "$f")
+#extension="${filename##*.}"
+#filename="${filename%.*}"
+filename="${f%.xib}"
 ibtool "$f" --compile "$filename.nib"
 done
 
