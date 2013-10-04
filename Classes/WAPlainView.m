@@ -54,7 +54,7 @@
         [subView removeFromSuperview];
     }
     UIView * nibView = [UIView getNibView:[urlString nameOfFileWithoutExtensionOfUrlString] defaultNib:@"WAFileManagerCell" forOrientation:orientation];
-    //SLog(@"NibView subviews:%i",[[nibView subviews]count]);
+    NSLog(@"NibView subviews:%i",[[nibView subviews]count]);
     nibView.frame = self.frame;
     [self addSubview:nibView];
     [nibView populateNibWithParser:parser withButtonDelegate:self   forRow:1];

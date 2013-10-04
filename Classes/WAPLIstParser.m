@@ -198,10 +198,19 @@
 		}
 		case DataColRead:{
 			if ([[NSBundle mainBundle] pathOfFileWithUrl:absUrlString]){
-				NSString * txt = NSLocalizedString(@"Read",@"");
-				NSString * urlStringWithTitle = [absUrlString urlByAddingParameterInUrlStringWithKey:@"watitle" withValue:[tempDic objectForKey:@"Title"]];
-				urlStringWithTitle = [urlStringWithTitle urlByAddingParameterInUrlStringWithKey:@"wasubtitle" withValue:[tempDic objectForKey:@"Subtitle"]];//Add the wasubtitle arg to the url
-				ret = [NSString stringWithFormat:@"%@;%@",txt,urlStringWithTitle]; 					
+                NSString * extension =  [[absUrlString noArgsPartOfUrlString] pathExtension];
+                if ([extension isEqualToString:@"plist"]){
+                    //This is a sublibrary, don't add the read button
+                    ret = nil;
+                }
+                else{
+                    NSString * txt = NSLocalizedString(@"Read",@"");
+                    NSString * urlStringWithTitle = [absUrlString urlByAddingParameterInUrlStringWithKey:@"watitle" withValue:[tempDic objectForKey:@"Title"]];
+                    urlStringWithTitle = [urlStringWithTitle urlByAddingParameterInUrlStringWithKey:@"wasubtitle" withValue:[tempDic objectForKey:@"Subtitle"]];//Add the wasubtitle arg to the url
+                    ret = [NSString stringWithFormat:@"%@;%@",txt,urlStringWithTitle];
+
+                }
+                
 			}
 			else{
 				ret = nil;//File has not been downloaded, nothing to read!

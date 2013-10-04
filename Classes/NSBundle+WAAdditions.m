@@ -37,9 +37,11 @@
     //Build names with orientation (and device) suffixes
     NSString * filePathWithOrientationSuffix;
     NSString * filePathWithOrientationAndDeviceSuffix;
-     if (orientation!=999)//999 code conventionally means we do not care about orientation
+    NSLog(@"orientation %i",(int)orientation);
+    
+     if ((int)orientation!=999)//999 code conventionally means we do not care about orientation
      {
-        NSString * orientationString;
+        NSString * orientationString=@"";
         switch (orientation) {
             case UIInterfaceOrientationPortrait:
             case UIInterfaceOrientationPortraitUpsideDown:{
@@ -52,6 +54,7 @@
                 break;
             }
         }
+         NSLog(@"File path:%@ orientation:%@ ext:%@",filePath, orientationString,extension);
         filePathWithOrientationSuffix = [WAUtilities urlByChangingExtensionOfUrlString:filePath toSuffix:[NSString stringWithFormat:@"-%@.%@",orientationString,extension]];
         filePathWithOrientationAndDeviceSuffix = [WAUtilities urlByChangingExtensionOfUrlString:filePath toSuffix:[NSString stringWithFormat:@"-%@~%@.%@",orientationString,deviceName,extension]];
          //SLog(@"filePathWithOrientationAndDeviceSuffix:%@",filePathWithOrientationAndDeviceSuffix);
@@ -60,7 +63,7 @@
     
 	
 	//First, check the Cache directory
-    if (orientation!=999)//999 code conventionally means we do not care about orientation
+    if ((int)orientation!=999)//999 code conventionally means we do not care about orientation
     {
         if ([[NSFileManager defaultManager] fileExistsAtPath:filePathWithOrientationAndDeviceSuffix]) //MP no need to create further stuff if found here
         {
@@ -81,7 +84,7 @@
 	}
 	
 	//Now, check the ROOT LEVEL in the bundle directory
-    if (orientation!=999)//999 code conventionally means we do not care about orientation
+    if ((int)orientation!=999)//999 code conventionally means we do not care about orientation
     {
         NSString *filePathWithOrientationAndDeviceInBundle = [[[NSBundle mainBundle]bundlePath] stringByAppendingPathComponent:[filePathWithOrientationAndDeviceSuffix lastPathComponent]]; 
         if ([[NSFileManager defaultManager] fileExistsAtPath:filePathWithOrientationAndDeviceInBundle]) 	{
