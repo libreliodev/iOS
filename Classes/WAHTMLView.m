@@ -169,10 +169,10 @@
         WAModuleViewController * vc = (WAModuleViewController * )[(UIView <WAModuleProtocol>*)self currentViewController];
         vc.navigationItem.title =[self stringByEvaluatingJavaScriptFromString:@"document.title"];
         
-        NSLog(@"navTitle: %@, currentPage: %@",vc.navigationItem.title,self.currentPageTitle);
+        //SLog(@"navTitle: %@, currentPage: %@",vc.navigationItem.title,self.currentPageTitle);
         if (![vc.navigationItem.title isEqualToString:self.currentPageTitle]){
             self.previousPageTitle= currentPageTitle;
-            NSLog(@"Did set previous title to %@",self.previousPageTitle);
+            //SLog(@"Did set previous title to %@",self.previousPageTitle);
             
             self.currentPageTitle = vc.navigationItem.title;
         }

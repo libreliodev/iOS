@@ -305,9 +305,10 @@
     NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];
 	if (credentials){
         NSString * sharedSecret = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"SharedSecret"];
-        NSString * codeHash = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"CodeHash"];
-        //If the app offers subscriptions, either sharedSecret or CodeHash should be set
-        if (sharedSecret||codeHash){
+        NSString * codeService = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"CodeService"];
+        NSString * userService = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"UserService"];
+        //If the app offers subscriptions, either sharedSecret or codeService or userService should be set
+        if (sharedSecret||codeService||userService){
             //Now check if subscriptions are already active
             NSString * nodownloadUrlString = @"http://localhost/wanodownload.pdf";
             NSString * receipt = [nodownloadUrlString receiptForUrlString];
@@ -334,7 +335,7 @@
 }
 
 - (void) moduleViewDidAppear{
-    //SLog(@"grid moduleview did appear");
+    //SLog(@"grid moduleview did appear, should check update");
     //Check wether an update of the source data is needed 
     WAModuleViewController * moduleViewController = (WAModuleViewController *) [self traverseResponderChainForUIViewController];
     [moduleViewController checkUpdate];

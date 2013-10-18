@@ -155,7 +155,7 @@
 	//Check if nibName.xib exists, otherwise use defaultNibName; 
     NSString * nibUrlString = [nibName stringByAppendingString:@".nib"];//see http://stackoverflow.com/questions/923706/checking-if-a-nib-or-xib-file-exists for explanation of using "nib" extension instead of "xib"
     NSString * nibPath = [[NSBundle mainBundle]pathOfFileWithUrl:nibUrlString forOrientation:orientation];
-    NSLog(@"nibPath: %@",nibPath);
+    //SLog(@"nibPath: %@",nibPath);
 	if(nibPath) nibName = [nibPath nameOfFileWithoutExtensionOfUrlString];
     else {
         nibPath = [[NSBundle mainBundle]pathOfFileWithUrl:[defaultNibName stringByAppendingString:@".nib"] forOrientation:orientation];

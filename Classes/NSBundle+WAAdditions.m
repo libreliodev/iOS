@@ -37,7 +37,7 @@
     //Build names with orientation (and device) suffixes
     NSString * filePathWithOrientationSuffix;
     NSString * filePathWithOrientationAndDeviceSuffix;
-    NSLog(@"orientation %i",(int)orientation);
+    //SLog(@"orientation %i",(int)orientation);
     
      if ((int)orientation!=999)//999 code conventionally means we do not care about orientation
      {
@@ -54,7 +54,7 @@
                 break;
             }
         }
-         NSLog(@"File path:%@ orientation:%@ ext:%@",filePath, orientationString,extension);
+         //SLog(@"File path:%@ orientation:%@ ext:%@",filePath, orientationString,extension);
         filePathWithOrientationSuffix = [WAUtilities urlByChangingExtensionOfUrlString:filePath toSuffix:[NSString stringWithFormat:@"-%@.%@",orientationString,extension]];
         filePathWithOrientationAndDeviceSuffix = [WAUtilities urlByChangingExtensionOfUrlString:filePath toSuffix:[NSString stringWithFormat:@"-%@~%@.%@",orientationString,deviceName,extension]];
          //SLog(@"filePathWithOrientationAndDeviceSuffix:%@",filePathWithOrientationAndDeviceSuffix);

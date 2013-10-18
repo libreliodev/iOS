@@ -167,10 +167,10 @@
 	 NSString * locTitle0 = NSLocalizedString(@"Restore my purchases",@"" );//This is the default title
     [actionSheet addButtonWithTitle:locTitle0];
 	
-	//Add a Code Enter button in case we have a CodeHash key in Application_.plist
-	NSString * codeHash = nil ;
-	if (credentials) codeHash = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"CodeHash"];
-	if (codeHash) {
+	//Add a Code Enter button in case we have a CodeService key in Application_.plist
+	NSString * codeService = nil ;
+	if (credentials) codeService = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"CodeService"];
+	if (codeService) {
         //SLog(@"Code Hash:%@",codeHash);
         subscriberCodeTitle = NSLocalizedString(@"I have a subscriber code",@"" );//This is the default title
         NSString * TextForSubscribers = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"TextForSubscribers"];
@@ -181,10 +181,9 @@
 
 
 	}
-    bool usernamePasswordEnabled = NO;
-    if (credentials) usernamePasswordEnabled = [[[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"UsernamePasswordEnabled"] boolValue];
-    if (usernamePasswordEnabled) {
-        //SLog(@"Code Hash:%@",codeHash);
+    NSString * userService = nil ;
+    if (credentials) userService = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"UserService"];
+    if (userService) {
         usernamePasswordTitle = NSLocalizedString(@"I have a username and password",@"" );//This is the default title
         NSString * TextForSubscribers = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"TextForSubscribers"];
         if (TextForSubscribers) usernamePasswordTitle = NSLocalizedString(TextForSubscribers,@"" );

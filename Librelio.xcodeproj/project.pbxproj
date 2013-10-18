@@ -73,9 +73,21 @@
 		147B34DD146C13BA0002CC17 /* WASQLiteParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 147B34D9146C13BA0002CC17 /* WASQLiteParser.m */; };
 		147B350D146C1BB70002CC17 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 147B34F6146C1B820002CC17 /* libsqlite3.0.dylib */; };
 		147B3535146E789A0002CC17 /* WANewsstandIssueDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 147B3531146E78930002CC17 /* WANewsstandIssueDownloader.m */; };
+		148874E81807352200245F41 /* documents.png in Resources */ = {isa = PBXBuildFile; fileRef = 148874E61807352200245F41 /* documents.png */; };
+		148874E91807352200245F41 /* documents.png in Resources */ = {isa = PBXBuildFile; fileRef = 148874E61807352200245F41 /* documents.png */; };
+		148874EA1807352200245F41 /* documents.png in Resources */ = {isa = PBXBuildFile; fileRef = 148874E61807352200245F41 /* documents.png */; };
+		148874EB1807352200245F41 /* documents@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 148874E71807352200245F41 /* documents@2x.png */; };
+		148874EC1807352200245F41 /* documents@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 148874E71807352200245F41 /* documents@2x.png */; };
+		148874ED1807352200245F41 /* documents@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 148874E71807352200245F41 /* documents@2x.png */; };
 		14897FFD146FB38000C6A5C6 /* NSDate+WAAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14897FF9146FB37F00C6A5C6 /* NSDate+WAAdditions.m */; };
 		1489B609168ECC3D00404BA6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1489B611168ECC3D00404BA6 /* Localizable.strings */; };
 		1489B60C168ECC3D00404BA6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1489B611168ECC3D00404BA6 /* Localizable.strings */; };
+		148B9FDB181034DC00075BA6 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 148B9FD9181034DC00075BA6 /* info.png */; };
+		148B9FDC181034DC00075BA6 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 148B9FD9181034DC00075BA6 /* info.png */; };
+		148B9FDD181034DC00075BA6 /* info.png in Resources */ = {isa = PBXBuildFile; fileRef = 148B9FD9181034DC00075BA6 /* info.png */; };
+		148B9FDE181034DC00075BA6 /* info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 148B9FDA181034DC00075BA6 /* info@2x.png */; };
+		148B9FDF181034DC00075BA6 /* info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 148B9FDA181034DC00075BA6 /* info@2x.png */; };
+		148B9FE0181034DC00075BA6 /* info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 148B9FDA181034DC00075BA6 /* info@2x.png */; };
 		148BD69512E9C23600930FC5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		148BD69612E9C23600930FC5 /* WAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* WAAppDelegate.m */; };
 		148BD69712E9C23600930FC5 /* WAPaginatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 767082FD0FEB223000BC5CD2 /* WAPaginatedView.m */; };
@@ -714,6 +726,8 @@
 		14873FC2128336BC0075E915 /* WARSSBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WARSSBackViewController.m; sourceTree = "<group>"; };
 		14873FE8128350220075E915 /* WARSSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WARSSParser.h; sourceTree = "<group>"; };
 		14873FE9128350220075E915 /* WARSSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WARSSParser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		148874E61807352200245F41 /* documents.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = documents.png; sourceTree = "<group>"; };
+		148874E71807352200245F41 /* documents@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "documents@2x.png"; sourceTree = "<group>"; };
 		14897FF8146FB37F00C6A5C6 /* NSDate+WAAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+WAAdditions.h"; sourceTree = "<group>"; };
 		14897FF9146FB37F00C6A5C6 /* NSDate+WAAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+WAAdditions.m"; sourceTree = "<group>"; };
 		1489B610168ECC3D00404BA6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -721,6 +735,8 @@
 		1489B613168ECD2C00404BA6 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1489B614168ECD3D00404BA6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1489B615168ECDB300404BA6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		148B9FD9181034DC00075BA6 /* info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = info.png; sourceTree = "<group>"; };
+		148B9FDA181034DC00075BA6 /* info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info@2x.png"; sourceTree = "<group>"; };
 		148BD6CA12E9C23700930FC5 /* Empty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Empty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		148DD9461638FFF200C429A4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		1490866B17E332A200943DD2 /* rss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rss.png; path = Resources/rss.png; sourceTree = "<group>"; };
@@ -1310,6 +1326,10 @@
 		1485882C168EBA6E00A323B5 /* CommonResources */ = {
 			isa = PBXGroup;
 			children = (
+				148B9FD9181034DC00075BA6 /* info.png */,
+				148B9FDA181034DC00075BA6 /* info@2x.png */,
+				148874E61807352200245F41 /* documents.png */,
+				148874E71807352200245F41 /* documents@2x.png */,
 				1498CF4D17FDA3650017DD9B /* forward.png */,
 				1498CF4E17FDA3650017DD9B /* forward@2x.png */,
 				1490866B17E332A200943DD2 /* rss.png */,
@@ -1865,6 +1885,7 @@
 				1462330417E1FE210066084C /* top-list.png in Resources */,
 				146E000217E20F49000EE3DB /* back@2x.png in Resources */,
 				14FEA5ED161AD51700D17A08 /* WAGenericPopover.xib in Resources */,
+				148874EB1807352200245F41 /* documents@2x.png in Resources */,
 				14FEA5F0161AD58500D17A08 /* WAAdvancedSearchPopover.xib in Resources */,
 				14FEA5F3161AD9BE00D17A08 /* WAResultsViewIphone.xib in Resources */,
 				14AC87AD16240C1600CB9C18 /* WATableSelectionIpad.xib in Resources */,
@@ -1876,6 +1897,7 @@
 				14A80BF6168EC3DB006B0AA4 /* button-question.png in Resources */,
 				14A80BFD168EC3DB006B0AA4 /* damier.png in Resources */,
 				14A80C04168EC3DB006B0AA4 /* delete.png in Resources */,
+				148B9FDE181034DC00075BA6 /* info@2x.png in Resources */,
 				14A80C12168EC3DB006B0AA4 /* favoris-button-remove.png in Resources */,
 				1498CF4F17FDA3650017DD9B /* forward.png in Resources */,
 				14A80C19168EC3DB006B0AA4 /* favoris-button.png in Resources */,
@@ -1889,6 +1911,7 @@
 				14A80C58168EC3DB006B0AA4 /* newspaper.png in Resources */,
 				14A80C66168EC3DB006B0AA4 /* Placeholder.png in Resources */,
 				14A80C74168EC3DB006B0AA4 /* rotate.png in Resources */,
+				148B9FDB181034DC00075BA6 /* info.png in Resources */,
 				14A80C82168EC3DB006B0AA4 /* share-button.png in Resources */,
 				146232FA17E1FE210066084C /* download@2x.png in Resources */,
 				14A80C89168EC3DB006B0AA4 /* slideshow.png in Resources */,
@@ -1899,6 +1922,7 @@
 				14A80C97168EC3DB006B0AA4 /* synchronize.png in Resources */,
 				14A80C9E168EC3DB006B0AA4 /* video.png in Resources */,
 				146232F617E1FE210066084C /* facebook@2x.png in Resources */,
+				148874E81807352200245F41 /* documents.png in Resources */,
 				146E000017E20F49000EE3DB /* back.png in Resources */,
 				14A80CA5168EC3DB006B0AA4 /* white.png in Resources */,
 				1489B609168ECC3D00404BA6 /* Localizable.strings in Resources */,
@@ -1931,6 +1955,7 @@
 				1490868B17E375D700943DD2 /* list@2x.png in Resources */,
 				1490868C17E375D700943DD2 /* WAPopoverView.xib in Resources */,
 				1490868D17E375D700943DD2 /* top-list.png in Resources */,
+				148874ED1807352200245F41 /* documents@2x.png in Resources */,
 				1490868E17E375D700943DD2 /* back@2x.png in Resources */,
 				1490868F17E375D700943DD2 /* WAGenericPopover.xib in Resources */,
 				1490869017E375D700943DD2 /* WAAdvancedSearchPopover.xib in Resources */,
@@ -1939,6 +1964,7 @@
 				1490869417E375D700943DD2 /* WATableSelectionCell.xib in Resources */,
 				1490869517E375D700943DD2 /* rss.png in Resources */,
 				1498CF5117FDA3650017DD9B /* forward.png in Resources */,
+				148B9FE0181034DC00075BA6 /* info@2x.png in Resources */,
 				1490869617E375D700943DD2 /* black.png in Resources */,
 				1490869717E375D700943DD2 /* BottomBarBackground.png in Resources */,
 				1490869817E375D700943DD2 /* download.png in Resources */,
@@ -1955,12 +1981,14 @@
 				149086A217E375D700943DD2 /* information.png in Resources */,
 				149086A317E375D700943DD2 /* iphone.png in Resources */,
 				149086A417E375D700943DD2 /* Loader.png in Resources */,
+				148874EA1807352200245F41 /* documents.png in Resources */,
 				149086A517E375D700943DD2 /* newspaper.png in Resources */,
 				149086A617E375D700943DD2 /* Placeholder.png in Resources */,
 				149086A717E375D700943DD2 /* rotate.png in Resources */,
 				149086A817E375D700943DD2 /* share-button.png in Resources */,
 				149086A917E375D700943DD2 /* download@2x.png in Resources */,
 				149086AA17E375D700943DD2 /* slideshow.png in Resources */,
+				148B9FDD181034DC00075BA6 /* info.png in Resources */,
 				149086AB17E375D700943DD2 /* stop.png in Resources */,
 				149086AC17E375D700943DD2 /* newspaper@2x.png in Resources */,
 				149086AD17E375D700943DD2 /* folder@2x.png in Resources */,
@@ -1979,6 +2007,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				146232FD17E1FE210066084C /* folder@2x.png in Resources */,
+				148B9FDF181034DC00075BA6 /* info@2x.png in Resources */,
 				14DB116C164BEDC3001FE76B /* HTMLTemplate.html in Resources */,
 				14DB116D164BEDC3001FE76B /* WAFileManagerCell.xib in Resources */,
 				14DB116F164BEDC3001FE76B /* WAGridCell.xib in Resources */,
@@ -2019,6 +2048,7 @@
 				14DB139D164C52C4001FE76B /* Magazines.plist in Resources */,
 				14DB139E164C52C4001FE76B /* Magazines_background.png in Resources */,
 				14DB139F164C52C4001FE76B /* Tabs.plist in Resources */,
+				148874E91807352200245F41 /* documents.png in Resources */,
 				14DB13A0164C52C4001FE76B /* wind-generic.png in Resources */,
 				14DB13A1164C52C4001FE76B /* wind_355.png in Resources */,
 				14DB13A2164C52C4001FE76B /* wind_356.png in Resources */,
@@ -2030,6 +2060,7 @@
 				1462330717E1FE210066084C /* top-list@2x.png in Resources */,
 				14DB13A7164C52C4001FE76B /* wind_364.png in Resources */,
 				14DB13A8164C52C4001FE76B /* wind_365.png in Resources */,
+				148B9FDC181034DC00075BA6 /* info.png in Resources */,
 				14DB13A9164C52C4001FE76B /* wind_366.png in Resources */,
 				14DB13AA164C52C4001FE76B /* wind_367.png in Resources */,
 				14DB13AB164C52C4001FE76B /* wind_368.png in Resources */,
@@ -2053,6 +2084,7 @@
 				14A80C2A168EC3DB006B0AA4 /* folder.png in Resources */,
 				14A80C31168EC3DB006B0AA4 /* globe.png in Resources */,
 				14A80C46168EC3DB006B0AA4 /* information.png in Resources */,
+				148874EC1807352200245F41 /* documents@2x.png in Resources */,
 				14A80C4D168EC3DB006B0AA4 /* iphone.png in Resources */,
 				14A80C54168EC3DB006B0AA4 /* Loader.png in Resources */,
 				14A80C5B168EC3DB006B0AA4 /* newspaper.png in Resources */,

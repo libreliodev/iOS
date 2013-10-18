@@ -336,8 +336,10 @@ SearchState searchState = DISABLED_SEARCH;
     self.pageContainerController = [[[WAPageContainerController alloc] init] autorelease];
 
     // Load left view (search and navigation)
+    //SLog(@"Will load left view nib");
     [[NSBundle mainBundle]loadNibNamed:@"WALeftView".device owner:self options:nil];
     [self addSubview:self.mainViewController];
+    //SLog(@" left view nib loaded");
 
     // Set up proper size for the main view with buttons and a table
     CGRect frame = self.mainViewController.frame;

@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CodeHash</key>
-	<string>sha</string>
+	<key>CodeService</key>
+	<string>LibrelioS3</string>
 	<key>SharedSecret</key>
 	<string>026defcdebf5490893fbe5661224ef30</string>
 	<key>Splash</key>

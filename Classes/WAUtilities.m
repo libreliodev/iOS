@@ -11,8 +11,8 @@
 
 #define kDownloadUrl @"http://librelio-europe.s3.amazonaws.com"
 #define kCheckAppStoreUrl @"http://download.librelio.com/downloads/appstorev2.php?receipt=%@&sharedsecret=%@&urlstring=%@&userkey=%@"
-#define kCheckPasswordUrl @"http://download.librelio.com/downloads/pswd.php?code=%@&hash=%@&urlstring=%@&client=%@&app=%@&deviceid=%@"
-#define kCheckUsernamePasswordUrl @"http://download.librelio.com/downloads/subscribers.php?user=%@&pswd=%@&urlstring=%@&client=%@&app=%@&service=biwing&deviceid=%@"
+#define kCheckPasswordUrl @"http://download.librelio.com/downloads/pswd.php?code=%@&service=%@&urlstring=%@&client=%@&app=%@&deviceid=%@"
+#define kCheckUsernamePasswordUrl @"http://download.librelio.com/downloads/subscribers.php?user=%@&pswd=%@&urlstring=%@&client=%@&app=%@&service=%@&deviceid=%@"
 
 
 @implementation WAUtilities
@@ -413,10 +413,11 @@
 	if (!password) return nil;//If there is no subscriber code, no need to check subscriber code => return nil
 
 	
-	//Get the hash method
-	NSString * codeHash= [NSString string]; ;
-	NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];
-	if (credentials) codeHash = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"CodeHash"];
+	//Get the service
+    NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];
+	NSString * codeService = @"";
+    if (credentials) codeService = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"UserService"];
+    
 	
 	//Get the encoded URL
 	NSString * encodedUrl = [[urlString noArgsPartOfUrlString] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
@@ -429,7 +430,7 @@
 	if ([clientShortID isEqualToString:@"widgetavenue"]) clientShortID = @"librelio";//this is for back compatibility reasons
 	
     NSString * deviceid = [self getUUID];
-	NSString * retUrl = [NSString stringWithFormat:kCheckPasswordUrl,password,codeHash,encodedUrl,clientShortID,appShortID,deviceid];
+	NSString * retUrl = [NSString stringWithFormat:kCheckPasswordUrl,password,codeService,encodedUrl,clientShortID,appShortID,deviceid];
 	//SLog(@"retpassUrl=%@",retUrl);
 	return retUrl;
 	
@@ -453,7 +454,12 @@
 	if ([clientShortID isEqualToString:@"widgetavenue"]) clientShortID = @"librelio";//this is for back compatibility reasons
 	
     NSString * deviceid = [self getUUID];
-	NSString * retUrl = [NSString stringWithFormat:kCheckUsernamePasswordUrl,username,password,encodedUrl,clientShortID,appShortID,deviceid];
+    NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];
+	NSString * userService = @"";
+    if (credentials) userService = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"UserService"];
+
+    
+	NSString * retUrl = [NSString stringWithFormat:kCheckUsernamePasswordUrl,username,password,encodedUrl,clientShortID,appShortID,userService,deviceid];
 	//SLog(@"retpassUrl=%@",retUrl);
 	return retUrl;
 	
