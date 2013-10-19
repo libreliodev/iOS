@@ -338,7 +338,7 @@
     //SLog(@"grid moduleview did appear, should check update");
     //Check wether an update of the source data is needed 
     WAModuleViewController * moduleViewController = (WAModuleViewController *) [self traverseResponderChainForUIViewController];
-    [moduleViewController checkUpdate];
+    [moduleViewController checkUpdateIfNeeded];
     
     //Update the table
     [self initParser];

@@ -21,6 +21,9 @@
 - (id)init {
 	if (self = [super init]) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedResourceDownloadWithNotification:) name:@"didSucceedResourceDownload" object:nil];
+        /**UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+        [refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+        [self addSubview:refreshControl];**/
         
 	}
 	return self;
@@ -186,7 +189,7 @@
     //SLog(@"grid moduleview did appear");
     //Check wether an update of the source data is needed 
     WAModuleViewController * moduleViewController = (WAModuleViewController *) [self traverseResponderChainForUIViewController];
-    [moduleViewController checkUpdate];
+    [moduleViewController checkUpdateIfNeeded];
     
     //Update the table
     [self initParser];

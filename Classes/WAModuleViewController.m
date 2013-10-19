@@ -145,40 +145,11 @@
 	
 }
 
-- (void)checkUpdate{
+- (void)checkUpdateIfNeeded{
 
     if ([WAUtilities isCheckUpdateNeededForUrlString:moduleUrlString]||[WAUtilities isDownloadMissingResourcesNeededForUrlString:moduleUrlString]){
         //SLog(@"Update needed for url %@",moduleUrlString);
-		//Update needed, we load a loadingView to handle it
-		WADownloadingView * loadingView = [[WADownloadingView alloc]init];
-		loadingView.currentViewController = self;
-		//loadingView.frame = containingRect;//this does not work well when there is a tabbar
-        //SLog(@"Will add subview with height:%f to view with height:%f",containingRect.size.height,moduleView.frame.size.height);
-        loadingView.frame = moduleView.frame;
-		loadingView.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
-		[moduleView addSubview:loadingView];
-
-        
-		//If there is already a downloaded resource available, no need to show the LoadingView
-		if ([[NSBundle mainBundle] pathOfFileWithUrl:moduleUrlString]) 
-            loadingView.hidden = YES;
-        //SLog(@"downloadOnlyMissingResources = YES for %@",moduleUrlString);
-        
-        //Check wether we only need to dwnload missing resources, or the whole stuff
-        if ([WAUtilities isCheckUpdateNeededForUrlString:moduleUrlString]){
-            loadingView.downloadOnlyMissingResources = NO;
-            //SLog(@"downloadOnlyMissingResources = NO for %@",moduleUrlString);
-            
-        }
-        else{
-            //SLog(@"downloadOnlyMissingResources = YES for %@",moduleUrlString);
-
-            loadingView.downloadOnlyMissingResources = YES;
-            
-        }
-        
-		loadingView.urlString = moduleUrlString;
-		[loadingView release];
+        [self checkUpdate];
 
 	}
 	else {
@@ -189,11 +160,47 @@
     
 }
 
+- (void)checkUpdate{
+     //Update needed, we load a loadingView to handle it
+    WADownloadingView * loadingView = [[WADownloadingView alloc]init];
+    loadingView.currentViewController = self;
+    //loadingView.frame = containingRect;//this does not work well when there is a tabbar
+    //SLog(@"Will add subview with height:%f to view with height:%f",containingRect.size.height,moduleView.frame.size.height);
+    loadingView.frame = moduleView.frame;
+    loadingView.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
+    [moduleView addSubview:loadingView];
+    
+    
+    //If there is already a downloaded resource available, no need to show the LoadingView
+    if ([[NSBundle mainBundle] pathOfFileWithUrl:moduleUrlString])
+        loadingView.hidden = YES;
+    //SLog(@"downloadOnlyMissingResources = YES for %@",moduleUrlString);
+    
+    //Check wether we only need to dwnload missing resources, or the whole stuff
+    if ([WAUtilities isCheckUpdateNeededForUrlString:moduleUrlString]){
+        loadingView.downloadOnlyMissingResources = NO;
+        //SLog(@"downloadOnlyMissingResources = NO for %@",moduleUrlString);
+        
+    }
+    else{
+        //SLog(@"downloadOnlyMissingResources = YES for %@",moduleUrlString);
+        
+        loadingView.downloadOnlyMissingResources = YES;
+        
+    }
+    
+    loadingView.urlString = moduleUrlString;
+    [loadingView release];
+    
+    
+}
+
+
 - (void)loadModuleViewAndCheckUpdate{
 	
 	[self loadModuleView];
     //SLog(@"will check update for module %@",moduleUrlString);
-    [self checkUpdate];
+    [self checkUpdateIfNeeded];
 
 	
 
