@@ -20,7 +20,7 @@
 
  - (void)connection:(NSURLConnection *)connection didWriteData:(long long)bytesWritten totalBytesWritten:(long long)totalBytesWritten expectedTotalBytes:(long long)expectedTotalBytes{
      
-
+     if (expectedTotalBytes==0) expectedTotalBytes = 50000000;//There is a bug when there is a redirect: the expectedTotalBytes appears as 0. In this case, it's better to assume that the file is going to be about 50 MB
      //SLog(@"Connection didWriteData for url %@",[connection.newsstandAssetDownload.userInfo objectForKey:@"completeUrl"]);
      currentProgress = 1.f*totalBytesWritten/expectedTotalBytes;
  
@@ -70,6 +70,7 @@
     if(![completeUrl isEqualToString:noUnderscoreCompleteUrl]){
         //The file is protected, we need to change the query so that background downloads can work
         completeUrl = [WAUtilities getCompleteUrlForUrlString:currentUrlString];
+        NSLog(@"New complete Url: %@",completeUrl);
     }
     
 	

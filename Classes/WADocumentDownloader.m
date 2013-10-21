@@ -281,7 +281,7 @@
 	//Launch the connection
 	currentUrlString = [[NSString alloc]initWithString: urlString];
 	NSString*completeUrl = [WAUtilities completeDownloadUrlforUrlString:urlString];
-    //SLog(@"complete Url: %@ for url:%@",completeUrl,urlString);
+    //SLog(@"Complete Url: %@ for url:%@",completeUrl,urlString);
     
     //Put message
     currentMessage = [[NSString alloc]initWithString: NSLocalizedString(@"Download in progress",@"")];
@@ -536,6 +536,7 @@
 #pragma mark -
 #pragma mark Helper methods
 - (void) launchConnectionWithUrlString:completeUrl{
+    
     NSMutableURLRequest * urlRequest =[NSMutableURLRequest requestWithURL:[NSURL URLWithString:completeUrl]];
     
     //Prevent download if local file is more recent than remote (except if 
