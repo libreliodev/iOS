@@ -1,47 +1,44 @@
-/* 
- Copyright 2011 WidgetAvenue - Librelio. All rights reserved.
- */
-
-
-"Connecting..." = "链接";
-"Download failed, please check your connection" = "下载失败，请检查你的网络链接是否正常";
-"Please check your connection" = "请检查你的网络链接";
-"Download in progress" = "下载进行中";
-"Caching operation in progress" = "高速缓存进行中";
-"What do you want to buy?"  = "你想要买什么？";
-"Cancel" = "操作取消";
-"Done" = "操作完成";
-"The order failed" = "指令出错";
-"Buy and download"= "购买并下载";
-"Try again"  = "重试";
-"Downloads" = "下载中心";
-"Downloaded" = "下载完成";
-"Free Download" = "免费下载";
-"Download ..."  = "下载中...";
-"Free sample" = "免费样本";
-" (Sample)" = " (样本)";
-"Read"="阅读";
-"Magazines" = "杂志";
-"Do you really want to quit this app?" ="你确定要退出此次操作？";
-"Yes"  = "是";
-"I have a subscriber code" = "我有订阅密码";
-"I have a promo code"  = "我有优惠密码";
-" Restore my purchases" = "恢复我的购买";
-"Restore completed" = "恢复完成";
-"Subscription" = "订阅";
-"Your subscription is activated"="激活您的订阅";
-"Free subscription" = "免费订阅";
-"Subscriber Code" = "订阅密码";
-"Please enter your code"  = "请输入你的密码";
-"Invalid Code" = "无效的密码";
-"Share on Facebook"="共享到Facebook";
-"Share on Twitter"="共享到Twitter";
-"Share by Mail"="共享到邮件";
-"Languages"="语言";
+"Buy and download "="购买并下载";
+"Caching operation in progress "=" 高速缓存进行中";
+"Cancel "=" 操作取消";
+"Connecting... "=" 链接";
+"Do you really want to quit this app?"="你确定要退出此次操作？";
+"Done "=" 操作完成";
+"Download ... "="下载中...";
+"Download failed, please check your connection "=" 下载失败，请检查你的网络链接是否正常";
+"Download in progress "=" 下载进行中";
+"Downloaded "=" 下载完成";
+"Downloads "=" 下载中心";
+"Free Download"="免费下载";
+"Free sample "=" 免费样本";
+"Free subscription "=" 免费订阅";
+"I have a promo code "="我有优惠密码";
+"I have a subscriber code "=" 我有订阅密码";
+"Invalid Code "=" 无效的密码";
 "iOS 6 required"="iOS的需要6个";
+"Languages"="语言";
+"Magazines "=" 杂志";
 "month"="个月";
 "months"="个月";
+"Please check your connection "=" 请检查你的网络链接";
+"Please enter your  code "="请输入你的密码";
+"Read"="阅读";
+"Restore completed "=" 恢复完成";
+"Restore my purchases "="恢复我的购买";
+" (Sample)"=" (样本)";
+"Share by Mail"="共享到邮件";
+"Share on Facebook"="共享到Facebook";
+"Share on Twitter"="共享到Twitter";
+"Subscriber Code "=" 订阅密码";
+"Subscription "=" 订阅";
+"The order failed "=" 指令出错";
+"Try again "="重试";
 "week"="周";
+"What do you want to buy? "="你想要买什么？";
 "year"="年";
-
-
+"Yes "="是";
+"Your subscription is activated"="激活您的订阅";
+"If you enjoy using %@, would you mind taking a moment to rate it? It won't take more than a minute. Thanks for your support!"="如果你喜欢使用%@，你介意花一点时间给它评分吗？不会超过一分钟。感谢您的支持！";
+"Rate %@"="给%@评分";
+"No, Thanks"="不，谢谢";
+"Remind me later"="稍后提醒我";

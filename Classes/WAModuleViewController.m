@@ -190,18 +190,18 @@
     //Check wether we only need to download missing resources, or the whole stuff
     if ([WAUtilities isCheckUpdateNeededForUrlString:moduleUrlString]||force){
         loadingView.downloadOnlyMissingResources = NO;
-        NSLog(@"downloadOnlyMissingResources = NO for %@",moduleUrlString);
+        //SLog(@"downloadOnlyMissingResources = NO for %@",moduleUrlString);
         
     }
     else{
-        NSLog(@"downloadOnlyMissingResources = YES for %@",moduleUrlString);
+        //SLog(@"downloadOnlyMissingResources = YES for %@",moduleUrlString);
         
         loadingView.downloadOnlyMissingResources = YES;
         
     }
     
     loadingView.urlString = moduleUrlString;
-     NSLog(@"count before releasing loading view with missing %hhd: %d",loadingView.downloadOnlyMissingResources, [loadingView retainCount]);
+     //SLog(@"count before releasing loading view with missing %hhd: %d",loadingView.downloadOnlyMissingResources, [loadingView retainCount]);
 
     [loadingView release];
     if (force) [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Updating...",@"")];
@@ -468,9 +468,6 @@
 #pragma mark Notifications
 - (void) didFinishDownloadWithNotification:(NSNotification *) notification
 {
-    NSString *notificatedUrl = notification.object;
-
-    NSLog(@"Notification received for url %@",notificatedUrl);
 
     [[SHKActivityIndicator currentIndicator] hide];
 }

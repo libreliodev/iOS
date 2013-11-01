@@ -55,6 +55,9 @@
 		144B2C6C18229DE200CDD200 /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 144B2C5018229DE200CDD200 /* refresh@2x.png */; };
 		144B2C6D18229DE200CDD200 /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 144B2C5018229DE200CDD200 /* refresh@2x.png */; };
 		144B2C6E18229DE200CDD200 /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 144B2C5018229DE200CDD200 /* refresh@2x.png */; };
+		144B2C79182388F500CDD200 /* APAppirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 144B2C77182388F500CDD200 /* APAppirater.m */; };
+		144B2C7A182388F500CDD200 /* APAppirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 144B2C77182388F500CDD200 /* APAppirater.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		144B2C7B182388F500CDD200 /* APAppirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 144B2C77182388F500CDD200 /* APAppirater.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		1450719E133F1C800078C2B2 /* WATableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14507177133F1C800078C2B2 /* WATableView.m */; };
 		1450721C1340AB900078C2B2 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1450720C1340AB7D0078C2B2 /* AddressBook.framework */; };
 		1450723F1340AC9A0078C2B2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 145072371340AC890078C2B2 /* CoreLocation.framework */; };
@@ -659,6 +662,9 @@
 		144B2C4E18229DE200CDD200 /* info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "info@2x.png"; path = "Resources/info@2x.png"; sourceTree = "<group>"; };
 		144B2C4F18229DE200CDD200 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = refresh.png; path = Resources/refresh.png; sourceTree = "<group>"; };
 		144B2C5018229DE200CDD200 /* refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "refresh@2x.png"; path = "Resources/refresh@2x.png"; sourceTree = "<group>"; };
+		144B2C76182388F500CDD200 /* APAppiraterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APAppiraterDelegate.h; sourceTree = "<group>"; };
+		144B2C77182388F500CDD200 /* APAppirater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APAppirater.m; sourceTree = "<group>"; };
+		144B2C78182388F500CDD200 /* APAppirater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APAppirater.h; sourceTree = "<group>"; };
 		144ECA6914310981006EACBE /* WAParserViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAParserViewProtocol.h; sourceTree = "<group>"; };
 		14507176133F1C800078C2B2 /* WATableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WATableView.h; sourceTree = "<group>"; };
 		14507177133F1C800078C2B2 /* WATableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WATableView.m; sourceTree = "<group>"; };
@@ -806,6 +812,7 @@
 		14A80BEE168EC3DB006B0AA4 /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = white.png; path = Resources/white.png; sourceTree = "<group>"; };
 		14AC87AB16240C1600CB9C18 /* WATableSelectionIpad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WATableSelectionIpad.xib; sourceTree = "<group>"; };
 		14AC87AC16240C1600CB9C18 /* WATableSelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WATableSelectionCell.xib; sourceTree = "<group>"; };
+		14B8D8361823FB3900C4628F /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		14B9D117124B192D001692AD /* WAPDFParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAPDFParser.h; sourceTree = "<group>"; };
 		14B9D118124B192D001692AD /* WAPDFParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAPDFParser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		14B9D14C124B36D7001692AD /* WAThumbnailsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAThumbnailsView.h; sourceTree = "<group>"; };
@@ -1204,6 +1211,16 @@
 			name = KML;
 			sourceTree = "<group>";
 		};
+		144B2C75182388B600CDD200 /* Appirater */ = {
+			isa = PBXGroup;
+			children = (
+				144B2C76182388F500CDD200 /* APAppiraterDelegate.h */,
+				144B2C77182388F500CDD200 /* APAppirater.m */,
+				144B2C78182388F500CDD200 /* APAppirater.h */,
+			);
+			name = Appirater;
+			sourceTree = "<group>";
+		};
 		144ECA681430F715006EACBE /* PDF */ = {
 			isa = PBXGroup;
 			children = (
@@ -1397,6 +1414,7 @@
 		14873F1F128302830075E915 /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				144B2C75182388B600CDD200 /* Appirater */,
 				14E0172F16F9C5F4007EC00E /* Google Analytics */,
 				149633AE150DE70A0058E086 /* EasyAPNS */,
 				1424382614BC381B005ABB4A /* SplashScreen */,
@@ -1866,6 +1884,7 @@
 				zh,
 				"zh-Hans",
 				it,
+				es,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -2208,6 +2227,7 @@
 				1425324E13606F9000F6BB3D /* WAFileManager.m in Sources */,
 				144B16451365BE9000C47C92 /* WAKMLParser.m in Sources */,
 				1409D56E1371AEED00703B22 /* WAPLIstParser.m in Sources */,
+				144B2C79182388F500CDD200 /* APAppirater.m in Sources */,
 				147AEBC913799B6B00E209A9 /* WALabelView.m in Sources */,
 				147AEBF713799FF600E209A9 /* WARoundedButtonView.m in Sources */,
 				147AEC83137A3C5F00E209A9 /* WAFileManagerCell.m in Sources */,
@@ -2268,8 +2288,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				149086B617E375D700943DD2 /* main.m in Sources */,
 				149086B717E375D700943DD2 /* WAAppDelegate.m in Sources */,
+				149086B617E375D700943DD2 /* main.m in Sources */,
+				144B2C7B182388F500CDD200 /* APAppirater.m in Sources */,
 				149086B817E375D700943DD2 /* WAPaginatedView.m in Sources */,
 				149086B917E375D700943DD2 /* WAScreenView.m in Sources */,
 				149086BA17E375D700943DD2 /* WARootViewController.m in Sources */,
@@ -2420,6 +2441,7 @@
 				14DB11C0164BEDC3001FE76B /* WAFileManager.m in Sources */,
 				14DB11C3164BEDC3001FE76B /* WAKMLParser.m in Sources */,
 				14DB11C4164BEDC3001FE76B /* WAPLIstParser.m in Sources */,
+				144B2C7A182388F500CDD200 /* APAppirater.m in Sources */,
 				14DB11C5164BEDC3001FE76B /* WALabelView.m in Sources */,
 				14DB11C6164BEDC3001FE76B /* WARoundedButtonView.m in Sources */,
 				14DB11C8164BEDC3001FE76B /* WAFileManagerCell.m in Sources */,
@@ -2487,6 +2509,7 @@
 				1489B613168ECD2C00404BA6 /* it */,
 				1489B614168ECD3D00404BA6 /* de */,
 				1489B615168ECDB300404BA6 /* zh-Hans */,
+				14B8D8361823FB3900C4628F /* es */,
 			);
 			name = Localizable.strings;
 			path = Resources;
@@ -2700,7 +2723,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.2.sdk/usr/include/libxml2/**";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 			};
@@ -2821,7 +2844,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.2.sdk/usr/include/libxml2/**";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -2835,7 +2858,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.2.sdk/usr/include/libxml2/**";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;

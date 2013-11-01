@@ -16,6 +16,7 @@
 
 
 #import "GAI.h"
+#import "APAppirater.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -40,7 +41,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{   
     
      //SLog(@"Defaults %@",[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);//Just a test
-
+    //This will be needed several times below
+    NSDictionary * app_Dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"]];
 
     
     //Create subdelegate for push notifications
@@ -51,10 +53,26 @@
     
     //Launch Google analytics
     NSString * googleCode = @"UA-1732003-23";//This is the default Librelio code
-    NSDictionary * app_Dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"]];
     if ([app_Dic objectForKey:@"GoogleAnalyticsCode"]) googleCode = [app_Dic objectForKey:@"GoogleAnalyticsCode"];
     [[GAI sharedInstance] trackerWithTrackingId:googleCode];
     [GAI sharedInstance].trackUncaughtExceptions = YES; // Enable exceptions tracking
+    
+    //Launch Appirater
+    if ([app_Dic objectForKey:@"AppId"]) {
+        //SLog(@"AppDic found");
+        [Appirater setAppId:[app_Dic objectForKey:@"AppId"]];
+        [Appirater setDaysUntilPrompt:0];
+        [Appirater setUsesUntilPrompt:1];
+        [Appirater setSignificantEventsUntilPrompt:-1];
+        [Appirater setTimeBeforeReminding:1];
+
+    }
+    else{
+        //SLog(@"AppDic not found");
+        //Do nothing, not setting App id prevents Appirater from launching, which is fine in this case
+
+    }
+    //[Appirater setDebug:YES];
  
     
     
@@ -115,9 +133,10 @@
         
     }
 
-    
- 	
-	return YES;	
+    //Notify appirater that launching is finished
+    [Appirater appLaunched:YES];
+
+	return YES;
     
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -238,6 +257,10 @@
 	//SLog(@"Did enter background");
     [[NSUserDefaults standardUserDefaults] synchronize];
     
+}
+
+- (void) applicationWillEnterForeground:(UIApplication *)application{
+    [Appirater appEnteredForeground:YES];
 }
 
 -(void)applicationDidReceiveMemoryWarning:(UIApplication *)application {

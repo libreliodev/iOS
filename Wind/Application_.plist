@@ -12,5 +12,7 @@
 	<true/>
 	<key>GoogleAnalyticsCode</key>
 	<string>UA-1732003-23</string>
+	<key>AppId</key>
+	<string>433594605</string>
 </dict>
 </plist>

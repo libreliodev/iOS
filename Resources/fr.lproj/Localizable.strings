@@ -1,58 +1,52 @@
-/* 
-  */
-
-"Connecting..." = "Connexion...";
-"Download failed, please check your connection" = "Le téléchargement a échoué, veuillez vérifier votre connection internet";
-"Please check your connection" = "Veuillez vérifier votre connection internet";
-"Download in progress" = "Téléchargement en cours";
-"Caching operation in progress" = "Opération de cache en cours";
-"What do you want to buy?" = "Que souhaitez-vous acheter?";
-"Cancel" = "Annuler";
-"Done" = "Terminé";
-"The order failed" = "La commande a échoué";
-"Buy and download" = "Télécharger";
-"Try again" = "Réessayer";
-"Downloads" = "Téléchargements";
-"Downloaded" = "Téléchargé";
-"Free Download"= "Téléchargement gratuit";
-"Download ..." = "Télécharger ...";
-"Free sample" = "Extrait gratuit";
-" (Sample)"= " (Extrait)";
-"Read"="Lire";
-"Magazines" = "Magazines";
+"Buy and download "=" Télécharger";
+"Caching operation in progress "=" Opération de cache en cours";
+"Cancel "=" Annuler";
+"Connecting... "=" Connexion...";
 "Do you really want to quit this app?"="Voulez-vous vraiment quitter cette application?";
-"Yes" = "Oui";
-"I have a subscriber code" = "J'ai un code abonné";
-"I have a promo code" = "J'ai un code promo";
-"Restore my purchases" = "Restaurer mes achats";
-"Restore completed" = "Restauration effectuée";
-"Subscription" = "Abonnement";
-"Your subscription is activated"="Votre abonnement est activé";
-"Free subscription" = "Abonnement gratuit";
-"Subscriber Code" = "Code abonné";
-"Please enter your  code" = "Veuillez saisir votre code";
-"Invalid Code" = "Code non valide";
-"Share on Facebook"="Partager sur Facebook";
-"Share on Twitter"="Partager sur Twitter";
-"Share by Mail"="Partager par mail";
-"Languages"="Langues";
+"Done "=" Terminé";
+"Download ... "=" Télécharger ...";
+"Download failed, please check your connection "=" Le téléchargement a échoué, veuillez vérifier votre connection internet";
+"Download in progress "=" Téléchargement en cours";
+"Downloaded "=" Téléchargé";
+"Downloads "=" Téléchargements";
+"Free Download"=" Téléchargement gratuit";
+"Free sample "=" Extrait gratuit";
+"Free subscription "=" Abonnement gratuit";
+"I have a promo code "=" J'ai un code promo";
+"I have a subscriber code "=" J'ai un code abonné";
+"I have a username and password"="Je suis abonné au magazine papier";
+"Invalid Code "=" Code non valide";
+"Invalid Username Or Password"="Identifiant ou mot de passe incorrect";
 "iOS 6 required"="Désolé, iOS 6 est requis pour cette opération";
+"Languages"="Langues";
+"Login"="Mes identifiants d'abonné";
+"Magazines "=" Magazines";
 "month"="mois";
 "months"="mois";
-"week"="semaine";
-"year"="an";
-"I have a username and password"="Je suis abonné au magazine papier";
-"Login"="Mes identifiants d'abonné";
-"Username"="Code client";
 "Password"="Mot de passe";
-"Invalid Code"="Code non valide";
-"You don't own this issue"="Votre abonnement ne vous autorise pas à télécharger ce numéro";
-"Invalid Username Or Password"="Identifiant ou mot de passe incorrect";
+"Please check your connection "=" Veuillez vérifier votre connection internet";
+"Please enter your  code "=" Veuillez saisir votre code";
+"Read"="Lire";
+"Restore completed "=" Restauration effectuée";
+"Restore my purchases "=" Restaurer mes achats";
+" (Sample)"="  (Extrait)";
+"Share by Mail"="Partager par mail";
+"Share on Facebook"="Partager sur Facebook";
+"Share on Twitter"="Partager sur Twitter";
+"Subscriber Code "=" Code abonné";
+"Subscription "=" Abonnement";
+"The order failed "=" La commande a échoué";
 "Too Many Devices"="Ce numéro a été téléchargé sur un nombre trop important d'appareils. Merci de contacter license@librelio.com pour plus d'infos";
-
-
-
-
-
-
-
+"Try again "=" Réessayer";
+"Username"="Code client";
+"week"="semaine";
+"What do you want to buy? "=" Que souhaitez-vous acheter?";
+"year"="an";
+"Yes "=" Oui";
+"You don't own this issue"="Votre abonnement ne vous autorise pas à télécharger ce numéro";
+"Your subscription is activated"="Votre abonnement est activé";
+"If you enjoy using %@, would you mind taking a moment to rate it? It won't take more than a minute. Thanks for your support!"="Si vous aimez %@, voulez-vous prendre un moment pour l'évaluer ? Cela ne vous prendra pas plus d'une minute. Merci de votre soutien !";
+"Rate %@"="Évaluer %@";
+"No, Thanks"="Non, merci";
+"Remind me later"="Me rappeler plus tard";
+"Updating"="Mise à jour";

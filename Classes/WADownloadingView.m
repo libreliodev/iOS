@@ -30,7 +30,7 @@
 
 - (void) setUrlString: (NSString *) theString
 {
-    NSLog(@"started set url string with count - %d for url %@", [self retainCount],theString);
+    //SLog(@"started set url string with count - %d for url %@", [self retainCount],theString);
 	
 	urlString = [[NSString alloc]initWithString: theString];
     
@@ -93,7 +93,7 @@
              
     }
           
-    NSLog(@"before timer set url string with count - %d for url %@", [self retainCount],urlString);
+    //SLog(@"before timer set url string with count - %d for url %@", [self retainCount],urlString);
 
     //Add the timer, only if there is a superview (to avoid leaks)
     if (self.superview){
@@ -102,7 +102,6 @@
     }
     
 
-    NSLog(@"after timer set url string with count - %d for url %@", [self retainCount],urlString);
 	
     //Register screen view only if visible; this could not be the case, because download occurs in the background if it is an update
     if (!self.hidden){
@@ -111,7 +110,6 @@
         [[[GAI sharedInstance] defaultTracker]sendView:viewString];
 
     }
-    NSLog(@"finalized set url string with count - %d for url %@", [self retainCount],urlString);
 
 	
 	
@@ -120,20 +118,17 @@
 	
 }
 - (void)willMoveToSuperview:(UIView *)newSuperview{
-    NSLog(@"Will move to superview");
+    //SLog(@"Will move to superview");
     
 	if (!newSuperview){//In this case, the view is being removed from superview
-        NSLog(@"Will invalidate timer");
 
 		[timer invalidate];//This is important to avoid memory leaks
-        NSLog(@"count - %d", [self retainCount]);
 	}
 	
 }
 
 
 - (void)dealloc {
-    NSLog(@"Wil deallocate downloading view with downloadmisssing resources %hhd",self.downloadOnlyMissingResources);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
 	[imageView release];
@@ -160,9 +155,7 @@
             issue.urlString = urlString;
             [[[WADocumentDownloadsManager sharedManager] issuesQueue]addObject:issue];
             [issue release];
-            NSLog(@"count before removing missing from super %d", [self retainCount]);
             [self removeFromSuperview];//Remove the downloading view, we will not need it
-            NSLog(@"count after removing missing from super %d", [self retainCount]);
 
 
       }
@@ -216,7 +209,7 @@
     NSDictionary *notificatedDic = notification.object;
     NSString *notificatedUrl = [notificatedDic objectForKey:@"urlString"];
     if ([notificatedUrl isEqualToString:self.urlString  ]){
-        NSLog(@"Download failed for url:%@",self.urlString );
+        //SLog(@"Download failed for url:%@",self.urlString );
       	//If this view is visible, and only in this case, display error message
         if (self.hidden ==NO){
             NSString * httpStatus = [notificatedDic objectForKey:@"httpStatus"];
@@ -247,7 +240,7 @@
         moduleViewController.containingView= self.superview.superview;
         moduleViewController.containingRect= self.superview.frame;
         [moduleViewController loadModuleView];
-        NSLog(@"Download succeeded for url:%@",self.urlString );
+        //SLog(@"Download succeeded for url:%@",self.urlString );
 
         //SLog(@"Will load module view and check update");
         //[moduleViewController loadModuleViewAndCheckUpdate];Don't check update immediately, it crashes the app the 2nd time
