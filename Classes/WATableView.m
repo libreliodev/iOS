@@ -21,10 +21,7 @@
 - (id)init {
 	if (self = [super init]) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedResourceDownloadWithNotification:) name:@"didSucceedResourceDownload" object:nil];
-        /**UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-        [refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
-        [self addSubview:refreshControl];**/
-        
+         
 	}
 	return self;
 }
@@ -170,6 +167,20 @@
 #pragma mark ModuleView protocol
 
 - (void)moduleViewWillAppear:(BOOL)animated{
+    //Reset toolbar
+    WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];
+    //Reset toolbar
+    [vc.rightToolBar setItems:nil];
+    
+    
+    //Add refresh button if waupdate parameter was present
+    NSString * mnString = [urlString valueOfParameterInUrlStringforKey:@"waupdate"];
+    if (mnString){
+        [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"refresh" orString:@"" andLink:@"refresh://localhost/nomatter.zzz"];
+        [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"" orString:@"  " andLink:@""];//Hack: this puts a little bit of space at the right of the button
+
+    }
+
     //WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];
     
     //NSString * searchLink = [parser getHeaderForDataCol:@"SearchLink"];

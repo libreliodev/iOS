@@ -275,7 +275,7 @@
 - (void)buttonAction:(id)sender{
 	UIButton *button = (UIButton *)sender;
 	NSString * newUrlString = [button titleForState:UIControlStateApplication];
-	[self openModule:newUrlString inView:button.superview inRect:button.frame];
+    [self openModule:newUrlString inView:button.superview inRect:button.frame];
 }
 
 
@@ -298,7 +298,18 @@
     
     //Deselect selected cover if any
     [_gridView deselectItemAtIndex:[_gridView indexOfSelectedItem] animated:NO];
+
+    //Reset toolbar
+    WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];
+    //Reset toolbar
+    [vc.rightToolBar setItems:nil];
+
     
+    //Add refresh button if waupdate parameter was present
+    NSString * mnString = [urlString valueOfParameterInUrlStringforKey:@"waupdate"];
+    if (mnString){
+        [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"refresh" orString:@"" andLink:@"refresh://localhost/nomatter.zzz"];
+    }
  
     //Add subscribe button if relevant
     //First, check if the app offers subscriptions
@@ -317,12 +328,12 @@
                 //Subscriptions are already active, don't show button
             }
             else{
-               WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];
-                //Reset toolbar
-                [vc.rightToolBar setItems:nil];
-                //Add button
-                [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"" orString:NSLocalizedString(@"Subscription",@"" ) andLink:@"buy://localhost/wanodownload.pdf"];
+                 //Add button
+                NSString * subscriptionAndSpaces = [NSString stringWithFormat:@"%@  ",NSLocalizedString(@"Subscription",@"" )];
+                [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"" orString:subscriptionAndSpaces andLink:@"buy://localhost/wanodownload.pdf"];
             }
+
+
             
             
         }

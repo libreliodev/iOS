@@ -21,6 +21,8 @@
 #import "NSBundle+WAAdditions.h"
 
 #import "GAI.h"
+#import "SHKActivityIndicator.h"
+
 
 @implementation WAModuleViewController
 
@@ -31,6 +33,16 @@
 
 
 @synthesize lastKnownOrientation;
+
+- (id)init {
+	if (self = [super init]) {
+        //Add observers
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishDownloadWithNotification:) name:@"didFailIssueDownload" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishDownloadWithNotification:) name:@"didSucceedIssueDownload" object:nil];
+        
+	}
+	return self;
+}
 
 
 
@@ -142,6 +154,7 @@
     //SLog(@"Going to init %@ for %@",className,moduleUrlString);
     Class theClass = NSClassFromString(className);
     moduleView = (UIView <WAModuleProtocol> *)[[theClass alloc]init];
+
 	
 }
 
@@ -149,7 +162,7 @@
 
     if ([WAUtilities isCheckUpdateNeededForUrlString:moduleUrlString]||[WAUtilities isDownloadMissingResourcesNeededForUrlString:moduleUrlString]){
         //SLog(@"Update needed for url %@",moduleUrlString);
-        [self checkUpdate];
+        [self checkUpdate:NO];
 
 	}
 	else {
@@ -160,8 +173,7 @@
     
 }
 
-- (void)checkUpdate{
-     //Update needed, we load a loadingView to handle it
+- (void)checkUpdate:(BOOL)force{
     WADownloadingView * loadingView = [[WADownloadingView alloc]init];
     loadingView.currentViewController = self;
     //loadingView.frame = containingRect;//this does not work well when there is a tabbar
@@ -174,23 +186,26 @@
     //If there is already a downloaded resource available, no need to show the LoadingView
     if ([[NSBundle mainBundle] pathOfFileWithUrl:moduleUrlString])
         loadingView.hidden = YES;
-    //SLog(@"downloadOnlyMissingResources = YES for %@",moduleUrlString);
     
-    //Check wether we only need to dwnload missing resources, or the whole stuff
-    if ([WAUtilities isCheckUpdateNeededForUrlString:moduleUrlString]){
+    //Check wether we only need to download missing resources, or the whole stuff
+    if ([WAUtilities isCheckUpdateNeededForUrlString:moduleUrlString]||force){
         loadingView.downloadOnlyMissingResources = NO;
-        //SLog(@"downloadOnlyMissingResources = NO for %@",moduleUrlString);
+        NSLog(@"downloadOnlyMissingResources = NO for %@",moduleUrlString);
         
     }
     else{
-        //SLog(@"downloadOnlyMissingResources = YES for %@",moduleUrlString);
+        NSLog(@"downloadOnlyMissingResources = YES for %@",moduleUrlString);
         
         loadingView.downloadOnlyMissingResources = YES;
         
     }
     
     loadingView.urlString = moduleUrlString;
+     NSLog(@"count before releasing loading view with missing %hhd: %d",loadingView.downloadOnlyMissingResources, [loadingView retainCount]);
+
     [loadingView release];
+    if (force) [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Updating...",@"")];
+
     
     
 }
@@ -348,6 +363,9 @@
     //Release existing toolbar module if any
     UIView * modView = [rightToolBar viewWithTag:999];
     if (modView) [modView removeFromSuperview];
+    
+    //Remove indicator if active
+    [[SHKActivityIndicator currentIndicator] hide];
 
      [moduleView moduleViewWillDisappear:animated];
 }
@@ -401,6 +419,7 @@
 
 
 - (void)dealloc {
+	[[NSNotificationCenter defaultCenter]removeObserver:self];
 	[moduleUrlString release];
     [searchNavigationController release];
 	[moduleView release];
@@ -422,15 +441,22 @@
     UIView * modView = [self.navigationItem.rightBarButtonItem.customView viewWithTag:999];
     if (modView) [modView removeFromSuperview];
     
-    
-	moduleViewController.initialViewController= self;
-	//moduleViewController.containingView= buttonItem.customView;
-    UIView * bView = [buttonItem valueForKey:@"view"]; //See http://stackoverflow.com/questions/5066847/get-the-width-of-a-uibarbuttonitem 
-    moduleViewController.containingView= self.navigationItem.rightBarButtonItem.customView;
-	moduleViewController.containingRect= CGRectMake(bView.frame.origin.x,bView.frame.origin.y,bView.frame.size.width,1.0f);//Hack: we need to set height to 1.0 for popover to display correctly
-	[moduleViewController pushViewControllerIfNeededAndLoadModuleView];
-    moduleViewController.moduleView.tag = 999;
-	[moduleViewController release];
+    if ([[buttonItem.link substringToIndex:7]isEqualToString:@"refresh"]) {
+        [self checkUpdate:YES];
+        
+    }
+    else{
+        moduleViewController.initialViewController= self;
+        //moduleViewController.containingView= buttonItem.customView;
+        UIView * bView = [buttonItem valueForKey:@"view"]; //See http://stackoverflow.com/questions/5066847/get-the-width-of-a-uibarbuttonitem
+        moduleViewController.containingView= self.navigationItem.rightBarButtonItem.customView;
+        moduleViewController.containingRect= CGRectMake(bView.frame.origin.x,bView.frame.origin.y,bView.frame.size.width,1.0f);//Hack: we need to set height to 1.0 for popover to display correctly
+        [moduleViewController pushViewControllerIfNeededAndLoadModuleView];
+        moduleViewController.moduleView.tag = 999;
+        [moduleViewController release];
+
+        
+    }
     
     
     
@@ -438,6 +464,15 @@
     
     
 }
+#pragma mark -
+#pragma mark Notifications
+- (void) didFinishDownloadWithNotification:(NSNotification *) notification
+{
+    NSString *notificatedUrl = notification.object;
 
+    NSLog(@"Notification received for url %@",notificatedUrl);
+
+    [[SHKActivityIndicator currentIndicator] hide];
+}
 
 @end

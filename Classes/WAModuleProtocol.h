@@ -15,6 +15,7 @@ typedef enum {
 	LinkTypeGrid=8,
 	LinkTypeText=9,
 	LinkTypeBuy=10,
+	LinkTypeRefresh=11,
 	LinkTypeTable=13,
 	LinkTypeDatabase=14,
 	LinkTypeFileManager=15,
