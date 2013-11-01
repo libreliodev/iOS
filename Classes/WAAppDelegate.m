@@ -59,7 +59,6 @@
     
     //Launch Appirater
     if ([app_Dic objectForKey:@"AppId"]) {
-        //SLog(@"AppDic found");
         [Appirater setAppId:[app_Dic objectForKey:@"AppId"]];
         [Appirater setDaysUntilPrompt:0];
         [Appirater setUsesUntilPrompt:1];
@@ -68,7 +67,6 @@
 
     }
     else{
-        //SLog(@"AppDic not found");
         //Do nothing, not setting App id prevents Appirater from launching, which is fine in this case
 
     }

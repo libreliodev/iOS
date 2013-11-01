@@ -233,6 +233,7 @@ static BOOL _alwaysUseMainBundle = NO;
 	
 	// check if the app has been used enough
 	NSInteger useCount = [userDefaults integerForKey:kAppiraterUseCount];
+    NSLog(@"Use count:%i",[userDefaults integerForKey:kAppiraterUseCount]);
 	if (useCount <= _usesUntilPrompt)
 		return NO;
 	
@@ -260,7 +261,8 @@ static BOOL _alwaysUseMainBundle = NO;
 }
 
 - (void)incrementUseCount {
-	// get the app's version
+	NSLog(@"Will incrment count");
+    // get the app's version
 	NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];
 	
 	// get the version number that we've been tracking
@@ -272,8 +274,6 @@ static BOOL _alwaysUseMainBundle = NO;
 		[userDefaults setObject:version forKey:kAppiraterCurrentVersion];
 	}
 	
-	if (_debug)
-		//SLog(@"APPIRATER Tracking version: %@", trackingVersion);
 	
 	if ([trackingVersion isEqualToString:version])
 	{
@@ -284,11 +284,13 @@ static BOOL _alwaysUseMainBundle = NO;
 			timeInterval = [[NSDate date] timeIntervalSince1970];
 			[userDefaults setDouble:timeInterval forKey:kAppiraterFirstUseDate];
 		}
-		
+
 		// increment the use count
 		NSInteger useCount = [userDefaults integerForKey:kAppiraterUseCount];
 		useCount++;
 		[userDefaults setInteger:useCount forKey:kAppiraterUseCount];
+       //SLog(@"APPIRATER Use count: %@", @(useCount));
+
 	}
 	else
 	{
@@ -318,8 +320,6 @@ static BOOL _alwaysUseMainBundle = NO;
 		[userDefaults setObject:version forKey:kAppiraterCurrentVersion];
 	}
 	
-	if (_debug)
-		//SLog(@"APPIRATER Tracking version: %@", trackingVersion);
 	
 	if ([trackingVersion isEqualToString:version])
 	{
@@ -388,7 +388,7 @@ static BOOL _alwaysUseMainBundle = NO;
 }
 
 + (void)appLaunched {
-    //SLog(@"AppLaunched");
+    NSLog(@"AppLaunched");
 	[Appirater appLaunched:YES];
 }
 
