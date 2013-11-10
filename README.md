@@ -1,6 +1,6 @@
 ## About this app
 
-This customizable app is intended mainly for publishers and marketers. It is also available on [Android](https://github.com/libreliodev/Android) and  [Windows 8](https://github.com/libreliodev/windows8).
+This free customizable app is intended mainly for publishers (esppecially magazine publishers) and marketers. It is also available on [Android](https://github.com/libreliodev/Android) and  [Windows 8](https://github.com/libreliodev/windows8).
 
 If you need to publish dynamic and/or paid contents, you need to set up your own server and develop your own code. You can also opt for Librelio's [paid plans](http://www.librelio.com/pricing).
 
