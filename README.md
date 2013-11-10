@@ -24,4 +24,4 @@ The use of the Google Analytics library is governed by the following terms: http
  
 
 ## Documentation
-Available in the wiki.
+The documentation is available in the [wiki](https://github.com/libreliodev/iOS/wiki).
