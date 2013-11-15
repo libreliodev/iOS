@@ -21,6 +21,11 @@
 		1425322B13606BF200F6BB3D /* WATabTabParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425322713606BF200F6BB3D /* WATabTabParser.m */; };
 		1425324E13606F9000F6BB3D /* WAFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1425324A13606F9000F6BB3D /* WAFileManager.m */; };
 		1425331B1361BEFE00F6BB3D /* WAFileManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142533121361BEFE00F6BB3D /* WAFileManagerCell.xib */; };
+		142DB0621836A30D0045DFD5 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 142DB0581836A30D0045DFD5 /* ioapi.c */; };
+		142DB0631836A30D0045DFD5 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 142DB05A1836A30D0045DFD5 /* mztools.c */; };
+		142DB0641836A30D0045DFD5 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 142DB05C1836A30D0045DFD5 /* unzip.c */; };
+		142DB0651836A30D0045DFD5 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 142DB05E1836A30D0045DFD5 /* zip.c */; };
+		142DB0661836A30D0045DFD5 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 142DB0611836A30D0045DFD5 /* SSZipArchive.m */; };
 		142F533017E0BF6D00E69AAC /* WARootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 142F532F17E0BF6D00E69AAC /* WARootViewController.m */; };
 		142F533117E0BF6D00E69AAC /* WARootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 142F532F17E0BF6D00E69AAC /* WARootViewController.m */; };
 		14443FC215465D3200F1D227 /* WAHTMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 14443FC115465D3200F1D227 /* WAHTMLParser.m */; };
@@ -640,6 +645,17 @@
 		142533121361BEFE00F6BB3D /* WAFileManagerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WAFileManagerCell.xib; sourceTree = "<group>"; };
 		1425CA7D124D125200E16625 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		1425CAB4124D1AB200E16625 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		142DB0571836A30D0045DFD5 /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		142DB0581836A30D0045DFD5 /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		142DB0591836A30D0045DFD5 /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		142DB05A1836A30D0045DFD5 /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		142DB05B1836A30D0045DFD5 /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		142DB05C1836A30D0045DFD5 /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		142DB05D1836A30D0045DFD5 /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		142DB05E1836A30D0045DFD5 /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		142DB05F1836A30D0045DFD5 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		142DB0601836A30D0045DFD5 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
+		142DB0611836A30D0045DFD5 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
 		142F532E17E0BF6D00E69AAC /* WARootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WARootViewController.h; sourceTree = "<group>"; };
 		142F532F17E0BF6D00E69AAC /* WARootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WARootViewController.m; sourceTree = "<group>"; };
 		1434385E129F7B9A00C06282 /* WAButtonWithLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAButtonWithLink.h; sourceTree = "<group>"; };
@@ -1163,6 +1179,9 @@
 		142683C913055FD500F85F47 /* Downloader */ = {
 			isa = PBXGroup;
 			children = (
+				142DB0561836A30D0045DFD5 /* minizip */,
+				142DB0601836A30D0045DFD5 /* SSZipArchive.h */,
+				142DB0611836A30D0045DFD5 /* SSZipArchive.m */,
 				14541D8A1307BAC2004A76D4 /* WADownloadingView.h */,
 				14541D881307BAC2004A76D4 /* WADownloadingView.m */,
 				14A1DC0A14629D47005366C7 /* WADocumentDownloader.h */,
@@ -1173,6 +1192,22 @@
 				14DD776C14A4F938004E06E5 /* WAMissingResourcesDownloader.m */,
 			);
 			name = Downloader;
+			sourceTree = "<group>";
+		};
+		142DB0561836A30D0045DFD5 /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				142DB0571836A30D0045DFD5 /* crypt.h */,
+				142DB0581836A30D0045DFD5 /* ioapi.c */,
+				142DB0591836A30D0045DFD5 /* ioapi.h */,
+				142DB05A1836A30D0045DFD5 /* mztools.c */,
+				142DB05B1836A30D0045DFD5 /* mztools.h */,
+				142DB05C1836A30D0045DFD5 /* unzip.c */,
+				142DB05D1836A30D0045DFD5 /* unzip.h */,
+				142DB05E1836A30D0045DFD5 /* zip.c */,
+				142DB05F1836A30D0045DFD5 /* zip.h */,
+			);
+			path = minizip;
 			sourceTree = "<group>";
 		};
 		1437AAA6126C3485009B6364 /* SlideShow Module */ = {
@@ -2207,6 +2242,7 @@
 				148BD6AD12E9C23600930FC5 /* WARSSItemCell.m in Sources */,
 				148BD6AE12E9C23600930FC5 /* WAOperationsManager.m in Sources */,
 				148BD6AF12E9C23600930FC5 /* WARSSBackViewController.m in Sources */,
+				142DB0661836A30D0045DFD5 /* SSZipArchive.m in Sources */,
 				148BD6B012E9C23600930FC5 /* WARSSParser.m in Sources */,
 				148BD6B112E9C23600930FC5 /* WAPDFParserView.m in Sources */,
 				148BD6B212E9C23600930FC5 /* WAThumbnailCell.m in Sources */,
@@ -2230,6 +2266,7 @@
 				144B2C79182388F500CDD200 /* APAppirater.m in Sources */,
 				147AEBC913799B6B00E209A9 /* WALabelView.m in Sources */,
 				147AEBF713799FF600E209A9 /* WARoundedButtonView.m in Sources */,
+				142DB0651836A30D0045DFD5 /* zip.c in Sources */,
 				147AEC83137A3C5F00E209A9 /* WAFileManagerCell.m in Sources */,
 				14E1A2071386794100111E6C /* WAExternalView.m in Sources */,
 				14BC0CF8139D227B0063F3A0 /* WALocalParser.m in Sources */,
@@ -2255,7 +2292,9 @@
 				14DD77A414A60D64004E06E5 /* WAZoomImage.m in Sources */,
 				14D37B6214B6DEAA00BA49C0 /* WAAddressAnnotation.m in Sources */,
 				1424382014BC36BE005ABB4A /* WASplashWebViewController.m in Sources */,
+				142DB0641836A30D0045DFD5 /* unzip.c in Sources */,
 				1424382214BC36BE005ABB4A /* WASplashScreenViewController.m in Sources */,
+				142DB0621836A30D0045DFD5 /* ioapi.c in Sources */,
 				BCE3280414D1E832009AAE23 /* WATableContainerView.m in Sources */,
 				BCE3280714D1E832009AAE23 /* WAPrixViewController.m in Sources */,
 				BC255D5614D300B900845E23 /* WAPageContainerController.m in Sources */,
@@ -2272,6 +2311,7 @@
 				149633B1150DE7CE0058E086 /* EAAppSubDelegate.m in Sources */,
 				14E1B95B1537F6D700153BA5 /* WASharePopover.m in Sources */,
 				14E1B9661538157700153BA5 /* WAShareActionSheet.m in Sources */,
+				142DB0631836A30D0045DFD5 /* mztools.c in Sources */,
 				146DAA7B1543D077000B7B69 /* WAAtomParser.m in Sources */,
 				14443FC215465D3200F1D227 /* WAHTMLParser.m in Sources */,
 				146F6A9D154E52AA0044821A /* WASearchView.m in Sources */,

@@ -3,6 +3,7 @@
 
 #import "WAPDFParser.h"
 #import <QuartzCore/QuartzCore.h>
+#import "WAUtilities.h"
 #import "WAOperationsManager.h"
 #import "WADrawPageOperation.h"
 #import "NSString+WAURLString.h"
