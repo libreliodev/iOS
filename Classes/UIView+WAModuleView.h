@@ -11,6 +11,7 @@
 - (UIViewController *) firstAvailableUIViewController;
 - (id) traverseResponderChainForUIViewController;
 - (BOOL) isRootModule;
+- (NSString*) urlStringOfRootModule;
 - (void) showActionSheet:(UIActionSheet*)actionSheet animated:(BOOL)animated;
 - (void) showPopover:(UIPopoverController*)popover animated:(BOOL)animated;
 

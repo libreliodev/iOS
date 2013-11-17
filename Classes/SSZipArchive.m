@@ -162,7 +162,7 @@
 			[fileManager createDirectoryAtPath:[fullPath stringByDeletingLastPathComponent] withIntermediateDirectories:YES attributes:directoryAttr error:&err];
 		}
         if (nil != err) {
-            NSLog(@"[SSZipArchive] Error: %@", err.localizedDescription);
+            //SLog(@"[SSZipArchive] Error: %@", err.localizedDescription);
         }
 
         if(!fileIsSymbolicLink)
@@ -198,7 +198,7 @@
                     if (attr) {
                         if ([fileManager setAttributes:attr ofItemAtPath:fullPath error:nil] == NO) {
                             // Can't set attributes 
-                            NSLog(@"[SSZipArchive] Failed to set attributes");
+                            //SLog(@"[SSZipArchive] Failed to set attributes");
                         }
                     }
                 }
@@ -218,7 +218,7 @@
                 [destinationPath appendString:[NSString stringWithUTF8String:(const char*)buffer]];
             }
             
-            //NSLog(@"Symlinking to: %@", destinationPath);
+            //SLog(@"Symlinking to: %@", destinationPath);
             
             NSURL* destinationURL = [NSURL fileURLWithPath:destinationPath];
             
@@ -228,7 +228,7 @@
             
             if(symlinkError != nil)
             {
-                NSLog(@"Failed to create symbolic link at \"%@\" to \"%@\". Error: %@", symlinkURL.absoluteString, destinationURL.absoluteString, symlinkError.localizedDescription);
+                //SLog(@"Failed to create symbolic link at \"%@\" to \"%@\". Error: %@", symlinkURL.absoluteString, destinationURL.absoluteString, symlinkError.localizedDescription);
             }
         }
 		
@@ -253,10 +253,10 @@
     NSError * err = nil;
     for (NSDictionary * d in directoriesModificationDates) {
         if (![[NSFileManager defaultManager] setAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[d objectForKey:@"modDate"], NSFileModificationDate, nil] ofItemAtPath:[d objectForKey:@"path"] error:&err]) {
-            NSLog(@"[SSZipArchive] Set attributes failed for directory: %@.", [d objectForKey:@"path"]);
+            //SLog(@"[SSZipArchive] Set attributes failed for directory: %@.", [d objectForKey:@"path"]);
         }
         if (err) {
-            NSLog(@"[SSZipArchive] Error setting directory file modification date attribute: %@",err.localizedDescription);
+            //SLog(@"[SSZipArchive] Error setting directory file modification date attribute: %@",err.localizedDescription);
         }
     }
 	

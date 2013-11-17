@@ -13,9 +13,10 @@
 
 
 
+
 @implementation WAHTMLView
 
-@synthesize activityIndicator,splashView,currentViewController,backButton,previousPageTitle,currentPageTitle,forwardButton;
+@synthesize activityIndicator,splashView,currentViewController,backButton,previousPageTitle,currentPageTitle,forwardButton,parser;
 
 - (id)init {
 	if (self = [super init]) {
@@ -41,57 +42,62 @@
 
 - (void) setUrlString: (NSString *) theString
 {
-    //Prevent scrolling if module is not at the root level
+    UIColor * bgColor = [UIColor whiteColor];//This is the default background
+    NSString *bgColorString = [urlString valueOfParameterInUrlStringforKey:@"wabgcolor"];
+    if (bgColorString) bgColor = [UIColor colorFromString:bgColorString];
+
     if (![self isRootModule]){
-        for (UIView* subview in self.subviews)
+        //Prevent scrolling if module is not at the root level
+       for (UIView* subview in self.subviews){
             if ([[subview class] isSubclassOfClass: [UIScrollView class]]){
                 //SLog(@"Scrollview found");
-                [(UIScrollView *)subview setScrollEnabled:NO]; 
-                
-                /*CGPoint newOffset = CGPointMake(-50, 0);
-                [(UIScrollView *)subview setContentOffset:newOffset animated:NO];*/
-
-                //subview.backgroundColor = [UIColor whiteColor];
-                //[(UIScrollView *)subview setAlwaysBounceHorizontal:NO];//This does not work
-                
-                /**for (UIView* subSubview in subview.subviews){
-                    //SLog(@"subsubview found");
-                    subSubview.layer.borderWidth = 0.0f;//Remove undesirable black border
-                    subSubview.backgroundColor = [UIColor whiteColor];//Remove undesirable black border
-                    
-                    
-                }**/
-
-                
+                [(UIScrollView *)subview setScrollEnabled:NO];
+            }
         }
+        self.opaque = NO;//This prevents black borders being shown
+        self.backgroundColor = bgColor;
+
+
 
     }
     
     
     urlString = [[NSString alloc]initWithString: theString];
 	
+    NSString * className = [urlString classNameOfParserOfUrlString];
+    Class theClass = NSClassFromString(className);
+    parser =  (NSObject <WAParserProtocol> *)[[theClass alloc] init];
+    
+    //Get the url for the root module
+    NSString * rootModuleUrl = [self urlStringOfRootModule];
+    //SLog(@"rootModuelUrl =%@ for url:%@",rootModuleUrl,urlString);
+    
+    parser.urlString = [urlString urlByAddingParameterInUrlStringWithKey:@"waroot" withValue:rootModuleUrl];
+    
+    //Check if parser returns an html string
+    NSString * htmlString = [parser getDataAtRow:0 forDataCol:DataColHTML];
+    NSString * urlToLoad = [parser getDataAtRow:0 forDataCol:DataColDetailLink];
+    if (htmlString){
+        NSURL *baseURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathOfFileWithUrl:urlToLoad]];
+        //SLog(@"Will load baseurl:%@ with html:%@",baseURL,htmlString);
+        [self loadHTMLString:htmlString baseURL:baseURL];
+        
+    }
 
-	NSString * extension = [[urlString noArgsPartOfUrlString] pathExtension];
 	
-	
-	if ([extension isEqualToString:@"tab"]){
-		[self loadTabFile];
-		
-	}
-	
-	else if ([urlString hasPrefix:@"http"]||[urlString hasPrefix:@"www"]){
-		NSString * completeUrlString = ([urlString hasPrefix:@"www"])?[NSString stringWithFormat:@"http://%@",urlString]:urlString;
+	else if ([urlToLoad hasPrefix:@"http"]||[urlToLoad hasPrefix:@"www"]){
+		NSString * completeUrlString = ([urlToLoad hasPrefix:@"www"])?[NSString stringWithFormat:@"http://%@",urlToLoad]:urlToLoad;
         NSURL * url = [NSURL URLWithString:completeUrlString];
 		NSURLRequest * request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
 		[self loadRequest:request];
  		
 	}
 	else {
-        if ([[NSBundle mainBundle] pathOfFileWithUrl:urlString]){
-            NSURL *baseURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathOfFileWithUrl:urlString]];
+        if ([[NSBundle mainBundle] pathOfFileWithUrl:urlToLoad]){
+            NSURL *baseURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathOfFileWithUrl:urlToLoad]];
             NSString * waBase = [urlString valueOfParameterInUrlStringforKey:@"wabase"];
             if (waBase){
-                NSData *htmldata = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:urlString]];
+                NSData *htmldata = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:urlToLoad]];
                 baseURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@",waBase]];
                 //SLog(@"base:%@",[baseURL absoluteString]);
                 [self loadData:htmldata MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:baseURL];
@@ -113,9 +119,7 @@
     
 	splashView = [[UIImageView alloc]init];
     splashView.frame = CGRectMake (0,0,self.frame.size.width,self.frame.size.height);
-    splashView.backgroundColor = [UIColor blackColor];//This is the default
-    NSString *bgColorString = [urlString valueOfParameterInUrlStringforKey:@"wabgcolor"];
-    if (bgColorString) splashView.backgroundColor = [UIColor colorFromString:bgColorString];
+    splashView.backgroundColor = bgColor;//This is the default
     [self addSubview:splashView];
     splashView.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin);
     
@@ -124,20 +128,7 @@
 	[activityIndicator startAnimating];
 	[self addSubview:activityIndicator];
 	activityIndicator.autoresizingMask = (UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin);
-    
-    /**
-    //UIToolbar *toolbar = [[UIToolbar alloc] init];
-    UIView * toolbar = [[UIView alloc]init];
-    toolbar.backgroundColor = [UIColor yellowColor];
-    toolbar.frame = CGRectMake(0, self.frame.size.height-144, self.frame.size.width, self.frame.size.height);
-    //NSMutableArray *items = [[NSMutableArray alloc] init];
-    //[items addObject:[[[UIBarButtonItem alloc] initWith....] autorelease]];
-    //[toolbar setItems:items animated:NO];
-    //[items release];
-    [self addSubview:toolbar];
-    [toolbar release];
-     **/
-    
+     
     self.previousPageTitle = [[NSString alloc]initWithString: @""];
     self.currentPageTitle = [[NSString alloc]initWithString: @""];
 
@@ -206,7 +197,7 @@
 {
 	NSURL* tempUrl= [request URL];
     //SLog(@"shouldStartLoadWithRequest:%@",tempUrl);
-	//If wabase has been specified, we open all links outside the host of wabaseline in Safari
+	//If wabase has been specified, we open all links outside the host of wabase in Safari
 	NSString * waBase = [urlString valueOfParameterInUrlStringforKey:@"wabase"];
 	if (waBase){
 		//We only filter clicked links
@@ -279,39 +270,10 @@
     [currentPageTitle release];
     [forwardButton release];
 	[urlString release];
+    [parser release];
     [super dealloc];
 }
 
-- (void) loadTabFile{
-	//Get the template html
-	NSString * templatePath =[[NSBundle mainBundle] pathOfFileWithUrl:@"HTMLTemplate.html"];
-	NSString * templateString = [NSString stringWithContentsOfFile:templatePath encoding:NSUTF8StringEncoding error:nil];//Tab files are to be  with Windows default encoding
-	NSURL *baseURL = [NSURL fileURLWithPath:templatePath];
-	//SLog(@"Template:%@",templateString);
-	
-	//Get the data html
-	NSString * filePath = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
-	NSString * fileString = [NSString stringWithContentsOfFile:filePath encoding:NSWindowsCP1252StringEncoding error:nil];
-	NSArray * lineArray = [fileString componentsSeparatedByString:@"\n"];
-	int index = [[urlString valueOfParameterInUrlStringforKey:@"waline"]intValue];
-	NSArray * colArray = [[lineArray objectAtIndex:index]componentsSeparatedByString:@"\t"] ; 
-	NSArray * titleArray = [[lineArray objectAtIndex:0]componentsSeparatedByString:@"\t"];
-	NSMutableString *dataHtmlString = [NSMutableString stringWithString: @""];
-	for (int i = 0; i <[colArray count]; i++) {
-		[dataHtmlString appendFormat:@"<div class=\"%@\" title=\"%@\">%@</div>",[titleArray objectAtIndex:i],[colArray objectAtIndex:i],[colArray objectAtIndex:i]];
-	}
- 
-	
-	//Get the CSS
-	NSString * cssPath = [[NSBundle mainBundle] pathOfFileWithUrl:[WAUtilities urlByChangingExtensionOfUrlString:urlString toSuffix:@".css"]];
-	NSString *cssString = @"";
-	if (cssPath) cssString=[NSString stringWithContentsOfFile:cssPath encoding:NSUTF8StringEncoding error:nil];
-	
-	//Build the html string
-	NSString * htmlString = [NSString stringWithFormat:templateString,cssString,dataHtmlString]; 
-	[self loadHTMLString:htmlString baseURL:baseURL];
-	
-}
 
 
 #pragma mark -

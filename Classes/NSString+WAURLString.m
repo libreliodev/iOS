@@ -197,7 +197,7 @@
 }
 
 - (NSString *) urlByAddingParameterInUrlStringWithKey:(NSString*)key withValue:(NSString*)value{
-	NSRange slashRange = [self rangeOfString:@"/"];
+    NSRange slashRange = [self rangeOfString:@"/"];
 	NSRange qMarkRange = [self rangeOfString:@"?"];
 	NSRange columRange = [self rangeOfString:@":"];
 	NSString * prefixToAdd = @"&";
@@ -386,6 +386,7 @@
 	else if ([extension isEqualToString:@"rss"]) return ParserTypeRSS;
 	else if ([extension isEqualToString:@"atom"]) return ParserTypeAtom;
 	else if ([extension isEqualToString:@"local"]) return ParserTypeLocal;
+	else if ([extension isEqualToString:@"oam"]) return ParserTypeOAM;
 	else return ParserTypeHTML;
 	
 }
@@ -425,6 +426,10 @@
 		}
         case ParserTypeLocal:{
 			ret = @"WALocalParser";
+			break;
+		}
+        case ParserTypeOAM:{
+			ret = @"WAOAMParser";
 			break;
 		}
 

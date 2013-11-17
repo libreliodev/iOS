@@ -188,7 +188,9 @@
     //If the file is a Newsstand Issue, just remove the issue
     if ([fileUrl shouldUseNewsstandForUrlString]){
         NKLibrary *nkLib = [NKLibrary sharedLibrary];
-        NKIssue *nkIssue = [nkLib issueWithName:[fileUrl rootDirectoryNameOfUrlString]];
+        NSString *noUnderscoreUrlString = [fileUrl urlByRemovingFinalUnderscoreInUrlString];//Remove the final underscore];
+        NSString * fileName = [noUnderscoreUrlString nameOfFileWithoutExtensionOfUrlString];
+       NKIssue *nkIssue = [nkLib issueWithName:fileName];
         [nkLib removeIssue:nkIssue];
         
     }

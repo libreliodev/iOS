@@ -49,7 +49,7 @@ typedef enum {
 @property(nonatomic, assign) id<GAITracker> defaultTracker;
 
 /*!
- If true, Google Analytics debug messages will be logged with `NSLog()`. This is
+ If true, Google Analytics debug messages will be logged with `SLog()`. This is
  useful for debugging calls to the Google Analytics SDK.
 
  By default, this flag is set to `NO`. */

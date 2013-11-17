@@ -1,7 +1,7 @@
 //  Copyright 2011 WidgetAvenue - Librelio. All rights reserved.
+//
 
-
-#import <Foundation/Foundation.h>
+#import "WAParserProtocol.h"
 
 #import <libxml/xmlmemory.h>
 #import <libxml/debugXML.h>
@@ -10,16 +10,19 @@
 #import <libxml/xinclude.h>
 #import <libxml/catalog.h>
 #import <libxml/xpathInternals.h>
-#import "WAParserProtocol.h"
 
-@interface WAKMLParser : NSObject <WAParserProtocol> {
+
+@interface WAOAMParser : NSObject <WAParserProtocol> {
 	
-	xmlDocPtr doc;
-	xmlXPathContextPtr xpathCtx; 
 	NSString * urlString;
-
+    int intParam;
+	xmlDocPtr doc;
+	xmlXPathContextPtr xpathCtx;
+	
+	
 }
 
+- (NSString*) getStringForXPath:(xmlChar *)xPathExp;
 
 
 @end

@@ -10,6 +10,8 @@
 #import "NSString+WAURLString.h"
 #import "NSBundle+WAAdditions.h"
 
+#import "WAUtilities.h"
+
 @implementation WAFileManager
 
 @synthesize dataArray,currentViewController,parser;

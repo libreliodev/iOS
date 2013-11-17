@@ -43,6 +43,17 @@
     else return false;
 }
 
+
+/** @brief Returns url of root module
+ **/
+- (NSString*) urlStringOfRootModule {
+    WAModuleViewController * curModuleViewController = (WAModuleViewController *) [self traverseResponderChainForUIViewController];
+    UIView <WAModuleProtocol>*  rootModuleView = curModuleViewController.moduleView;
+    return (rootModuleView.urlString);
+    
+
+}
+
 /** @brief Presents an action sheet from a the current view only if posible
  **/
 - (void) showActionSheet:(UIActionSheet*)actionSheet animated:(BOOL)animated{

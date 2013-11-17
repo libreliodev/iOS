@@ -464,10 +464,12 @@
                 issueDate = [df dateFromString:argDateString]; 
                 
             }
-            
-            NKIssue *nkIssue = [nkLib issueWithName:[urlString rootDirectoryNameOfUrlString]];
+            NSString *noUnderscoreUrlString = [urlString urlByRemovingFinalUnderscoreInUrlString];//Remove the final underscore];
+            NSString * fileName = [noUnderscoreUrlString nameOfFileWithoutExtensionOfUrlString];
+
+            NKIssue *nkIssue = [nkLib issueWithName:fileName];
             if(!nkIssue) {
-                nkIssue = [nkLib addIssueWithName:[urlString rootDirectoryNameOfUrlString] date:issueDate];
+                nkIssue = [nkLib addIssueWithName:fileName date:issueDate];
                 
             }
             

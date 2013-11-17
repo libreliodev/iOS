@@ -180,9 +180,13 @@
             
         }
         
-        NKIssue *nkIssue = [nkLib issueWithName:[urlString rootDirectoryNameOfUrlString]];
+         NSString *noUnderscoreUrlString = [urlString urlByRemovingFinalUnderscoreInUrlString];//Remove the final underscore];
+        NSString * fileName = [noUnderscoreUrlString nameOfFileWithoutExtensionOfUrlString];
+ 
+        
+        NKIssue *nkIssue = [nkLib issueWithName:fileName];
         if(!nkIssue) {
-            nkIssue = [nkLib addIssueWithName:[urlString rootDirectoryNameOfUrlString] date:issueDate];
+            nkIssue = [nkLib addIssueWithName:fileName date:issueDate];
             //SLog(@"Added issue: %@",nkIssue);
             
         }
@@ -191,6 +195,7 @@
         //Initiate download
         if (![[WADocumentDownloadsManager sharedManager]isAlreadyInQueueIssueWithUrlString:urlString]){
             
+            //SLog(@"Will instantiate WANewsstandIssueDownloader" );
             WANewsstandIssueDownloader * issue = [[WANewsstandIssueDownloader alloc]init];
             issue.urlString = urlString  ;
             [[[WADocumentDownloadsManager sharedManager] issuesQueue]addObject:issue];

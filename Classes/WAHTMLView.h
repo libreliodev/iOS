@@ -3,6 +3,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WAModuleProtocol.h"
+#import "WAParserProtocol.h"
 
 
 @interface WAHTMLView : UIWebView <UIWebViewDelegate,WAModuleProtocol> {
@@ -14,6 +15,8 @@
     NSString * previousPageTitle;
     NSString * currentPageTitle;
     UIBarButtonItem* forwardButton;
+    NSObject <WAParserProtocol> *parser;
+
 }
 @property (nonatomic, retain)	UIActivityIndicatorView*activityIndicator;
 @property (nonatomic, retain)	 UIImageView * splashView;
@@ -21,9 +24,9 @@
 @property (nonatomic, retain)	 NSString * previousPageTitle;
 @property (nonatomic, retain)	 NSString * currentPageTitle;
 @property (nonatomic, retain)	 UIBarButtonItem* forwardButton;
+@property (nonatomic, retain) NSObject <WAParserProtocol> *parser;
 
 
-- (void) loadTabFile;
 
 
 @end

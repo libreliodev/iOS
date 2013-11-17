@@ -104,6 +104,9 @@
 		146E000917E22654000EE3DB /* list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 146E000517E22654000EE3DB /* list@2x.png */; };
 		146F6A9D154E52AA0044821A /* WASearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 146F6A9A154E52AA0044821A /* WASearchView.m */; };
 		146F6AA9154E52AA0044821A /* WASearchListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 146F6A9C154E52AA0044821A /* WASearchListController.m */; };
+		14784D2518375C8200605C51 /* WAOAMParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 14784D2318375C8200605C51 /* WAOAMParser.m */; };
+		14784D2618375C8200605C51 /* WAOAMParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 14784D2318375C8200605C51 /* WAOAMParser.m */; };
+		14784D2718375C8200605C51 /* WAOAMParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 14784D2318375C8200605C51 /* WAOAMParser.m */; };
 		147AEBC913799B6B00E209A9 /* WALabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 147AEBC213799B6B00E209A9 /* WALabelView.m */; };
 		147AEBF713799FF600E209A9 /* WARoundedButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 147AEBF013799FF600E209A9 /* WARoundedButtonView.m */; };
 		147AEC83137A3C5F00E209A9 /* WAFileManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 147AEC7C137A3C5F00E209A9 /* WAFileManagerCell.m */; };
@@ -351,6 +354,20 @@
 		14A1DBF314629AE1005366C7 /* WADocumentDownloadsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A1DBEF14629AE0005366C7 /* WADocumentDownloadsManager.m */; };
 		14A1DC0F14629D48005366C7 /* WADocumentDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A1DC0B14629D48005366C7 /* WADocumentDownloader.m */; };
 		14A24B6414672ABA00C9989E /* NewsstandKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A24B5E1467298D00C9989E /* NewsstandKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		14A309A4183788A300A519DD /* animation_finished.oam in Resources */ = {isa = PBXBuildFile; fileRef = 142DB0671836A3EA0045DFD5 /* animation_finished.oam */; };
+		14A309A518378F0F00A519DD /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 142DB0581836A30D0045DFD5 /* ioapi.c */; };
+		14A309A618378F0F00A519DD /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 142DB05A1836A30D0045DFD5 /* mztools.c */; };
+		14A309A718378F0F00A519DD /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 142DB05C1836A30D0045DFD5 /* unzip.c */; };
+		14A309A818378F0F00A519DD /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 142DB05E1836A30D0045DFD5 /* zip.c */; };
+		14A309A918378F0F00A519DD /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 142DB0611836A30D0045DFD5 /* SSZipArchive.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		14A309AA18378F1000A519DD /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 142DB0581836A30D0045DFD5 /* ioapi.c */; };
+		14A309AB18378F1000A519DD /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 142DB05A1836A30D0045DFD5 /* mztools.c */; };
+		14A309AC18378F1000A519DD /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 142DB05C1836A30D0045DFD5 /* unzip.c */; };
+		14A309AD18378F1000A519DD /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 142DB05E1836A30D0045DFD5 /* zip.c */; };
+		14A309AE18378F1000A519DD /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 142DB0611836A30D0045DFD5 /* SSZipArchive.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		14A309B01837903F00A519DD /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A309AF1837903F00A519DD /* libz.dylib */; };
+		14A309B11837908D00A519DD /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A309AF1837903F00A519DD /* libz.dylib */; };
+		14A309B21837908E00A519DD /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A309AF1837903F00A519DD /* libz.dylib */; };
 		14A68F60141E514600E16AE6 /* UIView+WAModuleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A68F5D141E514600E16AE6 /* UIView+WAModuleView.m */; };
 		14A80BCC168EC39C006B0AA4 /* black.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BCB168EC39C006B0AA4 /* black.png */; };
 		14A80BCF168EC39C006B0AA4 /* black.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BCB168EC39C006B0AA4 /* black.png */; };
@@ -656,6 +673,7 @@
 		142DB05F1836A30D0045DFD5 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		142DB0601836A30D0045DFD5 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
 		142DB0611836A30D0045DFD5 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
+		142DB0671836A3EA0045DFD5 /* animation_finished.oam */ = {isa = PBXFileReference; lastKnownFileType = file; path = animation_finished.oam; sourceTree = "<group>"; };
 		142F532E17E0BF6D00E69AAC /* WARootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WARootViewController.h; sourceTree = "<group>"; };
 		142F532F17E0BF6D00E69AAC /* WARootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WARootViewController.m; sourceTree = "<group>"; };
 		1434385E129F7B9A00C06282 /* WAButtonWithLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAButtonWithLink.h; sourceTree = "<group>"; };
@@ -748,6 +766,8 @@
 		146F6A9A154E52AA0044821A /* WASearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WASearchView.m; sourceTree = "<group>"; };
 		146F6A9B154E52AA0044821A /* WASearchListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WASearchListController.h; sourceTree = "<group>"; };
 		146F6A9C154E52AA0044821A /* WASearchListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WASearchListController.m; sourceTree = "<group>"; };
+		14784D2318375C8200605C51 /* WAOAMParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAOAMParser.m; sourceTree = "<group>"; };
+		14784D2418375C8200605C51 /* WAOAMParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAOAMParser.h; sourceTree = "<group>"; };
 		147AEBC113799B6B00E209A9 /* WALabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WALabelView.h; sourceTree = "<group>"; };
 		147AEBC213799B6B00E209A9 /* WALabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WALabelView.m; sourceTree = "<group>"; };
 		147AEBEF13799FF600E209A9 /* WARoundedButtonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WARoundedButtonView.h; sourceTree = "<group>"; };
@@ -760,7 +780,7 @@
 		147B34D9146C13BA0002CC17 /* WASQLiteParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WASQLiteParser.m; sourceTree = "<group>"; };
 		147B34F6146C1B820002CC17 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		147B3530146E78920002CC17 /* WANewsstandIssueDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WANewsstandIssueDownloader.h; sourceTree = "<group>"; };
-		147B3531146E78930002CC17 /* WANewsstandIssueDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WANewsstandIssueDownloader.m; sourceTree = "<group>"; };
+		147B3531146E78930002CC17 /* WANewsstandIssueDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WANewsstandIssueDownloader.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		147B619517F334C900A4E413 /* Download.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Download.plist; sourceTree = "<group>"; };
 		148522BC128C617F00752C97 /* WATilingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WATilingView.h; sourceTree = "<group>"; };
 		148522BD128C617F00752C97 /* WATilingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WATilingView.m; sourceTree = "<group>"; };
@@ -801,8 +821,9 @@
 		14A1DBEE14629ADF005366C7 /* WADocumentDownloadsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADocumentDownloadsManager.h; sourceTree = "<group>"; };
 		14A1DBEF14629AE0005366C7 /* WADocumentDownloadsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WADocumentDownloadsManager.m; sourceTree = "<group>"; };
 		14A1DC0A14629D47005366C7 /* WADocumentDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADocumentDownloader.h; sourceTree = "<group>"; };
-		14A1DC0B14629D48005366C7 /* WADocumentDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WADocumentDownloader.m; sourceTree = "<group>"; };
+		14A1DC0B14629D48005366C7 /* WADocumentDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WADocumentDownloader.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		14A24B5E1467298D00C9989E /* NewsstandKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NewsstandKit.framework; path = System/Library/Frameworks/NewsstandKit.framework; sourceTree = SDKROOT; };
+		14A309AF1837903F00A519DD /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		14A68F5C141E514600E16AE6 /* UIView+WAModuleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WAModuleView.h"; sourceTree = "<group>"; };
 		14A68F5D141E514600E16AE6 /* UIView+WAModuleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UIView+WAModuleView.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		14A80BCB168EC39C006B0AA4 /* black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = black.png; path = Resources/black.png; sourceTree = "<group>"; };
@@ -995,6 +1016,7 @@
 				148BD6C312E9C23600930FC5 /* libxml2.dylib in Frameworks */,
 				148BD6C412E9C23600930FC5 /* MapKit.framework in Frameworks */,
 				148BD6C512E9C23600930FC5 /* AVFoundation.framework in Frameworks */,
+				14A309B21837908E00A519DD /* libz.dylib in Frameworks */,
 				4CA92CB1130C2EAA003264DA /* MessageUI.framework in Frameworks */,
 				1450721C1340AB900078C2B2 /* AddressBook.framework in Frameworks */,
 				1450723F1340AC9A0078C2B2 /* CoreLocation.framework in Frameworks */,
@@ -1012,6 +1034,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14A309B01837903F00A519DD /* libz.dylib in Frameworks */,
 				1490871B17E375D700943DD2 /* CoreData.framework in Frameworks */,
 				1490871C17E375D700943DD2 /* SystemConfiguration.framework in Frameworks */,
 				1490871D17E375D700943DD2 /* Foundation.framework in Frameworks */,
@@ -1051,6 +1074,7 @@
 				14DB1203164BEDC3001FE76B /* MapKit.framework in Frameworks */,
 				14DB1204164BEDC3001FE76B /* AVFoundation.framework in Frameworks */,
 				14DB1205164BEDC3001FE76B /* MessageUI.framework in Frameworks */,
+				14A309B11837908D00A519DD /* libz.dylib in Frameworks */,
 				14DB1206164BEDC3001FE76B /* AddressBook.framework in Frameworks */,
 				14DB1207164BEDC3001FE76B /* CoreLocation.framework in Frameworks */,
 				14DB1208164BEDC3001FE76B /* AudioToolbox.framework in Frameworks */,
@@ -1139,6 +1163,7 @@
 				1409D5681371AEBF00703B22 /* Plist */,
 				1425322313606B9500F6BB3D /* TabTab */,
 				14443FBF15465CDC00F1D227 /* HTML */,
+				14784D2218375C1800605C51 /* OAM */,
 				144B163F1365BE3A00C47C92 /* KML */,
 				14443FBD15465CD200F1D227 /* RSS */,
 				1425322013606B7700F6BB3D /* Atom */,
@@ -1160,6 +1185,7 @@
 			children = (
 				1425322613606BF200F6BB3D /* WATabTabParser.h */,
 				1425322713606BF200F6BB3D /* WATabTabParser.m */,
+				14D46E381354A52000B388A8 /* HTMLTemplate.html */,
 			);
 			name = TabTab;
 			sourceTree = "<group>";
@@ -1334,6 +1360,15 @@
 				146F6A9C154E52AA0044821A /* WASearchListController.m */,
 			);
 			name = "Search Module";
+			sourceTree = "<group>";
+		};
+		14784D2218375C1800605C51 /* OAM */ = {
+			isa = PBXGroup;
+			children = (
+				14784D2418375C8200605C51 /* WAOAMParser.h */,
+				14784D2318375C8200605C51 /* WAOAMParser.m */,
+			);
+			name = OAM;
 			sourceTree = "<group>";
 		};
 		147A572D1314EEA4002BE435 /* Plain Module */ = {
@@ -1570,7 +1605,6 @@
 			children = (
 				14F1CAEB1315AB6C008B7873 /* WAHTMLView.h */,
 				14F1CAEC1315AB6C008B7873 /* WAHTMLView.m */,
-				14D46E381354A52000B388A8 /* HTMLTemplate.html */,
 			);
 			name = "HTML Module";
 			sourceTree = "<group>";
@@ -1676,6 +1710,7 @@
 		14DB136D164C52C4001FE76B /* Wind */ = {
 			isa = PBXGroup;
 			children = (
+				142DB0671836A3EA0045DFD5 /* animation_finished.oam */,
 				1454580116FC6A5700EC3DFD /* facebook.atom */,
 				1494B52F16FB0D2300DE034A /* news.rss */,
 				14DB136E164C52C4001FE76B /* Application.plist */,
@@ -1817,6 +1852,7 @@
 				1425CAB4124D1AB200E16625 /* MediaPlayer.framework */,
 				14E3F4FE1266F33600F24CD6 /* StoreKit.framework */,
 				14E002BB127077F6005514AA /* libxml2.dylib */,
+				14A309AF1837903F00A519DD /* libz.dylib */,
 				147B34F6146C1B820002CC17 /* libsqlite3.0.dylib */,
 				1469EE5D153BE35C00465AB7 /* libGoogleAnalytics.a */,
 				14A24B5E1467298D00C9989E /* NewsstandKit.framework */,
@@ -2169,6 +2205,7 @@
 				146232FB17E1FE210066084C /* download@2x.png in Resources */,
 				144B2C6118229DE200CDD200 /* forward@2x.png in Resources */,
 				14A80C2A168EC3DB006B0AA4 /* folder.png in Resources */,
+				14A309A4183788A300A519DD /* animation_finished.oam in Resources */,
 				14A80C31168EC3DB006B0AA4 /* globe.png in Resources */,
 				14A80C46168EC3DB006B0AA4 /* information.png in Resources */,
 				14A80C4D168EC3DB006B0AA4 /* iphone.png in Resources */,
@@ -2316,6 +2353,7 @@
 				14443FC215465D3200F1D227 /* WAHTMLParser.m in Sources */,
 				146F6A9D154E52AA0044821A /* WASearchView.m in Sources */,
 				146F6AA9154E52AA0044821A /* WASearchListController.m in Sources */,
+				14784D2518375C8200605C51 /* WAOAMParser.m in Sources */,
 				14F94D73160C66CA00A68F2A /* SHKActivityIndicator.m in Sources */,
 				140DF34516197E7400815F26 /* WAImgParser.m in Sources */,
 				140DF35416198BD000815F26 /* WAImgParserView.m in Sources */,
@@ -2346,17 +2384,20 @@
 				149086C417E375D700943DD2 /* AQGridViewController.m in Sources */,
 				149086C517E375D700943DD2 /* AQGridViewData.m in Sources */,
 				149086C617E375D700943DD2 /* AQGridViewUpdateInfo.m in Sources */,
+				14A309AD18378F1000A519DD /* zip.c in Sources */,
 				149086C717E375D700943DD2 /* AQGridViewUpdateItem.m in Sources */,
 				149086C817E375D700943DD2 /* NSIndexSet+AQIndexesOutsideSet.m in Sources */,
 				149086C917E375D700943DD2 /* NSIndexSet+AQIsSetContiguous.m in Sources */,
 				149086CA17E375D700943DD2 /* UIColor+AQGridView.m in Sources */,
 				149086CB17E375D700943DD2 /* WAGridView.m in Sources */,
 				149086CC17E375D700943DD2 /* WAGridCell.m in Sources */,
+				14A309AB18378F1000A519DD /* mztools.c in Sources */,
 				149086CD17E375D700943DD2 /* WARSSItemCell.m in Sources */,
 				149086CE17E375D700943DD2 /* WAOperationsManager.m in Sources */,
 				149086CF17E375D700943DD2 /* WARSSBackViewController.m in Sources */,
 				149086D017E375D700943DD2 /* WARSSParser.m in Sources */,
 				149086D117E375D700943DD2 /* WAPDFParserView.m in Sources */,
+				14A309AC18378F1000A519DD /* unzip.c in Sources */,
 				149086D217E375D700943DD2 /* WAThumbnailCell.m in Sources */,
 				149086D317E375D700943DD2 /* WADrawPageOperation.m in Sources */,
 				149086D417E375D700943DD2 /* WATilingView.m in Sources */,
@@ -2381,6 +2422,7 @@
 				149086E717E375D700943DD2 /* WAExternalView.m in Sources */,
 				149086E817E375D700943DD2 /* WALocalParser.m in Sources */,
 				149086E917E375D700943DD2 /* WAVideoView.m in Sources */,
+				14A309AE18378F1000A519DD /* SSZipArchive.m in Sources */,
 				149086EA17E375D700943DD2 /* UIView+WAModuleView.m in Sources */,
 				149086EB17E375D700943DD2 /* UIColor+WAAdditions.m in Sources */,
 				149086ED17E375D700943DD2 /* WAShareView.m in Sources */,
@@ -2388,11 +2430,13 @@
 				149086EF17E375D700943DD2 /* WATransparentToolbar.m in Sources */,
 				149086F017E375D700943DD2 /* NSString+WAURLString.m in Sources */,
 				149086F117E375D700943DD2 /* Scanner.m in Sources */,
+				14784D2718375C8200605C51 /* WAOAMParser.m in Sources */,
 				149086F217E375D700943DD2 /* Font.m in Sources */,
 				149086F317E375D700943DD2 /* FontCollection.m in Sources */,
 				149086F417E375D700943DD2 /* RenderingState.m in Sources */,
 				149086F517E375D700943DD2 /* CMap.m in Sources */,
 				149086F617E375D700943DD2 /* WADocumentDownloadsManager.m in Sources */,
+				14A309AA18378F1000A519DD /* ioapi.c in Sources */,
 				149086F717E375D700943DD2 /* WADocumentDownloader.m in Sources */,
 				149086F817E375D700943DD2 /* NSBundle+WAAdditions.m in Sources */,
 				149086F917E375D700943DD2 /* WASQLiteParser.m in Sources */,
@@ -2453,17 +2497,20 @@
 				14DB11A4164BEDC3001FE76B /* AQGridViewData.m in Sources */,
 				14DB11A5164BEDC3001FE76B /* AQGridViewUpdateInfo.m in Sources */,
 				14DB11A6164BEDC3001FE76B /* AQGridViewUpdateItem.m in Sources */,
+				14A309A818378F0F00A519DD /* zip.c in Sources */,
 				14DB11A7164BEDC3001FE76B /* NSIndexSet+AQIndexesOutsideSet.m in Sources */,
 				14DB11A8164BEDC3001FE76B /* NSIndexSet+AQIsSetContiguous.m in Sources */,
 				14DB11A9164BEDC3001FE76B /* UIColor+AQGridView.m in Sources */,
 				14DB11AA164BEDC3001FE76B /* WAGridView.m in Sources */,
 				14DB11AB164BEDC3001FE76B /* WAGridCell.m in Sources */,
 				14DB11AC164BEDC3001FE76B /* WARSSItemCell.m in Sources */,
+				14A309A618378F0F00A519DD /* mztools.c in Sources */,
 				14DB11AD164BEDC3001FE76B /* WAOperationsManager.m in Sources */,
 				14DB11AE164BEDC3001FE76B /* WARSSBackViewController.m in Sources */,
 				14DB11AF164BEDC3001FE76B /* WARSSParser.m in Sources */,
 				14DB11B0164BEDC3001FE76B /* WAPDFParserView.m in Sources */,
 				14DB11B1164BEDC3001FE76B /* WAThumbnailCell.m in Sources */,
+				14A309A718378F0F00A519DD /* unzip.c in Sources */,
 				14DB11B2164BEDC3001FE76B /* WADrawPageOperation.m in Sources */,
 				14DB11B3164BEDC3001FE76B /* WATilingView.m in Sources */,
 				14DB11B4164BEDC3001FE76B /* WAButtonWithLink.m in Sources */,
@@ -2488,6 +2535,7 @@
 				14DB11C9164BEDC3001FE76B /* WAExternalView.m in Sources */,
 				14DB11CA164BEDC3001FE76B /* WALocalParser.m in Sources */,
 				14DB11CB164BEDC3001FE76B /* WAVideoView.m in Sources */,
+				14A309A918378F0F00A519DD /* SSZipArchive.m in Sources */,
 				14DB11CC164BEDC3001FE76B /* UIView+WAModuleView.m in Sources */,
 				14DB11CD164BEDC3001FE76B /* UIColor+WAAdditions.m in Sources */,
 				14DB11CF164BEDC3001FE76B /* WAShareView.m in Sources */,
@@ -2495,11 +2543,13 @@
 				14DB11D1164BEDC3001FE76B /* WATransparentToolbar.m in Sources */,
 				14DB11D2164BEDC3001FE76B /* NSString+WAURLString.m in Sources */,
 				14DB11D3164BEDC3001FE76B /* Scanner.m in Sources */,
+				14784D2618375C8200605C51 /* WAOAMParser.m in Sources */,
 				14DB11D4164BEDC3001FE76B /* Font.m in Sources */,
 				14DB11D5164BEDC3001FE76B /* FontCollection.m in Sources */,
 				14DB11D6164BEDC3001FE76B /* RenderingState.m in Sources */,
 				14DB11D7164BEDC3001FE76B /* CMap.m in Sources */,
 				14DB11D8164BEDC3001FE76B /* WADocumentDownloadsManager.m in Sources */,
+				14A309A518378F0F00A519DD /* ioapi.c in Sources */,
 				14DB11D9164BEDC3001FE76B /* WADocumentDownloader.m in Sources */,
 				14DB11DA164BEDC3001FE76B /* NSBundle+WAAdditions.m in Sources */,
 				14DB11DB164BEDC3001FE76B /* WASQLiteParser.m in Sources */,

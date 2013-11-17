@@ -16,6 +16,7 @@ typedef enum {
     ParserTypeRSS=7,
     ParserTypeAtom=8,
     ParserTypeLocal=9,
+    ParserTypeOAM=10,
 
     
     

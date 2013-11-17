@@ -2,6 +2,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WAParserProtocol.h"
 #import "WAModuleProtocol.h"
 
 

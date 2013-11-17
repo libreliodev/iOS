@@ -37,7 +37,7 @@
 - (void) setUrlString: (NSString *) theString
 {
     urlString = [[NSString alloc]initWithString: theString];
-    
+    //SLog(@"Strat set url in WAPDFParser for /%@",theString);
     
 
     //Check if cache exists and is up to date
@@ -70,31 +70,34 @@
     }
 
     
-    
-    
-    NSString * pdfPath = [NSString stringWithFormat:@"file:%@",[[NSBundle mainBundle] pathOfFileWithUrl:urlString]];
-	CFStringRef fileNameEscaped = CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef)pdfPath, NULL, NULL,kCFStringEncodingUTF8);
-	pdfURL = CFURLCreateWithString(NULL, fileNameEscaped, NULL);
-	CFRelease(fileNameEscaped);
+    NSString * pathString = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
+        //SLog(@"Will open pdf at path:%@",pathString);
+        NSString * pdfPath = [NSString stringWithFormat:@"file:%@",pathString];
+        CFStringRef fileNameEscaped = CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef)pdfPath, NULL, NULL,kCFStringEncodingUTF8);
+        pdfURL = CFURLCreateWithString(NULL, fileNameEscaped, NULL);
+        CFRelease(fileNameEscaped);
+        
+        CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL(pdfURL);
+        if (!pdf) [self deleteCorruptedFile];
+        numberOfPages = CGPDFDocumentGetNumberOfPages(pdf);
+        CGPDFDocumentRelease(pdf);
+        
+        //Create the outlineArray
+        outlineArray = [[NSMutableArray alloc]init];
+        //[self buildOutlineArray];
+        //SLog(@"Outline array built:%@",outlineArray);
+        
+        /*
+         [self parseText];*/
+        
+        
+        
+        
+        //Generate cache files if necessary
+        [self generateCacheForAllPagesAtSize:PDFPageViewSizeBig];
 
-	CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL(pdfURL);
-	if (!pdf) [self deleteCorruptedFile];
-	numberOfPages = CGPDFDocumentGetNumberOfPages(pdf);
-	CGPDFDocumentRelease(pdf);
-   
-    //Create the outlineArray
-    outlineArray = [[NSMutableArray alloc]init];
-    //[self buildOutlineArray];
-    //SLog(@"Outline array built:%@",outlineArray);
-
-    /*
-    [self parseText];*/
-    
-    
-    
-    
-    //Generate cache files if necessary
-    [self generateCacheForAllPagesAtSize:PDFPageViewSizeBig];
+        
+     
 	
 	
 	

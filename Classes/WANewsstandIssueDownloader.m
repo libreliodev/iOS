@@ -73,6 +73,7 @@
         //SLog(@"New complete Url: %@",completeUrl);
     }
     
+    //SLog(@"will launch connection with Url:%@",completeUrl);
 	
      NSMutableURLRequest * urlRequest =[NSMutableURLRequest requestWithURL:[NSURL URLWithString:completeUrl]];
     
@@ -93,7 +94,9 @@
     NKLibrary *nkLib = [NKLibrary sharedLibrary];
     
     //Find the nkIssue based on UrlString, which must have been instantiated earlier
-    NKIssue *nkIssue = [nkLib issueWithName:[urlString rootDirectoryNameOfUrlString]];
+    NSString *noUnderscoreUrlString = [urlString urlByRemovingFinalUnderscoreInUrlString];//Remove the final underscore];
+    NSString * fileName = [noUnderscoreUrlString nameOfFileWithoutExtensionOfUrlString];
+    NKIssue *nkIssue = [nkLib issueWithName:fileName];
     //SLog(@"Found issue %@",nkIssue);
     
     //Check if there are already assetDownloads associated with nkIssue
@@ -113,6 +116,7 @@
     }
     
     if (!existsAssetDownload){
+        //SLog (@"Will add issue with request %@",urlRequest);
         NKAssetDownload *assetDownload = [nkIssue addAssetWithRequest:urlRequest];
         [assetDownload setUserInfo:[NSDictionary dictionaryWithObjectsAndKeys:completeUrl,@"completeUrl",nil]];
         // let's start download

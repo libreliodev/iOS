@@ -34,7 +34,7 @@
     
     
     
-    //SLog(@"WADocumentDownloader (or subclass) launched for Url:%@",theString);
+    //SLog(@"WADocumentDownloader (or subclass launched for Url:%@",theString);
 
     [self downloadMainFile];
     
