@@ -53,7 +53,7 @@
 
 }
 
-- (void) checkFullScreenAndPushViewControllerIfNeeded{
+- (BOOL)checkFullScreen{
 	NSString * rectString = [moduleUrlString valueOfParameterInUrlStringforKey:@"warect"];
 	//Check whether play full screen is required
 	BOOL playFullScreen;
@@ -78,7 +78,13 @@
 	}
     //If containingRect is CGRectZero, we play full screen
     if (CGRectEqualToRect(containingRect,CGRectZero)) playFullScreen = YES;
+    return playFullScreen  ;
     
+}
+
+- (void) checkFullScreenAndPushViewControllerIfNeeded{
+    BOOL playFullScreen = [self checkFullScreen];
+	LinkType linkType = [moduleUrlString typeOfLinkOfUrlString];
     
 	//If play full screen is required, push view controller (self) EXCEPT for videos and Slideshows,Charts and ZoomImages
 	if ((playFullScreen)&&(linkType!=LinkTypeVideo)){
@@ -183,8 +189,8 @@
     [moduleView addSubview:loadingView];
     
     
-    //If there is already a downloaded resource available, no need to show the LoadingView
-    if ([[NSBundle mainBundle] pathOfFileWithUrl:moduleUrlString])
+    //If there is already a downloaded resource available, no need to show the LoadingView, load in the background. Don't show if module is not full screen also.
+    if ([[NSBundle mainBundle] pathOfFileWithUrl:moduleUrlString]||![self checkFullScreen])
         loadingView.hidden = YES;
     
     //Check wether we only need to download missing resources, or the whole stuff

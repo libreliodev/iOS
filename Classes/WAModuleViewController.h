@@ -53,6 +53,7 @@
 - (void)loadModuleView;
 - (void)checkUpdateIfNeeded;
 - (void)checkUpdate:(BOOL)force;
+- (BOOL)checkFullScreen;
 - (void) checkFullScreenAndPushViewControllerIfNeeded;
 - (void) addButtonWithBarButtonSystemItem:(UIBarButtonSystemItem)systemItem orImageNamed:(NSString*)imageName orString:(NSString*)buttonString  andLink:(NSString*)linkString;
 - (void) performButtonAction:(id)sender;

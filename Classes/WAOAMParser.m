@@ -25,7 +25,7 @@
     //SLog (@"OAM started, module root url:%@",unzippedFolderUrlString);
 	NSString *zipPath = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
     NSString *destinationPath = [unzippedFolderUrlString pathOfStorageForUrlString];
-    //SLog(@"zip:%@, unzip:%@",zipPath,destinationPath);
+    NSLog(@"zip:%@, unzip:%@",zipPath,destinationPath);
     [SSZipArchive unzipFileAtPath:zipPath toDestination:destinationPath];
 
     //Prepare the xml for parsing
@@ -77,6 +77,7 @@
             //Load the html string
             NSString * htmlUrl = [NSString stringWithFormat:@"%@/Assets/%@.html",unzippedFolderUrlString,fileName];
             NSString * htmlPath = [[NSBundle mainBundle] pathOfFileWithUrl:htmlUrl];
+            NSLog(@"Htmlpath:%@",htmlPath);
             NSString * htmlString = [NSString stringWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
 
             //Get the width of the animation
@@ -157,14 +158,17 @@
 - (NSString*) getStringForXPath:(xmlChar *)xPathExp  {
     NSString *ret =@"";
 	xmlXPathObjectPtr xPathMainTitle = xmlXPathEvalExpression(xPathExp, xpathCtx);//Find all entries
-    if (xPathMainTitle->nodesetval->nodeTab[0]->children==NULL){
-        
-    }
-    else{
-        ret = [NSString stringWithCString:(const char *)xPathMainTitle->nodesetval->nodeTab[0]->children->content encoding:NSUTF8StringEncoding];
-        xmlXPathFreeObject(xPathMainTitle);
-        ret = [ret stringByReplacingOccurrencesOfString:@"&#039;" withString:@"'"];//Hack
-        ret = [ret stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];//Hack
+    if (xPathMainTitle->nodesetval){
+        if (xPathMainTitle->nodesetval->nodeTab[0]->children==NULL){
+            
+        }
+        else{
+            ret = [NSString stringWithCString:(const char *)xPathMainTitle->nodesetval->nodeTab[0]->children->content encoding:NSUTF8StringEncoding];
+            xmlXPathFreeObject(xPathMainTitle);
+            ret = [ret stringByReplacingOccurrencesOfString:@"&#039;" withString:@"'"];//Hack
+            ret = [ret stringByReplacingOccurrencesOfString:@"&quot;" withString:@"\""];//Hack
+            
+        }
         
     }
     
