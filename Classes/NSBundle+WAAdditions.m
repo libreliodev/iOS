@@ -9,6 +9,7 @@
 #import "NSString+WAURLString.h"
 #import "WAUtilities.h"
 #import <NewsstandKit/NewsstandKit.h>
+#import "SSZipArchive.h"
 
 
 @implementation NSBundle (WAAdditions)
@@ -121,7 +122,32 @@
 	return nil;
 }
 
+- (void) unzipFileWithUrlString:(NSString*) urlString{
+    NSString * unzippedFolderUrlString = [urlString urlOfUnzippedFolder];
+    //Check if the file at UrlString is already a plist
+    NSDictionary * testDic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:urlString]];
+    if ([testDic objectForKey:@"UnzippedFolder"]){
+        //File is already a plist, no need to uncompress
+    }
+    else{
+        //Decompress the file
+        NSString *zipPath = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
+        NSString *destinationPath = [unzippedFolderUrlString pathOfStorageForUrlString];
+        NSLog(@"zip:%@, unzip:%@",zipPath,destinationPath);
+        [SSZipArchive unzipFileAtPath:zipPath toDestination:destinationPath];
+        
+        //Replace it with a dictionary
+         NSString * plistPath = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
+         NSMutableDictionary * testDic = [NSMutableDictionary dictionary];
+         [testDic  setObject:unzippedFolderUrlString forKey:@"UnzippedFolder"];
+         [testDic writeToFile:plistPath atomically:YES];
+        
+        
+    }
+    
 
+    
+}
 
 
 @end

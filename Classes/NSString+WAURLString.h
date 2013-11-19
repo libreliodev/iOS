@@ -19,6 +19,8 @@
 - (NSString *) nameOfFileWithoutExtensionOfUrlString;
 - (NSString *) titleOfUrlString;
 - (NSString *) pathOfStorageForUrlString;
+- (NSString *) urlOfUnzippedFolder;
+- (NSString*) urlOfCacheFileWithName:(NSString*)fileName;
 - (NSString*) urlByChangingSchemeOfUrlStringToScheme:(NSString*)newScheme;
 - (NSString*) urlByRemovingFinalUnderscoreInUrlString;
 - (BOOL) isUrlStringOfSameFileAsUrlString:(NSString*) otherUrlString;

@@ -2,7 +2,6 @@
 #import "NSString+WAURLString.h"
 #import "NSBundle+WAAdditions.h"
 #import "WAUtilities.h"
-#import "SSZipArchive.h"
 
 
 
@@ -18,17 +17,15 @@
 - (void) setUrlString: (NSString *) theString
 {
     urlString = [[NSString alloc]initWithString: theString];
-    NSString * fileName = [urlString nameOfFileWithoutExtensionOfUrlString];
 
-    //Unzip the file
-    NSString * unzippedFolderUrlString = [WAUtilities urlOfCacheFileWithName:fileName forDocumentWithUrlString:[urlString valueOfParameterInUrlStringforKey:@"waroot"]];
-    //SLog (@"OAM started, module root url:%@",unzippedFolderUrlString);
-	NSString *zipPath = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
-    NSString *destinationPath = [unzippedFolderUrlString pathOfStorageForUrlString];
-    NSLog(@"zip:%@, unzip:%@",zipPath,destinationPath);
-    [SSZipArchive unzipFileAtPath:zipPath toDestination:destinationPath];
+    //Uzip file if needed
+    [[NSBundle mainBundle]unzipFileWithUrlString:urlString];
+    
+    NSString * unzippedFolderUrlString = [urlString urlOfUnzippedFolder];
+ 
 
     //Prepare the xml for parsing
+    NSString * fileName = [urlString nameOfFileWithoutExtensionOfUrlString];
     NSString * xmlUrl = [NSString stringWithFormat:@"%@/Assets/%@_oam.xml",unzippedFolderUrlString,fileName];
     //NSString * xmlUrl = @"/facebook.atom";
     NSData * xmlData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:xmlUrl]];
@@ -65,7 +62,7 @@
 	NSString * ret = nil;
     NSString * fileName = [urlString nameOfFileWithoutExtensionOfUrlString];
     
-    NSString * unzippedFolderUrlString = [WAUtilities urlOfCacheFileWithName:fileName forDocumentWithUrlString:[urlString valueOfParameterInUrlStringforKey:@"waroot"]];
+    NSString * unzippedFolderUrlString = [[urlString valueOfParameterInUrlStringforKey:@"waroot"] urlOfCacheFileWithName:fileName];
     
     
 	switch (dataCol) {

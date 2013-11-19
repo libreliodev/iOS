@@ -5,6 +5,7 @@
 #import "WAUtilities.h"
 #import "WAOperationsManager.h"
 #import "NSBundle+WAAdditions.h"
+#import "NSString+WAURLString.h"
 #import "UIImage+WAAdditions.h"
 
 
@@ -27,7 +28,7 @@
 		
 		//Get store URL
 		NSString *fileName = [NSString stringWithFormat:@"page%isize%i.jpg",page,drawSize];
-		NSString *cacheUrl = [WAUtilities urlOfCacheFileWithName:fileName forDocumentWithUrlString:pdfDocument.urlString]; ;
+		NSString *cacheUrl = [pdfDocument.urlString urlOfCacheFileWithName:fileName]; ;
 
 		//Double check that a cache image has not been created
 		if (![[NSBundle mainBundle] pathOfFileWithUrl:cacheUrl]){
@@ -50,7 +51,7 @@
 			if (drawSize == PDFPageViewSizeBig){
 				NSString *fileNameSmall = [NSString stringWithFormat:@"page%isize%i.jpg",page,PDFPageViewSizeSmall];
                 //SLog(@"fileNameSmall:%@" ,fileNameSmall);
-				NSString *cacheUrlSmall = [WAUtilities urlOfCacheFileWithName:fileNameSmall forDocumentWithUrlString:pdfDocument.urlString];
+				NSString *cacheUrlSmall = [pdfDocument.urlString urlOfCacheFileWithName:fileNameSmall];
 				CGSize smallSize = CGSizeMake(img.size.width/8, img.size.height/8);
 				UIImage * imgSmall = [img imageScaledToSize:smallSize];
 				NSData * imgDataSmall = UIImageJPEGRepresentation(imgSmall,0.5);

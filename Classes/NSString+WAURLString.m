@@ -228,6 +228,22 @@
     
 }
 
+- (NSString*) urlOfCacheFileWithName:(NSString*)fileName {
+	NSString * urlWithoutArg = [self noArgsPartOfUrlString];
+	NSString * pdfNameWithoutExt =  [[urlWithoutArg lastPathComponent] stringByDeletingPathExtension];
+	NSString *pdfDirUrl = [WAUtilities directoryUrlOfUrlString:self];
+	return [NSString stringWithFormat:@"%@/%@_cache/%@",pdfDirUrl,pdfNameWithoutExt,fileName];
+	
+}
+
+-   (NSString *) urlOfUnzippedFolder{
+    //If there is a waroot arg, use it, otherwise use the url
+    NSString * baseUrl = [self valueOfParameterInUrlStringforKey:@"waroot"];
+    if (!baseUrl) baseUrl = self;
+    NSString * fileName = [self nameOfFileWithoutExtensionOfUrlString];
+    return [baseUrl urlOfCacheFileWithName:fileName];
+    
+}
 
 
 - (LinkType) typeOfLinkOfUrlString{

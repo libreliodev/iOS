@@ -42,7 +42,7 @@
 
     //Check if cache exists and is up to date
     //Check if filenumber.txt exists
-    NSString * fileNumberUrl = [WAUtilities urlOfCacheFileWithName:@"filenumber.txt" forDocumentWithUrlString:urlString];
+    NSString * fileNumberUrl = [urlString urlOfCacheFileWithName:@"filenumber.txt"];
     NSString * fileNumberPath = [[NSBundle mainBundle] pathOfFileWithUrl:fileNumberUrl];
     NSString * docPath = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
     NSNumber * fileNumber = [[[NSFileManager defaultManager] attributesOfItemAtPath:docPath error:NULL]objectForKey:NSFileSystemFileNumber];
@@ -164,7 +164,7 @@
 	for (int i = 1; i <=numberOfPages; i++) 
 	{
         NSString *fileName = [NSString stringWithFormat:@"page%isize%i.jpg",i,size];
-        NSString *cacheUrl = [WAUtilities urlOfCacheFileWithName:fileName forDocumentWithUrlString:urlString]; 
+        NSString *cacheUrl = [urlString urlOfCacheFileWithName:fileName];
         NSString * cachePath = [[NSBundle mainBundle] pathOfFileWithUrl:cacheUrl];
         if (!cachePath)[self addDrawPageOperationForPage:i atSize:size withPriority:NSOperationQueuePriorityNormal];		
 	}
@@ -173,7 +173,7 @@
 
 - (NSString*) getImageUrlStringForPage:(int)page atSize:(PDFPageViewSize)size{
 	NSString *fileName = [NSString stringWithFormat:@"page%isize%i.jpg",page,size];
-	NSString *cacheUrl = [WAUtilities urlOfCacheFileWithName:fileName forDocumentWithUrlString:urlString]; 
+	NSString *cacheUrl = [urlString urlOfCacheFileWithName:fileName];
 	NSString * cachePath = [[NSBundle mainBundle] pathOfFileWithUrl:cacheUrl];
     if (cachePath){
         return cachePath;
@@ -741,7 +741,7 @@
 
 - (void) startCacheOperations{
     //First, we need to erase the temp cache directory that might still exist due to background operations
-    NSString * tempCacheDirUrlString = [WAUtilities urlOfCacheFileWithName:@"" forDocumentWithUrlString:urlString];
+    NSString * tempCacheDirUrlString = [urlString urlOfCacheFileWithName:@""];
     [[NSFileManager defaultManager]removeItemAtPath:[[NSBundle mainBundle] pathOfFileWithUrl:tempCacheDirUrlString] error:nil];//Delete existing cache dir
     //Now, we can start caching
     [self generateCacheForAllPagesAtSize:PDFPageViewSizeBig];
@@ -839,7 +839,7 @@
 
 - (CGFloat) cacheProgress{
     //Count the number of generated cache files
-    NSString * tempCacheDirUrlString = [WAUtilities urlOfCacheFileWithName:@"" forDocumentWithUrlString:urlString];
+    NSString * tempCacheDirUrlString = [urlString urlOfCacheFileWithName:@""];
     NSString * tempPath = [[NSBundle mainBundle] pathOfFileWithUrl:tempCacheDirUrlString];
     int nFiles = [[[NSFileManager defaultManager]contentsOfDirectoryAtPath:tempPath error:nil] count];
     //SLog(@"nFiles:%i",nFiles);

@@ -41,7 +41,6 @@
 + (void) storeFileWithUrlString:(NSString*)urlString withFileAtPath:(NSString*)tempFilePath;
 + (void) clearTempDirectory;
 + (void) deleteCorruptedResourceWithPath:(NSString*)path ForMainFileWithUrlString:(NSString*)urlString;
-+ (NSString*) urlOfCacheFileWithName:(NSString*)fileName forDocumentWithUrlString:(NSString*)urlString;
 + (BOOL) isBigScreen;
 + (BOOL) isScreenHigherThan500;
 + (void) resizeNibView:(NSString*) nibName defaultNib:(NSString*) defaultNibName inView:(UIView*) containingView;

@@ -205,7 +205,7 @@
         }
         
         //Delete cache
-        NSString * cacheUrlString = [WAUtilities urlOfCacheFileWithName:@"" forDocumentWithUrlString:fileUrl];
+        NSString * cacheUrlString = [fileUrl urlOfCacheFileWithName:@""];
         cacheUrlString = [cacheUrlString substringToIndex:[cacheUrlString length]-1];//Remove final "/"
         NSString * cachePath = [[NSBundle mainBundle] pathOfFileWithUrl:cacheUrlString];
         [[NSFileManager defaultManager]removeItemAtPath:cachePath error:NULL];

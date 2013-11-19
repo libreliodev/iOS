@@ -439,10 +439,10 @@
         [WAUtilities storeFileWithUrlString:urlString withFileAtPath:[NSString stringWithFormat:@"%@/TempWa/%@",dirPath,[urlString noArgsPartOfUrlString]]];//Move the main file
         
         //Store generated cache files
-        NSString * cacheDirUrlString = [WAUtilities urlOfCacheFileWithName:@"" forDocumentWithUrlString:urlString];
+        NSString * cacheDirUrlString = [urlString urlOfCacheFileWithName:@""];
         cacheDirUrlString = [cacheDirUrlString substringToIndex:[cacheDirUrlString length]-1];//Remove final "/"
         [[NSFileManager defaultManager]removeItemAtPath:[[NSBundle mainBundle] pathOfFileWithUrl:cacheDirUrlString] error:nil];//Delete existing cache dir
-        NSString * tempCacheDirUrlString = [WAUtilities urlOfCacheFileWithName:@"" forDocumentWithUrlString:[NSString stringWithFormat:@"TempWa/%@", urlString]];
+        NSString * tempCacheDirUrlString = [[NSString stringWithFormat:@"TempWa/%@", urlString] urlOfCacheFileWithName:@""];
         [WAUtilities storeFileWithUrlString:cacheDirUrlString withFileAtPath:[NSString stringWithFormat:@"%@/%@",dirPath,tempCacheDirUrlString]];//Move the cache dir
         
         //Loop through resources
@@ -474,7 +474,7 @@
             NSString * noUnderscorePlistPath = [WAUtilities urlByChangingExtensionOfUrlString:noUnderscoreUrlPath toSuffix:@"_metadata.plist"];
             [[NSFileManager defaultManager]removeItemAtPath:noUnderscorePlistPath error:NULL];//delete the metadata plist
             //Delete cache
-            NSString * cacheUrlString = [WAUtilities urlOfCacheFileWithName:@"" forDocumentWithUrlString:noUnderscoreUrlString];
+            NSString * cacheUrlString = [noUnderscoreUrlString urlOfCacheFileWithName:@""];
             cacheUrlString = [cacheUrlString substringToIndex:[cacheUrlString length]-1];//Remove final "/"
             NSString * cachePath = [[NSBundle mainBundle] pathOfFileWithUrl:cacheUrlString];
             [[NSFileManager defaultManager]removeItemAtPath:cachePath error:NULL];

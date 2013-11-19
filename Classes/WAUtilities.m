@@ -100,13 +100,6 @@
 
 
 
-+ (NSString*) urlOfCacheFileWithName:(NSString*)fileName forDocumentWithUrlString:(NSString*)urlString{
-	NSString * urlWithoutArg = [urlString noArgsPartOfUrlString];
-	NSString * pdfNameWithoutExt =  [[urlWithoutArg lastPathComponent] stringByDeletingPathExtension];
-	NSString *pdfDirUrl = [WAUtilities directoryUrlOfUrlString:urlString];
-	return [NSString stringWithFormat:@"%@/%@_cache/%@",pdfDirUrl,pdfNameWithoutExt,fileName]; 
-	
-}
 
 +(NSArray*) arrayOfImageUrlStringsForUrlString:(NSString *)lastImageUrlString{
     //SLog(@"LastImageUrl:%@",lastImageUrlString);
