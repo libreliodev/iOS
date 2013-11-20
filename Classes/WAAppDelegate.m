@@ -221,6 +221,10 @@
         remoteUrl = [remoteUrl urlByChangingSchemeOfUrlStringToScheme:@"http"];
         urlString = [[remoteUrl lastPathComponent] urlByAddingParameterInUrlStringWithKey:@"waurl" withValue:remoteUrl];
         
+        //Add waupdate=0 so that the document is updated every time it is opened
+        urlString = [urlString urlByAddingParameterInUrlStringWithKey:@"waupdate" withValue:@"0"];//This permits cached file to be refreshed everytime the main document is changed
+
+        
  		
 	}
 	//SLog(@"Will load url:%@",urlString);

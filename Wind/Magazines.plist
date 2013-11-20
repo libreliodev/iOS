@@ -12,11 +12,19 @@
 	</dict>
 	<dict>
 		<key>FileName</key>
-		<string>hotels.kml?warect=full</string>
+		<string>Flipboard.zip?waurl=http%3A%2F%2Fmacep6.local%2Ftests%2FFlipboard.zip</string>
 		<key>Subtitle</key>
-		<string>Septembre Octobre 2012</string>
+		<string></string>
 		<key>Title</key>
-		<string>Wind 369</string>
+		<string>Flipboard Layout</string>
+	</dict>
+	<dict>
+		<key>FileName</key>
+		<string>Horizons_007.pdf?waupdate=0&amp;waurl=http%3A%2F%2Fmacep6.local%2Ftests%2FHorizons_007%2FHorizons_007.pdf</string>
+		<key>Subtitle</key>
+		<string></string>
+		<key>Title</key>
+		<string>Horizons</string>
 	</dict>
 	<dict>
 		<key>FileName</key>

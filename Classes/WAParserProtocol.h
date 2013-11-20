@@ -17,6 +17,8 @@ typedef enum {
     ParserTypeAtom=8,
     ParserTypeLocal=9,
     ParserTypeOAM=10,
+    ParserTypeZip=11,
+
 
     
     

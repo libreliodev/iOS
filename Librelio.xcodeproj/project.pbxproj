@@ -594,6 +594,9 @@
 		14E1A2071386794100111E6C /* WAExternalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E1A2031386794100111E6C /* WAExternalView.m */; };
 		14E1B95B1537F6D700153BA5 /* WASharePopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E1B95A1537F6D700153BA5 /* WASharePopover.m */; };
 		14E1B9661538157700153BA5 /* WAShareActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E1B9651538157700153BA5 /* WAShareActionSheet.m */; };
+		14E42D49183BC5590062825A /* WAZippedHtmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E42D48183BC5590062825A /* WAZippedHtmlParser.m */; };
+		14E42D4A183BC5590062825A /* WAZippedHtmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E42D48183BC5590062825A /* WAZippedHtmlParser.m */; };
+		14E42D4B183BC5590062825A /* WAZippedHtmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E42D48183BC5590062825A /* WAZippedHtmlParser.m */; };
 		14EC9244145C32EE00FB25A1 /* WABarButtonItemWithLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EC9240145C32EE00FB25A1 /* WABarButtonItemWithLink.m */; };
 		14EC9260145C337100FB25A1 /* WATransparentToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EC925C145C337100FB25A1 /* WATransparentToolbar.m */; };
 		14F1CAFC1315AB6C008B7873 /* WAHTMLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F1CAEC1315AB6C008B7873 /* WAHTMLView.m */; };
@@ -657,7 +660,7 @@
 		1425322713606BF200F6BB3D /* WATabTabParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WATabTabParser.m; sourceTree = "<group>"; };
 		1425323613606C7D00F6BB3D /* WAParserProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WAParserProtocol.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		1425324913606F9000F6BB3D /* WAFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAFileManager.h; sourceTree = "<group>"; };
-		1425324A13606F9000F6BB3D /* WAFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAFileManager.m; sourceTree = "<group>"; };
+		1425324A13606F9000F6BB3D /* WAFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAFileManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		142533121361BEFE00F6BB3D /* WAFileManagerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WAFileManagerCell.xib; sourceTree = "<group>"; };
 		1425CA7D124D125200E16625 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		1425CAB4124D1AB200E16625 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -764,7 +767,7 @@
 		146F6A9A154E52AA0044821A /* WASearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WASearchView.m; sourceTree = "<group>"; };
 		146F6A9B154E52AA0044821A /* WASearchListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WASearchListController.h; sourceTree = "<group>"; };
 		146F6A9C154E52AA0044821A /* WASearchListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WASearchListController.m; sourceTree = "<group>"; };
-		14784D2318375C8200605C51 /* WAOAMParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAOAMParser.m; sourceTree = "<group>"; };
+		14784D2318375C8200605C51 /* WAOAMParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAOAMParser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		14784D2418375C8200605C51 /* WAOAMParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAOAMParser.h; sourceTree = "<group>"; };
 		147AEBC113799B6B00E209A9 /* WALabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WALabelView.h; sourceTree = "<group>"; };
 		147AEBC213799B6B00E209A9 /* WALabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WALabelView.m; sourceTree = "<group>"; };
@@ -773,7 +776,7 @@
 		147AEC7B137A3C5F00E209A9 /* WAFileManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAFileManagerCell.h; sourceTree = "<group>"; };
 		147AEC7C137A3C5F00E209A9 /* WAFileManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAFileManagerCell.m; sourceTree = "<group>"; };
 		147B34BB146AB0970002CC17 /* NSBundle+WAAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+WAAdditions.h"; sourceTree = "<group>"; };
-		147B34BC146AB0980002CC17 /* NSBundle+WAAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+WAAdditions.m"; sourceTree = "<group>"; };
+		147B34BC146AB0980002CC17 /* NSBundle+WAAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSBundle+WAAdditions.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		147B34D8146C13BA0002CC17 /* WASQLiteParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WASQLiteParser.h; sourceTree = "<group>"; };
 		147B34D9146C13BA0002CC17 /* WASQLiteParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WASQLiteParser.m; sourceTree = "<group>"; };
 		147B34F6146C1B820002CC17 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -926,6 +929,8 @@
 		14E3F4E31266F0FE00F24CD6 /* WAPaymentTransactionObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAPaymentTransactionObserver.m; sourceTree = "<group>"; };
 		14E3F4E41266F0FE00F24CD6 /* WAPaymentTransactionObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAPaymentTransactionObserver.h; sourceTree = "<group>"; };
 		14E3F4FE1266F33600F24CD6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		14E42D47183BC5590062825A /* WAZippedHtmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAZippedHtmlParser.h; sourceTree = "<group>"; };
+		14E42D48183BC5590062825A /* WAZippedHtmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAZippedHtmlParser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		14EAEDDE1281C026000E7B74 /* WARSSItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WARSSItemCell.h; sourceTree = "<group>"; };
 		14EAEDDF1281C026000E7B74 /* WARSSItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WARSSItemCell.m; sourceTree = "<group>"; };
 		14EC923F145C32EE00FB25A1 /* WABarButtonItemWithLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WABarButtonItemWithLink.h; sourceTree = "<group>"; };
@@ -1161,6 +1166,7 @@
 				1409D5681371AEBF00703B22 /* Plist */,
 				1425322313606B9500F6BB3D /* TabTab */,
 				14443FBF15465CDC00F1D227 /* HTML */,
+				14E42D46183BC5270062825A /* ZippedHtml */,
 				14784D2218375C1800605C51 /* OAM */,
 				144B163F1365BE3A00C47C92 /* KML */,
 				14443FBD15465CD200F1D227 /* RSS */,
@@ -1776,6 +1782,15 @@
 			name = "External Module";
 			sourceTree = "<group>";
 		};
+		14E42D46183BC5270062825A /* ZippedHtml */ = {
+			isa = PBXGroup;
+			children = (
+				14E42D47183BC5590062825A /* WAZippedHtmlParser.h */,
+				14E42D48183BC5590062825A /* WAZippedHtmlParser.m */,
+			);
+			name = ZippedHtml;
+			sourceTree = "<group>";
+		};
 		14FC1D73144DC65F006D75AD /* Singletons */ = {
 			isa = PBXGroup;
 			children = (
@@ -2275,6 +2290,7 @@
 				148BD6AD12E9C23600930FC5 /* WARSSItemCell.m in Sources */,
 				148BD6AE12E9C23600930FC5 /* WAOperationsManager.m in Sources */,
 				148BD6AF12E9C23600930FC5 /* WARSSBackViewController.m in Sources */,
+				14E42D49183BC5590062825A /* WAZippedHtmlParser.m in Sources */,
 				142DB0661836A30D0045DFD5 /* SSZipArchive.m in Sources */,
 				148BD6B012E9C23600930FC5 /* WARSSParser.m in Sources */,
 				148BD6B112E9C23600930FC5 /* WAPDFParserView.m in Sources */,
@@ -2388,6 +2404,7 @@
 				149086CB17E375D700943DD2 /* WAGridView.m in Sources */,
 				149086CC17E375D700943DD2 /* WAGridCell.m in Sources */,
 				14A309AB18378F1000A519DD /* mztools.c in Sources */,
+				14E42D4B183BC5590062825A /* WAZippedHtmlParser.m in Sources */,
 				149086CD17E375D700943DD2 /* WARSSItemCell.m in Sources */,
 				149086CE17E375D700943DD2 /* WAOperationsManager.m in Sources */,
 				149086CF17E375D700943DD2 /* WARSSBackViewController.m in Sources */,
@@ -2501,6 +2518,7 @@
 				14DB11AB164BEDC3001FE76B /* WAGridCell.m in Sources */,
 				14DB11AC164BEDC3001FE76B /* WARSSItemCell.m in Sources */,
 				14A309A618378F0F00A519DD /* mztools.c in Sources */,
+				14E42D4A183BC5590062825A /* WAZippedHtmlParser.m in Sources */,
 				14DB11AD164BEDC3001FE76B /* WAOperationsManager.m in Sources */,
 				14DB11AE164BEDC3001FE76B /* WARSSBackViewController.m in Sources */,
 				14DB11AF164BEDC3001FE76B /* WARSSParser.m in Sources */,

@@ -435,7 +435,7 @@
 
          //Store all temp files: main file, cache, and resources
         NSString * dirPath = [WAUtilities cacheFolderPath];
-        //SLog(@"Will move %@ to %@",[NSString stringWithFormat:@"%@/TempWa/%@",dirPath,[urlString noArgsPartOfUrlString]], urlString);
+        //SLog(@"Will move main %@ to %@",[NSString stringWithFormat:@"%@/TempWa/%@",dirPath,[urlString noArgsPartOfUrlString]], urlString);
         [WAUtilities storeFileWithUrlString:urlString withFileAtPath:[NSString stringWithFormat:@"%@/TempWa/%@",dirPath,[urlString noArgsPartOfUrlString]]];//Move the main file
         
         //Store generated cache files
@@ -443,6 +443,7 @@
         cacheDirUrlString = [cacheDirUrlString substringToIndex:[cacheDirUrlString length]-1];//Remove final "/"
         [[NSFileManager defaultManager]removeItemAtPath:[[NSBundle mainBundle] pathOfFileWithUrl:cacheDirUrlString] error:nil];//Delete existing cache dir
         NSString * tempCacheDirUrlString = [[NSString stringWithFormat:@"TempWa/%@", urlString] urlOfCacheFileWithName:@""];
+        //SLog(@"Will move cache %@ to %@",[NSString stringWithFormat:@"%@/%@",dirPath,tempCacheDirUrlString], tempCacheDirUrlString);
         [WAUtilities storeFileWithUrlString:cacheDirUrlString withFileAtPath:[NSString stringWithFormat:@"%@/%@",dirPath,tempCacheDirUrlString]];//Move the cache dir
         
         //Loop through resources

@@ -53,12 +53,12 @@
  	//SLog(@"Drawing rect for  page %i at position x %f position y %f  with scale %f height %f bias %i view %@ contentScaleFactor %f",page,rect.origin.x, rect.origin.y,scale,self.superview.frame.size.height,(int)[(CATiledLayer *)[self layer]levelsOfDetailBias],self,self.contentScaleFactor) ;
 	CGRect tileRect = CGRectMake(rect.origin.x*scale, rect.origin.y*scale, rect.size.width*scale, rect.size.height*scale);
 	CGRect imageRect = CGRectMake(0, 0, self.superview.frame.size.width*scale, self.superview.frame.size.height*scale);
-	UIImage * tileImage = [pdfDocument drawTileForPage:page withTileRect:tileRect withImageRect:imageRect];
-	//NSData * imgData = UIImageJPEGRepresentation(tileImage,0.7);
-
-	//[LibrelioUtilities storeCacheFileForDocument:@"test" forPage:0 forSize:(int)rect.origin.x*scale*10000+rect.origin.y*scale withData:imgData];
-	[tileImage drawInRect:rect];
-	
+    
+        UIImage * tileImage = [pdfDocument drawTileForPage:page withTileRect:tileRect withImageRect:imageRect];
+        //NSData * imgData = UIImageJPEGRepresentation(tileImage,0.7);
+        
+        //[LibrelioUtilities storeCacheFileForDocument:@"test" forPage:0 forSize:(int)rect.origin.x*scale*10000+rect.origin.y*scale withData:imgData];
+        [tileImage drawInRect:rect];
 	
 
 }

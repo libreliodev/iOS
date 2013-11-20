@@ -65,7 +65,7 @@
                 NSString * tempUrl = [NSString stringWithFormat:@"/%@",[file lastPathComponent]];
                 tempUrl = [tempUrl urlByAddingParameterInUrlStringWithKey:@"waurl" withValue:localUrl];
 
-                tempUrl = [tempUrl urlByAddingParameterInUrlStringWithKey:@"waupdate" withValue:@"0"];//This permits cached file to be refreshed everytime the main document is changed
+                //tempUrl = [tempUrl urlByAddingParameterInUrlStringWithKey:@"waupdate" withValue:@"0"];//This permits cached file to be refreshed everytime the main document is changed
                 
                 //SLog(@"Added local file:%@",tempUrl);
 				NSDictionary * tempDir = [NSDictionary dictionaryWithObjectsAndKeys:tempUrl,@"FileUrl",nil];
@@ -149,6 +149,7 @@
 		}
 		case DataColDetailLink:{
 			ret = tempFileUrl;
+            //SLog(@"dtailLink:%@",ret);
 			break;
 		}
 		case DataColDate:{
@@ -195,7 +196,7 @@
         
     }
     
-    //Check if the main has been deleted thanks to Newsstand; otherwise, delete everything "manuall"
+    //Check if the main has been deleted thanks to Newsstand; otherwise, delete everything "manually"
     if ([[NSBundle mainBundle] pathOfFileWithUrl:fileUrl])
     {
         //Delete resources

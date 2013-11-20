@@ -133,7 +133,7 @@
         //Decompress the file
         NSString *zipPath = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
         NSString *destinationPath = [unzippedFolderUrlString pathOfStorageForUrlString];
-        NSLog(@"zip:%@, unzip:%@",zipPath,destinationPath);
+        //SLog(@"zip:%@, unzip:%@",zipPath,destinationPath);
         [SSZipArchive unzipFileAtPath:zipPath toDestination:destinationPath];
         
         //Replace it with a dictionary

@@ -237,7 +237,7 @@
 }
 
 -   (NSString *) urlOfUnzippedFolder{
-    //If there is a waroot arg, use it, otherwise use the url
+    //If there is a waroot arg, use it
     NSString * baseUrl = [self valueOfParameterInUrlStringforKey:@"waroot"];
     if (!baseUrl) baseUrl = self;
     NSString * fileName = [self nameOfFileWithoutExtensionOfUrlString];
@@ -403,6 +403,7 @@
 	else if ([extension isEqualToString:@"atom"]) return ParserTypeAtom;
 	else if ([extension isEqualToString:@"local"]) return ParserTypeLocal;
 	else if ([extension isEqualToString:@"oam"]) return ParserTypeOAM;
+	else if ([extension isEqualToString:@"zip"]) return ParserTypeZip;
 	else return ParserTypeHTML;
 	
 }
@@ -446,6 +447,10 @@
 		}
         case ParserTypeOAM:{
 			ret = @"WAOAMParser";
+			break;
+		}
+        case ParserTypeZip:{
+			ret = @"WAZippedHtmlParser";
 			break;
 		}
 

@@ -305,11 +305,6 @@
     [vc.rightToolBar setItems:nil];
 
     
-    //Add refresh button if waupdate parameter was present
-    NSString * mnString = [urlString valueOfParameterInUrlStringforKey:@"waupdate"];
-    if (mnString){
-        [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"refresh" orString:@"" andLink:@"refresh://localhost/nomatter.zzz"];
-    }
  
     //Add subscribe button if relevant
     //First, check if the app offers subscriptions
@@ -329,7 +324,7 @@
             }
             else{
                  //Add button
-                NSString * subscriptionAndSpaces = [NSString stringWithFormat:@"%@  ",NSLocalizedString(@"Subscription",@"" )];
+                NSString * subscriptionAndSpaces = [NSString stringWithFormat:@"%@ ",NSLocalizedString(@"Subscription",@"" )];
                 [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"" orString:subscriptionAndSpaces andLink:@"buy://localhost/wanodownload.pdf"];
             }
 
@@ -337,6 +332,14 @@
             
             
         }
+        //Add refresh button if waupdate parameter was present
+        NSString * mnString = [urlString valueOfParameterInUrlStringforKey:@"waupdate"];
+        if (mnString){
+            [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"refresh" orString:@"" andLink:@"refresh://localhost/nomatter.zzz"];
+        }
+        //Add empty button on the right for spacing
+        [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"" orString:@"  " andLink:@""];
+       
 
  
     }

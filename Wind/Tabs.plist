@@ -4,7 +4,7 @@
 <array>
 	<dict>
 		<key>FileName</key>
-		<string>Magazines.plist</string>
+		<string>Magazines.plist?waupdate=300000</string>
 		<key>Icon</key>
 		<string>download.png</string>
 		<key>Title</key>

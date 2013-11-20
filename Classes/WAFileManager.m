@@ -125,6 +125,7 @@
 	
 	WAModuleViewController * loadingViewController = [[WAModuleViewController alloc]init];
 	loadingViewController.moduleUrlString= [WAUtilities absoluteUrlOfRelativeUrl:newUrlString relativeToUrl:urlString] ;
+    //SLog(@"Should load %@",[WAUtilities absoluteUrlOfRelativeUrl:newUrlString relativeToUrl:urlString]);
 	loadingViewController.initialViewController= self.currentViewController;
 	loadingViewController.containingView= self;
 	loadingViewController.containingRect= CGRectZero;

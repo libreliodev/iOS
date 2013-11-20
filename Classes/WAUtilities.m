@@ -63,6 +63,9 @@
 		//relativeURL is starting with / or with www or with mailto or tel or http without local host: it is already an absolute URL
 		return relativeUrl;
 	}
+    else if ([baseUrl hasPrefix:@"file:"]){
+        return relativeUrl;
+    }
 	else{
 		NSString *dir = [self directoryUrlOfUrlString:baseUrl];
 		NSString * ret = [NSString stringWithFormat:@"%@/%@",dir,urlWithoutLocalHost] ;

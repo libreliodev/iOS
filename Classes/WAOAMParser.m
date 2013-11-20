@@ -74,7 +74,7 @@
             //Load the html string
             NSString * htmlUrl = [NSString stringWithFormat:@"%@/Assets/%@.html",unzippedFolderUrlString,fileName];
             NSString * htmlPath = [[NSBundle mainBundle] pathOfFileWithUrl:htmlUrl];
-            NSLog(@"Htmlpath:%@",htmlPath);
+            //SLog(@"Htmlpath:%@",htmlPath);
             NSString * htmlString = [NSString stringWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
 
             //Get the width of the animation
