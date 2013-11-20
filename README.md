@@ -1,21 +1,27 @@
-Customization
-==
+## About this app
 
-The customization is done by adding a new target. In order to do so:
+This free customizable app is intended mainly for publishers (especially magazine publishers) and marketers. It is also available on [Android](https://github.com/libreliodev/Android) and  [Windows 8](https://github.com/libreliodev/windows8).
 
-1- create a directory with all specific resources for the app. This should include a file called application.plist, and specific pngs  listed at http://www.librelio.com/how-it-works/customization.
+If you need to publish dynamic and/or paid contents, you need to set up your own server and develop your own code. You can also opt for Librelio's [paid plans](http://www.librelio.com/pricing).
 
-2- create a new target by duplicating the "empty" target. The empty target contains all common resources and classes required.
+Examples of customized apps published on the app stores are available on www.librelio.com . A good example of iOS app is the [Wind magazine app](https://itunes.apple.com/fr/app/wind-magazine/id433594605?mt=8). 
 
-3- add the application resources directory to the new target
 
-<img alt="build" src="http://www.librelio.com/images/readme/readme0.png" width="800">
+## License
+This project is free software: you can redistribute it and/or modify it under the terms of the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
-4- in the target build settings, under Packaging, change info.plist File, and change Product Name
+This project is Copyright 20012-2013 WidgetAvenue - Librelio, except included libraries:
+- Copyright (c) 2010-2011, Kobo Inc., Inc for AQGridView library
+- Copyright (c) 2008 - 2010, Manifest Interactive, LLC for EasyAPNS library library
 
-<img alt="build" src="http://www.librelio.com/images/readme/readme1.png" width="800">
+The use of the Google Analytics library is governed by the following terms: http://www.google.com/analytics/tos.html
 
-5- in the target summary, enter the Bundle Identifier for your app 
 
-<img alt="build" src="http://www.librelio.com/images/readme/readme2.png" width="800">
 
+## Source code of libraries used
+- AQGridView: https://github.com/AlanQuatermain/AQGridView
+- EasyAPNS library: https://github.com/manifestinteractive/easyapns
+ 
+
+## Documentation
+The documentation is available in the [wiki](https://github.com/libreliodev/iOS/wiki).
