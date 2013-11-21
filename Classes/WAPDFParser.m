@@ -800,7 +800,7 @@
     
     NSArray * annotLinksArray = [self getLinksOnPage:999999];//Conventionally, getLinksOnPage:999999 means getLinks on allPages
     NSMutableArray *tempArray= [NSMutableArray array];
-    //SLog(@"found %i annotations",[tempArray count]);
+    //SLog(@"found %i annotations on %@",[annotLinksArray count],annotLinksArray);
     for (NSDictionary *annotDic in annotLinksArray){
         NSString * resourceUrlString = [annotDic objectForKey:@"URL"];
         if ([resourceUrlString isLocalUrl]) {
@@ -830,7 +830,7 @@
     NSString * imgUrl = [WAUtilities urlByChangingExtensionOfUrlString:noUnderscoreUrlString toSuffix:@".png"];//Change extension to png
     NSString * relativeCoverUrl = [imgUrl lastPathComponent];//Use relative Url
     [tempArray addObject:relativeCoverUrl];
-
+    //SLog(@"found %i annotations on tempArray %@",[tempArray count],tempArray);
     return tempArray;
 
     

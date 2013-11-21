@@ -54,25 +54,23 @@
 }
 
 + (NSString*) absoluteUrlOfRelativeUrl:(NSString*)relativeUrl relativeToUrl:(NSString*)baseUrl{
-    //SLog(@"start absoluteUrlOfRelativeUrl:%@ relativeToUrl:%@",relativeUrl,baseUrl);
+    NSLog(@"start absoluteUrlOfRelativeUrl:%@ relativeToUrl:%@",relativeUrl,baseUrl);
 	NSString * urlWithoutLocalHost = [relativeUrl stringByReplacingOccurrencesOfString:@"http://localhost/" withString:@""];
 	NSRange slashSlashRange = [urlWithoutLocalHost rangeOfString :@"://"];
-	
+	NSString * ret = @"";
 	
 	if (([relativeUrl hasPrefix:@"/"])||([relativeUrl hasPrefix:@"mailto:"])||([relativeUrl hasPrefix:@"tel:"])||([relativeUrl hasPrefix:@"www"])||(slashSlashRange.location != NSNotFound)){
 		//relativeURL is starting with / or with www or with mailto or tel or http without local host: it is already an absolute URL
-		return relativeUrl;
+		ret= relativeUrl;
 	}
-    else if ([baseUrl hasPrefix:@"file:"]){
-        return relativeUrl;
-    }
 	else{
 		NSString *dir = [self directoryUrlOfUrlString:baseUrl];
-		NSString * ret = [NSString stringWithFormat:@"%@/%@",dir,urlWithoutLocalHost] ;
-        //SLog(@"end absoluteUrlOfRelativeUrl:%@",ret);
-		return ret;
-		
+		ret = [NSString stringWithFormat:@"%@/%@",dir,urlWithoutLocalHost] ;
+ 		
 	}
+    NSLog(@"end absoluteUrlOfRelativeUrl:%@",ret);
+    return ret;
+
 }
 
 + (NSString*) urlByChangingExtensionOfUrlString:(NSString*)urlString toSuffix:(NSString*)newSuffix{
@@ -188,9 +186,11 @@
 		else{
 			//Move the file or directory
 			[[NSFileManager defaultManager] removeItemAtPath:newFilePath error:&error2];//Remove existing file at filePath, if there is one
-			//if (error2) SLog(@"Error:%@ when removing file at path:%@",[error2 localizedDescription],filePath);
+			//if (error2) SLog(@"Error:%@ when removing file at path:%@",[error2 localizedDescription],newFilePath);
 			[[NSFileManager defaultManager] moveItemAtPath:tempFilePath toPath:newFilePath error:&error];
 			//if (error) SLog(@"Error:%@ with file at path:%@",error,tempFilePath);
+            //else SLog(@"moved from %@ to %@",tempFilePath,newFilePath);
+            
         }
 
 		

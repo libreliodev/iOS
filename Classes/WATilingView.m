@@ -41,24 +41,28 @@
 
 
 - (void)drawRect:(CGRect)rect {
- 	
-	CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    // get the scale from the context by getting the current transform matrix, then asking for
-    // its "a" component, which is one of the two scale components. We could also ask for "d".
-    // This assumes (safely) that the view is being scaled equally in both dimensions.
-    CGFloat scale = CGContextGetCTM(context).a;
-    
-    
- 	//SLog(@"Drawing rect for  page %i at position x %f position y %f  with scale %f height %f bias %i view %@ contentScaleFactor %f",page,rect.origin.x, rect.origin.y,scale,self.superview.frame.size.height,(int)[(CATiledLayer *)[self layer]levelsOfDetailBias],self,self.contentScaleFactor) ;
-	CGRect tileRect = CGRectMake(rect.origin.x*scale, rect.origin.y*scale, rect.size.width*scale, rect.size.height*scale);
-	CGRect imageRect = CGRectMake(0, 0, self.superview.frame.size.width*scale, self.superview.frame.size.height*scale);
-    
+    //Hack: sometimes, self.superview is deallocated, but not yet self, which crashes the app
+    if (self.superview){
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        // get the scale from the context by getting the current transform matrix, then asking for
+        // its "a" component, which is one of the two scale components. We could also ask for "d".
+        // This assumes (safely) that the view is being scaled equally in both dimensions.
+        CGFloat scale = CGContextGetCTM(context).a;
+        
+        
+        //SLog(@"Drawing rect for  page %i at position x %f position y %f  with scale %f height %f bias %i view %@ contentScaleFactor %f",page,rect.origin.x, rect.origin.y,scale,self.superview.frame.size.height,(int)[(CATiledLayer *)[self layer]levelsOfDetailBias],self,self.contentScaleFactor) ;
+        CGRect tileRect = CGRectMake(rect.origin.x*scale, rect.origin.y*scale, rect.size.width*scale, rect.size.height*scale);
+        CGRect imageRect = CGRectMake(0, 0, self.superview.frame.size.width*scale, self.superview.frame.size.height*scale);
+        
         UIImage * tileImage = [pdfDocument drawTileForPage:page withTileRect:tileRect withImageRect:imageRect];
         //NSData * imgData = UIImageJPEGRepresentation(tileImage,0.7);
         
         //[LibrelioUtilities storeCacheFileForDocument:@"test" forPage:0 forSize:(int)rect.origin.x*scale*10000+rect.origin.y*scale withData:imgData];
         [tileImage drawInRect:rect];
+
+        
+    }
 	
 
 }

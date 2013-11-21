@@ -47,6 +47,7 @@
 /** @brief Returns url of root module
  **/
 - (NSString*) urlStringOfRootModule {
+    //SLog(@"Will return urlStringOfRootModule");
     WAModuleViewController * curModuleViewController = (WAModuleViewController *) [self traverseResponderChainForUIViewController];
     UIView <WAModuleProtocol>*  rootModuleView = curModuleViewController.moduleView;
     return (rootModuleView.urlString);

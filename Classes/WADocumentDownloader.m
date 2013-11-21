@@ -435,7 +435,7 @@
 
          //Store all temp files: main file, cache, and resources
         NSString * dirPath = [WAUtilities cacheFolderPath];
-        //SLog(@"Will move main %@ to %@",[NSString stringWithFormat:@"%@/TempWa/%@",dirPath,[urlString noArgsPartOfUrlString]], urlString);
+        NSLog(@"Will move main %@ to %@",[NSString stringWithFormat:@"%@/TempWa/%@",dirPath,[urlString noArgsPartOfUrlString]], urlString);
         [WAUtilities storeFileWithUrlString:urlString withFileAtPath:[NSString stringWithFormat:@"%@/TempWa/%@",dirPath,[urlString noArgsPartOfUrlString]]];//Move the main file
         
         //Store generated cache files
@@ -450,7 +450,7 @@
         for (NSString * loopedUrlString in nnewResourcesArray){
             loopedUrlString = [loopedUrlString noArgsPartOfUrlString];//Remove the args
             NSString *tempUrlString = [NSString stringWithFormat:@"%@/TempWa/%@", dirPath,loopedUrlString];
-            //SLog(@"Will move %@ to %@",tempUrlString, loopedUrlString);
+            NSLog(@"Will move %@ to %@",tempUrlString, loopedUrlString);
             [WAUtilities storeFileWithUrlString:loopedUrlString withFileAtPath:tempUrlString];
         }
         
