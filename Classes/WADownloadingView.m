@@ -245,7 +245,7 @@
         moduleViewController.containingView= self.superview.superview;
         moduleViewController.containingRect= self.superview.frame;
         [moduleViewController loadModuleView];
-        NSLog(@"Download succeeded for url:%@",self.urlString );
+        //SLog(@"Download succeeded for url:%@",self.urlString );
 
         //SLog(@"Will load module view and check update");
         //[moduleViewController loadModuleViewAndCheckUpdate];Don't check update immediately, it crashes the app the 2nd time

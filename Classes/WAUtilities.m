@@ -54,7 +54,7 @@
 }
 
 + (NSString*) absoluteUrlOfRelativeUrl:(NSString*)relativeUrl relativeToUrl:(NSString*)baseUrl{
-    NSLog(@"start absoluteUrlOfRelativeUrl:%@ relativeToUrl:%@",relativeUrl,baseUrl);
+    //SLog(@"start absoluteUrlOfRelativeUrl:%@ relativeToUrl:%@",relativeUrl,baseUrl);
 	NSString * urlWithoutLocalHost = [relativeUrl stringByReplacingOccurrencesOfString:@"http://localhost/" withString:@""];
 	NSRange slashSlashRange = [urlWithoutLocalHost rangeOfString :@"://"];
 	NSString * ret = @"";
@@ -68,7 +68,7 @@
 		ret = [NSString stringWithFormat:@"%@/%@",dir,urlWithoutLocalHost] ;
  		
 	}
-    NSLog(@"end absoluteUrlOfRelativeUrl:%@",ret);
+    //SLog(@"end absoluteUrlOfRelativeUrl:%@",ret);
     return ret;
 
 }
