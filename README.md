@@ -11,7 +11,6 @@ Examples of customized apps published on the app stores are available on www.lib
 This project is free software: you can redistribute it and/or modify it under the terms of the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 This project is Copyright 20012-2013 WidgetAvenue - Librelio, except included libraries:
-- Copyright (c) 2010-2011, Kobo Inc., Inc for AQGridView library
 - Copyright (c) 2008 - 2010, Manifest Interactive, LLC for EasyAPNS library library
 
 The use of the Google Analytics library is governed by the following terms: http://www.google.com/analytics/tos.html
@@ -19,7 +18,6 @@ The use of the Google Analytics library is governed by the following terms: http
 
 
 ## Source code of libraries used
-- AQGridView: https://github.com/AlanQuatermain/AQGridView
 - EasyAPNS library: https://github.com/manifestinteractive/easyapns
  
 
