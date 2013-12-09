@@ -30,6 +30,7 @@
     }
     headerDic = [[NSDictionary alloc ] initWithDictionary:[[NSDictionary dictionaryWithContentsOfFile:plistPath] valueForKey:@"Headers"]];
 	
+ 
     
         
 
@@ -255,7 +256,7 @@
 
 - (int)countSearchResultsForQueryDic:(NSDictionary*)queryDic{
     
-    return 0;
+    return [self countData];//More general case to be implemented in the future
 }
 
 - (NSString*) getDataAtRow:(int)row forQueryDic:(NSDictionary*)queryDic forDataCol:(DataCol)dataCol{

@@ -9,23 +9,12 @@
 
 @class WAGridCell;
 
-@interface WAGridView : UIView <AQGridViewDataSource, AQGridViewDelegate, UIGestureRecognizerDelegate,WAModuleProtocol>
+@interface WAGridView : UITableView <UITableViewDelegate,UITableViewDataSource, UIGestureRecognizerDelegate,WAModuleProtocol>
 {
-    AQGridView * _gridView;
-    
-    NSUInteger _emptyCellIndex;
-    
-    NSUInteger _dragOriginIndex;
-    CGPoint _dragOriginCellOrigin;
-    
-    WAGridCell * _draggingCell;
-
 	NSString *urlString;
-	
-
-	
 	UIViewController* currentViewController;
 	NSObject <WAParserProtocol> * parser;
+    CGSize cellNibSize;
 	
 	
 }
@@ -34,9 +23,6 @@
 
 
 
-- (CGSize) getCellInnerSize;
-- (CGSize) getCellOuterSize;
-- (UIEdgeInsets) getHorizontalInsets;
 
 - (void) initParser;
 
@@ -46,7 +32,7 @@
 
 - (void) didSucceedResourceDownloadWithNotification:(NSNotification *) notification;
 
-
+-(int)numberofColumns;
 
 @end
 

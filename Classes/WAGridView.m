@@ -4,15 +4,14 @@
 #import "AQGridView.h"
 #import "WAGridCell.h"
 #import "WAUtilities.h"
-#import "WAPDFParser.h"
 #import "WAModuleViewController.h"
-#import "WAPListParser.h"
-#import "WALocalParser.h"
 #import "UIView+WAModuleView.m"
 #import "NSString+WAURLString.h"
 #import "NSBundle+WAAdditions.h"
 #import "GAI.h"
 
+#define kHorizontalMargin 8
+#define kVerticalMargin 2
 
 
 @implementation WAGridView
@@ -36,19 +35,23 @@
 
 - (void) setUrlString: (NSString *) theString
 {
-	//SLog(@"Will set urlString in GridView for %@ -",theString);
+	NSLog(@"Will set urlString in GridView for %@ -",theString);
     if (!urlString){
 		urlString = [[NSString alloc]initWithString: theString];
 		//Initial setup is needed
-		_emptyCellIndex = NSNotFound;
+
+
+        UIView * nibView = [UIView getNibView:[urlString nameOfFileWithoutExtensionOfUrlString] defaultNib:@"WAGridCell" forOrientation:999];
+		cellNibSize = nibView.frame.size;
+        
+        self.delegate = self;//UITableView delegate
+        self.dataSource = self;//UITableViewDataSource delegate
+        self.rowHeight = cellNibSize.height+2*kVerticalMargin;
+        self.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+
 		
-		self.autoresizesSubviews = YES;
-		self.backgroundColor = [UIColor blackColor];
 		
-		
-		
-		
-		// background goes in first
 		//Test if a background image was provided
 		NSString *bgUrlString = [WAUtilities urlByChangingExtensionOfUrlString:urlString toSuffix:@"_background.png"];
 		NSString *bgPath = [[NSBundle mainBundle] pathOfFileWithUrl:bgUrlString];
@@ -57,53 +60,26 @@
 			background.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 			background.contentMode = UIViewContentModeScaleAspectFill;
 			background.image = [UIImage imageWithContentsOfFile:bgPath];
-			[self addSubview: background];
+			self.backgroundView = background;
 			[background release];
 		}
 		
-		// grid view sits on top of the background image
-		_gridView = [[AQGridView alloc] initWithFrame: self.bounds];
-		_gridView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-		_gridView.backgroundColor = [UIColor clearColor];
-		_gridView.opaque = NO;
-		_gridView.dataSource = self;
-		_gridView.delegate = self;
-		_gridView.scrollEnabled = YES;
-		
-		
-		if ( UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation]) )
-		{
-			_gridView.leftContentInset = [self getHorizontalInsets].left;
-			_gridView.rightContentInset = [self getHorizontalInsets].right;
-		}
-		
-		[self addSubview: _gridView];
-		
-		//Add background to the grid view
-		NSString *tileUrlString = [WAUtilities urlByChangingExtensionOfUrlString:urlString toSuffix:@"_tile.png"];
-		NSString *tilePath = [[NSBundle mainBundle] pathOfFileWithUrl:tileUrlString];
-		if (tilePath){
-			UIImage * patternTile = [UIImage imageWithContentsOfFile:tilePath];
-			UIView * backgroundView = [[UIView alloc] init];
-			backgroundView.backgroundColor = [UIColor colorWithPatternImage: patternTile];
-			_gridView.backgroundView = backgroundView;
-			[backgroundView release];
-		}
-		
-		/*Does not work, kept for future usage
-		 // add our gesture recognizer to the grid view
-		 UILongPressGestureRecognizer * gr = [[UILongPressGestureRecognizer alloc] initWithTarget: self action: @selector(moveActionGestureRecognizerStateChanged:)];
-		 gr.minimumPressDuration = 0.5;
-		 gr.delegate = self;
-		 [_gridView addGestureRecognizer: gr];
-		 [gr release];
-		 */
 		
         //Tracking
         NSString * viewString = [urlString gaScreenForModuleWithName:@"Library" withPage:nil];
-        
         [[[GAI sharedInstance] defaultTracker]sendView:viewString];
-
+        
+        //Refresh
+        //Add refresh button if waupdate parameter was present
+        NSString * mnString = [urlString valueOfParameterInUrlStringforKey:@"waupdate"];
+        if (mnString){
+            
+            UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+            [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+            [self addSubview:refreshControl];
+        }
+        
+        
 		
 		
 		
@@ -113,149 +89,88 @@
 
 	}
 	[self initParser];
-    [_gridView reloadData];
 
 	
 	
 }
 
 - (void) initParser{
-    NSString * extension = [[urlString noArgsPartOfUrlString] pathExtension];
-    if ([extension isEqualToString:@"plist"]) parser = [[WAPListParser alloc]init];
-    else parser = [[WALocalParser alloc]init];//We will need to implement more cases in the future
+    NSString * className = [urlString classNameOfParserOfUrlString];
+    Class theClass = NSClassFromString(className);
+    parser =  (NSObject <WAParserProtocol> *)[[theClass alloc] init];
     parser.urlString = urlString;
     
 }
 
 
 
-
-#pragma mark -
-#pragma mark Librelio Sizing
-- (CGSize) getCellInnerSize {
-    CGSize ret= CGSizeMake(214.0, 367.0);//This is the default size	on the iPad
-    //if (![LibrelioUtilities isBigScreen]) ret= CGSizeMake(160.0, 275.0);//This is the default size on the iPhone
-
-	return ret;
-	
-}
-
-- (CGSize) getCellOuterSize {
-	CGSize ret = CGSizeZero;
-	NSString *tileUrlString = [WAUtilities urlByChangingExtensionOfUrlString:urlString toSuffix:@"_tile.png"];
-	NSString *tilePath = [[NSBundle mainBundle] pathOfFileWithUrl:tileUrlString];
-	if (tilePath){
-		//If we have a tile, we only use the default size
-		ret= CGSizeMake(256.0, 384.0);//This is the default size on the iPad
-		if (![WAUtilities isBigScreen]) ret= CGSizeMake(160.0, 184.0);
-	}
-	else {
-		switch ([parser countData])
-		{
-			case 1:
-				ret= CGSizeMake(768.0, 768.0);//This is the default size on the iPad
-				if (![WAUtilities isBigScreen]) ret= CGSizeMake(320.0, 370.0);
-				break;
-			case 2:
-				ret= CGSizeMake(384.0, 768.0);//This is the default size on the iPad
-				if (![WAUtilities isBigScreen]) ret= CGSizeMake(230.0,370.0);
-				break;
-			case 3:
-			case 4:
-				ret= CGSizeMake(384.0, 384.0);//This is the default size on the iPad
-				if (![WAUtilities isBigScreen]) ret= CGSizeMake(230.0,370.0);
-				break;
-			default:
-				ret= CGSizeMake(256.0, 384.0);//This is the default size on the iPad
-				if (![WAUtilities isBigScreen]) ret= CGSizeMake(230.0,370.0);//This is the default size on the iPhone
-				break;
-		}
-		
-	}
-	
-	return ret;
-	
-}
-
-- (UIEdgeInsets) getHorizontalInsets{
-	UIEdgeInsets ret = UIEdgeInsetsZero;
-	switch ([parser countData])
-	{
-		case 1:
-			break;
-		default:
-			ret = UIEdgeInsetsMake(0,0,0,0);;//This is the default insets on the iPad
-			if (![WAUtilities isBigScreen]) ret = UIEdgeInsetsMake(0,0,0,0);//iPhone
-			break;
-	}
-	
-	return ret;
-	
-}
-
-
-
-#pragma mark -
-#pragma mark GridView Data Source
-
-- (NSUInteger) numberOfItemsInGridView: (AQGridView *) gridView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    //SLog(@"Number of items:%i",[parser countData]);
-    return ( [parser countData] );
+    //SLog(@"Number of sections: %i",[[layoutDic objectForKey:@"SectionViews" ]count]);
+    return 1;
 }
 
-- (AQGridViewCell *) gridView: (AQGridView *) gridView cellForItemAtIndex: (NSUInteger) index
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    static NSString * EmptyIdentifier = @"EmptyIdentifier";
-    static NSString * CellIdentifier = @"CellIdentifier";
+    int nbCols = [self numberofColumns];
+    int ret = floor(([parser countData]-1)/nbCols)+1;
+    NSLog(@"nbCol:%i,count:%i,ret:%i",nbCols,[parser countData],ret);
+    return (ret);
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
-    if ( index == _emptyCellIndex )
-    {
-        AQGridViewCell * hiddenCell = [gridView dequeueReusableCellWithIdentifier: EmptyIdentifier];
-        if ( hiddenCell == nil )
-        {
-            // must be the SAME SIZE AS THE OTHERS
-            // Yes, this is probably a bug. Sigh. Look at -[AQGridView fixCellsFromAnimation] to fix
-			CGSize tempSize = [self getCellInnerSize];
-            hiddenCell = [[[AQGridViewCell alloc] initWithFrame: CGRectMake(0.0, 0.0, tempSize.width, tempSize.height)
-                                                reuseIdentifier: EmptyIdentifier] autorelease];
+    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%f",self.frame.size.width];//This prevents the same cells to be used in portrait and landscape mode, which poses problems.
+    
+ 
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    int nbCols = [self numberofColumns];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+        cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+       
+        //Calculate left margin
+        CGFloat leftMargin = (self.frame.size.width-nbCols*(cellNibSize.width+2*kHorizontalMargin))/2;
+        
+        //Add subviews
+        for (int i = 1; i <=nbCols; i++){
+            UIView * nibView = [UIView getNibView:[urlString nameOfFileWithoutExtensionOfUrlString] defaultNib:@"WAGridCell" forOrientation:999];
+            nibView.autoresizingMask = UIViewAutoresizingNone;
+            nibView.frame = CGRectMake(leftMargin+kHorizontalMargin+(i-1)*(cellNibSize.width+2*kHorizontalMargin), kVerticalMargin,nibView.frame.size.width,nibView.frame.size.height);
+            [cell.contentView addSubview:nibView];
+            nibView.tag = 1000+i;
+            
+            
+        }
+
+        
+	}
+    
+	cell.textLabel.hidden = YES;//Hide the standard textLabel view, otherwise our custom subviews get hiddeen
+    
+    for (int i = 1; i <=nbCols; i++){
+        UIView * nibView = [cell.contentView viewWithTag:1000+i];//Get  our Nib View
+        NSLog(@"Frame:%f,%f,%f,%f",nibView.frame.origin.x, nibView.frame.origin.y,nibView.frame.size.width,nibView.frame.size.height);
+        if ((indexPath.row*nbCols)+i<=[parser countData]){
+            [nibView populateNibWithParser:parser withButtonDelegate:self   forRow:(indexPath.row*nbCols)+i];
+            [nibView setHidden:NO];
+         }
+        else{
+            [nibView setHidden:YES];
         }
         
-        hiddenCell.hidden = YES;
-        return ( hiddenCell );
+        
     }
-    
-    WAGridCell * cell = (WAGridCell *)[gridView dequeueReusableCellWithIdentifier: CellIdentifier];
-    if ( cell == nil )
-    {
-        CGSize tempSize = [self getCellInnerSize];
-        NSString * nibName = [urlString nameOfFileWithoutExtensionOfUrlString];
-        UIView * nibView = [UIView getNibView:nibName defaultNib:@"WAGridCell" forOrientation:999];
-
-		cell = [[[WAGridCell alloc] initWithFrame: CGRectMake(0.0, 0.0, tempSize.width, tempSize.height) andNibView:nibView reuseIdentifier: CellIdentifier] autorelease];
-    }
-    
-	//Get the dictionary at the current index
-    int row = index+1;
-    UIView * nibView = [[cell.contentView subviews]objectAtIndex:0];//Get  our Nib View
-    [nibView populateNibWithParser:parser withButtonDelegate:self   forRow:row];
-    return ( cell );
-}
-
-- (void) gridView: (AQGridView *) gridView didSelectItemAtIndex: (NSUInteger) index
-{
-	int row = index+1;
-	NSString * newUrlString = [parser getDataAtRow:row forDataCol:DataColDetailLink];
-	[self openModule:newUrlString inView:self inRect:self.frame];
-	//[self deselectRowAtIndexPath:indexPath animated:NO];
 	
+	
+    return cell;
+    
 }
 
 
-- (CGSize) portraitGridCellSizeForGridView: (AQGridView *) gridView
-{
-	return [self getCellOuterSize];
-}
 
 
 
@@ -265,7 +180,6 @@
 	[[NSNotificationCenter defaultCenter]removeObserver:self];
 	[urlString release];
 	[parser release];
-    [_gridView release];
     [super dealloc];
 }
 
@@ -296,8 +210,6 @@
 
 - (void)moduleViewWillAppear:(BOOL)animated{
     
-    //Deselect selected cover if any
-    [_gridView deselectItemAtIndex:[_gridView indexOfSelectedItem] animated:NO];
 
     //Reset toolbar
     WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];
@@ -332,11 +244,6 @@
             
             
         }
-        //Add refresh button if waupdate parameter was present
-        NSString * mnString = [urlString valueOfParameterInUrlStringforKey:@"waupdate"];
-        if (mnString){
-            [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"refresh" orString:@"" andLink:@"refresh://localhost/nomatter.zzz"];
-        }
         //Add empty button on the right for spacing
         [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"" orString:@"  " andLink:@""];
        
@@ -356,36 +263,9 @@
     
     //Update the table
     [self initParser];
-    [_gridView reloadData];
+    [self reloadData];
     
-    //Remove previously added modules
-    NSArray * subViewsArray =[self subviews];
-    for (UIView * subView in subViewsArray){
-        if ([subView conformsToProtocol:@protocol(WAModuleProtocol)]) [subView removeFromSuperview];
-    }
-    if (![parser countData]){
-        //If there is no data, display an html message
-        
-        //Conventionally, the message html file has the same name as the main file, with the html extension; find the corresponding url;
-        NSString * htmlMessageUrl = [[urlString noArgsPartOfUrlString] urlByChangingSchemeOfUrlStringToScheme:@"http"];
-        htmlMessageUrl = [WAUtilities urlByChangingExtensionOfUrlString:htmlMessageUrl toSuffix:@".html?warect=self"];
-        //Check if html file exists locally
-        if ([[NSBundle mainBundle] pathOfFileWithUrl:htmlMessageUrl]){
-            WAModuleViewController * moduleViewController = [[WAModuleViewController alloc]init];
-            
-            //Load the html module
-            moduleViewController.moduleUrlString= htmlMessageUrl ;
-            moduleViewController.initialViewController= currentViewController;
-            moduleViewController.containingView= self;
-            moduleViewController.containingRect= self.frame;
-            [moduleViewController pushViewControllerIfNeededAndLoadModuleView];
-            [moduleViewController release];
-            
-        }
-        
-        
-    }
-
+ 
 
 }
 
@@ -395,21 +275,13 @@
 
 
 - (void) moduleWillRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
-	 if ( UIInterfaceOrientationIsPortrait(toInterfaceOrientation) )
-	 {
-	 //Back to 0 insets
-	 _gridView.leftContentInset = 0.0;
-	 _gridView.rightContentInset = 0.0;
-	 }
-	 else
-	 {
-	 _gridView.leftContentInset = [self getHorizontalInsets].left;
-	 _gridView.rightContentInset = [self getHorizontalInsets].right;
-	 
-	 }
 }
 
 - (void) moduleWillAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
+    //Update the table
+    [self initParser];
+    [self reloadData];
+
 }
 
 - (void) jumpToRow:(int)row{
@@ -421,8 +293,20 @@
 - (void) didSucceedResourceDownloadWithNotification:(NSNotification *) notification{
     
     NSString *notificatedUrl = notification.object;
-    if ([[notificatedUrl noArgsPartOfUrlString]isEqualToString:[urlString noArgsPartOfUrlString]])     [_gridView reloadData];
+    if ([[notificatedUrl noArgsPartOfUrlString]isEqualToString:[urlString noArgsPartOfUrlString]])     [self reloadData];
 
 }
+
+#pragma mark Helper methods
+- (int) numberofColumns{
+    int ret = floor(self.frame.size.width/(cellNibSize.width+2*kHorizontalMargin));
+    return ret;
+    
+    
+}
+- (void)refresh:(UIRefreshControl *)refreshControl {
+    //[refreshControl endRefreshing];
+}
+
 
 @end

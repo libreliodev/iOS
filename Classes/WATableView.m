@@ -50,6 +50,11 @@
     //if (queryStringInUrl) self.currentQueryDic = queryStringInUrl;
     
     [self initParser];
+    
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+    [self addSubview:refreshControl];
+
 
 }
 
@@ -295,7 +300,9 @@
     
 }
 
-
+- (void)refresh:(UIRefreshControl *)refreshControl {
+    [refreshControl endRefreshing];
+}
 
 
 @end
