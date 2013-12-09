@@ -127,18 +127,7 @@
 		148BD69D12E9C23600930FC5 /* WAPaymentTransactionObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E3F4E31266F0FE00F24CD6 /* WAPaymentTransactionObserver.m */; };
 		148BD69F12E9C23600930FC5 /* WAUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E007E01274716F005514AA /* WAUtilities.m */; };
 		148BD6A012E9C23600930FC5 /* WAIconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EF0D63127FE54F009C5B3C /* WAIconDownloader.m */; };
-		148BD6A112E9C23600930FC5 /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EE012802EF200185D53 /* AQGridView.m */; };
-		148BD6A212E9C23600930FC5 /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EE412802EF200185D53 /* AQGridViewAnimatorItem.m */; };
-		148BD6A312E9C23600930FC5 /* AQGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EE612802EF200185D53 /* AQGridViewCell.m */; };
-		148BD6A412E9C23600930FC5 /* AQGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EE912802EF200185D53 /* AQGridViewController.m */; };
-		148BD6A512E9C23600930FC5 /* AQGridViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EEB12802EF200185D53 /* AQGridViewData.m */; };
-		148BD6A612E9C23600930FC5 /* AQGridViewUpdateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EED12802EF200185D53 /* AQGridViewUpdateInfo.m */; };
-		148BD6A712E9C23600930FC5 /* AQGridViewUpdateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EEF12802EF200185D53 /* AQGridViewUpdateItem.m */; };
-		148BD6A812E9C23600930FC5 /* NSIndexSet+AQIndexesOutsideSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EF112802EF200185D53 /* NSIndexSet+AQIndexesOutsideSet.m */; };
-		148BD6A912E9C23600930FC5 /* NSIndexSet+AQIsSetContiguous.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EF312802EF200185D53 /* NSIndexSet+AQIsSetContiguous.m */; };
-		148BD6AA12E9C23600930FC5 /* UIColor+AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EF512802EF200185D53 /* UIColor+AQGridView.m */; };
 		148BD6AB12E9C23600930FC5 /* WAGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639F2B12802FD300185D53 /* WAGridView.m */; };
-		148BD6AC12E9C23600930FC5 /* WAGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639F2D12802FD300185D53 /* WAGridCell.m */; };
 		148BD6AD12E9C23600930FC5 /* WARSSItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EAEDDF1281C026000E7B74 /* WARSSItemCell.m */; };
 		148BD6AE12E9C23600930FC5 /* WAOperationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14873E961282ECDC0075E915 /* WAOperationsManager.m */; };
 		148BD6AF12E9C23600930FC5 /* WARSSBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14873FC2128336BC0075E915 /* WARSSBackViewController.m */; };
@@ -233,18 +222,7 @@
 		149086BE17E375D700943DD2 /* WAPaymentTransactionObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E3F4E31266F0FE00F24CD6 /* WAPaymentTransactionObserver.m */; };
 		149086BF17E375D700943DD2 /* WAUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E007E01274716F005514AA /* WAUtilities.m */; };
 		149086C017E375D700943DD2 /* WAIconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EF0D63127FE54F009C5B3C /* WAIconDownloader.m */; };
-		149086C117E375D700943DD2 /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EE012802EF200185D53 /* AQGridView.m */; };
-		149086C217E375D700943DD2 /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EE412802EF200185D53 /* AQGridViewAnimatorItem.m */; };
-		149086C317E375D700943DD2 /* AQGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EE612802EF200185D53 /* AQGridViewCell.m */; };
-		149086C417E375D700943DD2 /* AQGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EE912802EF200185D53 /* AQGridViewController.m */; };
-		149086C517E375D700943DD2 /* AQGridViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EEB12802EF200185D53 /* AQGridViewData.m */; };
-		149086C617E375D700943DD2 /* AQGridViewUpdateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EED12802EF200185D53 /* AQGridViewUpdateInfo.m */; };
-		149086C717E375D700943DD2 /* AQGridViewUpdateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EEF12802EF200185D53 /* AQGridViewUpdateItem.m */; };
-		149086C817E375D700943DD2 /* NSIndexSet+AQIndexesOutsideSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EF112802EF200185D53 /* NSIndexSet+AQIndexesOutsideSet.m */; };
-		149086C917E375D700943DD2 /* NSIndexSet+AQIsSetContiguous.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EF312802EF200185D53 /* NSIndexSet+AQIsSetContiguous.m */; };
-		149086CA17E375D700943DD2 /* UIColor+AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EF512802EF200185D53 /* UIColor+AQGridView.m */; };
 		149086CB17E375D700943DD2 /* WAGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639F2B12802FD300185D53 /* WAGridView.m */; };
-		149086CC17E375D700943DD2 /* WAGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639F2D12802FD300185D53 /* WAGridCell.m */; };
 		149086CD17E375D700943DD2 /* WARSSItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EAEDDF1281C026000E7B74 /* WARSSItemCell.m */; };
 		149086CE17E375D700943DD2 /* WAOperationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14873E961282ECDC0075E915 /* WAOperationsManager.m */; };
 		149086CF17E375D700943DD2 /* WARSSBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14873FC2128336BC0075E915 /* WARSSBackViewController.m */; };
@@ -448,18 +426,7 @@
 		14DB119C164BEDC3001FE76B /* WAPaymentTransactionObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E3F4E31266F0FE00F24CD6 /* WAPaymentTransactionObserver.m */; };
 		14DB119E164BEDC3001FE76B /* WAUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E007E01274716F005514AA /* WAUtilities.m */; };
 		14DB119F164BEDC3001FE76B /* WAIconDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EF0D63127FE54F009C5B3C /* WAIconDownloader.m */; };
-		14DB11A0164BEDC3001FE76B /* AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EE012802EF200185D53 /* AQGridView.m */; };
-		14DB11A1164BEDC3001FE76B /* AQGridViewAnimatorItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EE412802EF200185D53 /* AQGridViewAnimatorItem.m */; };
-		14DB11A2164BEDC3001FE76B /* AQGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EE612802EF200185D53 /* AQGridViewCell.m */; };
-		14DB11A3164BEDC3001FE76B /* AQGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EE912802EF200185D53 /* AQGridViewController.m */; };
-		14DB11A4164BEDC3001FE76B /* AQGridViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EEB12802EF200185D53 /* AQGridViewData.m */; };
-		14DB11A5164BEDC3001FE76B /* AQGridViewUpdateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EED12802EF200185D53 /* AQGridViewUpdateInfo.m */; };
-		14DB11A6164BEDC3001FE76B /* AQGridViewUpdateItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EEF12802EF200185D53 /* AQGridViewUpdateItem.m */; };
-		14DB11A7164BEDC3001FE76B /* NSIndexSet+AQIndexesOutsideSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EF112802EF200185D53 /* NSIndexSet+AQIndexesOutsideSet.m */; };
-		14DB11A8164BEDC3001FE76B /* NSIndexSet+AQIsSetContiguous.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EF312802EF200185D53 /* NSIndexSet+AQIsSetContiguous.m */; };
-		14DB11A9164BEDC3001FE76B /* UIColor+AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639EF512802EF200185D53 /* UIColor+AQGridView.m */; };
 		14DB11AA164BEDC3001FE76B /* WAGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639F2B12802FD300185D53 /* WAGridView.m */; };
-		14DB11AB164BEDC3001FE76B /* WAGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14639F2D12802FD300185D53 /* WAGridCell.m */; };
 		14DB11AC164BEDC3001FE76B /* WARSSItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EAEDDF1281C026000E7B74 /* WARSSItemCell.m */; };
 		14DB11AD164BEDC3001FE76B /* WAOperationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14873E961282ECDC0075E915 /* WAOperationsManager.m */; };
 		14DB11AE164BEDC3001FE76B /* WARSSBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14873FC2128336BC0075E915 /* WARSSBackViewController.m */; };
@@ -727,33 +694,8 @@
 		1462319217E1FE1D0066084C /* top-list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "top-list@2x.png"; path = "Resources/top-list@2x.png"; sourceTree = "<group>"; };
 		1462F876128AF5A200DE49E8 /* WADrawPageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADrawPageOperation.h; sourceTree = "<group>"; };
 		1462F877128AF5A200DE49E8 /* WADrawPageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WADrawPageOperation.m; sourceTree = "<group>"; };
-		14639EDF12802EF200185D53 /* AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridView.h; sourceTree = "<group>"; };
-		14639EE012802EF200185D53 /* AQGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AQGridView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		14639EE112802EF200185D53 /* AQGridView+CellLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AQGridView+CellLayout.h"; sourceTree = "<group>"; };
-		14639EE212802EF200185D53 /* AQGridView+CellLocationDelegation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AQGridView+CellLocationDelegation.h"; sourceTree = "<group>"; };
-		14639EE312802EF200185D53 /* AQGridViewAnimatorItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewAnimatorItem.h; sourceTree = "<group>"; };
-		14639EE412802EF200185D53 /* AQGridViewAnimatorItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewAnimatorItem.m; sourceTree = "<group>"; };
-		14639EE512802EF200185D53 /* AQGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewCell.h; sourceTree = "<group>"; };
-		14639EE612802EF200185D53 /* AQGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewCell.m; sourceTree = "<group>"; };
-		14639EE712802EF200185D53 /* AQGridViewCell+AQGridViewCellPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AQGridViewCell+AQGridViewCellPrivate.h"; sourceTree = "<group>"; };
-		14639EE812802EF200185D53 /* AQGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewController.h; sourceTree = "<group>"; };
-		14639EE912802EF200185D53 /* AQGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewController.m; sourceTree = "<group>"; };
-		14639EEA12802EF200185D53 /* AQGridViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewData.h; sourceTree = "<group>"; };
-		14639EEB12802EF200185D53 /* AQGridViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewData.m; sourceTree = "<group>"; };
-		14639EEC12802EF200185D53 /* AQGridViewUpdateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewUpdateInfo.h; sourceTree = "<group>"; };
-		14639EED12802EF200185D53 /* AQGridViewUpdateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewUpdateInfo.m; sourceTree = "<group>"; };
-		14639EEE12802EF200185D53 /* AQGridViewUpdateItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQGridViewUpdateItem.h; sourceTree = "<group>"; };
-		14639EEF12802EF200185D53 /* AQGridViewUpdateItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQGridViewUpdateItem.m; sourceTree = "<group>"; };
-		14639EF012802EF200185D53 /* NSIndexSet+AQIndexesOutsideSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexSet+AQIndexesOutsideSet.h"; sourceTree = "<group>"; };
-		14639EF112802EF200185D53 /* NSIndexSet+AQIndexesOutsideSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexSet+AQIndexesOutsideSet.m"; sourceTree = "<group>"; };
-		14639EF212802EF200185D53 /* NSIndexSet+AQIsSetContiguous.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexSet+AQIsSetContiguous.h"; sourceTree = "<group>"; };
-		14639EF312802EF200185D53 /* NSIndexSet+AQIsSetContiguous.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexSet+AQIsSetContiguous.m"; sourceTree = "<group>"; };
-		14639EF412802EF200185D53 /* UIColor+AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AQGridView.h"; sourceTree = "<group>"; };
-		14639EF512802EF200185D53 /* UIColor+AQGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AQGridView.m"; sourceTree = "<group>"; };
 		14639F2A12802FD300185D53 /* WAGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAGridView.h; sourceTree = "<group>"; };
 		14639F2B12802FD300185D53 /* WAGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAGridView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		14639F2C12802FD300185D53 /* WAGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAGridCell.h; sourceTree = "<group>"; };
-		14639F2D12802FD300185D53 /* WAGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAGridCell.m; sourceTree = "<group>"; };
 		14687CD3135C6C3F000DEB82 /* WAPlainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAPlainView.h; sourceTree = "<group>"; };
 		14687CD4135C6C3F000DEB82 /* WAPlainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAPlainView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1469EE5D153BE35C00465AB7 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = Classes/libGoogleAnalytics.a; sourceTree = "<group>"; };
@@ -1325,36 +1267,6 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		14639EDE12802EF200185D53 /* AQGridView */ = {
-			isa = PBXGroup;
-			children = (
-				14639EDF12802EF200185D53 /* AQGridView.h */,
-				14639EE012802EF200185D53 /* AQGridView.m */,
-				14639EE112802EF200185D53 /* AQGridView+CellLayout.h */,
-				14639EE212802EF200185D53 /* AQGridView+CellLocationDelegation.h */,
-				14639EE312802EF200185D53 /* AQGridViewAnimatorItem.h */,
-				14639EE412802EF200185D53 /* AQGridViewAnimatorItem.m */,
-				14639EE512802EF200185D53 /* AQGridViewCell.h */,
-				14639EE612802EF200185D53 /* AQGridViewCell.m */,
-				14639EE712802EF200185D53 /* AQGridViewCell+AQGridViewCellPrivate.h */,
-				14639EE812802EF200185D53 /* AQGridViewController.h */,
-				14639EE912802EF200185D53 /* AQGridViewController.m */,
-				14639EEA12802EF200185D53 /* AQGridViewData.h */,
-				14639EEB12802EF200185D53 /* AQGridViewData.m */,
-				14639EEC12802EF200185D53 /* AQGridViewUpdateInfo.h */,
-				14639EED12802EF200185D53 /* AQGridViewUpdateInfo.m */,
-				14639EEE12802EF200185D53 /* AQGridViewUpdateItem.h */,
-				14639EEF12802EF200185D53 /* AQGridViewUpdateItem.m */,
-				14639EF012802EF200185D53 /* NSIndexSet+AQIndexesOutsideSet.h */,
-				14639EF112802EF200185D53 /* NSIndexSet+AQIndexesOutsideSet.m */,
-				14639EF212802EF200185D53 /* NSIndexSet+AQIsSetContiguous.h */,
-				14639EF312802EF200185D53 /* NSIndexSet+AQIsSetContiguous.m */,
-				14639EF412802EF200185D53 /* UIColor+AQGridView.h */,
-				14639EF512802EF200185D53 /* UIColor+AQGridView.m */,
-			);
-			name = AQGridView;
-			sourceTree = "<group>";
-		};
 		146F6A97154E52620044821A /* Search Module */ = {
 			isa = PBXGroup;
 			children = (
@@ -1597,9 +1509,6 @@
 				14639F2A12802FD300185D53 /* WAGridView.h */,
 				14639F2B12802FD300185D53 /* WAGridView.m */,
 				14FD065B14222B1D002F9E35 /* WAGridCell.xib */,
-				14639F2C12802FD300185D53 /* WAGridCell.h */,
-				14639F2D12802FD300185D53 /* WAGridCell.m */,
-				14639EDE12802EF200185D53 /* AQGridView */,
 			);
 			name = "Grid Module";
 			sourceTree = "<group>";
@@ -2275,18 +2184,7 @@
 				148BD69D12E9C23600930FC5 /* WAPaymentTransactionObserver.m in Sources */,
 				148BD69F12E9C23600930FC5 /* WAUtilities.m in Sources */,
 				148BD6A012E9C23600930FC5 /* WAIconDownloader.m in Sources */,
-				148BD6A112E9C23600930FC5 /* AQGridView.m in Sources */,
-				148BD6A212E9C23600930FC5 /* AQGridViewAnimatorItem.m in Sources */,
-				148BD6A312E9C23600930FC5 /* AQGridViewCell.m in Sources */,
-				148BD6A412E9C23600930FC5 /* AQGridViewController.m in Sources */,
-				148BD6A512E9C23600930FC5 /* AQGridViewData.m in Sources */,
-				148BD6A612E9C23600930FC5 /* AQGridViewUpdateInfo.m in Sources */,
-				148BD6A712E9C23600930FC5 /* AQGridViewUpdateItem.m in Sources */,
-				148BD6A812E9C23600930FC5 /* NSIndexSet+AQIndexesOutsideSet.m in Sources */,
-				148BD6A912E9C23600930FC5 /* NSIndexSet+AQIsSetContiguous.m in Sources */,
-				148BD6AA12E9C23600930FC5 /* UIColor+AQGridView.m in Sources */,
 				148BD6AB12E9C23600930FC5 /* WAGridView.m in Sources */,
-				148BD6AC12E9C23600930FC5 /* WAGridCell.m in Sources */,
 				148BD6AD12E9C23600930FC5 /* WARSSItemCell.m in Sources */,
 				148BD6AE12E9C23600930FC5 /* WAOperationsManager.m in Sources */,
 				148BD6AF12E9C23600930FC5 /* WARSSBackViewController.m in Sources */,
@@ -2390,19 +2288,8 @@
 				149086BE17E375D700943DD2 /* WAPaymentTransactionObserver.m in Sources */,
 				149086BF17E375D700943DD2 /* WAUtilities.m in Sources */,
 				149086C017E375D700943DD2 /* WAIconDownloader.m in Sources */,
-				149086C117E375D700943DD2 /* AQGridView.m in Sources */,
-				149086C217E375D700943DD2 /* AQGridViewAnimatorItem.m in Sources */,
-				149086C317E375D700943DD2 /* AQGridViewCell.m in Sources */,
-				149086C417E375D700943DD2 /* AQGridViewController.m in Sources */,
-				149086C517E375D700943DD2 /* AQGridViewData.m in Sources */,
-				149086C617E375D700943DD2 /* AQGridViewUpdateInfo.m in Sources */,
 				14A309AD18378F1000A519DD /* zip.c in Sources */,
-				149086C717E375D700943DD2 /* AQGridViewUpdateItem.m in Sources */,
-				149086C817E375D700943DD2 /* NSIndexSet+AQIndexesOutsideSet.m in Sources */,
-				149086C917E375D700943DD2 /* NSIndexSet+AQIsSetContiguous.m in Sources */,
-				149086CA17E375D700943DD2 /* UIColor+AQGridView.m in Sources */,
 				149086CB17E375D700943DD2 /* WAGridView.m in Sources */,
-				149086CC17E375D700943DD2 /* WAGridCell.m in Sources */,
 				14A309AB18378F1000A519DD /* mztools.c in Sources */,
 				14E42D4B183BC5590062825A /* WAZippedHtmlParser.m in Sources */,
 				149086CD17E375D700943DD2 /* WARSSItemCell.m in Sources */,
@@ -2503,19 +2390,8 @@
 				14DB119C164BEDC3001FE76B /* WAPaymentTransactionObserver.m in Sources */,
 				14DB119E164BEDC3001FE76B /* WAUtilities.m in Sources */,
 				14DB119F164BEDC3001FE76B /* WAIconDownloader.m in Sources */,
-				14DB11A0164BEDC3001FE76B /* AQGridView.m in Sources */,
-				14DB11A1164BEDC3001FE76B /* AQGridViewAnimatorItem.m in Sources */,
-				14DB11A2164BEDC3001FE76B /* AQGridViewCell.m in Sources */,
-				14DB11A3164BEDC3001FE76B /* AQGridViewController.m in Sources */,
-				14DB11A4164BEDC3001FE76B /* AQGridViewData.m in Sources */,
-				14DB11A5164BEDC3001FE76B /* AQGridViewUpdateInfo.m in Sources */,
-				14DB11A6164BEDC3001FE76B /* AQGridViewUpdateItem.m in Sources */,
 				14A309A818378F0F00A519DD /* zip.c in Sources */,
-				14DB11A7164BEDC3001FE76B /* NSIndexSet+AQIndexesOutsideSet.m in Sources */,
-				14DB11A8164BEDC3001FE76B /* NSIndexSet+AQIsSetContiguous.m in Sources */,
-				14DB11A9164BEDC3001FE76B /* UIColor+AQGridView.m in Sources */,
 				14DB11AA164BEDC3001FE76B /* WAGridView.m in Sources */,
-				14DB11AB164BEDC3001FE76B /* WAGridCell.m in Sources */,
 				14DB11AC164BEDC3001FE76B /* WARSSItemCell.m in Sources */,
 				14A309A618378F0F00A519DD /* mztools.c in Sources */,
 				14E42D4A183BC5590062825A /* WAZippedHtmlParser.m in Sources */,
@@ -2925,7 +2801,6 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"\\\"$(SRCROOT)/Classes\\\"",
-					"/Users/Emmanuel/Dropbox/librelio-ios-git/Classes",
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (

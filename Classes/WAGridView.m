@@ -1,8 +1,6 @@
 //  Copyright 2011 WidgetAvenue - Librelio. All rights reserved.
 
 #import "WAGridView.h"
-#import "AQGridView.h"
-#import "WAGridCell.h"
 #import "WAUtilities.h"
 #import "WAModuleViewController.h"
 #import "UIView+WAModuleView.m"
