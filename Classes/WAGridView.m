@@ -45,6 +45,7 @@
 
         UIView * nibView = [UIView getNibView:[urlString nameOfFileWithoutExtensionOfUrlString] defaultNib:@"WAGridCell" forOrientation:999];
 		cellNibSize = nibView.frame.size;
+        //SLog(@"cellNibSize:%f,%f",nibView.frame.size.width,nibView.frame.size.height);
         
         self.delegate = self;//UITableView delegate
         self.dataSource = self;//UITableViewDataSource delegate

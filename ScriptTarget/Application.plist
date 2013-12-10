@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>fr_FR</string>
 	<key>CFBundleDisplayName</key>
-	<string>Sport Guide</string>
+	<string>Vertical</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIcons</key>
@@ -15,12 +15,7 @@
 			<key>CFBundleIconFiles</key>
 			<array>
 				<string>Icon.png</string>
-				<string>Icon@2x.png</string>
 				<string>Icon-72.png</string>
-				<string>Icon-72@2x.png</string>
-				<string>Icon-60@2x.png</string>
-				<string>Icon-76.png</string>
-				<string>Icon-76@2x.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>
@@ -29,7 +24,7 @@
 		<dict>
 			<key>CFBundleIconFiles</key>
 			<array>
-				<string>Sportguide_generic.png</string>
+				<string>vertical_generic.png</string>
 			</array>
 			<key>UINewsstandBindingEdge</key>
 			<string>UINewsstandBindingEdgeLeft</string>
@@ -38,19 +33,19 @@
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>com.unterrenet.sportguide</string>
+	<string>com.niveales.vertical</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Sport Guide</string>
+	<string>Vertical</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.0.6</string>
+	<string>3.0.7</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>316</string>
+	<string>317</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSMainNibFile</key>
