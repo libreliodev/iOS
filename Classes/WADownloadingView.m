@@ -30,7 +30,7 @@
 
 - (void) setUrlString: (NSString *) theString
 {
-    //SLog(@"started set url string with count - %d for url %@", [self retainCount],theString);
+    //SLog(@"started set url in WADownloading view  with count - %d for url %@", [self retainCount],theString);
 	
 	urlString = [[NSString alloc]initWithString: theString];
     
@@ -142,12 +142,15 @@
 #pragma mark Start download
 
 - (void) startDownloadWithoutNewsstand{
+    //SLog(@"sharedManager:%@",[[WADocumentDownloadsManager sharedManager]issuesQueue]);
+
     if (![[WADocumentDownloadsManager sharedManager]isAlreadyInQueueIssueWithUrlString:urlString]){
         //SLog(@"Starting without newssstand");
         if (!downloadOnlyMissingResources){
             WADocumentDownloader * issue = [[WADocumentDownloader alloc]init];
             issue.urlString = urlString;
             [[[WADocumentDownloadsManager sharedManager] issuesQueue]addObject:issue];
+            
             [issue release];
         }
         else {
@@ -159,6 +162,11 @@
 
 
       }
+    }
+    else{
+        //SLog(@"Already in queue, will remove");
+        [self removeFromSuperview];//Remove the downloading view
+        
     }
    
 }
@@ -282,11 +290,13 @@
 #pragma mark -
 #pragma mark Timer action
 - (void)updateDisplay {
+    //SLog(@"updateDisplay");
     WADocumentDownloader * issue = [[WADocumentDownloadsManager sharedManager] issueWithUrlString:urlString];
     if (issue){
-        //SLog(@"Current progress:%f",issue.currentProgress);
         messageLabel.text = issue.currentMessage;
         progressView.progress = issue.currentProgress;
+        //SLog(@"Current progress:%f for Url string %@ with message %@",issue.currentProgress,urlString,issue.currentMessage);
+
     }
     
 }
@@ -314,6 +324,7 @@
 		}
 		case 1:
 		{
+            //SLog(@"alertView");
             WADocumentDownloader * issue = [[WADocumentDownloader alloc]init];
             [[[WADocumentDownloadsManager sharedManager] issuesQueue]addObject:issue];
             [issue release];

@@ -92,8 +92,11 @@
         //SLog(@"Will set downloadcomplete");
         [metaDic setObject:@"YES" forKey:@"DownloadComplete"];
         [metaDic writeToFile:plistPath atomically:YES];
+        //SLog(@"sharedManager before remove in else:%@",[[WADocumentDownloadsManager sharedManager]issuesQueue]);
 
         [[[WADocumentDownloadsManager sharedManager] issuesQueue] removeObjectIdenticalTo:self];//This will release this instance if not owned by a download view
+        //SLog(@"sharedManager after remove in else:%@",[[WADocumentDownloadsManager sharedManager]issuesQueue]);
+
 	}
     
 	
@@ -120,11 +123,13 @@
     
  
     
- 
-        
+    //SLog(@"sharedManager before remove:%@",[[WADocumentDownloadsManager sharedManager]issuesQueue]);
+
+    
     [[[WADocumentDownloadsManager sharedManager] issuesQueue] removeObjectIdenticalTo:self];//This will release this instance if not owned by a download view
         
-        
+    //SLog(@"sharedManager after remove:%@",[[WADocumentDownloadsManager sharedManager]issuesQueue]);
+    
         
     
 	

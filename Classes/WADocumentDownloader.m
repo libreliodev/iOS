@@ -488,7 +488,7 @@
         
                 
         [self notifyDownloadFinished];
-        //SLog(@"Objet identical index:%i",[[[WAIssuesManager sharedManager] issuesQueue] indexOfObjectIdenticalTo:self]);
+        //SLog(@"Did download all resourcs");
         [[[WADocumentDownloadsManager sharedManager] issuesQueue] removeObjectIdenticalTo:self];//This will release this instance if not owned by a download view
 
         

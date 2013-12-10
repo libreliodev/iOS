@@ -20,6 +20,7 @@ static WADocumentDownloadsManager *sharedWAIssuesManager = nil;
 		if(sharedWAIssuesManager == nil)
 			sharedWAIssuesManager = [[super allocWithZone:NULL] init];
 	}
+    //SLog(@"sharedManager in singleton:%@",[sharedWAIssuesManager issuesQueue]);
 	return sharedWAIssuesManager;
 }
 + (id)allocWithZone:(NSZone *)zone {

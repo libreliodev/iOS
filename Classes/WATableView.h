@@ -8,6 +8,7 @@
     NSString *urlString;
 	UIViewController* currentViewController;
     NSObject <WAParserProtocol> *parser;
+    UIRefreshControl *refreshControl;
     
     NSDictionary * currentQueryDic;
     
@@ -18,11 +19,12 @@
 @property (nonatomic, assign) UIViewController* currentViewController;
 @property (nonatomic, retain) NSObject <WAParserProtocol> *parser;
 @property (nonatomic, retain) NSDictionary * currentQueryDic;
+@property (nonatomic, retain) UIRefreshControl *refreshControl;
 
 
 - (void) initParser;
 - (void) followDetailLink:(NSString *) detailLink;
-- (void) didSucceedResourceDownloadWithNotification:(NSNotification *) notification;
+- (void) didFinishDownloadWithNotification:(NSNotification *) notification;
 
 
 @end

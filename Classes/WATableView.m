@@ -13,15 +13,20 @@
 @implementation WATableView
 
 
-@synthesize currentViewController,parser;
+@synthesize currentViewController,parser,refreshControl;
 
 #pragma mark -
 #pragma mark Lifecycle
 
 - (id)init {
 	if (self = [super init]) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedResourceDownloadWithNotification:) name:@"didSucceedResourceDownload" object:nil];
-         
+		[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(moduleViewDidAppear) name:UIApplicationDidBecomeActiveNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishDownloadWithNotification:) name:@"didSucceedResourceDownload" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishDownloadWithNotification:) name:@"didFailIssueDownload" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishDownloadWithNotification:) name:@"didSuccedIssueDownload" object:nil];
+        
+        
+        
 	}
 	return self;
 }
@@ -31,6 +36,7 @@
 	[urlString release];
     [parser release];
     [currentQueryDic release];
+    [refreshControl release];
 	
     [super dealloc];
 }
@@ -51,10 +57,17 @@
     
     [self initParser];
     
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
-    [self addSubview:refreshControl];
-
+    //Refresh
+    //Add refresh view if waupdate parameter was present
+    NSString * mnString = [urlString valueOfParameterInUrlStringforKey:@"waupdate"];
+    if (mnString){
+        
+        refreshControl = [[UIRefreshControl alloc] init];
+        refreshControl.backgroundColor = [UIColor whiteColor];
+        [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+        [self addSubview:refreshControl];
+    }
+    
 
 }
 
@@ -172,33 +185,6 @@
 #pragma mark ModuleView protocol
 
 - (void)moduleViewWillAppear:(BOOL)animated{
-    //Reset toolbar
-    WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];
-    //Reset toolbar
-    [vc.rightToolBar setItems:nil];
-    
-    
-    //Add refresh button if waupdate parameter was present
-    NSString * mnString = [urlString valueOfParameterInUrlStringforKey:@"waupdate"];
-    if (mnString){
-        [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"refresh" orString:@"" andLink:@"refresh://localhost/nomatter.zzz"];
-        [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"" orString:@"  " andLink:@""];//Hack: this puts a little bit of space at the right of the button
-
-    }
-
-    //WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];
-    
-    //NSString * searchLink = [parser getHeaderForDataCol:@"SearchLink"];
-    //NSString * searchLink = @"search://localhost/testskis2012/Guide_.sqlite";
-    //SLog(@"SearchLink:%@",searchLink);
-    /*if (searchLink) {
-        [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemSearch andLink:searchLink];
-    }*/
-    /*NSString * shareLink = [parser getHeaderForDataCol:@"ShareLink"];
-    if (shareLink) {
-        [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemAdd andLink:shareLink];
-    }*/
-
 }
 
 - (void) moduleViewDidAppear{
@@ -292,16 +278,21 @@
  
 }
 
-- (void) didSucceedResourceDownloadWithNotification:(NSNotification *) notification{
+- (void) didFinishDownloadWithNotification:(NSNotification *) notification{
     
-    //SLog(@"didSucceedResourceDownload");
     NSString *notificatedUrl = notification.object;
-    if ([[notificatedUrl noArgsPartOfUrlString]isEqualToString:[urlString noArgsPartOfUrlString]])     [self reloadData];
+    //SLog(@"notification.object:%@",notification.object);
+    if ([notificatedUrl respondsToSelector:@selector(noArgsPartOfUrlString)]){
+        if ([[notificatedUrl noArgsPartOfUrlString]isEqualToString:[urlString noArgsPartOfUrlString]])     [self reloadData];
+    }
+    
+    [refreshControl endRefreshing];
     
 }
 
 - (void)refresh:(UIRefreshControl *)refreshControl {
-    [refreshControl endRefreshing];
+    WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];
+    [vc checkUpdate:YES];
 }
 
 

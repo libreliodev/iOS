@@ -2516,8 +2516,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					"\\\"$(SRCROOT)/Classes\\\"",
-					"/Users/Emmanuel/Dropbox/librelio-ios-git/Classes",
+					"$(SRCROOT)/Classes",
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
@@ -2548,8 +2547,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					"\\\"$(SRCROOT)/Classes\\\"",
-					"/Users/Emmanuel/Dropbox/librelio-ios-git/Classes",
+					"$(SRCROOT)/Classes",
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
@@ -2579,8 +2577,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					"\\\"$(SRCROOT)/Classes\\\"",
-					"/Users/Emmanuel/Dropbox/librelio-ios-git/Classes",
+					"$(SRCROOT)/Classes",
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
@@ -2767,7 +2764,6 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"\\\"$(SRCROOT)/Classes\\\"",
-					"/Users/Emmanuel/Dropbox/librelio-ios-git/Classes",
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (

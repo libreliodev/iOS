@@ -34,16 +34,6 @@
 
 @synthesize lastKnownOrientation;
 
-- (id)init {
-	if (self = [super init]) {
-        //Add observers
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishDownloadWithNotification:) name:@"didFailIssueDownload" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishDownloadWithNotification:) name:@"didSucceedIssueDownload" object:nil];
-        
-	}
-	return self;
-}
-
 
 
 - (void) pushViewControllerIfNeededAndLoadModuleView {
@@ -210,9 +200,7 @@
      //SLog(@"count before releasing loading view with missing %hhd: %d",loadingView.downloadOnlyMissingResources, [loadingView retainCount]);
 
     [loadingView release];
-    if (force) [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Updating...",@"")];
-
-    
+     
     
 }
 
@@ -471,11 +459,5 @@
     
 }
 #pragma mark -
-#pragma mark Notifications
-- (void) didFinishDownloadWithNotification:(NSNotification *) notification
-{
-
-    [[SHKActivityIndicator currentIndicator] hide];
-}
 
 @end

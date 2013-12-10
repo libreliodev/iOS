@@ -14,11 +14,12 @@
 	UIViewController* currentViewController;
 	NSObject <WAParserProtocol> * parser;
     CGSize cellNibSize;
-	
+    UIRefreshControl *refreshControl;
 	
 }
 
 @property (nonatomic,retain) NSObject <WAParserProtocol> * parser;
+@property (nonatomic,retain) UIRefreshControl *refreshControl;
 
 
 
@@ -29,7 +30,7 @@
 - (void) openModule:(NSString*)theUrlString inView:(UIView*)pageView inRect:(CGRect)rect;
 
 
-- (void) didSucceedResourceDownloadWithNotification:(NSNotification *) notification;
+- (void) didFinishDownloadWithNotification:(NSNotification *) notification;
 
 -(int)numberofColumns;
 

@@ -14,12 +14,16 @@
 
 @implementation WAGridView
 
-@synthesize parser,currentViewController;
+@synthesize parser,currentViewController,refreshControl;
 
 - (id)init {
 	if (self = [super init]) {
 		[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(moduleViewDidAppear) name:UIApplicationDidBecomeActiveNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedResourceDownloadWithNotification:) name:@"didSucceedResourceDownload" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishDownloadWithNotification:) name:@"didSucceedResourceDownload" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishDownloadWithNotification:) name:@"didFailIssueDownload" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishDownloadWithNotification:) name:@"didSuccedIssueDownload" object:nil];
+      
+        
 
 	}
 	return self;
@@ -33,7 +37,7 @@
 
 - (void) setUrlString: (NSString *) theString
 {
-	NSLog(@"Will set urlString in GridView for %@ -",theString);
+	//SLog(@"Will set urlString in GridView for %@ -",theString);
     if (!urlString){
 		urlString = [[NSString alloc]initWithString: theString];
 		//Initial setup is needed
@@ -68,11 +72,12 @@
         [[[GAI sharedInstance] defaultTracker]sendView:viewString];
         
         //Refresh
-        //Add refresh button if waupdate parameter was present
+        //Add refresh view if waupdate parameter was present
         NSString * mnString = [urlString valueOfParameterInUrlStringforKey:@"waupdate"];
         if (mnString){
             
-            UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+            refreshControl = [[UIRefreshControl alloc] init];
+            refreshControl.backgroundColor = [UIColor whiteColor];
             [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
             [self addSubview:refreshControl];
         }
@@ -112,7 +117,7 @@
 {
     int nbCols = [self numberofColumns];
     int ret = floor(([parser countData]-1)/nbCols)+1;
-    NSLog(@"nbCol:%i,count:%i,ret:%i",nbCols,[parser countData],ret);
+    //SLog(@"nbCol:%i,count:%i,ret:%i",nbCols,[parser countData],ret);
     return (ret);
 }
 
@@ -151,7 +156,7 @@
     
     for (int i = 1; i <=nbCols; i++){
         UIView * nibView = [cell.contentView viewWithTag:1000+i];//Get  our Nib View
-        NSLog(@"Frame:%f,%f,%f,%f",nibView.frame.origin.x, nibView.frame.origin.y,nibView.frame.size.width,nibView.frame.size.height);
+        //SLog(@"Frame:%f,%f,%f,%f",nibView.frame.origin.x, nibView.frame.origin.y,nibView.frame.size.width,nibView.frame.size.height);
         if ((indexPath.row*nbCols)+i<=[parser countData]){
             [nibView populateNibWithParser:parser withButtonDelegate:self   forRow:(indexPath.row*nbCols)+i];
             [nibView setHidden:NO];
@@ -178,6 +183,7 @@
 	[[NSNotificationCenter defaultCenter]removeObserver:self];
 	[urlString release];
 	[parser release];
+    [refreshControl release];
     [super dealloc];
 }
 
@@ -288,10 +294,15 @@
 
 #pragma mark Notification handling methods
 
-- (void) didSucceedResourceDownloadWithNotification:(NSNotification *) notification{
+- (void) didFinishDownloadWithNotification:(NSNotification *) notification{
     
     NSString *notificatedUrl = notification.object;
-    if ([[notificatedUrl noArgsPartOfUrlString]isEqualToString:[urlString noArgsPartOfUrlString]])     [self reloadData];
+    //SLog(@"notification.object:%@",notification.object);
+    if ([notificatedUrl respondsToSelector:@selector(noArgsPartOfUrlString)]){
+        if ([[notificatedUrl noArgsPartOfUrlString]isEqualToString:[urlString noArgsPartOfUrlString]])     [self reloadData];
+    }
+
+    [refreshControl endRefreshing];
 
 }
 
@@ -304,6 +315,9 @@
 }
 - (void)refresh:(UIRefreshControl *)refreshControl {
     //[refreshControl endRefreshing];
+    WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];
+    [vc checkUpdate:YES];
+
 }
 
 

@@ -15,6 +15,8 @@ static WAFileDownloadsManager *sharedDownloadManager = nil;
 		if(sharedDownloadManager == nil)
 			sharedDownloadManager = [[super allocWithZone:NULL] init];
 	}
+    //SLog(@"sharedManager in WAFileDownloadsManager:%@",[sharedDownloadManager downloadQueue]);
+
 	return sharedDownloadManager;
 }
 + (id)allocWithZone:(NSZone *)zone {
