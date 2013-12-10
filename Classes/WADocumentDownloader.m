@@ -95,7 +95,7 @@
 	
     NSNumber* curLength = [NSNumber numberWithLong:[receivedData length] ];
     currentProgress = ([curLength floatValue]+[handle offsetInFile]) / [filesize floatValue] ;
-    //SLog(@"Downloaded %f ",progress);
+    //SLog(@"Downloaded %f ",currentProgress);
 	//progressView.progress = progress;
 	if( receivedData.length > 1000000 && handle!=nil )
 	{

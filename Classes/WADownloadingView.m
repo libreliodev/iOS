@@ -142,21 +142,21 @@
 #pragma mark Start download
 
 - (void) startDownloadWithoutNewsstand{
-    //SLog(@"sharedManager:%@",[[WADocumentDownloadsManager sharedManager]issuesQueue]);
+    //SLog(@"sharedManager  %@,%@",[WADocumentDownloadsManager sharedManager],[[WADocumentDownloadsManager sharedManager] issuesQueue]);
 
     if (![[WADocumentDownloadsManager sharedManager]isAlreadyInQueueIssueWithUrlString:urlString]){
         //SLog(@"Starting without newssstand");
         if (!downloadOnlyMissingResources){
             WADocumentDownloader * issue = [[WADocumentDownloader alloc]init];
-            issue.urlString = urlString;
             [[[WADocumentDownloadsManager sharedManager] issuesQueue]addObject:issue];
+            issue.urlString = urlString;
             
             [issue release];
         }
         else {
-            WAMissingResourcesDownloader * issue = [[WAMissingResourcesDownloader alloc]init];
-            issue.urlString = urlString;
+           WAMissingResourcesDownloader * issue = [[WAMissingResourcesDownloader alloc]init];
             [[[WADocumentDownloadsManager sharedManager] issuesQueue]addObject:issue];
+           issue.urlString = urlString;
             [issue release];
             [self removeFromSuperview];//Remove the downloading view, we will not need it
 

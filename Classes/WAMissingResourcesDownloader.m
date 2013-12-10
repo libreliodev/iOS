@@ -95,7 +95,7 @@
         //SLog(@"sharedManager before remove in else:%@",[[WADocumentDownloadsManager sharedManager]issuesQueue]);
 
         [[[WADocumentDownloadsManager sharedManager] issuesQueue] removeObjectIdenticalTo:self];//This will release this instance if not owned by a download view
-        //SLog(@"sharedManager after remove in else:%@",[[WADocumentDownloadsManager sharedManager]issuesQueue]);
+        //SLog(@"sharedManager after remove in else:%@,%@",[WADocumentDownloadsManager sharedManager],[[WADocumentDownloadsManager sharedManager]issuesQueue]);
 
 	}
     
