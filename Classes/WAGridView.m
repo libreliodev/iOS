@@ -241,7 +241,7 @@
             }
             else{
                  //Add button
-                NSString * subscriptionAndSpaces = [NSString stringWithFormat:@"%@ ",NSLocalizedString(@"Subscription",@"" )];
+                NSString * subscriptionAndSpaces = [NSString stringWithFormat:@"%@   ",NSLocalizedString(@"Subscription",@"" )];
                 [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"" orString:subscriptionAndSpaces andLink:@"buy://localhost/wanodownload.pdf"];
             }
 
@@ -249,9 +249,7 @@
             
             
         }
-        //Add empty button on the right for spacing
-        [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"" orString:@"  " andLink:@""];
-       
+        
 
  
     }
