@@ -22,8 +22,4 @@ done
 
 
 #Copy all resources
-find -L "$PATH_TO_SOURCE" \
--type f -not -name ".*" \
--not -name "`basename ${INFOPLIST_FILE}`" \
-| xargs -t -I {} \
-cp {} ${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/
+rsync -r "$PATH_TO_SOURCE/" ${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/
