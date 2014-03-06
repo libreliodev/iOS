@@ -72,7 +72,7 @@
     }
     //[Appirater setDebug:YES];
  
-    
+    //SLog(@"Will add Transaction Observer");
     
 	
 	//Add transaction observer for In App Purchases
@@ -92,8 +92,10 @@
     
     //Add window and RootViwController
     window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]; //We are not using a Xib
-
+    
+    //SLog(@"Will updateRootViewController");
     [self updateRootViewController];
+    //SLog(@"Did updateRootViewController");
 
     
     // Splash screen
@@ -130,6 +132,7 @@
         splashScreenViewController.rootViewController = appTabBarController;
         
     }
+    //SLog(@"Will launch appirater");
 
     //Notify appirater that launching is finished
     [Appirater appLaunched:YES];
@@ -329,6 +332,7 @@
     //If user has selected admin mode in settings, use  Tabs_admin.plist
     if ([[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]objectForKey:@"admin_preference"]) parser.urlString = @"Tabs_admin.plist";
 	//Create the tab ViewControllers
+    //SLog(@"Will create tabviews array");
 	NSMutableArray *tabviews	= [NSMutableArray array];
     
 	
@@ -349,21 +353,29 @@
         
 		[moduleViewController release];
 	}
+    //SLog(@"Will release parser");
 	[parser release];
     if (appTabBarController){
         window.rootViewController = nil;
         [appTabBarController release];
     }
+    //SLog(@"Will init WARootViewController");
+
 	appTabBarController = [[WARootViewController alloc]init];
 	appTabBarController.moreNavigationController.navigationBar.barStyle = UIBarStyleBlack;
     appTabBarController.delegate = self;
 	appTabBarController.viewControllers = 	tabviews;
+    //SLog(@"Will test iOS7");
+    
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) appTabBarController.tabBar.translucent = NO;
 	
     window.rootViewController = appTabBarController;
 	window.backgroundColor = [UIColor blackColor];
+    //SLog(@"Will add subview");
 	[window addSubview:appTabBarController.view];
+    //SLog(@"Did add subview");
 	[window makeKeyAndVisible];
+    //SLog(@"Did updateRootViewController");
  
     
 }

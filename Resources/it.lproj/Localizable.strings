@@ -6,12 +6,12 @@
 "Done"=" OK";
 "Download ..."=" Download ...";
 "Download failed, please check your connection"=" Download non riuscito, controlla la tua connessione";
-"Download in progress"=" Download in corso";
-"Downloaded"="Scaritato";
+"Download in progress"="Download in corso";
+"Downloaded"="Scaricato";
 "Downloads"=" Downloads";
 "Free Download"=" Download gratuito";
 "Free sample"=" Anteprima gratuita";
-"Free subscription"=" Abbonamente gratuito";
+"Free subscription"=" Abbonamento gratuito";
 "I have a promo code"=" Ho un codice promo";
 "I have a subscriber code"=" Ho un codice abbonato";
 "Invalid Code"=" Codice non valido";
@@ -28,7 +28,7 @@
 "Share on Facebook"="Share on Facebook";
 "Share on Twitter"="Share on Twitter";
 "Subscriber Code"=" Codice abbonato";
-"Subscription"=" Abbonamente";
+"Subscription"=" Abbonamento";
 "The order failed"=" Ordine non riuscita";
 "Try again"=" Prova di nuovo";
 "week"="settimana";

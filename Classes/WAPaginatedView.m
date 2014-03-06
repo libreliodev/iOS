@@ -59,7 +59,7 @@
 		//Do once only
 		urlString = [[NSString alloc]initWithString: theString];
         
-        NSLog(@"Current nav :%@, current VC:%@",currentViewController.navigationController.childViewControllers,currentViewController);
+        //SLog(@"Current nav :%@, current VC:%@",currentViewController.navigationController.childViewControllers,currentViewController);
 
 		//Activity indicator
 		UIActivityIndicatorView * activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
