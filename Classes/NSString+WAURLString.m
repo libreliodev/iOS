@@ -45,10 +45,13 @@
 }
 
 - (NSString *) schemePartOfUrlString{
-    NSRange range = [self rangeOfString:@"://"];
-    if (range.location == NSNotFound) return @"http";
-    else{
-        return [self substringToIndex:range.location]; 
+    NSURL * url = [NSURL URLWithString:self];
+    if (![[url scheme] length])
+    {
+        return @"http";
+    }
+    else {
+        return [url scheme];
     }
 }
 /*! 
@@ -249,7 +252,7 @@
 - (LinkType) typeOfLinkOfUrlString{
     NSString * scheme = [self schemePartOfUrlString];    
 	NSString * extension = [[self noArgsPartOfUrlString] pathExtension];
-    //SLog(@"extension:%@ for url %@",extension,self);
+    //SLog(@"scheme:%@ for url %@",scheme,self);
 	NSRange RSSrange = [self rangeOfString :@"feeds"];
 	NSRange MAPrange = [self rangeOfString :@"maps.google"];
 	NSRange iTunesRange = [self rangeOfString :@"itunes.apple"];
@@ -388,6 +391,7 @@
         default:
             break;
     }
+    //SLog(@"ret:%@",ret);
     return ret;
 
 }
