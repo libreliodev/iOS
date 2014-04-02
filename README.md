@@ -2,7 +2,7 @@
 
 This free customizable app is intended mainly for publishers (especially magazine publishers) and marketers. It is also available on [Android](https://github.com/libreliodev/Android) and  [Windows 8](https://github.com/libreliodev/windows8).
 
-If you need to publish dynamic and/or paid contents, you need to set up your own server and develop your own code. You can also opt for Librelio's [paid plans](http://www.librelio.com/pricing).
+If you need to publish dynamic and/or paid contents, you need to set up your own server and develop your own code. You can also opt for Librelio's [paid plans](http://www.librelio.com/index.php#pricing).
 
 Examples of customized apps published on the app stores are available on www.librelio.com . A good example of iOS app is the [Wind magazine app](https://itunes.apple.com/fr/app/wind-magazine/id433594605?mt=8). 
 
