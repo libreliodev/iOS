@@ -611,6 +611,7 @@
 		140DF35216198BD000815F26 /* WAImgParserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAImgParserView.h; sourceTree = "<group>"; };
 		140DF35316198BD000815F26 /* WAImgParserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAImgParserView.m; sourceTree = "<group>"; };
 		141137A2122BDD8900F591A0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		14148E7618FBC70900B30993 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1415A65612BA94BC00B16395 /* WASlideShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WASlideShowView.h; sourceTree = "<group>"; };
 		1415A65712BA94BC00B16395 /* WASlideShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WASlideShowView.m; sourceTree = "<group>"; };
 		1424380514BC359E005ABB4A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -1877,6 +1878,7 @@
 				"zh-Hans",
 				it,
 				es,
+				"pt-BR",
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -2490,6 +2492,7 @@
 				1489B614168ECD3D00404BA6 /* de */,
 				1489B615168ECDB300404BA6 /* zh-Hans */,
 				14B8D8361823FB3900C4628F /* es */,
+				14148E7618FBC70900B30993 /* pt-BR */,
 			);
 			name = Localizable.strings;
 			path = Resources;
