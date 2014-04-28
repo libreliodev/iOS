@@ -8,8 +8,10 @@
 #import <QuartzCore/QuartzCore.h>
 #import "UIColor+WAAdditions.m"
 #import "NSString+WAURLString.h"
-#import "GAI.h"
 
+#import "GAI.h"
+#import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
 
 
 
@@ -112,8 +114,16 @@
         //Tracking
         NSString * viewString = [urlString gaScreenForModuleWithName:@"Browser" withPage:nil];
         
-        [[[GAI sharedInstance] defaultTracker]sendView:viewString];
-
+        // May return nil if a tracker has not already been initialized with a
+        // property ID.
+        id tracker = [[GAI sharedInstance] defaultTracker];
+        
+        // This screen name value will remain set on the tracker and sent with
+        // hits until it is set to a new value or to nil.
+        [tracker set:kGAIScreenName
+               value:viewString];
+        
+        [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 	}
 	
     

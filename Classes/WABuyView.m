@@ -202,9 +202,9 @@
 	
 	
 	
-	for (NSString * invalidS in response.invalidProductIdentifiers){
+	/*for (NSString * invalidS in response.invalidProductIdentifiers){
 		//SLog(@"invalidS:%@",invalidS);
-	}
+	}*/
 	//[actionSheet showInView:self.superview];
     if (self.superview)//The superview may have been released if a refresh download has taken place
     {

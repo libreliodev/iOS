@@ -21,6 +21,8 @@
 #import "NSBundle+WAAdditions.h"
 
 #import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+
 #import "SHKActivityIndicator.h"
 
 
@@ -245,7 +247,7 @@
           }
         NSString * label = [NSString stringWithFormat:@"%@/%@",[[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"],[moduleUrlString stringByReplacingOccurrencesOfString:@"http://localhost/" withString:@""]];
         id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        [tracker sendEventWithCategory:@"Module" withAction:action withLabel:label withValue:[NSNumber numberWithInt:1]];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Module" action:action label:label value:[NSNumber numberWithInt:1]] build]];
 
 	}
 

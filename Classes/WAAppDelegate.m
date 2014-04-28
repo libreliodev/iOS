@@ -16,6 +16,7 @@
 
 
 #import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 #import "APAppirater.h"
 
 #import <QuartzCore/QuartzCore.h>
@@ -151,7 +152,10 @@
     
     
     //Register event with GA
-    [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"Application iOS" withAction:@"Became active" withLabel:@"App" withValue:[NSNumber numberWithInt:1]];
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Application iOS" action:@"Became active" label:@"App" value:[NSNumber numberWithInt:1]] build]];
+     
 
 
     

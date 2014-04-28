@@ -17,6 +17,8 @@
 #import "WAUtilities.h"
 
 #import "GAI.h"
+#import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
 
 
 @implementation WASplashScreenViewController
@@ -376,8 +378,16 @@
     //Tracking
     NSString * pageString = [urlString gaScreenForModuleWithName:@"Interstitial" withPage:nil];
     
-    [[[GAI sharedInstance] defaultTracker]sendView:pageString];
-
+    // May return nil if a tracker has not already been initialized with a
+    // property ID.
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    
+    // This screen name value will remain set on the tracker and sent with
+    // hits until it is set to a new value or to nil.
+    [tracker set:kGAIScreenName
+           value:pageString];
+    
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     
     // Load plist file with a link to a web-page
     NSString * nameOfPlist = [NSString stringWithFormat:@"%@%@%@",@"/AAD/Ad",preferredLanguage,@".plist"];

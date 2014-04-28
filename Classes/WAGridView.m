@@ -6,7 +6,10 @@
 #import "UIView+WAModuleView.m"
 #import "NSString+WAURLString.h"
 #import "NSBundle+WAAdditions.h"
+
 #import "GAI.h"
+#import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
 
 #define kHorizontalMargin 8
 #define kVerticalMargin 2
@@ -70,8 +73,16 @@
 		
         //Tracking
         NSString * viewString = [urlString gaScreenForModuleWithName:@"Library" withPage:nil];
-        [[[GAI sharedInstance] defaultTracker]sendView:viewString];
+        // May return nil if a tracker has not already been initialized with a
+        // property ID.
+        id tracker = [[GAI sharedInstance] defaultTracker];
         
+        // This screen name value will remain set on the tracker and sent with
+        // hits until it is set to a new value or to nil.
+        [tracker set:kGAIScreenName
+               value:viewString];
+        
+        [tracker send:[[GAIDictionaryBuilder createAppView] build]];
         //Refresh
         //Add refresh view if waupdate parameter was present
         NSString * mnString = [urlString valueOfParameterInUrlStringforKey:@"waupdate"];

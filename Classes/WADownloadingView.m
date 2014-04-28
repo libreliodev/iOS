@@ -14,6 +14,9 @@
 #import "NSDate+WAAdditions.h"
 
 #import "GAI.h"
+#import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
+
 
 
 @implementation WADownloadingView
@@ -107,8 +110,16 @@
     if (!self.hidden){
         NSString * viewString = [urlString gaScreenForModuleWithName:@"Downloading" withPage:nil];
         
-        [[[GAI sharedInstance] defaultTracker]sendView:viewString];
-
+        // May return nil if a tracker has not already been initialized with a
+        // property ID.
+        id tracker = [[GAI sharedInstance] defaultTracker];
+        
+        // This screen name value will remain set on the tracker and sent with
+        // hits until it is set to a new value or to nil.
+        [tracker set:kGAIScreenName
+               value:viewString];
+        
+        [tracker send:[[GAIDictionaryBuilder createAppView] build]];
     }
 
 	
@@ -273,7 +284,8 @@
         //Register event with Google Analytics
         NSString * action = @"Download succeeded";
         NSString * label = [NSString stringWithFormat:@"%@/%@",[[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"],[urlString stringByReplacingOccurrencesOfString:@"http://localhost/" withString:@""]];
-        [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"Downloader" withAction:action withLabel:label withValue:[NSNumber numberWithInt:1]];
+        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Downloader" action:action label:label value:[NSNumber numberWithInt:1]] build]];
 
 
         
