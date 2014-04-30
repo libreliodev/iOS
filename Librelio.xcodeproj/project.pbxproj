@@ -611,7 +611,6 @@
 		140DF35216198BD000815F26 /* WAImgParserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAImgParserView.h; sourceTree = "<group>"; };
 		140DF35316198BD000815F26 /* WAImgParserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAImgParserView.m; sourceTree = "<group>"; };
 		141137A2122BDD8900F591A0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		14148E7618FBC70900B30993 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		1415A65612BA94BC00B16395 /* WASlideShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WASlideShowView.h; sourceTree = "<group>"; };
 		1415A65712BA94BC00B16395 /* WASlideShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WASlideShowView.m; sourceTree = "<group>"; };
 		1424380514BC359E005ABB4A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -742,6 +741,7 @@
 		1489B615168ECDB300404BA6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		148BD6CA12E9C23700930FC5 /* Empty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Empty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		148DD9461638FFF200C429A4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		148F208B1910CE7B008D44D6 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1490866B17E332A200943DD2 /* rss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rss.png; path = Resources/rss.png; sourceTree = "<group>"; };
 		1490866C17E332A200943DD2 /* rss@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rss@2x.png"; path = "Resources/rss@2x.png"; sourceTree = "<group>"; };
 		1490873517E375D700943DD2 /* ScriptTempProductName.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScriptTempProductName.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1882,6 +1882,7 @@
 				it,
 				es,
 				"pt-BR",
+				pt,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -2495,7 +2496,7 @@
 				1489B614168ECD3D00404BA6 /* de */,
 				1489B615168ECDB300404BA6 /* zh-Hans */,
 				14B8D8361823FB3900C4628F /* es */,
-				14148E7618FBC70900B30993 /* pt-BR */,
+				148F208B1910CE7B008D44D6 /* pt */,
 			);
 			name = Localizable.strings;
 			path = Resources;
