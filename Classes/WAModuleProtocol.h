@@ -26,7 +26,7 @@ typedef enum {
     LinkTypeSearch=20,
     LinkTypePlain=21,
     LinkTypeZoomImage=22,
-    LinkTypeScan=23,
+    LinkTypeSky=23,
     LinkTypeOpenCVClient=24,
     LinkTypeAnalytics=25,
 

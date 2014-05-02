@@ -71,6 +71,9 @@
 		14541D9E1307BAC2004A76D4 /* WAModuleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14541D871307BAC2004A76D4 /* WAModuleViewController.m */; };
 		14541D9F1307BAC2004A76D4 /* WADownloadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14541D881307BAC2004A76D4 /* WADownloadingView.m */; };
 		1454580216FC6A5700EC3DFD /* facebook.atom in Resources */ = {isa = PBXBuildFile; fileRef = 1454580116FC6A5700EC3DFD /* facebook.atom */; };
+		145F5EC119128027007CE256 /* FileProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 145F5EC019128027007CE256 /* FileProvider.m */; };
+		145F5EC219128027007CE256 /* FileProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 145F5EC019128027007CE256 /* FileProvider.m */; };
+		145F5EC319128027007CE256 /* FileProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 145F5EC019128027007CE256 /* FileProvider.m */; };
 		146232F417E1FE210066084C /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 1462318917E1FE1C0066084C /* facebook.png */; };
 		146232F517E1FE210066084C /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 1462318917E1FE1C0066084C /* facebook.png */; };
 		146232F617E1FE210066084C /* facebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1462318A17E1FE1D0066084C /* facebook@2x.png */; };
@@ -553,6 +556,9 @@
 		14DB13AB164C52C4001FE76B /* wind_368.png in Resources */ = {isa = PBXBuildFile; fileRef = 14DB138B164C52C4001FE76B /* wind_368.png */; };
 		14DB13AC164C52C4001FE76B /* wind_369.png in Resources */ = {isa = PBXBuildFile; fileRef = 14DB138C164C52C4001FE76B /* wind_369.png */; };
 		14DB13AD164C52C4001FE76B /* wind_370.png in Resources */ = {isa = PBXBuildFile; fileRef = 14DB138D164C52C4001FE76B /* wind_370.png */; };
+		14DBC2B219128E5300416C1D /* libskyepub.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14DBC2B119128E5300416C1D /* libskyepub.a */; };
+		14DBC2B319128E5300416C1D /* libskyepub.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14DBC2B119128E5300416C1D /* libskyepub.a */; };
+		14DBC2B419128E5300416C1D /* libskyepub.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14DBC2B119128E5300416C1D /* libskyepub.a */; };
 		14DD777014A4F939004E06E5 /* WAMissingResourcesDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DD776C14A4F938004E06E5 /* WAMissingResourcesDownloader.m */; };
 		14DD77A414A60D64004E06E5 /* WAZoomImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DD77A014A60D64004E06E5 /* WAZoomImage.m */; };
 		14DF9B27145D4FE10031C52F /* NSString+WAURLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DF9B23145D4FE10031C52F /* NSString+WAURLString.m */; };
@@ -564,12 +570,25 @@
 		14E42D49183BC5590062825A /* WAZippedHtmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E42D48183BC5590062825A /* WAZippedHtmlParser.m */; };
 		14E42D4A183BC5590062825A /* WAZippedHtmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E42D48183BC5590062825A /* WAZippedHtmlParser.m */; };
 		14E42D4B183BC5590062825A /* WAZippedHtmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E42D48183BC5590062825A /* WAZippedHtmlParser.m */; };
+		14E7AD2F191251AE00000B8C /* PagesCenter.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E7AD2D191251AE00000B8C /* PagesCenter.png */; };
+		14E7AD30191251AE00000B8C /* PagesCenter.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E7AD2D191251AE00000B8C /* PagesCenter.png */; };
+		14E7AD31191251AE00000B8C /* PagesCenter.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E7AD2D191251AE00000B8C /* PagesCenter.png */; };
+		14E7AD32191251AE00000B8C /* PagesStack.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E7AD2E191251AE00000B8C /* PagesStack.png */; };
+		14E7AD33191251AE00000B8C /* PagesStack.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E7AD2E191251AE00000B8C /* PagesStack.png */; };
+		14E7AD34191251AE00000B8C /* PagesStack.png in Resources */ = {isa = PBXBuildFile; fileRef = 14E7AD2E191251AE00000B8C /* PagesStack.png */; };
+		14E7AD37191253AB00000B8C /* WASkyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7AD35191253AB00000B8C /* WASkyView.m */; };
+		14E7AD38191253AB00000B8C /* WASkyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7AD35191253AB00000B8C /* WASkyView.m */; };
+		14E7AD39191253AB00000B8C /* WASkyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7AD35191253AB00000B8C /* WASkyView.m */; };
+		14E7AD3B19125C5500000B8C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E7AD3A19125C5500000B8C /* CoreMedia.framework */; };
 		14EC9244145C32EE00FB25A1 /* WABarButtonItemWithLink.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EC9240145C32EE00FB25A1 /* WABarButtonItemWithLink.m */; };
 		14EC9260145C337100FB25A1 /* WATransparentToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EC925C145C337100FB25A1 /* WATransparentToolbar.m */; };
 		14F1CAFC1315AB6C008B7873 /* WAHTMLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F1CAEC1315AB6C008B7873 /* WAHTMLView.m */; };
 		14F1CE311316DEC6008B7873 /* WAFileDownloadsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F1CE2F1316DEC6008B7873 /* WAFileDownloadsManager.m */; };
 		14F94D62160C557200A68F2A /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14F94D61160C557200A68F2A /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		14F94D73160C66CA00A68F2A /* SHKActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F94D72160C66CA00A68F2A /* SHKActivityIndicator.m */; };
+		14FBCDB519135EDD00CBD9CE /* Alice.epub in Resources */ = {isa = PBXBuildFile; fileRef = 14FBCDB219135EDD00CBD9CE /* Alice.epub */; };
+		14FBCDB619135EDD00CBD9CE /* Books.sql in Resources */ = {isa = PBXBuildFile; fileRef = 14FBCDB319135EDD00CBD9CE /* Books.sql */; };
+		14FBCDB719135EDD00CBD9CE /* script.js in Sources */ = {isa = PBXBuildFile; fileRef = 14FBCDB419135EDD00CBD9CE /* script.js */; };
 		14FD065E14222B1D002F9E35 /* WAGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FD065B14222B1D002F9E35 /* WAGridCell.xib */; };
 		14FEA5ED161AD51700D17A08 /* WAGenericPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCB35DA514F15F10005CC152 /* WAGenericPopover.xib */; };
 		14FEA5F0161AD58500D17A08 /* WAAdvancedSearchPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CAAC09F14E96B1D00D6D4F3 /* WAAdvancedSearchPopover.xib */; };
@@ -682,6 +701,8 @@
 		14541D8A1307BAC2004A76D4 /* WADownloadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADownloadingView.h; sourceTree = "<group>"; };
 		1454580116FC6A5700EC3DFD /* facebook.atom */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = facebook.atom; sourceTree = "<group>"; };
 		14577FC8129C35D100E75640 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		145F5EBF19128027007CE256 /* FileProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileProvider.h; sourceTree = "<group>"; };
+		145F5EC019128027007CE256 /* FileProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileProvider.m; sourceTree = "<group>"; };
 		1462318917E1FE1C0066084C /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = facebook.png; path = Resources/facebook.png; sourceTree = "<group>"; };
 		1462318A17E1FE1D0066084C /* facebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "facebook@2x.png"; path = "Resources/facebook@2x.png"; sourceTree = "<group>"; };
 		1462318B17E1FE1D0066084C /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = download.png; path = Resources/download.png; sourceTree = "<group>"; };
@@ -853,6 +874,7 @@
 		14DB138B164C52C4001FE76B /* wind_368.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wind_368.png; sourceTree = "<group>"; };
 		14DB138C164C52C4001FE76B /* wind_369.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wind_369.png; sourceTree = "<group>"; };
 		14DB138D164C52C4001FE76B /* wind_370.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wind_370.png; sourceTree = "<group>"; };
+		14DBC2B119128E5300416C1D /* libskyepub.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libskyepub.a; sourceTree = "<group>"; };
 		14DD776B14A4F937004E06E5 /* WAMissingResourcesDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAMissingResourcesDownloader.h; sourceTree = "<group>"; };
 		14DD776C14A4F938004E06E5 /* WAMissingResourcesDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAMissingResourcesDownloader.m; sourceTree = "<group>"; };
 		14DD779F14A60D64004E06E5 /* WAZoomImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAZoomImage.h; sourceTree = "<group>"; };
@@ -875,6 +897,18 @@
 		14E3F4FE1266F33600F24CD6 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		14E42D47183BC5590062825A /* WAZippedHtmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAZippedHtmlParser.h; sourceTree = "<group>"; };
 		14E42D48183BC5590062825A /* WAZippedHtmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAZippedHtmlParser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		14E7AD21191250AD00000B8C /* libskyepub.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libskyepub.a; path = ../../../Downloads/libskyepub/libskyepub.a; sourceTree = "<group>"; };
+		14E7AD231912515900000B8C /* Book.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Book.h; sourceTree = "<group>"; };
+		14E7AD241912515900000B8C /* BookInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookInformation.h; sourceTree = "<group>"; };
+		14E7AD251912515900000B8C /* ContentProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentProvider.h; sourceTree = "<group>"; };
+		14E7AD261912515900000B8C /* FixedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FixedViewController.h; sourceTree = "<group>"; };
+		14E7AD271912515900000B8C /* Highlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Highlight.h; sourceTree = "<group>"; };
+		14E7AD291912515900000B8C /* ReflowableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReflowableViewController.h; sourceTree = "<group>"; };
+		14E7AD2D191251AE00000B8C /* PagesCenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PagesCenter.png; sourceTree = "<group>"; };
+		14E7AD2E191251AE00000B8C /* PagesStack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PagesStack.png; sourceTree = "<group>"; };
+		14E7AD35191253AB00000B8C /* WASkyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WASkyView.m; sourceTree = "<group>"; };
+		14E7AD36191253AB00000B8C /* WASkyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WASkyView.h; sourceTree = "<group>"; };
+		14E7AD3A19125C5500000B8C /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		14EAEDDE1281C026000E7B74 /* WARSSItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WARSSItemCell.h; sourceTree = "<group>"; };
 		14EAEDDF1281C026000E7B74 /* WARSSItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WARSSItemCell.m; sourceTree = "<group>"; };
 		14EC923F145C32EE00FB25A1 /* WABarButtonItemWithLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WABarButtonItemWithLink.h; sourceTree = "<group>"; };
@@ -892,6 +926,9 @@
 		14F94D61160C557200A68F2A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		14F94D71160C66CA00A68F2A /* SHKActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKActivityIndicator.h; sourceTree = "<group>"; };
 		14F94D72160C66CA00A68F2A /* SHKActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHKActivityIndicator.m; sourceTree = "<group>"; };
+		14FBCDB219135EDD00CBD9CE /* Alice.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = Alice.epub; sourceTree = "<group>"; };
+		14FBCDB319135EDD00CBD9CE /* Books.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Books.sql; sourceTree = "<group>"; };
+		14FBCDB419135EDD00CBD9CE /* script.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
 		14FD065B14222B1D002F9E35 /* WAGridCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WAGridCell.xib; sourceTree = "<group>"; };
 		14FF9951123A660C007DD4A6 /* WAScreenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAScreenView.h; sourceTree = "<group>"; };
 		14FF9952123A660C007DD4A6 /* WAScreenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAScreenView.m; sourceTree = "<group>"; };
@@ -970,6 +1007,7 @@
 				14E1A19A1382715700111E6C /* AudioToolbox.framework in Frameworks */,
 				14A24B6414672ABA00C9989E /* NewsstandKit.framework in Frameworks */,
 				147B350D146C1BB70002CC17 /* libsqlite3.0.dylib in Frameworks */,
+				14DBC2B219128E5300416C1D /* libskyepub.a in Frameworks */,
 				1424380914BC35D0005ABB4A /* Security.framework in Frameworks */,
 				14AF2AA3190E80D200FE87EC /* libGoogleAnalyticsServices.a in Frameworks */,
 				8C994BAD151B756400DD10AF /* CFNetwork.framework in Frameworks */,
@@ -981,6 +1019,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E7AD3B19125C5500000B8C /* CoreMedia.framework in Frameworks */,
 				14A309B01837903F00A519DD /* libz.dylib in Frameworks */,
 				1490871B17E375D700943DD2 /* CoreData.framework in Frameworks */,
 				1490871C17E375D700943DD2 /* SystemConfiguration.framework in Frameworks */,
@@ -1001,6 +1040,7 @@
 				1490872B17E375D700943DD2 /* libsqlite3.0.dylib in Frameworks */,
 				1490872C17E375D700943DD2 /* Security.framework in Frameworks */,
 				14AF2AA5190E80D300FE87EC /* libGoogleAnalyticsServices.a in Frameworks */,
+				14DBC2B419128E5300416C1D /* libskyepub.a in Frameworks */,
 				1490872D17E375D700943DD2 /* CFNetwork.framework in Frameworks */,
 				1490872F17E375D700943DD2 /* Social.framework in Frameworks */,
 			);
@@ -1028,6 +1068,7 @@
 				14DB1209164BEDC3001FE76B /* NewsstandKit.framework in Frameworks */,
 				14DB120A164BEDC3001FE76B /* libsqlite3.0.dylib in Frameworks */,
 				14DB120B164BEDC3001FE76B /* Security.framework in Frameworks */,
+				14DBC2B319128E5300416C1D /* libskyepub.a in Frameworks */,
 				14DB120C164BEDC3001FE76B /* SystemConfiguration.framework in Frameworks */,
 				14AF2AA4190E80D300FE87EC /* libGoogleAnalyticsServices.a in Frameworks */,
 				14DB120D164BEDC3001FE76B /* CFNetwork.framework in Frameworks */,
@@ -1441,6 +1482,7 @@
 				14541D891307BAC2004A76D4 /* WAModuleViewController.h */,
 				14541D871307BAC2004A76D4 /* WAModuleViewController.m */,
 				1491964D1328A31C00DD54B1 /* WAModuleProtocol.h */,
+				14E7AD1C19124F9600000B8C /* SkyModule */,
 				146F6A97154E52620044821A /* Search Module */,
 				147FF3631488F20C00CC31F9 /* Table Module */,
 				14C7450C1459B6F400767C52 /* Database Module */,
@@ -1624,6 +1666,9 @@
 		14DB136D164C52C4001FE76B /* Wind */ = {
 			isa = PBXGroup;
 			children = (
+				14FBCDB219135EDD00CBD9CE /* Alice.epub */,
+				14FBCDB319135EDD00CBD9CE /* Books.sql */,
+				14FBCDB419135EDD00CBD9CE /* script.js */,
 				1454580116FC6A5700EC3DFD /* facebook.atom */,
 				1494B52F16FB0D2300DE034A /* news.rss */,
 				14DB136E164C52C4001FE76B /* Application.plist */,
@@ -1704,6 +1749,26 @@
 			name = ZippedHtml;
 			sourceTree = "<group>";
 		};
+		14E7AD1C19124F9600000B8C /* SkyModule */ = {
+			isa = PBXGroup;
+			children = (
+				14DBC2B119128E5300416C1D /* libskyepub.a */,
+				14E7AD35191253AB00000B8C /* WASkyView.m */,
+				14E7AD36191253AB00000B8C /* WASkyView.h */,
+				14E7AD2D191251AE00000B8C /* PagesCenter.png */,
+				14E7AD2E191251AE00000B8C /* PagesStack.png */,
+				145F5EBF19128027007CE256 /* FileProvider.h */,
+				145F5EC019128027007CE256 /* FileProvider.m */,
+				14E7AD231912515900000B8C /* Book.h */,
+				14E7AD241912515900000B8C /* BookInformation.h */,
+				14E7AD251912515900000B8C /* ContentProvider.h */,
+				14E7AD261912515900000B8C /* FixedViewController.h */,
+				14E7AD271912515900000B8C /* Highlight.h */,
+				14E7AD291912515900000B8C /* ReflowableViewController.h */,
+			);
+			name = SkyModule;
+			sourceTree = "<group>";
+		};
 		14FC1D73144DC65F006D75AD /* Singletons */ = {
 			isa = PBXGroup;
 			children = (
@@ -1764,6 +1829,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				14E7AD3A19125C5500000B8C /* CoreMedia.framework */,
+				14E7AD21191250AD00000B8C /* libskyepub.a */,
 				14E0172F16F9C5F4007EC00E /* Google Analytics */,
 				14E0178B16F9CC5B007EC00E /* CoreData.framework */,
 				14F94D61160C557200A68F2A /* Social.framework */,
@@ -1922,8 +1989,10 @@
 				8CA9B83714DC043000DE9B1E /* WALexiqueIphone.xib in Resources */,
 				BCA0551314F4DBA3008AB289 /* WADetailsIphone.xib in Resources */,
 				146E000817E22654000EE3DB /* list@2x.png in Resources */,
+				14E7AD2F191251AE00000B8C /* PagesCenter.png in Resources */,
 				BC2E46F914F8F03600F44BCA /* WAPopoverView.xib in Resources */,
 				1462330417E1FE210066084C /* top-list.png in Resources */,
+				14E7AD32191251AE00000B8C /* PagesStack.png in Resources */,
 				146E000217E20F49000EE3DB /* back@2x.png in Resources */,
 				14FEA5ED161AD51700D17A08 /* WAGenericPopover.xib in Resources */,
 				144B2C6618229DE200CDD200 /* info@2x.png in Resources */,
@@ -1980,6 +2049,7 @@
 				1490867B17E375D700943DD2 /* WAFileManagerCell.xib in Resources */,
 				1490867C17E375D700943DD2 /* WAGridCell.xib in Resources */,
 				1490867D17E375D700943DD2 /* WASplashWebViewController_iPad.xib in Resources */,
+				14E7AD31191251AE00000B8C /* PagesCenter.png in Resources */,
 				1490873D17E43B3B00943DD2 /* path.txt in Resources */,
 				1490867E17E375D700943DD2 /* rss@2x.png in Resources */,
 				1490867F17E375D700943DD2 /* top-list@2x.png in Resources */,
@@ -2017,6 +2087,7 @@
 				1490869D17E375D700943DD2 /* favoris-button.png in Resources */,
 				1490869E17E375D700943DD2 /* information@2x.png in Resources */,
 				144B2C5318229DE200CDD200 /* calendar.png in Resources */,
+				14E7AD34191251AE00000B8C /* PagesStack.png in Resources */,
 				1490869F17E375D700943DD2 /* globe@2x.png in Resources */,
 				149086A017E375D700943DD2 /* folder.png in Resources */,
 				149086A117E375D700943DD2 /* globe.png in Resources */,
@@ -2058,6 +2129,7 @@
 				14DB116F164BEDC3001FE76B /* WAGridCell.xib in Resources */,
 				14DB1170164BEDC3001FE76B /* WASplashWebViewController_iPad.xib in Resources */,
 				14DB1171164BEDC3001FE76B /* WASplashWebViewController_iPhone.xib in Resources */,
+				14E7AD30191251AE00000B8C /* PagesCenter.png in Resources */,
 				146232FF17E1FE210066084C /* globe@2x.png in Resources */,
 				14DB1172164BEDC3001FE76B /* WASplashScreenViewController_iPad.xib in Resources */,
 				14DB1173164BEDC3001FE76B /* WASplashScreenViewController_iPhone.xib in Resources */,
@@ -2093,6 +2165,7 @@
 				14DB139A164C52C4001FE76B /* Icon-72@2x.png in Resources */,
 				14DB139B164C52C4001FE76B /* Icon.png in Resources */,
 				14DB139C164C52C4001FE76B /* Icon@2x.png in Resources */,
+				14E7AD33191251AE00000B8C /* PagesStack.png in Resources */,
 				14DB139D164C52C4001FE76B /* Magazines.plist in Resources */,
 				14DB139E164C52C4001FE76B /* Magazines_background.png in Resources */,
 				14DB139F164C52C4001FE76B /* Tabs.plist in Resources */,
@@ -2115,6 +2188,7 @@
 				14DB13AC164C52C4001FE76B /* wind_369.png in Resources */,
 				14DB13AD164C52C4001FE76B /* wind_370.png in Resources */,
 				14A80BCF168EC39C006B0AA4 /* black.png in Resources */,
+				14FBCDB519135EDD00CBD9CE /* Alice.epub in Resources */,
 				14A80BF2168EC3DB006B0AA4 /* BottomBarBackground.png in Resources */,
 				146E000717E22654000EE3DB /* list.png in Resources */,
 				1490866E17E332A200943DD2 /* rss.png in Resources */,
@@ -2147,6 +2221,7 @@
 				14A80C93168EC3DB006B0AA4 /* stop.png in Resources */,
 				14A80C9A168EC3DB006B0AA4 /* synchronize.png in Resources */,
 				14A80CA1168EC3DB006B0AA4 /* video.png in Resources */,
+				14FBCDB619135EDD00CBD9CE /* Books.sql in Resources */,
 				14A80CA8168EC3DB006B0AA4 /* white.png in Resources */,
 				146E000117E20F49000EE3DB /* back.png in Resources */,
 				1489B60C168ECC3D00404BA6 /* Localizable.strings in Resources */,
@@ -2238,6 +2313,7 @@
 				14A1DBF314629AE1005366C7 /* WADocumentDownloadsManager.m in Sources */,
 				14A1DC0F14629D48005366C7 /* WADocumentDownloader.m in Sources */,
 				147B34C0146AB0980002CC17 /* NSBundle+WAAdditions.m in Sources */,
+				14E7AD37191253AB00000B8C /* WASkyView.m in Sources */,
 				147B34DD146C13BA0002CC17 /* WASQLiteParser.m in Sources */,
 				147B3535146E789A0002CC17 /* WANewsstandIssueDownloader.m in Sources */,
 				14897FFD146FB38000C6A5C6 /* NSDate+WAAdditions.m in Sources */,
@@ -2266,6 +2342,7 @@
 				14E1B9661538157700153BA5 /* WAShareActionSheet.m in Sources */,
 				142DB0631836A30D0045DFD5 /* mztools.c in Sources */,
 				146DAA7B1543D077000B7B69 /* WAAtomParser.m in Sources */,
+				145F5EC119128027007CE256 /* FileProvider.m in Sources */,
 				14443FC215465D3200F1D227 /* WAHTMLParser.m in Sources */,
 				146F6A9D154E52AA0044821A /* WASearchView.m in Sources */,
 				146F6AA9154E52AA0044821A /* WASearchListController.m in Sources */,
@@ -2341,6 +2418,7 @@
 				149086F317E375D700943DD2 /* FontCollection.m in Sources */,
 				149086F417E375D700943DD2 /* RenderingState.m in Sources */,
 				149086F517E375D700943DD2 /* CMap.m in Sources */,
+				14E7AD39191253AB00000B8C /* WASkyView.m in Sources */,
 				149086F617E375D700943DD2 /* WADocumentDownloadsManager.m in Sources */,
 				14A309AA18378F1000A519DD /* ioapi.c in Sources */,
 				149086F717E375D700943DD2 /* WADocumentDownloader.m in Sources */,
@@ -2369,6 +2447,7 @@
 				1490870E17E375D700943DD2 /* EAAppSubDelegate.m in Sources */,
 				1490870F17E375D700943DD2 /* WASharePopover.m in Sources */,
 				1490871017E375D700943DD2 /* WAShareActionSheet.m in Sources */,
+				145F5EC319128027007CE256 /* FileProvider.m in Sources */,
 				1490871117E375D700943DD2 /* WAAtomParser.m in Sources */,
 				1490871217E375D700943DD2 /* WAHTMLParser.m in Sources */,
 				1490871317E375D700943DD2 /* WASearchView.m in Sources */,
@@ -2431,6 +2510,7 @@
 				14DB11C9164BEDC3001FE76B /* WAExternalView.m in Sources */,
 				14DB11CA164BEDC3001FE76B /* WALocalParser.m in Sources */,
 				14DB11CB164BEDC3001FE76B /* WAVideoView.m in Sources */,
+				14FBCDB719135EDD00CBD9CE /* script.js in Sources */,
 				14A309A918378F0F00A519DD /* SSZipArchive.m in Sources */,
 				14DB11CC164BEDC3001FE76B /* UIView+WAModuleView.m in Sources */,
 				14DB11CD164BEDC3001FE76B /* UIColor+WAAdditions.m in Sources */,
@@ -2444,6 +2524,7 @@
 				14DB11D5164BEDC3001FE76B /* FontCollection.m in Sources */,
 				14DB11D6164BEDC3001FE76B /* RenderingState.m in Sources */,
 				14DB11D7164BEDC3001FE76B /* CMap.m in Sources */,
+				14E7AD38191253AB00000B8C /* WASkyView.m in Sources */,
 				14DB11D8164BEDC3001FE76B /* WADocumentDownloadsManager.m in Sources */,
 				14A309A518378F0F00A519DD /* ioapi.c in Sources */,
 				14DB11D9164BEDC3001FE76B /* WADocumentDownloader.m in Sources */,
@@ -2472,6 +2553,7 @@
 				14DB11F0164BEDC3001FE76B /* EAAppSubDelegate.m in Sources */,
 				14DB11F1164BEDC3001FE76B /* WASharePopover.m in Sources */,
 				14DB11F2164BEDC3001FE76B /* WAShareActionSheet.m in Sources */,
+				145F5EC219128027007CE256 /* FileProvider.m in Sources */,
 				14DB11F3164BEDC3001FE76B /* WAAtomParser.m in Sources */,
 				14DB11F4164BEDC3001FE76B /* WAHTMLParser.m in Sources */,
 				14DB11F5164BEDC3001FE76B /* WASearchView.m in Sources */,
@@ -2623,6 +2705,7 @@
 					"$(SRCROOT)",
 					"$(inherited)",
 					"$(PROJECT_DIR)/Classes",
+					/Users/Emmanuel/Downloads/libskyepub,
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
@@ -2658,6 +2741,7 @@
 					"$(SRCROOT)",
 					"$(inherited)",
 					"$(PROJECT_DIR)/Classes",
+					/Users/Emmanuel/Downloads/libskyepub,
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
@@ -2691,6 +2775,7 @@
 					"$(SRCROOT)",
 					"$(inherited)",
 					"$(PROJECT_DIR)/Classes",
+					/Users/Emmanuel/Downloads/libskyepub,
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (

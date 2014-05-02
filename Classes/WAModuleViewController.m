@@ -56,7 +56,8 @@
         case LinkTypeTable:
         case LinkTypeDatabase:
         case LinkTypeZoomImage:
-		case LinkTypeHTML:{
+		case LinkTypeHTML:
+        case LinkTypeSky:{
 			playFullScreen=YES;//Unlike other modules, the above modules are FullScreen by default
 			if ([rectString isEqualToString:@"self"]) playFullScreen=NO;
 			break;

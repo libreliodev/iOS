@@ -280,7 +280,7 @@
 	else if ([extension isEqualToString:@"sqlite"])return LinkTypeDatabase;
 	else if ([extension isEqualToString:@"kml"]) return LinkTypeMap;
 	else if ([extension isEqualToString:@"chart"]) return LinkTypeChart;
-	else if ([extension isEqualToString:@"scan"]) return LinkTypeScan;
+	else if ([extension isEqualToString:@"epub"]) return LinkTypeSky;
 	else if ([extension isEqualToString:@"txt"]) return LinkTypeText;
 	else if (RSSrange.location != NSNotFound) return LinkTypeRSS;//The URL contains the word feed, we assume it is an RSS feed
 	else if (MAPrange.location != NSNotFound) return LinkTypeMap; 
@@ -372,8 +372,8 @@
             ret = @"WAPaginated";
             break;
         }
-        case LinkTypeScan:{
-            ret = @"WAScanView";
+        case LinkTypeSky:{
+            ret = @"WASkyView";
             break;
         }
         case LinkTypeOpenCVClient:{
@@ -408,6 +408,7 @@
 	else if ([extension isEqualToString:@"local"]) return ParserTypeLocal;
 	else if ([extension isEqualToString:@"oam"]) return ParserTypeOAM;
 	else if ([extension isEqualToString:@"zip"]) return ParserTypeZip;
+	else if ([extension isEqualToString:@"epub"]) return ParserTypeEPub;
 	else return ParserTypeHTML;
 	
 }
