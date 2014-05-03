@@ -588,6 +588,7 @@
 		14FBCDBB1913684F00CBD9CE /* Magazines.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14FBCDB91913684F00CBD9CE /* Magazines.plist */; };
 		14FBCDBD191368AA00CBD9CE /* Alice.epub in Resources */ = {isa = PBXBuildFile; fileRef = 14FBCDBC191368AA00CBD9CE /* Alice.epub */; };
 		14FBCDBF1913692900CBD9CE /* Alice.png in Resources */ = {isa = PBXBuildFile; fileRef = 14FBCDBE1913692900CBD9CE /* Alice.png */; };
+		14FBCDC0191369C600CBD9CE /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E7AD3A19125C5500000B8C /* CoreMedia.framework */; };
 		14FD065E14222B1D002F9E35 /* WAGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FD065B14222B1D002F9E35 /* WAGridCell.xib */; };
 		14FEA5ED161AD51700D17A08 /* WAGenericPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCB35DA514F15F10005CC152 /* WAGenericPopover.xib */; };
 		14FEA5F0161AD58500D17A08 /* WAAdvancedSearchPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CAAC09F14E96B1D00D6D4F3 /* WAAdvancedSearchPopover.xib */; };
@@ -1048,6 +1049,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14FBCDC0191369C600CBD9CE /* CoreMedia.framework in Frameworks */,
 				1494A1AB16FAC24100DE034A /* CoreData.framework in Frameworks */,
 				14DB11FC164BEDC3001FE76B /* Foundation.framework in Frameworks */,
 				14DB11FD164BEDC3001FE76B /* UIKit.framework in Frameworks */,
@@ -2701,7 +2703,6 @@
 					"$(SRCROOT)",
 					"$(inherited)",
 					"$(PROJECT_DIR)/Classes",
-					/Users/Emmanuel/Downloads/libskyepub,
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
@@ -2737,7 +2738,6 @@
 					"$(SRCROOT)",
 					"$(inherited)",
 					"$(PROJECT_DIR)/Classes",
-					/Users/Emmanuel/Downloads/libskyepub,
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
@@ -2822,7 +2822,6 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"\\\"$(SRCROOT)/Classes\\\"",
-					"/Users/Emmanuel/Dropbox/librelio-ios-git/Classes",
 					"$(PROJECT_DIR)/Classes",
 				);
 				OTHER_CFLAGS = "";
