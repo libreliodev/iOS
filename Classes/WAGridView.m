@@ -59,7 +59,8 @@
 		
 		
 		//Test if a background image was provided
-		NSString *bgUrlString = [WAUtilities urlByChangingExtensionOfUrlString:urlString toSuffix:@"_background.png"];
+		NSString *bgUrlString = [[urlString nameOfFileWithoutExtensionOfUrlString] stringByAppendingString:@"_background.png"];
+        //SLog(@"bgUrlString:%@",bgUrlString);
 		NSString *bgPath = [[NSBundle mainBundle] pathOfFileWithUrl:bgUrlString];
 		if (bgPath){
 			UIImageView * background = [[UIImageView alloc] initWithFrame: self.bounds];
@@ -170,7 +171,7 @@
         UIView * nibView = [cell.contentView viewWithTag:1000+i];//Get  our Nib View
         //SLog(@"Frame:%f,%f,%f,%f",nibView.frame.origin.x, nibView.frame.origin.y,nibView.frame.size.width,nibView.frame.size.height);
         if ((indexPath.row*nbCols)+i<=[parser countData]){
-            [nibView populateNibWithParser:parser withButtonDelegate:self   forRow:(indexPath.row*nbCols)+i];
+            [nibView populateNibWithParser:parser withButtonDelegate:self   forRow:(int)(indexPath.row*nbCols)+i];
             [nibView setHidden:NO];
          }
         else{

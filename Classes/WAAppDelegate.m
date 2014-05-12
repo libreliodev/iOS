@@ -333,29 +333,27 @@
     //Create the views
     WAPListParser * parser = [[WAPListParser alloc]init];
     parser.urlString = @"/Tabs.plist";
-    //If user has selected admin mode in settings, use  Tabs_admin.plist
-    if ([[[NSUserDefaults standardUserDefaults] dictionaryRepresentation]objectForKey:@"admin_preference"]) parser.urlString = @"Tabs_admin.plist";
-	//Create the tab ViewControllers
-    //SLog(@"Will create tabviews array");
+ 
 	NSMutableArray *tabviews	= [NSMutableArray array];
     
+    //If user has specified PublisherCode1, add corresponding tab
+    //SLog(@"PublisherCode1: %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"PublisherCode1"]);
+    NSString * publisherCode1 = [[NSUserDefaults standardUserDefaults] objectForKey:@"PublisherCode1"];
+    if(publisherCode1){
+        //Capitalize first letter
+        NSString *firstCapChar = [[publisherCode1 substringToIndex:1] capitalizedString];
+        NSString *cappedString = [publisherCode1 stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:firstCapChar];
+
+        NSString * tabUrlString = [NSString stringWithFormat:@"/%@/Magazines.plist?waupdate=30&watitle=%@",publisherCode1,cappedString];
+        [self addModuleToTabViews:tabviews withUrlLink:tabUrlString withTitle:cappedString withIcon:@"download.png"];
+        
+    }
+
 	
 	for ( int j = 0; j < [parser countData]; j++ )
 	{
-        NSString *urlString = [parser getDataAtRow:j+1 forDataCol:DataColDetailLink];
-        //SLog(@"dealing with %@",urlString);
-		WAModuleViewController * moduleViewController = [[WAModuleViewController alloc]init];
-		moduleViewController.moduleUrlString= urlString ;
-        moduleViewController.title = [urlString titleOfUrlString];
-        //Check if the view is a webview; in this case, we load it for speed reasons
-        if ((j>0)&&([urlString typeOfParserOfUrlString]==ParserTypeHTML)&&(![urlString isLocalUrl])){
-            //SLog(@"Will load view in background with Url %@",urlString);
-            moduleViewController.view.tag = 111;			//Hack: force loadView if it is a webview with an external URL except for tab 1
-            
-        }
-        [self addViewController:moduleViewController toTabViews:tabviews withParser:parser atRow:j+1];
+         [self addModuleToTabViews:tabviews withUrlLink:[parser getDataAtRow:j+1 forDataCol:DataColDetailLink] withTitle:[parser getDataAtRow:j+1 forDataCol:DataColTitle] withIcon:[parser getDataAtRow:j+1 forDataCol:DataColIcon]];
         
-		[moduleViewController release];
 	}
     //SLog(@"Will release parser");
 	[parser release];
@@ -383,22 +381,33 @@
  
     
 }
-- (void) addViewController:(UIViewController*)view toTabViews:(NSMutableArray *)tabviews withParser:(WAPListParser*)parser atRow:(int)row {
-	//See if [tabInfo objectForKey:@"Icon"] contains a "."; if not, it means we want to use a system tabBarItem
-	NSRange range = [[parser getDataAtRow:row forDataCol:DataColIcon] rangeOfString:@"."];
+- (void) addModuleToTabViews:(NSMutableArray *)tabviews withUrlLink:(NSString *)tabUrlString withTitle:(NSString*)tabTitle withIcon:(NSString*)iconName {
+    WAModuleViewController * moduleViewController = [[WAModuleViewController alloc]init];
+    moduleViewController.moduleUrlString= tabUrlString ;
+    moduleViewController.title = [tabUrlString titleOfUrlString];
+    //Check if the view is a webview; in this case, we load it for speed reasons
+    if ((tabviews.count>0)&&([tabUrlString typeOfParserOfUrlString]==ParserTypeHTML)&&(![tabUrlString isLocalUrl])){
+     //SLog(@"Will load view in background with Url %@",urlString);
+     moduleViewController.view.tag = 111;			//Hack: force loadView if it is a webview with an external URL except for tab 1
+     
+     }
+
+    
+	//See if iconName contains a "."; if not, it means we want to use a system tabBarItem
+	NSRange range = [iconName rangeOfString:@"."];
 	if (range.location == NSNotFound){
-		int uiTabBarSystemItemValue = [[parser getDataAtRow:row forDataCol:DataColIcon]intValue];
-		view.tabBarItem = [[[UITabBarItem alloc] initWithTabBarSystemItem:uiTabBarSystemItemValue tag:3] autorelease];
+		int uiTabBarSystemItemValue = [iconName intValue];
+		moduleViewController.tabBarItem = [[[UITabBarItem alloc] initWithTabBarSystemItem:uiTabBarSystemItemValue tag:3] autorelease];
 		
 	}
 	else {
-		view.tabBarItem.title = NSLocalizedString([parser getDataAtRow:row forDataCol:DataColTitle],@"");
-		view.tabBarItem.image = [UIImage imageNamed:[parser getDataAtRow:row forDataCol:DataColIcon]];
+		moduleViewController.tabBarItem.title = NSLocalizedString(tabTitle,@"");
+		moduleViewController.tabBarItem.image = [UIImage imageNamed:iconName];
         
 	}
     
 	
-	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:view];
+	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:moduleViewController];
 	//If there is an image file called Tabs.png, use it instead of the title
     /*Deprecated
      NSString *imPath = [[NSBundle mainBundle] pathOfFileWithUrl:@"/Tabs.png" ];
@@ -425,6 +434,8 @@
 	//Add the navigation controller to the array to tabs
 	[tabviews addObject:navController];
 	[navController release];
+    [moduleViewController release];
+
 	
 }
 

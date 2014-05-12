@@ -259,8 +259,9 @@
             [self createUsernamePasswordAlert];
     } else {
 		SKProduct  * product = [products objectAtIndex:buttonIndex];
-		NSString * itemID = product.productIdentifier;
-		SKPayment *payment = [SKPayment paymentWithProductIdentifier:itemID];
+		//NSString * itemID = product.productIdentifier;
+		//SKPayment *payment = [SKPayment paymentWithProductIdentifier:itemID];
+        SKPayment * payment = [SKPayment paymentWithProduct:product];
 		// Add storeObserver in LibrelioAppDelegate
 		[[SKPaymentQueue defaultQueue] addPayment:payment];	
 		

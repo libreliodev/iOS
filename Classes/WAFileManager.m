@@ -120,7 +120,7 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	int row = indexPath.row+1;
+	int row = (int)indexPath.row+1;
 	NSString * newUrlString = [parser getDataAtRow:row forDataCol:DataColDetailLink];
 	
 	WAModuleViewController * loadingViewController = [[WAModuleViewController alloc]init];

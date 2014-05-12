@@ -256,6 +256,8 @@
 	NSRange RSSrange = [self rangeOfString :@"feeds"];
 	NSRange MAPrange = [self rangeOfString :@"maps.google"];
 	NSRange iTunesRange = [self rangeOfString :@"itunes.apple"];
+    NSRange cacheDirRange = [[self stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] rangeOfString :[WAUtilities cacheFolderPath]];
+    //SLog(@"cacheDir: %@",[WAUtilities cacheFolderPath]);
 	NSSet * externalSchemes = [NSSet setWithObjects:@"mailto",@"tel",@"librelio",nil];
 	NSString * linkTypeString = [self valueOfParameterInUrlStringforKey:@"waview"];
     NSString * lores = [self valueOfParameterInUrlStringforKey:@"walowres"];
@@ -267,7 +269,8 @@
     else if ([scheme isEqualToString:@"search"]) return LinkTypeSearch;
 	else if ([scheme isEqualToString:@"share"]) return LinkTypeShare;
 	else if ([externalSchemes containsObject:scheme]) return LinkTypeExternal;
-	else if ([scheme isEqualToString:@"file"]) return LinkTypeFileManager;
+    else if (cacheDirRange.location != NSNotFound) return LinkTypeHTML;//If the link contains the cache directory string, we assume it's an htmlLink
+	else if ([scheme isEqualToString:@"file"]) return LinkTypeFileManager;//Otherwise, if it starts with file, it's a FileManager link
 	else if ([extension isEqualToString:@"mov"]||[extension isEqualToString:@"mp4"]) return LinkTypeVideo; 
 	else if ([extension isEqualToString:@"png"]||[extension isEqualToString:@"jpg"]) return LinkTypeSlideShow;
 	else if ([extension isEqualToString:@"mp3"]||[extension isEqualToString:@"mp3"]) return LinkTypeMusic;

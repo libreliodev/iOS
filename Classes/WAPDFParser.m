@@ -79,7 +79,7 @@
         
         CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL(pdfURL);
         if (!pdf) [self deleteCorruptedFile];
-        numberOfPages = CGPDFDocumentGetNumberOfPages(pdf);
+        numberOfPages = (int)CGPDFDocumentGetNumberOfPages(pdf);
         CGPDFDocumentRelease(pdf);
         
         //Create the outlineArray
@@ -154,7 +154,7 @@
 	size_t ret  = CGPDFPageGetPageNumber(pageRef);
 	//CGPDFPageRelease(pageRef);Do not release, it crashes the app
 	CGPDFDocumentRelease(pdf);
-	return ret;
+	return (int)ret;
 	
 	
 }
@@ -665,7 +665,7 @@
 		
 		
 	}
-	return pageCounter;
+	return (int)pageCounter;
 	
 }
 
@@ -768,7 +768,7 @@
 
 - (int)countSearchResultsForQueryDic:(NSDictionary*)queryDic{
     
-    return [outlineArray count];
+    return (int)[outlineArray count];
 }
 
 - (NSString*) getDataAtRow:(int)row forQueryDic:(NSDictionary*)queryDic forDataCol:(DataCol)dataCol{
@@ -841,7 +841,7 @@
     //Count the number of generated cache files
     NSString * tempCacheDirUrlString = [urlString urlOfCacheFileWithName:@""];
     NSString * tempPath = [[NSBundle mainBundle] pathOfFileWithUrl:tempCacheDirUrlString];
-    int nFiles = [[[NSFileManager defaultManager]contentsOfDirectoryAtPath:tempPath error:nil] count];
+    int nFiles = (int)[[[NSFileManager defaultManager]contentsOfDirectoryAtPath:tempPath error:nil] count];
     //SLog(@"nFiles:%i",nFiles);
     
     //If the document has more that 6 pages, we want at least 2x6 files in the cache, otherwise we want all pages

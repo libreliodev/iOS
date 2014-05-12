@@ -72,7 +72,7 @@
 	cell.textLabel.text = [NSString stringWithFormat:@"%i",indexPath.row+1];
 	
 	//else cell.textLabel.text = [NSString stringWithFormat:@"%i",[pdfDocument getPageNumber: indexPath.row-1]];
-    NSString * imgUrlString = [pdfDocument getDataAtRow:indexPath.row+1 forDataCol:DataColImage];
+    NSString * imgUrlString = [pdfDocument getDataAtRow:(int)indexPath.row+1 forDataCol:DataColImage];
     if (imgUrlString) {
         UIImage * img = [UIImage imageWithContentsOfFile:imgUrlString];            
 		cell.imageView.image = img;
@@ -100,7 +100,7 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	[self.thumbImageViewDelegate thumbImageViewWasTappedAtPage:indexPath.row+1];
+	[self.thumbImageViewDelegate thumbImageViewWasTappedAtPage:(int)indexPath.row+1];
 
 }
 

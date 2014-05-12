@@ -76,7 +76,9 @@
 
 - (void) checkFullScreenAndPushViewControllerIfNeeded{
     BOOL playFullScreen = [self checkFullScreen];
+    //SLog(@"moduleurlstring%@",moduleUrlString);
 	LinkType linkType = [moduleUrlString typeOfLinkOfUrlString];
+    //SLog(@"linktype %u",linkType);
     
 	//If play full screen is required, push view controller (self) EXCEPT for videos and Slideshows,Charts and ZoomImages
 	if ((playFullScreen)&&(linkType!=LinkTypeVideo)){

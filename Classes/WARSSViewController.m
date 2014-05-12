@@ -99,7 +99,7 @@
 // customize the number of rows in the table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	int count = [[self.dataDic objectForKey:@"ItemsArray"] count];
+	int count = (int)[[self.dataDic objectForKey:@"ItemsArray"] count];
 	
     return count;
 }

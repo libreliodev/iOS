@@ -278,7 +278,8 @@
     for (NSDictionary * dic in enumerator){
         NSString *pdfUrl = [dic objectForKey: @"FileName"];
         pdfUrl = [pdfUrl urlByRemovingFinalUnderscoreInUrlString];//Remove underscore
-        NSString *coverUrl = [WAUtilities urlByChangingExtensionOfUrlString:pdfUrl toSuffix:@".png"];
+        pdfUrl = [WAUtilities absoluteUrlOfRelativeUrl:pdfUrl relativeToUrl:urlString];
+        NSString * coverUrl = [WAUtilities urlByChangingExtensionOfUrlString:pdfUrl toSuffix:@".png"];
         [tempArray2 addObject:coverUrl];
     }	
     

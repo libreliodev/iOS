@@ -1857,10 +1857,10 @@
 				ORGANIZATIONNAME = "WidgetAvenue - Librelio";
 				TargetAttributes = {
 					1490867817E375D700943DD2 = {
-						DevelopmentTeam = 2WU7L85G5E;
+						DevelopmentTeam = 59A26UF37H;
 					};
 					14DB1158164BEDC3001FE76B = {
-						DevelopmentTeam = 2WU7L85G5E;
+						DevelopmentTeam = 59A26UF37H;
 					};
 				};
 			};
@@ -2617,7 +2617,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2/**";
 				INFOPLIST_FILE = ScriptTarget/Application.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(SRCROOT)/Classes",
 					"$(SRCROOT)",
@@ -2652,7 +2652,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2/**";
 				INFOPLIST_FILE = ScriptTarget/Application.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(SRCROOT)/Classes",
 					"$(SRCROOT)",
@@ -2685,7 +2685,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2/**";
 				INFOPLIST_FILE = ScriptTarget/Application.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(SRCROOT)/Classes",
 					"$(SRCROOT)",

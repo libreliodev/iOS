@@ -18,7 +18,7 @@
 
 @implementation WAHTMLView
 
-@synthesize activityIndicator,splashView,currentViewController,backButton,previousPageTitle,currentPageTitle,forwardButton,parser;
+@synthesize activityIndicator,splashView,currentViewController,backButton,previousPageTitle,currentPageTitle,forwardButton,parser,timer,shouldToggleNavBar;
 
 - (id)init {
 	if (self = [super init]) {
@@ -44,10 +44,19 @@
 
 - (void) setUrlString: (NSString *) theString
 {
+    urlString = [[NSString alloc]initWithString: theString];
+
+    
+    //SLog(@"html view started for %@",urlString);
     UIColor * bgColor = [UIColor whiteColor];//This is the default background
     NSString *bgColorString = [urlString valueOfParameterInUrlStringforKey:@"wabgcolor"];
     if (bgColorString) bgColor = [UIColor colorFromString:bgColorString];
 
+    //Launch timer if should toggle nav bar
+    shouldToggleNavBar  = (BOOL)[urlString valueOfParameterInUrlStringforKey:@"waubar"];
+    //SLog(@"valueOfParameterInUrlStringforKey:%@",[urlString valueOfParameterInUrlStringforKey:@"waubar"]);
+    
+    
     if (![self isRootModule]){
         //Prevent scrolling if module is not at the root level
        for (UIView* subview in self.subviews){
@@ -64,7 +73,6 @@
     }
     
     
-    urlString = [[NSString alloc]initWithString: theString];
 	
     NSString * className = [urlString classNameOfParserOfUrlString];
     Class theClass = NSClassFromString(className);
@@ -141,6 +149,16 @@
      
     self.previousPageTitle = [[NSString alloc]initWithString: @""];
     self.currentPageTitle = [[NSString alloc]initWithString: @""];
+    
+    
+    if (shouldToggleNavBar){
+		//Show the bottom bar, and hide it after 5s
+        NSLog(@"Should toggle bar");
+		[self showNavBarDidAsk];
+		timer = [[NSTimer scheduledTimerWithTimeInterval: 5 target:self selector:@selector(hideNavBarDidAsk) userInfo:nil repeats:NO]retain];
+        
+    }
+
 
 	
 	
@@ -151,8 +169,8 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    [self stringByEvaluatingJavaScriptFromString:@"window.alert=null;"];//Prevent alerts from being shown
-    [self stringByEvaluatingJavaScriptFromString:@"window.confirm=function(txt){return 1};"]; //Prevent confirms from being shown and returns default answer
+    //[self stringByEvaluatingJavaScriptFromString:@"window.alert=null;"];//Prevent alerts from being shown
+    //s[self stringByEvaluatingJavaScriptFromString:@"window.confirm=function(txt){return 1};"]; //Prevent confirms from being shown and returns default answer
     
     
 }
@@ -162,6 +180,14 @@
 	[splashView removeFromSuperview];
     [activityIndicator stopAnimating];
 	[activityIndicator removeFromSuperview];
+    
+    /**
+     The following javascript code should be understood as follows:
+     - the ontouchend event is triggered on all body
+     - the onclick event is triggered only on links; in this case, the function triggered by ontouchend is canceled
+     We have found no simpler way to cancel ontouchend otherwise.
+     **/
+    [webView stringByEvaluatingJavaScriptFromString:@"window.document.body.ontouchend=function(e){window.libreliotimeout=setTimeout(function(){location.href='togglenavbar://nomatter';},500);};window.document.body.onclick=function(e){clearTimeout(window.libreliotimeout)}"];
     
 
     if ([self isRootModule]){
@@ -206,10 +232,16 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
 	NSURL* tempUrl= [request URL];
-    //SLog(@"shouldStartLoadWithRequest:%@",tempUrl);
+    NSLog(@"shouldStartLoadWithRequest:%@",tempUrl);
 	//If wabase has been specified, we open all links outside the host of wabase in Safari
 	NSString * waBase = [urlString valueOfParameterInUrlStringforKey:@"wabase"];
-	if (waBase){
+	if ([tempUrl.scheme isEqualToString:@"togglenavbar"]){
+        [self toggleNavBarDidAsk];
+        return NO;
+    }
+    
+    
+    if (waBase){
 		//We only filter clicked links
 		if (navigationType==UIWebViewNavigationTypeLinkClicked) {
 				NSString * waBaseHost = [[NSURL URLWithString:waBase] host];
@@ -250,6 +282,7 @@
 	
     //If the link is for a module other than webview, open the module
     if ([[tempUrl absoluteString] typeOfLinkOfUrlString]!=LinkTypeHTML){
+        //SLog(@"Type of link is not html");
         if (navigationType==UIWebViewNavigationTypeLinkClicked) {
             WAModuleViewController * curModuleViewController = (WAModuleViewController *) [self currentViewController];
             WAModuleViewController * moduleViewController = [[WAModuleViewController alloc]init];
@@ -281,9 +314,35 @@
     [forwardButton release];
 	[urlString release];
     [parser release];
+    [timer release];
     [super dealloc];
 }
 
+
+#pragma mark - 
+#pragma mark Upper Bar Management
+- (void) toggleNavBarDidAsk{
+    if (shouldToggleNavBar){
+        if (currentViewController.navigationController.navigationBarHidden) [self showNavBarDidAsk];
+        else [self hideNavBarDidAsk];
+    }
+    
+}
+
+- (void) showNavBarDidAsk{
+	//Show the navigation controller
+    NSLog(@"Should show bar");
+	[currentViewController.navigationController setNavigationBarHidden:NO animated:YES];
+    
+}
+
+- (void) hideNavBarDidAsk{
+    NSLog(@"Should hide bar");
+		[currentViewController.navigationController setNavigationBarHidden:YES animated:YES];
+   
+	
+ 	
+}
 
 
 #pragma mark -

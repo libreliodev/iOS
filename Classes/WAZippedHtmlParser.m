@@ -54,25 +54,6 @@
             ret= [NSString stringWithFormat:@"%@/%@/index.html",unzippedFolderUrlString,fileName];
             //SLog(@"oamurl: %@",ret);
 			break;}
-        case DataColHTML:{
-            //Load the html string
-            NSString * htmlUrl = [NSString stringWithFormat:@"%@/%@/index.html",unzippedFolderUrlString,fileName];
-            NSString * htmlPath = [[NSBundle mainBundle] pathOfFileWithUrl:htmlUrl];
-            //SLog(@"Htmlpath:%@ for Url:%@",htmlPath,htmlUrl);
-            NSString * htmlString = [NSString stringWithContentsOfFile:htmlPath encoding:NSUTF8StringEncoding error:nil];
-
-            
-            /**Insert the viewport meta right before </head>
-           // NSString * metaAndHeadClose = [NSString stringWithFormat:@"<meta name=\"viewport\" content=\"width=%@; user-scalable=no\" /></head>",widthString];
-            //SLog(@"meta:%@",metaAndHeadClose);
-            ret = [htmlString stringByReplacingOccurrencesOfString:@"</head>" withString:metaAndHeadClose];**/
-            ret = htmlString;
-
-            break;
-
-
-            
-        }
             
         default:
             ret = nil;

@@ -16,8 +16,16 @@
     NSString * currentPageTitle;
     UIBarButtonItem* forwardButton;
     NSObject <WAParserProtocol> *parser;
-
+    NSTimer * timer;
+    
+    BOOL shouldToggleNavBar;
+    
+    
 }
+
+
+@property BOOL shouldToggleNavBar;
+@property (nonatomic, retain) NSTimer * timer;
 @property (nonatomic, retain)	UIActivityIndicatorView*activityIndicator;
 @property (nonatomic, retain)	 UIImageView * splashView;
 @property (nonatomic, retain)	 UIBarButtonItem* backButton;
@@ -25,6 +33,12 @@
 @property (nonatomic, retain)	 NSString * currentPageTitle;
 @property (nonatomic, retain)	 UIBarButtonItem* forwardButton;
 @property (nonatomic, retain) NSObject <WAParserProtocol> *parser;
+
+
+- (void) toggleNavBarDidAsk;
+- (void) showNavBarDidAsk;
+- (void) hideNavBarDidAsk;
+ 	
 
 
 

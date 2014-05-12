@@ -99,7 +99,7 @@
         //SLog(@"Found subview with tag %i.",subView.tag);
 		if (subView.tag>=0){
 			NSString * tempString;
-            tempString=[parser getDataAtRow:row forDataCol:subView.tag];
+            tempString=[parser getDataAtRow:row forDataCol:(int)subView.tag];
             //SLog(@"Found tempString:%@",tempString);
             //[parser getDataAtRow:row forQueryString:queryString forDataCol:subView.tag];Deprecated
 			if (!tempString){
