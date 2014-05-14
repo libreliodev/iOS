@@ -58,7 +58,7 @@
 	else {
 		//Do once only
 		urlString = [[NSString alloc]initWithString: theString];
-        
+        //SLog(@"PDF URL: %@",urlString);
         //SLog(@"Current nav :%@, current VC:%@",currentViewController.navigationController.childViewControllers,currentViewController);
 
 		//Activity indicator

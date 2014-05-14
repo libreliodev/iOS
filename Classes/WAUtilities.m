@@ -68,8 +68,13 @@
 		ret = [NSString stringWithFormat:@"%@/%@",dir,urlWithoutLocalHost] ;
  		
 	}
-    //SLog(@"end absoluteUrlOfRelativeUrl:%@",ret);
-    return ret;
+    
+    //If ret starts with file://, remove the dir path to make a distinction between real local file links, and the local:// prefix we use for our local module
+    NSString * cacheDirUrlString = [NSString stringWithFormat:@"file://%@",[[WAUtilities cacheFolderPath]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSString * ret2 = [ret stringByReplacingOccurrencesOfString:cacheDirUrlString withString:@""];
+    //SLog(@"ret:%@ cacheUrl: %@, ret2:%@",ret,cacheDirUrlString,ret2);
+
+    return ret2;
 
 }
 

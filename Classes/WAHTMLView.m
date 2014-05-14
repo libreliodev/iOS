@@ -153,7 +153,7 @@
     
     if (shouldToggleNavBar){
 		//Show the bottom bar, and hide it after 5s
-        NSLog(@"Should toggle bar");
+        //SLog(@"Should toggle bar");
 		[self showNavBarDidAsk];
 		timer = [[NSTimer scheduledTimerWithTimeInterval: 5 target:self selector:@selector(hideNavBarDidAsk) userInfo:nil repeats:NO]retain];
         
@@ -187,7 +187,7 @@
      - the onclick event is triggered only on links; in this case, the function triggered by ontouchend is canceled
      We have found no simpler way to cancel ontouchend otherwise.
      **/
-    [webView stringByEvaluatingJavaScriptFromString:@"window.document.body.ontouchend=function(e){window.libreliotimeout=setTimeout(function(){location.href='togglenavbar://nomatter';},500);};window.document.body.onclick=function(e){clearTimeout(window.libreliotimeout)}"];
+    [webView stringByEvaluatingJavaScriptFromString:@"window.document.body.ontouchstart=function(e){window.libreliotimeout=setTimeout(function(){location.href='togglenavbar://nomatter';},500);};window.document.body.onclick=function(e){clearTimeout(window.libreliotimeout)};window.document.body.ontouchmove=function(e){clearTimeout(window.libreliotimeout)}"];
     
 
     if ([self isRootModule]){
@@ -232,7 +232,8 @@
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
 	NSURL* tempUrl= [request URL];
-    NSLog(@"shouldStartLoadWithRequest:%@",tempUrl);
+    NSString * tempUrlString = [WAUtilities absoluteUrlOfRelativeUrl:[tempUrl relativeString] relativeToUrl:urlString];
+    //SLog(@"shouldStartLoadWithRequest:%@",tempUrl);
 	//If wabase has been specified, we open all links outside the host of wabase in Safari
 	NSString * waBase = [urlString valueOfParameterInUrlStringforKey:@"wabase"];
 	if ([tempUrl.scheme isEqualToString:@"togglenavbar"]){
@@ -259,7 +260,7 @@
         if (navigationType==UIWebViewNavigationTypeLinkClicked) {
             WAModuleViewController * curModuleViewController = (WAModuleViewController *) [self traverseResponderChainForUIViewController];
             WAModuleViewController * moduleViewController = [[WAModuleViewController alloc]init];
-            moduleViewController.moduleUrlString= [tempUrl absoluteString];
+            moduleViewController.moduleUrlString= tempUrlString;
             moduleViewController.initialViewController= curModuleViewController;
             moduleViewController.containingView= curModuleViewController.containingView;
             moduleViewController.containingRect= curModuleViewController.containingRect;
@@ -281,12 +282,12 @@
 	}
 	
     //If the link is for a module other than webview, open the module
-    if ([[tempUrl absoluteString] typeOfLinkOfUrlString]!=LinkTypeHTML){
+    if ([tempUrlString typeOfLinkOfUrlString]!=LinkTypeHTML){
         //SLog(@"Type of link is not html");
         if (navigationType==UIWebViewNavigationTypeLinkClicked) {
             WAModuleViewController * curModuleViewController = (WAModuleViewController *) [self currentViewController];
             WAModuleViewController * moduleViewController = [[WAModuleViewController alloc]init];
-            moduleViewController.moduleUrlString= [tempUrl absoluteString];
+            moduleViewController.moduleUrlString= tempUrlString;
             moduleViewController.initialViewController= curModuleViewController;
             moduleViewController.containingView= self.superview;
             moduleViewController.containingRect= CGRectMake(0,0,self.superview.frame.size.width,self.superview.frame.size.height/2);
@@ -331,13 +332,13 @@
 
 - (void) showNavBarDidAsk{
 	//Show the navigation controller
-    NSLog(@"Should show bar");
+    //SLog(@"Should show bar");
 	[currentViewController.navigationController setNavigationBarHidden:NO animated:YES];
     
 }
 
 - (void) hideNavBarDidAsk{
-    NSLog(@"Should hide bar");
+    //SLog(@"Should hide bar");
 		[currentViewController.navigationController setNavigationBarHidden:YES animated:YES];
    
 	

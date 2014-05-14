@@ -250,17 +250,20 @@
 
 
 - (LinkType) typeOfLinkOfUrlString{
-    NSString * scheme = [self schemePartOfUrlString];    
-	NSString * extension = [[self noArgsPartOfUrlString] pathExtension];
+    
+    //If self starts with file:///, remove the dir path to make a distinction between real local file links, and the local:// prefix we use for our local module
+    NSString * cacheDirUrlString = [NSString stringWithFormat:@"file://%@",[[WAUtilities cacheFolderPath]stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSString * urlString = [self stringByReplacingOccurrencesOfString:cacheDirUrlString withString:@""];
+
+    NSString * scheme = [urlString schemePartOfUrlString];
+	NSString * extension = [[urlString noArgsPartOfUrlString] pathExtension];
     //SLog(@"scheme:%@ for url %@",scheme,self);
-	NSRange RSSrange = [self rangeOfString :@"feeds"];
-	NSRange MAPrange = [self rangeOfString :@"maps.google"];
-	NSRange iTunesRange = [self rangeOfString :@"itunes.apple"];
-    NSRange cacheDirRange = [[self stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] rangeOfString :[WAUtilities cacheFolderPath]];
-    //SLog(@"cacheDir: %@",[WAUtilities cacheFolderPath]);
+	NSRange RSSrange = [urlString rangeOfString :@"feeds"];
+	NSRange MAPrange = [urlString rangeOfString :@"maps.google"];
+	NSRange iTunesRange = [urlString rangeOfString :@"itunes.apple"];
 	NSSet * externalSchemes = [NSSet setWithObjects:@"mailto",@"tel",@"librelio",nil];
-	NSString * linkTypeString = [self valueOfParameterInUrlStringforKey:@"waview"];
-    NSString * lores = [self valueOfParameterInUrlStringforKey:@"walowres"];
+	NSString * linkTypeString = [urlString valueOfParameterInUrlStringforKey:@"waview"];
+    NSString * lores = [urlString valueOfParameterInUrlStringforKey:@"walowres"];
     
 	if (linkTypeString) return [linkTypeString intValue];
     else if (lores) return LinkTypeZoomImage;//If the walores arg is set, it means it is a ZoomImage
@@ -269,8 +272,7 @@
     else if ([scheme isEqualToString:@"search"]) return LinkTypeSearch;
 	else if ([scheme isEqualToString:@"share"]) return LinkTypeShare;
 	else if ([externalSchemes containsObject:scheme]) return LinkTypeExternal;
-    else if (cacheDirRange.location != NSNotFound) return LinkTypeHTML;//If the link contains the cache directory string, we assume it's an htmlLink
-	else if ([scheme isEqualToString:@"file"]) return LinkTypeFileManager;//Otherwise, if it starts with file, it's a FileManager link
+	else if ([scheme isEqualToString:@"file"]) return LinkTypeFileManager;
 	else if ([extension isEqualToString:@"mov"]||[extension isEqualToString:@"mp4"]) return LinkTypeVideo; 
 	else if ([extension isEqualToString:@"png"]||[extension isEqualToString:@"jpg"]) return LinkTypeSlideShow;
 	else if ([extension isEqualToString:@"mp3"]||[extension isEqualToString:@"mp3"]) return LinkTypeMusic;
