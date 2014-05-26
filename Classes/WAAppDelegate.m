@@ -91,6 +91,8 @@
     NSDictionary *payload = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     [self launchNewstandDownloadFromNotification:payload];
     
+
+    
     //Add window and RootViwController
     window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]; //We are not using a Xib
     
@@ -144,11 +146,27 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Clear application badge 
+    //SLog(@"Application did become active");
+    // Clear application badge
 	application.applicationIconBadgeNumber = 0;
-    
-    //Request ad if appropriate; this needs to be done here (and not in "didFinishLaunchingWithOptions") so that the ad is also displayed when the app awakes from background
-    [splashScreenViewController requestAd];
+    //Check if publisherCode1 changed; if yes, we need to update the tabs
+    NSString * old = [[NSUserDefaults standardUserDefaults]objectForKey:@"OldPublisherCode1"];
+    old = old?old:@"waempty";
+    NSString * new = [[NSUserDefaults standardUserDefaults]objectForKey:@"PublisherCode1"];
+    new = new?new:@"waempty";
+    //SLog(@"old:%@,new:%@",old,new);
+    if (![old isEqual:new]){
+        [[NSUserDefaults standardUserDefaults]setObject:new forKey:@"OldPublisherCode1"];
+        //SLog(@"will updateRootViewCOntroller");
+        [self updateRootViewController];
+    }
+    else{
+        //Request ad if appropriate; this needs to be done here (and not in "didFinishLaunchingWithOptions") so that the ad is also displayed when the app awakes from background
+        
+        [splashScreenViewController requestAd];
+    }
+
+
     
     
     //Register event with GA
@@ -270,7 +288,7 @@
 
 - (void) applicationWillEnterForeground:(UIApplication *)application{
     [Appirater appEnteredForeground:YES];
-}
+ }
 
 -(void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
 	[[[WAOperationsManager sharedManager] defaultQueue]setSuspended:YES];	//Suspend the queue for 5 seconds
@@ -338,8 +356,8 @@
     
     //If user has specified PublisherCode1, add corresponding tab
     //SLog(@"PublisherCode1: %@",[[NSUserDefaults standardUserDefaults] objectForKey:@"PublisherCode1"]);
-    NSString * publisherCode1 = [[NSUserDefaults standardUserDefaults] objectForKey:@"PublisherCode1"];
-    if(publisherCode1){
+    NSString * publisherCode1 = [[NSUserDefaults standardUserDefaults]objectForKey:@"PublisherCode1"];
+    if(publisherCode1.length>0){
         //Capitalize first letter
         NSString *firstCapChar = [[publisherCode1 substringToIndex:1] capitalizedString];
         NSString *cappedString = [publisherCode1 stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:firstCapChar];

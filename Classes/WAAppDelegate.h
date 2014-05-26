@@ -28,6 +28,7 @@
 @property (nonatomic, retain) NSMetadataQuery * metadataQuery;
 
 
+
 /**
  * @brief: Builds or update the root view controller (tab view)
  **/

@@ -74,6 +74,16 @@
 		}
 		
 	}
+    
+    //Sort the array
+      
+    NSArray *sortedArray = [dataArray sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+        NSDate *first = [(NSDictionary*)a objectForKey:@"DownloadDate"];
+        NSDate *second = [(NSDictionary*)b objectForKey:@"DownloadDate"];
+        return [first compare:second];
+    }];
+    [dataArray release];
+    dataArray = [[NSMutableArray alloc]initWithArray:sortedArray];
     //SLog(@"dataArray:%@",dataArray);
 
     
