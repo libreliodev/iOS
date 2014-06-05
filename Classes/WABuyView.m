@@ -316,6 +316,24 @@
 	
 }
 
+- (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView
+{
+    UITextField *usernameField = [alertView textFieldAtIndex:0];
+    if ([usernameField.text length] == 0)
+    {
+        return NO;//Username should not be empty
+    }
+    if (alertView.tag == 2) {
+        UITextField *passwordField = [alertView textFieldAtIndex:1];
+        if ([passwordField.text length] == 0)
+        {
+            return NO;//Password should not be empty
+        }
+
+    }
+    return YES;
+}
+
 
 #pragma mark -
 #pragma mark Notifications
