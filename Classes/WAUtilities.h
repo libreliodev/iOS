@@ -32,7 +32,7 @@
  */
 + (NSString *)getUUID;
 + (NSString *) completeDownloadUrlforUrlString:(NSString*)urlString;
-+ (NSString *) getCompleteUrlForUrlString:(NSString*)urlString;
++ (NSString *) getAuthorizingUrlForUrlString:(NSString*)urlString;
 + (NSString *) completeCheckAppStoreUrlforUrlString:(NSString*)urlString;
 + (NSString *) completeCheckPasswordUrlforUrlString:(NSString*)urlString;
 + (NSString *) completeCheckUsernamePasswordUrlforUrlString:(NSString*)urlString;
@@ -43,6 +43,10 @@
 + (void) deleteCorruptedResourceWithPath:(NSString*)path ForMainFileWithUrlString:(NSString*)urlString;
 + (BOOL) isBigScreen;
 + (BOOL) isScreenHigherThan500;
++ (BOOL) featuresInApps;
++ (NSString *) getCodeService;
++ (NSString *) getUserService;
+
 + (void) resizeNibView:(NSString*) nibName defaultNib:(NSString*) defaultNibName inView:(UIView*) containingView;
 + (CGSize) sizeForResizedNibView:(NSString*) nibName defaultNib:(NSString*) defaultNibName inRect:(CGRect)contaningRect;
 

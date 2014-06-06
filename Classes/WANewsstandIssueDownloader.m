@@ -69,7 +69,7 @@
     NSString * noUnderscoreCompleteUrl = [completeUrl urlByRemovingFinalUnderscoreInUrlString];
     if(![completeUrl isEqualToString:noUnderscoreCompleteUrl]){
         //The file is protected, we need to change the query so that background downloads can work
-        completeUrl = [WAUtilities getCompleteUrlForUrlString:currentUrlString];
+        completeUrl = [WAUtilities getAuthorizingUrlForUrlString:currentUrlString];
         //SLog(@"New complete Url: %@",completeUrl);
     }
     

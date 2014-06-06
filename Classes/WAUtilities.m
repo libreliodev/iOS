@@ -7,6 +7,9 @@
 #import "UIView+WAModuleView.h"
 #import "NSBundle+WAAdditions.h"
 
+#import <NewsstandKit/NewsstandKit.h>
+
+
 
 
 #define kDownloadUrl @"http://librelio-europe.s3.amazonaws.com"
@@ -251,6 +254,31 @@
 	return ret;
 }
 
++ (BOOL) featuresInApps{
+    //Check if Newsstand is enabled; in this case, the app MUST feature In Apps
+     if (NSClassFromString(@"NKLibrary")){
+        //Check if newsstand is enabled in the app
+        if ([NKLibrary sharedLibrary]){
+            return YES;
+        }
+    
+     }
+
+    
+    //If Newsstand is not enabled, check if we have an InApps field in Application_.xml
+    NSString * appPrefs = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];
+    
+	
+	if (appPrefs) {
+        NSString * inApps = [[NSDictionary dictionaryWithContentsOfFile:appPrefs]objectForKey:@"InApps"];
+        if (inApps) return YES;
+        
+    }
+    
+    
+    return NO;
+}
+
 
 + (BOOL) isCheckUpdateNeededForUrlString:(NSString*)urlString{
 	//SLog(@"Checking update needed? for url:%@",urlString);
@@ -326,6 +354,26 @@
 
 }
 
++ (NSString *) getCodeService{
+ 
+    NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];
+	NSString * codeService = nil;
+    if (credentials) codeService = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"CodeService"];
+    return codeService;
+
+    
+    
+}
+
++ (NSString *) getUserService{
+    NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];
+	NSString * userService = nil;
+    if (credentials) userService = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"UserService"];
+    return userService;
+   
+    
+}
+
 
 
 #pragma mark -
@@ -368,7 +416,7 @@
     }
 }
 
-+ (NSString *) getCompleteUrlForUrlString:(NSString*)urlString{
++ (NSString *) getAuthorizingUrlForUrlString:(NSString*)urlString{
     
     NSString* completeUrl = [WAUtilities completeCheckAppStoreUrlforUrlString:urlString];
     if (!completeUrl)

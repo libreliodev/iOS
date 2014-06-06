@@ -17,7 +17,9 @@
 }
 @property (nonatomic, retain)	NSArray *products;
 
-- (void) startDownload;
+- (void) startDownloadOrCheckCredentials;
 - (void) createPasswordAlert;
+- (void) createNotAllowedAlert;
+- (void) requestProducts;
 
 @end

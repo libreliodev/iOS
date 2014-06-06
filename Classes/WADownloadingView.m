@@ -78,7 +78,8 @@
 	messageLabel.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
 	[self addSubview:messageLabel];
 	
-	UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+	//Add gesture recognizers
+    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
 	singleTapGestureRecognizer.numberOfTapsRequired = 1;
 	singleTapGestureRecognizer.delegate = self;
 	[self addGestureRecognizer:singleTapGestureRecognizer];

@@ -7,6 +7,8 @@
 #import "NSBundle+WAAdditions.h"
 #import "NSString+WAURLString.h"
 #import "UIView+WAModuleView.m"
+#import "WADocumentDownloadsManager.h"
+
 
 
 #import "SHKActivityIndicator.h"
@@ -28,60 +30,38 @@
 {
 	//Receive notification when transaction status changed
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(transactionStatusDidChangeWithNotification:) name:@"transactionStatusDidChange" object:nil];
-
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restoreCompletedTransactionsFinishedWithNotification:) name:@"restoreCompletedTransactionsFinished" object:nil];
+    
+    
+    //Receive notifications when logging in
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFailIssueDownloadWithNotification:) name:@"didFailIssueDownload" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedIssueDownloadWithNotification:) name:@"didSucceedIssueDownload" object:nil];
+
 
 	
 	urlString = [[NSString alloc]initWithString: theString];
 
-	//Add SHKActivityIndicator
-
-    [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Connecting...",@"")];
 
     NSString * receipt = [urlString receiptForUrlString];
 	
     if (receipt){
 		//We have a receipt, proceed to download
-		[self startDownload];
+		[self startDownloadOrCheckCredentials];
 	}
-	else {
-        //Get the ID of the product. Our convention is that it is always the name of the file without extension 
-        NSString * shortID = [[urlString urlByRemovingFinalUnderscoreInUrlString] nameOfFileWithoutExtensionOfUrlString];
-        //SLog(@"ShortID:%@, theString:%@",shortID,theString);
-
-        //get product data
-        NSString * itemID = [NSString stringWithFormat:@"%@.%@",[[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"],shortID];
-        //SLog(@"ItemID:%@",itemID);
-        SKProductsRequest *request;
-        //Add all subscriptions, only if we have a secret key
-        NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];
-        NSString * sharedSecret = [NSString string];
-        if (credentials) sharedSecret = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"SharedSecret"];
-        if (sharedSecret){
-            NSMutableSet * productIdentifiers = [NSMutableSet set];
-            NSSet * relevantIDs = [urlString relevantSKProductIDsForUrlString];
-            //SLog(@"Relevant ids:%@",relevantIDs);
-            for (NSString * curentID in relevantIDs){
-                NSString * tempID = [NSString stringWithFormat:@"%@.%@",[[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"],curentID];
-                [productIdentifiers addObject:tempID];
-            }
-            //Request the data 
-            request = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers];
-        }
-        else {
-            request = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObjects:
-                                                                             itemID,
-                                                                             nil]];
-            
-        }
-        request.delegate = self;
-        [request start];
+	else if ([WAUtilities featuresInApps]) {
+        //The app has in app purchases, fetch list of relevant products (single or subscriptions)
+        [self requestProducts];
 
     }
-
-	
-	
-	
+    else if ([WAUtilities getCodeService]){
+        [self createPasswordAlert];
+    }
+    else if ([WAUtilities getUserService]){
+        [self createUsernamePasswordAlert];
+    }
+    else{
+        [self createNotAllowedAlert];
+    }
 
 
 	
@@ -281,7 +261,7 @@
 	}
     
     if (alertView.tag == 1 && buttonIndex == 1) {
-		//OK button was clicked
+		//OK button was clicked in password only alert
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5) {
             UITextField *psField  = [alertView textFieldAtIndex:0];
             [[NSUserDefaults standardUserDefaults] setObject:[psField text] forKey:@"Subscription-code"];
@@ -292,10 +272,10 @@
             [[NSUserDefaults standardUserDefaults] setObject:[psField text] forKey:@"Subscription-code"];
             
         }
-		[self startDownload];
+		[self startDownloadOrCheckCredentials];
 	}
     if (alertView.tag == 2 && buttonIndex == 1) {
-		//OK button was clicked
+		//OK button was clicked in username + password alart
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5) {
             UITextField *usernameField = [alertView textFieldAtIndex:0];
             UITextField *passwordField = [alertView textFieldAtIndex:1];
@@ -311,7 +291,7 @@
             
         }
 
-		[self startDownload];
+		[self startDownloadOrCheckCredentials];
 	}
 	
 }
@@ -356,7 +336,7 @@
                 break;
             }
 			case SKPaymentTransactionStatePurchased:{
-				[self startDownload];
+				[self startDownloadOrCheckCredentials];
 				break;
 			}
 			case SKPaymentTransactionStateFailed:{
@@ -399,7 +379,7 @@
     if (receipt){
         //SLog(@"Receipt found: %@",receipt);
 		//We have a receipt, proceed to download
-		[self startDownload];
+		[self startDownloadOrCheckCredentials];
 	}
 	else {
           [self removeFromSuperview];
@@ -407,16 +387,67 @@
 	}
  
 }
+
+- (void) didFailIssueDownloadWithNotification:(NSNotification *) notification{
+    NSDictionary *notificatedDic = notification.object;
+    //Check if notificatin is for wanodownload, otherwise don't do anything
+    NSString *notificatedUrl = [notificatedDic objectForKey:@"urlString"];
+    NSLog(@"Notification received %@, %@",notification,notificatedUrl);
+   if ([notificatedUrl isEqualToString:@"buy://localhost/wanodownload.pdf"]){
+        [[SHKActivityIndicator currentIndicator] hide];
+        
+        NSString * httpStatus = [notificatedDic objectForKey:@"httpStatus"];
+        NSString * theMessage = NSLocalizedString(@"Please check your connection",@"");
+        if ([httpStatus isEqualToString:@"401"]) theMessage = NSLocalizedString(@"Invalid Code",@"");
+        if ([httpStatus isEqualToString:@"461"]) theMessage = NSLocalizedString(@"Invalid Username Or Password",@"");
+        if ([httpStatus isEqualToString:@"462"]) [self didSucceedIssueDownloadWithNotification:notification];//No error to display, it's normal that "wanodownload" is not allowed
+        else if ([httpStatus isEqualToString:@"463"]) [self didSucceedIssueDownloadWithNotification:notification];//Should not happen
+        else{
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
+                                                           message:theMessage
+                                                          delegate:self
+                                                 cancelButtonTitle:@"OK"
+                                                 otherButtonTitles:nil];
+            [alert show];
+            [alert release];
+            
+        }
+        
+    }
+}
+
+- (void) didSucceedIssueDownloadWithNotification:(NSNotification *) notification{
+    [[SHKActivityIndicator currentIndicator] hide];
+    
+    NSString *notificatedUrl = notification.object;
+    if ([notificatedUrl isEqualToString:@"buy://localhost/wanodownload.pdf"]){
+        [[SHKActivityIndicator currentIndicator] hide];
+    }
+    //Refresh dispaly so that Subscribe button is no longer shown
+    WAModuleViewController * moduleViewController = (WAModuleViewController *) [self traverseResponderChainForUIViewController];
+    [moduleViewController viewWillAppear:YES];
+
+    
+}
+
+
+
 #pragma mark -
 #pragma mark Helper methods
 
-- (void) startDownload{
+- (void) startDownloadOrCheckCredentials{
+    //SLog(@"Will start download");
     if ([[urlString nameOfFileWithoutExtensionOfUrlString]isEqualToString:@"wanodownload"]){
-        //Refresh dispaly so that Subscribe button is no longer shown
-        WAModuleViewController * moduleViewController = (WAModuleViewController *) [self traverseResponderChainForUIViewController];
-        [moduleViewController viewWillAppear:YES];
+        //There is nothing to download, we just need to check credentials are OK. We use WADocumentDownloader class because it has all needed geatures and will report status with notications.
+        if (![[WADocumentDownloadsManager sharedManager]isAlreadyInQueueIssueWithUrlString:urlString]){
+                WADocumentDownloader * issue = [[WADocumentDownloader alloc]init];
+                [[[WADocumentDownloadsManager sharedManager] issuesQueue]addObject:issue];
+                issue.urlString = urlString;
+                [issue release];
+        }
+        //Add SHKActivityIndicator
+        [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Connecting...",@"")];
 
-        
     }
     else{
         NSString * newUrlString = [urlString stringByReplacingOccurrencesOfString:@"buy://localhost" withString:@""];
@@ -427,8 +458,9 @@
         loadingViewController.containingRect= CGRectZero;
         [loadingViewController pushViewControllerIfNeededAndLoadModuleView];
         [loadingViewController release];
+        [self removeFromSuperview];
+
     }
-	[self removeFromSuperview];
 	
 	
 }
@@ -436,8 +468,6 @@
 - (void) createPasswordAlert{
 	
     
-    //Depending on system version, we have UIAlertViewStyleSecureTextInput or not
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5) {
         UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Code",@"" ) message:NSLocalizedString(@"Please enter your code",@"" ) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
         
         passwordAlert.alertViewStyle =  UIAlertViewStylePlainTextInput;
@@ -448,38 +478,6 @@
         [passwordAlert release];
         
 
-    }
-    else{
-        //This will soon be deprecated
-        UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Code",@"" ) message:@"\n\n\n" delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
-        UILabel *passwordLabel = [[UILabel alloc] initWithFrame:CGRectMake(12,40,260,25)];
-        passwordLabel.font = [UIFont systemFontOfSize:16];
-        passwordLabel.textColor = [UIColor whiteColor];
-        passwordLabel.backgroundColor = [UIColor clearColor];
-        passwordLabel.shadowColor = [UIColor blackColor];
-        passwordLabel.shadowOffset = CGSizeMake(0,-1);
-        passwordLabel.textAlignment = UITextAlignmentCenter;
-        passwordLabel.text = NSLocalizedString(@"Please enter your code",@"" );
-        [passwordAlert addSubview:passwordLabel];
-        [passwordLabel release];
-        
-        
-        UITextField *passwordField = [[UITextField alloc] initWithFrame:CGRectMake(16,78,252,30)];
-        passwordField.secureTextEntry = YES;
-        passwordField.borderStyle = UITextBorderStyleRoundedRect;
-        passwordField.keyboardAppearance = UIKeyboardAppearanceAlert;
-        //passwordField.delegate = self;
-        [passwordField becomeFirstResponder];
-        [passwordAlert addSubview:passwordField];
-        passwordField.tag = 111;
-        [passwordField release];
-        
-        passwordAlert.tag = 1;
-        [passwordAlert show];
-        [passwordAlert release];
-        
-
-    }
 
  	
 
@@ -487,10 +485,8 @@
 }
 
 - (void) createUsernamePasswordAlert{
+    NSLog(@"Will create alrt ppp");
     
-    
-    //Depending on system version, we have UIAlertViewStyleSecureTextInput or not
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5) {
         UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Login",@"" ) message:@"" delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
         
         passwordAlert.alertViewStyle =  UIAlertViewStyleLoginAndPasswordInput;
@@ -508,41 +504,66 @@
         [passwordAlert release];
         
         
-    }
-    else{
-        //This will soon be deprecated
-        UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Login",@"" ) message:@"\n\n\n" delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
-        
-        UITextField *usernameField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 50.0, 260.0, 25.0)];
-        [usernameField setBackgroundColor:[UIColor whiteColor]];
-        [usernameField setPlaceholder:NSLocalizedString(@"Username",@"" )];
-        usernameField.borderStyle = UITextBorderStyleRoundedRect;
-        usernameField.keyboardAppearance = UIKeyboardAppearanceAlert;
-        usernameField.tag = 111;
-        [passwordAlert addSubview:usernameField];
-        
-        UITextField *passwordField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 85.0, 260.0, 25.0)];
-        [passwordField setBackgroundColor:[UIColor whiteColor]];
-        [passwordField setPlaceholder:NSLocalizedString(@"Password",@"" )];
-        [passwordField setSecureTextEntry:YES];
-        passwordField.borderStyle = UITextBorderStyleRoundedRect;
-        passwordField.keyboardAppearance = UIKeyboardAppearanceAlert;
-        passwordField.tag = 222;
-        [passwordAlert addSubview:passwordField];
-        
-        passwordAlert.tag = 2;
-        [passwordAlert show];
-        [passwordAlert release];
-        
-        [usernameField becomeFirstResponder];
-        
-        
-    }
-    
+      
     
 	
 	
 }
+
+- (void) createNotAllowedAlert{
+    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error",@"" ) message:@"You are not allowed to download this publication" delegate:self cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil, nil];
+    
+    errorAlert.tag = 3;
+    [errorAlert show];
+    [errorAlert release];
+}
+
+
+
+
+
+
+
+- (void) requestProducts{
+    //Add SHKActivityIndicator
+    [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Connecting...",@"")];
+    
+    //Get the ID of the product. Our convention is that it is always the name of the file without extension
+    NSString * shortID = [[urlString urlByRemovingFinalUnderscoreInUrlString] nameOfFileWithoutExtensionOfUrlString];
+    //SLog(@"ShortID:%@, theString:%@",shortID,theString);
+    
+    //get product data
+    NSString * itemID = [NSString stringWithFormat:@"%@.%@",[[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"],shortID];
+    //SLog(@"ItemID:%@",itemID);
+    SKProductsRequest *request;
+    //Add all subscriptions, only if we have a secret key
+    NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];
+    NSString * sharedSecret = [NSString string];
+    if (credentials) sharedSecret = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"SharedSecret"];
+    if (sharedSecret){
+        NSMutableSet * productIdentifiers = [NSMutableSet set];
+        NSSet * relevantIDs = [urlString relevantSKProductIDsForUrlString];
+        //SLog(@"Relevant ids:%@",relevantIDs);
+        for (NSString * curentID in relevantIDs){
+            NSString * tempID = [NSString stringWithFormat:@"%@.%@",[[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"],curentID];
+            [productIdentifiers addObject:tempID];
+        }
+        //Request the data
+        request = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers];
+    }
+    else {
+        request = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObjects:
+                                                                         itemID,
+                                                                         nil]];
+        
+    }
+    request.delegate = self;
+    [request start];
+    
+    
+    
+}
+
 
 
 

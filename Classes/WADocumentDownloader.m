@@ -77,7 +77,7 @@
     //Trigger error if one of the following statusCodes is returned
     if (([response statusCode]==304)||([response statusCode]==401)||([response statusCode]==402)||([response statusCode]==403)||([response statusCode]==461)||([response statusCode]==462)||([response statusCode]==463)){
         //SLog(@"Connection error %i",[response statusCode]);
-        NSDictionary * userDic = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%i",[response statusCode]] forKey:@"SSErrorHTTPStatusCodeKey"];
+        NSDictionary * userDic = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%li",(long)[response statusCode]] forKey:@"SSErrorHTTPStatusCodeKey"];
 		NSError * error = [NSError errorWithDomain:@"Librelio" code:2 userInfo:userDic];
 
         
@@ -214,7 +214,7 @@
 	[connection cancel];
 	
 	//Launch the new connection
-	NSString*completeUrl = [WAUtilities getCompleteUrlForUrlString:currentUrlString];
+	NSString*completeUrl = [WAUtilities getAuthorizingUrlForUrlString:currentUrlString];
 	if (completeUrl){
         //SLog(@"Will launch complete url: %@",completeUrl);
 		//Try to get file after approval by Apple or Password check
