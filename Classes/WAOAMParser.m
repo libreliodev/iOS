@@ -30,7 +30,7 @@
     //NSString * xmlUrl = @"/facebook.atom";
     NSData * xmlData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:xmlUrl]];
     //SLog(@"Read NSData for path %@ with length %i",[[NSBundle mainBundle] pathOfFileWithUrl:xmlUrl],xmlData.length);
-	doc = xmlReadMemory([xmlData bytes], [xmlData length], "", NULL, HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR);
+	doc = xmlReadMemory([xmlData bytes], (int)[xmlData length], "", NULL, HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR);
 	xpathCtx = xmlXPathNewContext(doc);
     xmlXPathRegisterNs(xpathCtx, (xmlChar *)"a", (xmlChar *)"http://openajax.org/metadata");
     

@@ -99,19 +99,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * identifier = [NSString stringWithFormat:@"CellSection%i",indexPath.section];
+    NSString * identifier = [NSString stringWithFormat:@"CellSection%li",(long)indexPath.section];
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 	if(cell == nil) 
 	{
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier] autorelease];
 	}
-	cell.textLabel.text = [parser getDataAtRow:indexPath.row+1 forDataCol:DataColTitle];
+	cell.textLabel.text = [parser getDataAtRow:(int)indexPath.row+1 forDataCol:DataColTitle];
     cell.textLabel.textColor = [UIColor colorWithRed:0.0627  green:0.4863 blue:0.9647 alpha:1];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@",[parser getDataAtRow:indexPath.row+1 forDataCol:DataColDate],[parser getDataAtRow:indexPath.row+1 forDataCol:DataColSubTitle]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@",[parser getDataAtRow:(int)indexPath.row+1 forDataCol:DataColDate],[parser getDataAtRow:(int)indexPath.row+1 forDataCol:DataColSubTitle]];
     cell.detailTextLabel.numberOfLines = 3;
 
 
-    NSString * imageUrlString = [parser getDataAtRow:indexPath.row+1 forDataCol:DataColImage];
+    NSString * imageUrlString = [parser getDataAtRow:(int)indexPath.row+1 forDataCol:DataColImage];
     //SLog(@"Should show image %@",imageUrlString);
     cell.imageView.image = [[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:imageUrlString]]squareImageWithSize:CGSizeMake(100,100)] ;
     //cell.imageView.image = [UIImage imageNamed:@"Default.png"];
@@ -166,7 +166,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * detailLink =[parser getDataAtRow:indexPath.row+1 forDataCol:DataColDetailLink];
+    NSString * detailLink =[parser getDataAtRow:(int)indexPath.row+1 forDataCol:DataColDetailLink];
    /* if (!detailLink) {
         //If no detail link was provided, display detail view
         detailLink = [queryString queryStringByReplacingClause:@"LIMIT" withValue:[NSString stringWithFormat:@"%i,1",indexPath.row]];

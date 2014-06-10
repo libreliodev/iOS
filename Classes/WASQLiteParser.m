@@ -146,7 +146,7 @@
         [self rebuildDataArray];
         
     }
- 	return [dataArray count];
+ 	return (int)[dataArray count];
 }
 
 /**

@@ -20,7 +20,7 @@
 {
     urlString = [[NSString alloc]initWithString: theString];
 	NSData * feedData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:urlString]];
-	doc = xmlReadMemory([feedData bytes], [feedData length], "", NULL, HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR);
+	doc = xmlReadMemory([feedData bytes], (int)[feedData length], "", NULL, HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR);
 	xpathCtx = xmlXPathNewContext(doc); 
 	xmlXPathRegisterNs(xpathCtx, (xmlChar *)"k", (xmlChar *)"http://earth.google.com/kml/2.2");
 }

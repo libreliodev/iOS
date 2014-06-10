@@ -232,7 +232,7 @@
 	NSString *geoCodeUrlString = [NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/geocode/xml?address=%@&sensor=true", addressString];
 	
 	NSData * locData = [NSData dataWithContentsOfURL:[NSURL URLWithString:geoCodeUrlString]];
-	xmlDocPtr doc = xmlReadMemory([locData bytes], [locData length], "", NULL, HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR);
+	xmlDocPtr doc = xmlReadMemory([locData bytes], (int)[locData length], "", NULL, HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR);
 	xmlXPathContextPtr xpathCtx = xmlXPathNewContext(doc); 
 	
 	xmlXPathObjectPtr xPathLat = xmlXPathEvalExpression((xmlChar *)"//geometry/location/lat", xpathCtx);
@@ -316,7 +316,7 @@
 
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
-	NSString * newUrlString = [parser getDataAtRow:view.tag forDataCol:DataColDetailLink];
+	NSString * newUrlString = [parser getDataAtRow:(int)view.tag forDataCol:DataColDetailLink];
 	WAModuleViewController * loadingViewController = [[WAModuleViewController alloc]init];
 	loadingViewController.moduleUrlString= [WAUtilities absoluteUrlOfRelativeUrl:newUrlString relativeToUrl:urlString] ;
 	loadingViewController.initialViewController= self.currentViewController;

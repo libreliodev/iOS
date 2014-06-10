@@ -89,7 +89,7 @@
 
 	UIView * nibView = [[cell.contentView subviews]objectAtIndex:0];//Get  our Nib View
 	
-	[nibView populateNibWithParser:parser withButtonDelegate:self   forRow:indexPath.row+1];
+	[nibView populateNibWithParser:parser withButtonDelegate:self   forRow:(int)indexPath.row+1];
 	
 	
     return cell;
@@ -106,7 +106,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-		[parser deleteDataAtRow:indexPath.row];
+		[parser deleteDataAtRow:(int)indexPath.row];
 		//SLog(@"Deleted tata in parser, now %i lines",[parser countData]);
        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   

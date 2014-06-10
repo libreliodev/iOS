@@ -35,7 +35,7 @@
                 NSArray *parts = [line componentsSeparatedByString:separatorString];
                 if ([parts count] < 3) continue;
                 
-                NSUInteger from, to, offset;
+                unsigned int from, to, offset;
                 NSScanner *scanner = [NSScanner scannerWithString:[parts objectAtIndex:0]];
                 [scanner scanHexInt:&from];
                 
@@ -76,7 +76,7 @@
                 NSArray *parts = [line componentsSeparatedByString:separatorString];
                 if ([parts count] < 2) continue;
                 
-                NSUInteger from,  offset;
+                unsigned int from,  offset;
                 NSScanner *scanner = [NSScanner scannerWithString:[parts objectAtIndex:0]];
                 [scanner scanHexInt:&from];
                 

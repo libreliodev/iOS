@@ -239,7 +239,7 @@
 	// Check if we have errors on this stage
 	if ([response respondsToSelector:@selector(statusCode)])
     {
-        int statusCode = [((NSHTTPURLResponse *)response)statusCode];
+        int statusCode = (int)[((NSHTTPURLResponse *)response)statusCode];
         
         if (statusCode >= 400)
         {

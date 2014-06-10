@@ -73,7 +73,7 @@
             if (tempPath) [tempArray addObject:tempPath];
         }
         imagePathArray = [[NSArray alloc]initWithArray:tempArray];
-        int count = [imagePathArray count];
+        int count = (int)[imagePathArray count];
         
         switch (transition) {
             case SlideShowTransitionMoveIn: {
@@ -140,7 +140,7 @@
 	if (transition ==SlideShowTransitionNone){
 		//In this case, the scrollview is transparent, the real images are behind.
 		CGFloat offset = scrollView.contentOffset.x;
-		int count = [imagePathArray count];
+		int count = (int)[imagePathArray count];
 		int tempInt = floor((1000000-offset)*2/count);
 		int imageNumber = (tempInt-1) %count;
 		if (imageNumber<0) imageNumber +=count;
@@ -159,7 +159,7 @@
 
 - (void) onTimer {
 	timerCount = timerCount +1;
-	int count = [imagePathArray count];
+	int count = (int)[imagePathArray count];
 	if (repeat &&(timerCount>=count*repeat)){
 		[timer invalidate];
 	}
@@ -211,7 +211,7 @@
 
 - (void) resetSlideShow{
 		[scrollView setContentOffset:CGPointMake(0, 0)];
-		int count = [imagePathArray count];
+		int count = (int)[imagePathArray count];
 		scrollView.contentSize = CGSizeMake(self.frame.size.width * count, self.frame.size.height);
 }
 

@@ -402,8 +402,8 @@
         
 		[mutableResourcesArray removeLastObject];
         
-		int total = [nnewResourcesArray count]+1;
-		int done = [nnewResourcesArray count]+1-[mutableResourcesArray count];
+		int total = (int)[nnewResourcesArray count]+1;
+		int done = (int)[nnewResourcesArray count]+1-(int)[mutableResourcesArray count];
         [currentMessage release];
 		currentMessage = [[NSString alloc]initWithFormat:@"%@ (%i/%i)", NSLocalizedString(@"Download in progress",@""),done,total];
 		

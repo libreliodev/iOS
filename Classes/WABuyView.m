@@ -262,35 +262,18 @@
     
     if (alertView.tag == 1 && buttonIndex == 1) {
 		//OK button was clicked in password only alert
-        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5) {
             UITextField *psField  = [alertView textFieldAtIndex:0];
             [[NSUserDefaults standardUserDefaults] setObject:[psField text] forKey:@"Subscription-code"];
 
-        }
-        else{
-            UITextField *psField = (UITextField *)[alertView viewWithTag:111];
-            [[NSUserDefaults standardUserDefaults] setObject:[psField text] forKey:@"Subscription-code"];
-            
-        }
-		[self startDownloadOrCheckCredentials];
+ 		[self startDownloadOrCheckCredentials];
 	}
     if (alertView.tag == 2 && buttonIndex == 1) {
 		//OK button was clicked in username + password alart
-        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5) {
             UITextField *usernameField = [alertView textFieldAtIndex:0];
             UITextField *passwordField = [alertView textFieldAtIndex:1];
             [[NSUserDefaults standardUserDefaults] setObject:[usernameField text] forKey:@"Username"];
             [[NSUserDefaults standardUserDefaults] setObject:[passwordField text] forKey:@"Password"];
-           
-        }
-        else{
-            UITextField *usernameField = (UITextField *)[alertView viewWithTag:111];
-            UITextField *passwordField = (UITextField *)[alertView viewWithTag:222];
-            [[NSUserDefaults standardUserDefaults] setObject:[usernameField text] forKey:@"Username"];
-            [[NSUserDefaults standardUserDefaults] setObject:[passwordField text] forKey:@"Password"];
-            
-        }
-
+ 
 		[self startDownloadOrCheckCredentials];
 	}
 	
@@ -392,7 +375,7 @@
     NSDictionary *notificatedDic = notification.object;
     //Check if notificatin is for wanodownload, otherwise don't do anything
     NSString *notificatedUrl = [notificatedDic objectForKey:@"urlString"];
-    NSLog(@"Notification received %@, %@",notification,notificatedUrl);
+    //SLog(@"Notification received by didFailIssueDownloadWithNotification %@, %@",notification,notificatedUrl);
    if ([notificatedUrl isEqualToString:@"buy://localhost/wanodownload.pdf"]){
         [[SHKActivityIndicator currentIndicator] hide];
         
@@ -401,6 +384,7 @@
         if ([httpStatus isEqualToString:@"401"]) theMessage = NSLocalizedString(@"Invalid Code",@"");
         if ([httpStatus isEqualToString:@"461"]) theMessage = NSLocalizedString(@"Invalid Username Or Password",@"");
         if ([httpStatus isEqualToString:@"462"]) [self didSucceedIssueDownloadWithNotification:notification];//No error to display, it's normal that "wanodownload" is not allowed
+       else if ([httpStatus isEqualToString:@"999"]) [self didSucceedIssueDownloadWithNotification:notification];//No error to display, 999 error code is returned by AWS when trying to download non existing file
         else if ([httpStatus isEqualToString:@"463"]) [self didSucceedIssueDownloadWithNotification:notification];//Should not happen
         else{
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
@@ -418,8 +402,9 @@
 
 - (void) didSucceedIssueDownloadWithNotification:(NSNotification *) notification{
     [[SHKActivityIndicator currentIndicator] hide];
+    NSDictionary *notificatedDic = notification.object;
+    NSString *notificatedUrl = [notificatedDic objectForKey:@"urlString"];
     
-    NSString *notificatedUrl = notification.object;
     if ([notificatedUrl isEqualToString:@"buy://localhost/wanodownload.pdf"]){
         [[SHKActivityIndicator currentIndicator] hide];
     }
@@ -485,7 +470,7 @@
 }
 
 - (void) createUsernamePasswordAlert{
-    NSLog(@"Will create alrt ppp");
+    //SLog(@"Will create alrt ppp");
     
         UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Login",@"" ) message:@"" delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
         

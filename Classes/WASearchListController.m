@@ -139,7 +139,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * identifier = [NSString stringWithFormat:@"CellSection%i",indexPath.section];
+    NSString * identifier = [NSString stringWithFormat:@"CellSection%li",(long)indexPath.section];
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 	if(cell == nil) 
 	{
@@ -149,7 +149,7 @@
         
 	}
 	
-	cell.textLabel.text = [parser getDataAtRow:indexPath.row+1 forQueryDic:self.currentQueryDic forDataCol:DataColTitle];
+	cell.textLabel.text = [parser getDataAtRow:(int)indexPath.row+1 forQueryDic:self.currentQueryDic forDataCol:DataColTitle];
     
     
     //[self  populateNibWithParser:parser  withButtonDelegate:self   forRow:row];
@@ -169,7 +169,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString * detailLink =[parser getDataAtRow:indexPath.row+1 forQueryDic:self.currentQueryDic forDataCol:DataColDetailLink];
+    NSString * detailLink =[parser getDataAtRow:(int)indexPath.row+1 forQueryDic:self.currentQueryDic forDataCol:DataColDetailLink];
 	NSURL * url = [NSURL URLWithString:detailLink];
 	if ([url.scheme isEqualToString:@"goto"]){
 		int newPage = [url.host intValue];

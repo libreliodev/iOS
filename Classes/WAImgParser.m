@@ -74,7 +74,7 @@
 	return ret;
 }
 - (int) countData{
-	return [[WAUtilities arrayOfImageUrlStringsForUrlString:urlString] count];
+	return (int)[[WAUtilities arrayOfImageUrlStringsForUrlString:urlString] count];
 	
 }
 

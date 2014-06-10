@@ -226,7 +226,7 @@
    	return ret;
 }
 - (int) countData{
-	return [dataArray count];
+	return (int)[dataArray count];
 	
 }
 
