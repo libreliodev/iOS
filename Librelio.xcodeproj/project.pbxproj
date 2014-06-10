@@ -30,7 +30,6 @@
 		144B2C6E18229DE200CDD200 /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 144B2C5018229DE200CDD200 /* refresh@2x.png */; };
 		144B2C7A182388F500CDD200 /* APAppirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 144B2C77182388F500CDD200 /* APAppirater.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		144B2C7B182388F500CDD200 /* APAppirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 144B2C77182388F500CDD200 /* APAppirater.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
-		1454580216FC6A5700EC3DFD /* facebook.atom in Resources */ = {isa = PBXBuildFile; fileRef = 1454580116FC6A5700EC3DFD /* facebook.atom */; };
 		146232F517E1FE210066084C /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 1462318917E1FE1C0066084C /* facebook.png */; };
 		146232F717E1FE210066084C /* facebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1462318A17E1FE1D0066084C /* facebook@2x.png */; };
 		146232F917E1FE210066084C /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 1462318B17E1FE1D0066084C /* download.png */; };
@@ -494,7 +493,6 @@
 		14541D881307BAC2004A76D4 /* WADownloadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WADownloadingView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		14541D891307BAC2004A76D4 /* WAModuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAModuleViewController.h; sourceTree = "<group>"; };
 		14541D8A1307BAC2004A76D4 /* WADownloadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADownloadingView.h; sourceTree = "<group>"; };
-		1454580116FC6A5700EC3DFD /* facebook.atom */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = facebook.atom; sourceTree = "<group>"; };
 		14577FC8129C35D100E75640 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		1462318917E1FE1C0066084C /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = facebook.png; path = Resources/facebook.png; sourceTree = "<group>"; };
 		1462318A17E1FE1D0066084C /* facebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "facebook@2x.png"; path = "Resources/facebook@2x.png"; sourceTree = "<group>"; };
@@ -1408,7 +1406,6 @@
 		14DB136D164C52C4001FE76B /* WindTarget */ = {
 			isa = PBXGroup;
 			children = (
-				1454580116FC6A5700EC3DFD /* facebook.atom */,
 				1494B52F16FB0D2300DE034A /* news.rss */,
 				14DB136E164C52C4001FE76B /* Application.plist */,
 				14DB136F164C52C4001FE76B /* Application_.plist */,
@@ -1842,7 +1839,6 @@
 				146E000117E20F49000EE3DB /* back.png in Resources */,
 				1489B60C168ECC3D00404BA6 /* Localizable.strings in Resources */,
 				1494B53016FB0D2300DE034A /* news.rss in Resources */,
-				1454580216FC6A5700EC3DFD /* facebook.atom in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

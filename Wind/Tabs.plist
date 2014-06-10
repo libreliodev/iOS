@@ -28,14 +28,6 @@
 	</dict>
 	<dict>
 		<key>FileName</key>
-		<string>news.rss?waurl=http%3A%2F%2Fwww.windmag.com%2Ffeed%2Fall&amp;waupdate=1500</string>
-		<key>Icon</key>
-		<string>rss.png</string>
-		<key>Title</key>
-		<string>News</string>
-	</dict>
-	<dict>
-		<key>FileName</key>
 		<string>http://www.windmag.com?wabar=bo</string>
 		<key>Icon</key>
 		<string>globe.png</string>
