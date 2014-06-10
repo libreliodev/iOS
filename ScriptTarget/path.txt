@@ -1,1 +1,0 @@
-[For advanced users only: put the path to your resources file here; other users should use the Wind target]
