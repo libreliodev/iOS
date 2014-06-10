@@ -29,3 +29,7 @@ Backup[ ]of[ ]*.pages/
 Backup[ ]of[ ]*.key/
 Backup[ ]of[ ]*.numbers/
 .dropbox
+ScriptTarget/path.txt
+ScriptTarget/Application.plist
+
+
