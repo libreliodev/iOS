@@ -1621,7 +1621,7 @@
 			name = "Video Module";
 			sourceTree = "<group>";
 		};
-		14DB136D164C52C4001FE76B /* Wind */ = {
+		14DB136D164C52C4001FE76B /* WindTarget */ = {
 			isa = PBXGroup;
 			children = (
 				1454580116FC6A5700EC3DFD /* facebook.atom */,
@@ -1659,6 +1659,7 @@
 				14DB138C164C52C4001FE76B /* wind_369.png */,
 				14DB138D164C52C4001FE76B /* wind_370.png */,
 			);
+			name = WindTarget;
 			path = Wind;
 			sourceTree = "<group>";
 		};
@@ -1753,9 +1754,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1490873617E37BE100943DD2 /* ScriptTarget */,
 				1485882C168EBA6E00A323B5 /* CommonResources */,
-				14DB136D164C52C4001FE76B /* Wind */,
+				14DB136D164C52C4001FE76B /* WindTarget */,
+				1490873617E37BE100943DD2 /* ScriptTarget */,
 				1425CA7D124D125200E16625 /* Entitlements.plist */,
 			);
 			name = Resources;
@@ -2740,8 +2741,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					"\\\"$(SRCROOT)/Classes\\\"",
-					"/Users/Emmanuel/Dropbox/librelio-ios-git/Classes",
 					"$(PROJECT_DIR)/Classes",
 				);
 				OTHER_CFLAGS = "";

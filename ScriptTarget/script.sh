@@ -13,9 +13,6 @@ cd "$PATH_TO_SOURCE"
 for f in $(find "./" -type f -name "*.xib")
 do
 echo "Processing $f"
-#filename=$(basename "$f")
-#extension="${filename##*.}"
-#filename="${filename%.*}"
 filename="${f%.xib}"
 ibtool "$f" --compile "$filename.nib"
 done

@@ -2,7 +2,6 @@
 //  WARootViewController.h
 //  Librelio
 //
-//  Created by Emmanuel on 11/09/13.
 //  Copyright (c) 2013 WidgetAvenue - Librelio. All rights reserved.
 //
 

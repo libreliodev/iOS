@@ -1,1 +1,1 @@
-/Users/Emmanuel/Dropbox/Librelio Clients/Publitab-Librelio/SOURCES/iOS/ibdfam
+[For advanced users only: put the path to your resources file here; other users should use the Wind target]
