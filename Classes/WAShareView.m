@@ -63,9 +63,9 @@
     // Separate social networks by , sign
     
     NSString * waSitesString = [urlString valueOfParameterInUrlStringforKey:@"wasites"];
-    waSitesString = [waSitesString stringByReplacingOccurrencesOfString:@"mail" withString:NSLocalizedString(@"Share by Mail",@"")];
-    waSitesString = [waSitesString stringByReplacingOccurrencesOfString:@"twitter" withString:NSLocalizedString(@"Share on Twitter",@"")];
-    waSitesString = [waSitesString stringByReplacingOccurrencesOfString:@"facebook" withString:NSLocalizedString(@"Share on Facebook",@"")];
+    waSitesString = [waSitesString stringByReplacingOccurrencesOfString:@"mail" withString:[[NSBundle mainBundle]stringForKey:@"Share by Mail"]];
+    waSitesString = [waSitesString stringByReplacingOccurrencesOfString:@"twitter" withString:[[NSBundle mainBundle]stringForKey:@"Share on Twitter"]];
+    waSitesString = [waSitesString stringByReplacingOccurrencesOfString:@"facebook" withString:[[NSBundle mainBundle]stringForKey:@"Share on Facebook"]];
     NSArray* wasitesArray = [waSitesString componentsSeparatedByString:@","];
     //SLog(@"Site array %@ for parameters %@ for url %@",wasitesArray,waSitesString,theString);
 	
@@ -199,7 +199,7 @@
 {
     
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
-                                                       message:NSLocalizedString(@"iOS 6 required",@"")
+                                                       message:[[NSBundle mainBundle]stringForKey:@"iOS 6 required"]
                                                       delegate:self
                                              cancelButtonTitle:@"OK"
                                              otherButtonTitles:nil];

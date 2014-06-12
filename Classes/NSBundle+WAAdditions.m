@@ -18,7 +18,7 @@
 - (NSString *) stringForKey:(NSString *)key{
     //Check if we have a customized translation
     NSString * customizedTranslation = [self localizedStringForKey:key value:key table:@"Application"];
-    NSLog(@"customized: %@",customizedTranslation);
+    //SLog(@"customized: %@",customizedTranslation);
     if (![customizedTranslation isEqualToString:key]){
         return customizedTranslation;
     }

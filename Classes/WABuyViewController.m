@@ -165,7 +165,7 @@
     
     
     //Remove the " (sample)" part in the title
-    NSString * encodedSampleString = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef)NSLocalizedString(@" (Sample)",@""), NULL,(CFStringRef)@"!*'();:@&=+$,/?%#[]",kCFStringEncodingUTF8 );
+    NSString * encodedSampleString = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,(CFStringRef)[[NSBundle mainBundle]stringForKey:@" (Sample)"], NULL,(CFStringRef)@"!*'();:@&=+$,/?%#[]",kCFStringEncodingUTF8 );
     newUrlString = [newUrlString stringByReplacingOccurrencesOfString:encodedSampleString withString:@""];
     
      

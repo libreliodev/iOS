@@ -23,9 +23,9 @@
 	
 	urlString = [[NSString alloc]initWithString: theString];
 
-	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"" message:NSLocalizedString(@"Do you really want to quit this app?",@"" ) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",@"" ) otherButtonTitles:nil] autorelease];
+	UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:@"" message:[[NSBundle mainBundle]stringForKey:@"Do you really want to quit this app?"] delegate:self cancelButtonTitle:[[NSBundle mainBundle]stringForKey:@"Cancel"] otherButtonTitles:nil] autorelease];
     // optional - add more buttons:
-    [alert addButtonWithTitle:NSLocalizedString(@"Yes",@"" )];
+    [alert addButtonWithTitle:[[NSBundle mainBundle]stringForKey:@"Yes"]];
     [alert show];
 	
 	

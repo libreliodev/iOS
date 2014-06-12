@@ -394,7 +394,7 @@
 		
 	}
 	else {
-		moduleViewController.tabBarItem.title = NSLocalizedString(tabTitle,@"");
+		moduleViewController.tabBarItem.title = [[NSBundle mainBundle]stringForKey:tabTitle];
 		moduleViewController.tabBarItem.image = [UIImage imageNamed:iconName];
         
 	}

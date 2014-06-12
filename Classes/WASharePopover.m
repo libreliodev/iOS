@@ -34,7 +34,7 @@
     // Due to iOS interface guidelines, only iPhone has "Cancel" button on the action sheet
     NSString *cancelTitle = nil;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
-        cancelTitle = NSLocalizedString(@"Cancel",@"");
+        cancelTitle = [[NSBundle mainBundle]stringForKey:@"Cancel"];
     
     
     

@@ -31,7 +31,7 @@
     }
     
     //Add the cancel button. It will not be displayed on the iPad.
-	NSInteger destructiveIndex = [self addButtonWithTitle:NSLocalizedString(@"Cancel",@"" )];
+	NSInteger destructiveIndex = [self addButtonWithTitle:[[NSBundle mainBundle]stringForKey:@"Cancel"]];
 	self.destructiveButtonIndex = destructiveIndex;
     self.cancelButtonIndex = destructiveIndex;
     

@@ -168,12 +168,12 @@
 			[formatter setTimeStyle:NSDateFormatterNoStyle];
 			NSString * tempText = [formatter stringFromDate:[tempDic objectForKey:@"DownloadDate"]];	
 			[formatter release];
-			ret = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Downloaded",@""),tempText];
+			ret = [NSString stringWithFormat:@"%@: %@", [[NSBundle mainBundle]stringForKey:@"Downloaded"],tempText];
 			break;
 			
 		}
 		case DataColDelete:{
-			NSString * txt = NSLocalizedString(@"Delete",@"");
+			NSString * txt = [[NSBundle mainBundle]stringForKey:@"Delete"];
 			NSString * deleteUrl = [NSString stringWithFormat:@"self://delete/?waline=%i",row];
 			ret = [NSString stringWithFormat:@"%@;%@",txt,deleteUrl]; 					
 			break;

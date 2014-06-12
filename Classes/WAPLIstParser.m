@@ -87,7 +87,7 @@
 				else{
 					//Otherwise, remove the underscore in the file name 
 					ret = [absUrlString urlByRemovingFinalUnderscoreInUrlString];
-					NSString * sampleTitle = [[tempDic objectForKey:@"Title"] stringByAppendingString:NSLocalizedString(@" (Sample)",@"")];
+					NSString * sampleTitle = [[tempDic objectForKey:@"Title"] stringByAppendingString:[[NSBundle mainBundle]stringForKey:@" (Sample)"]];
                     if ([noUnderscoreUrlString isEqualToString:absUrlString]) sampleTitle = [tempDic objectForKey:@"Title"];
 					ret = [ret urlByAddingParameterInUrlStringWithKey:@"watitle" withValue:sampleTitle];//Add the watitle arg to the url
 					ret = [ret urlByAddingParameterInUrlStringWithKey:@"wasubtitle" withValue:[tempDic objectForKey:@"Subtitle"]];//Add the wasubtitle arg to the url
@@ -124,12 +124,12 @@
 				//Check if this is a protected or free file; protected files have a name ending with underscore
 				if ([noUnderscoreUrlString isEqualToString:absUrlString]){
 					//This is a free file, return the url with the text "Free Download"
-					NSString * txt = NSLocalizedString(@"Free Download",@"");
+					NSString * txt = [[NSBundle mainBundle]stringForKey:@"Free Download"];
 					ret = [NSString stringWithFormat:@"%@;%@",txt, absUrlString]; 					
 				}
 				else {
 					//This is a paying file, return buy URL with  the text "Download ..."
-					NSString * txt = NSLocalizedString(@"Download ...",@"");
+					NSString * txt = [[NSBundle mainBundle]stringForKey:@"Download ..."];
 					NSString * buyUrlString = [absUrlString urlByChangingSchemeOfUrlStringToScheme:@"buy"];
 					ret = [NSString stringWithFormat:@"%@;%@",txt,buyUrlString]; 					
 					
@@ -160,7 +160,7 @@
                         ret = nil; //User is already a free subscriber
                     }
                     else{
-                        NSString * txt = NSLocalizedString(@"Free subscription",@"");
+                        NSString * txt = [[NSBundle mainBundle]stringForKey:@"Free subscription"];
                         NSString * buyUrlString = [absUrlString urlByChangingSchemeOfUrlStringToScheme:@"buy"];
                         ret = [NSString stringWithFormat:@"%@;%@",txt,buyUrlString]; 					
 
@@ -185,8 +185,8 @@
 						ret = nil;//The file has been downloaded, no need to show the sample
 					}
 					else{
-						NSString * txt = NSLocalizedString(@"Free sample",@"");
-						NSString * sampleTitle = [[tempDic objectForKey:@"Title"] stringByAppendingString:NSLocalizedString(@" (Sample)",@"")];
+						NSString * txt = [[NSBundle mainBundle]stringForKey:@"Free sample"];
+						NSString * sampleTitle = [[tempDic objectForKey:@"Title"] stringByAppendingString:[[NSBundle mainBundle]stringForKey:@" (Sample)"]];
 
 						NSString * urlStringWithTitle = [noUnderscoreUrlString urlByAddingParameterInUrlStringWithKey:@"watitle" withValue:sampleTitle];
 						ret = [NSString stringWithFormat:@"%@;%@",txt,urlStringWithTitle]; 					
@@ -205,7 +205,7 @@
                     ret = nil;
                 }
                 else{**/
-                    NSString * txt = NSLocalizedString(@"Read",@"");
+                    NSString * txt = [[NSBundle mainBundle]stringForKey:@"Read"];
                     NSString * urlStringWithTitle = [absUrlString urlByAddingParameterInUrlStringWithKey:@"watitle" withValue:[tempDic objectForKey:@"Title"]];
                     urlStringWithTitle = [urlStringWithTitle urlByAddingParameterInUrlStringWithKey:@"wasubtitle" withValue:[tempDic objectForKey:@"Subtitle"]];//Add the wasubtitle arg to the url
                     ret = [NSString stringWithFormat:@"%@;%@",txt,urlStringWithTitle];

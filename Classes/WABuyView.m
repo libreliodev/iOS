@@ -113,9 +113,9 @@
     NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];
     
 	//Create actionSheet
-    NSString * theTitle = NSLocalizedString(@"What do you want to buy?",@"" );
+    NSString * theTitle = [[NSBundle mainBundle]stringForKey:@"What do you want to buy?"];
     NSString * customTitle = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"TextForBuyTitle"];
-     if (customTitle) theTitle = NSLocalizedString(customTitle,@"" );
+     if (customTitle) theTitle = [[NSBundle mainBundle]stringForKey:customTitle];
     
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:theTitle
 															 delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil 
@@ -144,7 +144,7 @@
 		;
 	}
 	//Add a Restore my purchases button
-	 NSString * locTitle0 = NSLocalizedString(@"Restore my purchases",@"" );//This is the default title
+	 NSString * locTitle0 = [[NSBundle mainBundle]stringForKey:@"Restore my purchases"];//This is the default title
     [actionSheet addButtonWithTitle:locTitle0];
 	
 	//Add a Code Enter button in case we have a CodeService key in Application_.plist
@@ -152,11 +152,8 @@
 	if (credentials) codeService = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"CodeService"];
 	if (codeService) {
         //SLog(@"Code Hash:%@",codeHash);
-        subscriberCodeTitle = NSLocalizedString(@"I have a subscriber code",@"" );//This is the default title
-        NSString * TextForSubscribers = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"TextForSubscribers"];
-        if (TextForSubscribers) subscriberCodeTitle = NSLocalizedString(TextForSubscribers,@"" );
-        
-		[actionSheet addButtonWithTitle:subscriberCodeTitle];
+        subscriberCodeTitle = [[NSBundle mainBundle]stringForKey:@"I have a subscriber code"];
+        [actionSheet addButtonWithTitle:subscriberCodeTitle];
         //    actionSheet.cancelButtonIndex = destructiveIndex;//was buggy
 
 
@@ -164,18 +161,15 @@
     NSString * userService = nil ;
     if (credentials) userService = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"UserService"];
     if (userService) {
-        usernamePasswordTitle = NSLocalizedString(@"I have a username and password",@"" );//This is the default title
-        NSString * TextForSubscribers = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"TextForSubscribers"];
-        if (TextForSubscribers) usernamePasswordTitle = NSLocalizedString(TextForSubscribers,@"" );
-        
-		[actionSheet addButtonWithTitle:usernamePasswordTitle];
+        usernamePasswordTitle = [[NSBundle mainBundle]stringForKey:@"I have a username and password"];
+        [actionSheet addButtonWithTitle:usernamePasswordTitle];
         //    actionSheet.cancelButtonIndex = destructiveIndex;//was buggy
         
         
 	}
 	
 	//Add the cancel button. It will not be displayed on the iPad.
-	NSInteger destructiveIndex = [actionSheet addButtonWithTitle:NSLocalizedString(@"Cancel",@"" )];
+	NSInteger destructiveIndex = [actionSheet addButtonWithTitle:[[NSBundle mainBundle]stringForKey:@"Cancel"]];
 	actionSheet.destructiveButtonIndex = destructiveIndex;
     actionSheet.cancelButtonIndex = destructiveIndex;
 
@@ -205,7 +199,7 @@
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
 	
 	UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
-												   message:NSLocalizedString(@"Please check your connection",@"")
+												   message:[[NSBundle mainBundle]stringForKey:@"Please check your connection"]
 												  delegate:nil 
 										 cancelButtonTitle:@"OK"
 										 otherButtonTitles:nil];
@@ -229,7 +223,7 @@
 		[self removeFromSuperview];
 	} else if (buttonIndex==[products count]) {
 		//The restore purchases button was clicked
-        [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Connecting...",@"")];
+        [[SHKActivityIndicator currentIndicator] displayActivity:[[NSBundle mainBundle]stringForKey:@"Connecting..."]];
         [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
     } else if ([buttonTitle isEqualToString:subscriberCodeTitle]) {
             //The enter code button was clicked
@@ -326,7 +320,7 @@
 					if (transaction.error.code != SKErrorPaymentCancelled){
 					//Inform user if he did not cancel the order himself
 					UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
-																   message:NSLocalizedString(@"The order failed",@"")
+																   message:[[NSBundle mainBundle]stringForKey:@"The order failed"]
 																  delegate:nil 
 														 cancelButtonTitle:@"OK"
 														 otherButtonTitles:nil];
@@ -380,9 +374,9 @@
         [[SHKActivityIndicator currentIndicator] hide];
         
         NSString * httpStatus = [notificatedDic objectForKey:@"httpStatus"];
-        NSString * theMessage = NSLocalizedString(@"Please check your connection",@"");
-        if ([httpStatus isEqualToString:@"401"]) theMessage = NSLocalizedString(@"Invalid Code",@"");
-        if ([httpStatus isEqualToString:@"461"]) theMessage = NSLocalizedString(@"Invalid Username Or Password",@"");
+        NSString * theMessage = [[NSBundle mainBundle]stringForKey:@"Please check your connection"];
+        if ([httpStatus isEqualToString:@"401"]) theMessage = [[NSBundle mainBundle]stringForKey:@"Invalid Code"];
+        if ([httpStatus isEqualToString:@"461"]) theMessage = [[NSBundle mainBundle]stringForKey:@"Invalid Username Or Password"];
         if ([httpStatus isEqualToString:@"462"]) [self didSucceedIssueDownloadWithNotification:notification];//No error to display, it's normal that "wanodownload" is not allowed
        else if ([httpStatus isEqualToString:@"999"]) [self didSucceedIssueDownloadWithNotification:notification];//No error to display, 999 error code is returned by AWS when trying to download non existing file
         else if ([httpStatus isEqualToString:@"463"]) [self didSucceedIssueDownloadWithNotification:notification];//Should not happen
@@ -431,7 +425,7 @@
                 [issue release];
         }
         //Add SHKActivityIndicator
-        [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Connecting...",@"")];
+        [[SHKActivityIndicator currentIndicator] displayActivity:[[NSBundle mainBundle]stringForKey:@"Connecting..."]];
 
     }
     else{
@@ -453,7 +447,7 @@
 - (void) createPasswordAlert{
 	
     
-        UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Code",@"" ) message:NSLocalizedString(@"Please enter your code",@"" ) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
+        UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle]stringForKey:@"Code"] message:[[NSBundle mainBundle]stringForKey:@"Please enter your code"] delegate:self cancelButtonTitle:[[NSBundle mainBundle]stringForKey:@"Cancel"] otherButtonTitles:[[NSBundle mainBundle]stringForKey:@"OK"] , nil, nil];
         
         passwordAlert.alertViewStyle =  UIAlertViewStylePlainTextInput;
         UITextField *passwordField = [passwordAlert textFieldAtIndex:0];
@@ -472,15 +466,15 @@
 - (void) createUsernamePasswordAlert{
     //SLog(@"Will create alrt ppp");
     
-        UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Login",@"" ) message:@"" delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel",nil) otherButtonTitles:NSLocalizedString(@"OK",nil), nil];
+        UIAlertView *passwordAlert = [[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle]stringForKey:@"Login"] message:@"" delegate:self cancelButtonTitle:[[NSBundle mainBundle]stringForKey:@"Cancel"] otherButtonTitles:[[NSBundle mainBundle]stringForKey:@"OK"], nil];
         
         passwordAlert.alertViewStyle =  UIAlertViewStyleLoginAndPasswordInput;
         UITextField *usernameField = [passwordAlert textFieldAtIndex:0];
-        [usernameField setPlaceholder:NSLocalizedString(@"Username",@"" )];
+        [usernameField setPlaceholder:[[NSBundle mainBundle]stringForKey:@"Username"]];
         [usernameField becomeFirstResponder];
         
         UITextField *passwordField = [passwordAlert textFieldAtIndex:1];
-        [passwordField setPlaceholder:NSLocalizedString(@"Password",@"" )];
+        [passwordField setPlaceholder:[[NSBundle mainBundle]stringForKey:@"Password"]];
         [passwordField setSecureTextEntry:YES];
         
         
@@ -496,7 +490,7 @@
 }
 
 - (void) createNotAllowedAlert{
-    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error",@"" ) message:@"You are not allowed to download this publication" delegate:self cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil, nil];
+    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:[[NSBundle mainBundle]stringForKey:@"Error"] message:[[NSBundle mainBundle]stringForKey:@"You are not allowed to download this publication"] delegate:self cancelButtonTitle:NSLocalizedString(@"OK",nil) otherButtonTitles:nil, nil];
     
     errorAlert.tag = 3;
     [errorAlert show];
@@ -511,7 +505,7 @@
 
 - (void) requestProducts{
     //Add SHKActivityIndicator
-    [[SHKActivityIndicator currentIndicator] displayActivity:NSLocalizedString(@"Connecting...",@"")];
+    [[SHKActivityIndicator currentIndicator] displayActivity:[[NSBundle mainBundle]stringForKey:@"Connecting..."]];
     
     //Get the ID of the product. Our convention is that it is always the name of the file without extension
     NSString * shortID = [[urlString urlByRemovingFinalUnderscoreInUrlString] nameOfFileWithoutExtensionOfUrlString];

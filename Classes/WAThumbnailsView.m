@@ -69,7 +69,7 @@
 	else cell.textLabel.text = [NSString stringWithFormat:@"%i",indexPath.row-1];**/
 	 
 	//Code for books with pagination starting at 1
-	cell.textLabel.text = [NSString stringWithFormat:@"%li",indexPath.row+1];
+	cell.textLabel.text = [NSString stringWithFormat:@"%i",(int)indexPath.row+1];
 	
 	//else cell.textLabel.text = [NSString stringWithFormat:@"%i",[pdfDocument getPageNumber: indexPath.row-1]];
     NSString * imgUrlString = [pdfDocument getDataAtRow:(int)indexPath.row+1 forDataCol:DataColImage];

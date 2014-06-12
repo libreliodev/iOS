@@ -306,7 +306,7 @@
             // Some error occured during download
             [connection cancel];
             
-            NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:NSLocalizedString(@"Server returned status code %d",@""), statusCode] forKey:NSLocalizedDescriptionKey];
+            NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:[[NSBundle mainBundle]stringForKey:@"Server returned status code %d"], statusCode] forKey:NSLocalizedDescriptionKey];
             NSError *statusError = [NSError errorWithDomain:@"NSHTTPPropertyStatusCodeKey" code:statusCode userInfo:errorInfo];
             
             [self connection:connection didFailWithError:statusError];

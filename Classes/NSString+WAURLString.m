@@ -85,7 +85,7 @@
         
     }
     //SLog(@"Title for %@:%@",self,tempTitle);
-    return(NSLocalizedString(tempTitle,@""));
+    return([[NSBundle mainBundle]stringForKey:tempTitle]);
  
     
 }
@@ -505,11 +505,11 @@
 	NSArray *parts = [theId componentsSeparatedByString:@"."];
 	theId = [parts objectAtIndex:[parts count]-1];
     NSString * ret = self;
-    if ([theId isEqualToString:@"WeeklySubscription"] ) ret = [NSString stringWithFormat:@"%@ 1 %@",ret,NSLocalizedString(@"week",@"")];
-    if ([theId isEqualToString:@"MonthlySubscription"] ) ret = [NSString stringWithFormat:@"%@ 1 %@",ret,NSLocalizedString(@"month",@"")];
-    if ([theId isEqualToString:@"QuarterlySubscription"] ) ret = [NSString stringWithFormat:@"%@ 3 %@",ret,NSLocalizedString(@"months",@"")];
-    if ([theId isEqualToString:@"HalfYearlySubscription"]||[theId isEqualToString:@"HalfYearlySubscription2"]||[theId isEqualToString:@"HalfYearlySubscription3"] ) ret = [NSString stringWithFormat:@"%@ 6 %@",ret,NSLocalizedString(@"months",@"")];
-    if ([theId isEqualToString:@"YearlySubscription"]||[theId isEqualToString:@"YearlySubscription2"]  ) ret = [NSString stringWithFormat:@"%@ 1 %@",ret,NSLocalizedString(@"year",@"")];
+    if ([theId isEqualToString:@"WeeklySubscription"] ) ret = [NSString stringWithFormat:@"%@ 1 %@",ret,[[NSBundle mainBundle]stringForKey:@"week"]];
+    if ([theId isEqualToString:@"MonthlySubscription"] ) ret = [NSString stringWithFormat:@"%@ 1 %@",ret,[[NSBundle mainBundle]stringForKey:@"month"]];
+    if ([theId isEqualToString:@"QuarterlySubscription"] ) ret = [NSString stringWithFormat:@"%@ 3 %@",ret,[[NSBundle mainBundle]stringForKey:@"months"]];
+    if ([theId isEqualToString:@"HalfYearlySubscription"]||[theId isEqualToString:@"HalfYearlySubscription2"]||[theId isEqualToString:@"HalfYearlySubscription3"] ) ret = [NSString stringWithFormat:@"%@ 6 %@",ret,[[NSBundle mainBundle]stringForKey:@"months"]];
+    if ([theId isEqualToString:@"YearlySubscription"]||[theId isEqualToString:@"YearlySubscription2"]  ) ret = [NSString stringWithFormat:@"%@ 1 %@",ret,[[NSBundle mainBundle]stringForKey:@"year"]];
     return ret;
     
 }

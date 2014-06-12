@@ -229,7 +229,7 @@
 	}
 	else {
 		//Generate the error
-        NSDictionary * userDic = [NSDictionary dictionaryWithObject:NSLocalizedString(@"Invalid Code",@"") forKey:NSLocalizedDescriptionKey];
+        NSDictionary * userDic = [NSDictionary dictionaryWithObject:[[NSBundle mainBundle]stringForKey:@"Invalid Code"] forKey:NSLocalizedDescriptionKey];
 		NSError * error = [NSError errorWithDomain:@"Librelio" code:2 userInfo:userDic];
 		[self connection:connection didFailWithError:error];
 		
@@ -284,7 +284,7 @@
     //SLog(@"Complete Url: %@ for url:%@",completeUrl,urlString);
     
     //Put message
-    currentMessage = [[NSString alloc]initWithString: NSLocalizedString(@"Download in progress",@"")];
+    currentMessage = [[NSString alloc]initWithString: [[NSBundle mainBundle]stringForKey:@"Download in progress"]];
 	
 	
 	//Initialize handle and receivedData
@@ -405,7 +405,7 @@
 		int total = (int)[nnewResourcesArray count]+1;
 		int done = (int)[nnewResourcesArray count]+1-(int)[mutableResourcesArray count];
         [currentMessage release];
-		currentMessage = [[NSString alloc]initWithFormat:@"%@ (%i/%i)", NSLocalizedString(@"Download in progress",@""),done,total];
+		currentMessage = [[NSString alloc]initWithFormat:@"%@ (%i/%i)", [[NSBundle mainBundle]stringForKey:@"Download in progress"],done,total];
 		
         
 	}
@@ -424,7 +424,7 @@
     //SLog(@"Current progress in did: %f", currentProgress);
     if (currentProgress<0.99){
         //We still need to wait for cache operations
-        currentMessage = [[NSString alloc]initWithString: NSLocalizedString(@"Caching operation in progress",@"")];
+        currentMessage = [[NSString alloc]initWithString: [[NSBundle mainBundle]stringForKey:@"Caching operation in progress"]];
         
      }
     else{
