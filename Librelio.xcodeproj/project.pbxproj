@@ -482,6 +482,7 @@
 		14541D891307BAC2004A76D4 /* WAModuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAModuleViewController.h; sourceTree = "<group>"; };
 		14541D8A1307BAC2004A76D4 /* WADownloadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADownloadingView.h; sourceTree = "<group>"; };
 		14577FC8129C35D100E75640 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		145BBBDB1948F64100AB7746 /* walanguage */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = walanguage; path = walanguage.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1462318917E1FE1C0066084C /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = facebook.png; path = Resources/facebook.png; sourceTree = "<group>"; };
 		1462318A17E1FE1D0066084C /* facebook@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "facebook@2x.png"; path = "Resources/facebook@2x.png"; sourceTree = "<group>"; };
 		1462318B17E1FE1D0066084C /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = download.png; path = Resources/download.png; sourceTree = "<group>"; };
@@ -1611,6 +1612,7 @@
 				es,
 				"pt-BR",
 				pt,
+				walanguage,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -2033,6 +2035,7 @@
 				1489B615168ECDB300404BA6 /* zh-Hans */,
 				14B8D8361823FB3900C4628F /* es */,
 				148F208B1910CE7B008D44D6 /* pt */,
+				145BBBDB1948F64100AB7746 /* walanguage */,
 			);
 			name = Localizable.strings;
 			path = Resources;

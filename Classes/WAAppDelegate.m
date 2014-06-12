@@ -49,8 +49,13 @@
     //Create subdelegate for push notifications
     apnsSubDelegate = [[EAAppSubDelegate alloc]init];
     
-    //Move documents from Documents directory to Library/Cache if not already done, per Apple's instruction
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"DocsMoved"])[self moveDocumentsToCache];       
+    //Add application specific language with first precedence
+    NSArray * languages = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"];
+    NSMutableArray * languages2	= [NSMutableArray array];
+    [languages2 addObject:@"walanguage"];
+    [languages2 addObjectsFromArray:languages];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithArray:languages2] forKey:@"AppleLanguages"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     //Launch Google analytics
     NSString * googleCode = @"UA-1732003-23";//This is the default Librelio code
@@ -323,29 +328,6 @@
 }
 
 
-- (void) moveDocumentsToCache{
-    //SLog(@"Will move documents");
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString * documentsFolderPath = [paths objectAtIndex:0];	
-	NSArray * dirArray = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:documentsFolderPath error:NULL];
-    for (NSString * fileName in dirArray){
-        NSString *oldPath = [documentsFolderPath stringByAppendingPathComponent:fileName];
-        NSString * newPath = [[WAUtilities cacheFolderPath]stringByAppendingPathComponent:fileName];
- 		NSError *error=nil;
-        [[NSFileManager defaultManager] moveItemAtPath:oldPath toPath:newPath error:&error];
-        
-        if (error){
-           //SLog(@"Error:%@ with file at path:%@ to path %@",[error localizedDescription],oldPath,newPath); 
-        }
-        //SLog(@"Moved %@",oldPath);
-        
-        
-    }
-    
-    [[NSUserDefaults standardUserDefaults] setObject:@"Yes" forKey:@"DocsMoved"];
-    
-    
-}
 
 - (void) updateRootViewController {
     //Create the views

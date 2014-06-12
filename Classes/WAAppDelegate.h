@@ -39,10 +39,6 @@
  **/
 - (void) addModuleToTabViews:(NSMutableArray *)tabviews withUrlLink:(NSString *)tabUrlString withTitle:(NSString*)tabTitle withIcon:(NSString*)iconName;
 
-/**
- * @brief: Moves documents from the document directory to the cache directory according to Apple specs
- **/
-- (void) moveDocumentsToCache;
 
 /**
  * @brief: Restarts operations that may have been inteerrupted by a memory warning
