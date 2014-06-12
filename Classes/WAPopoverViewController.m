@@ -7,6 +7,8 @@
 //
 
 #import "WAPopoverViewController.h"
+#import "NSBundle+WAAdditions.h"
+
 
 @implementation WAPopoverViewController
 

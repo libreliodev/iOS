@@ -10,6 +10,8 @@
 #import "WAModuleProtocol.h"
 #import "WAUtilities.h"
 #import <NewsstandKit/NewsstandKit.h>
+#import "NSBundle+WAAdditions.h"
+
 
 @implementation NSString (WAURLString)
 

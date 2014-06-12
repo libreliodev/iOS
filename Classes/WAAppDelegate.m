@@ -49,13 +49,6 @@
     //Create subdelegate for push notifications
     apnsSubDelegate = [[EAAppSubDelegate alloc]init];
     
-    //Add application specific language with first precedence
-    NSArray * languages = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"];
-    NSMutableArray * languages2	= [NSMutableArray array];
-    [languages2 addObject:@"walanguage"];
-    [languages2 addObjectsFromArray:languages];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithArray:languages2] forKey:@"AppleLanguages"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
     
     //Launch Google analytics
     NSString * googleCode = @"UA-1732003-23";//This is the default Librelio code

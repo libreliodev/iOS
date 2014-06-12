@@ -6,6 +6,8 @@
 //
 
 #import "WAShareActionSheet.h"
+#import "NSBundle+WAAdditions.h"
+
 
 @implementation WAShareActionSheet
 

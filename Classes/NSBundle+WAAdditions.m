@@ -14,6 +14,21 @@
 
 @implementation NSBundle (WAAdditions)
 
+
+- (NSString *) stringForKey:(NSString *)key{
+    //Check if we have a customized translation
+    NSString * customizedTranslation = [self localizedStringForKey:key value:key table:@"Application"];
+    NSLog(@"customized: %@",customizedTranslation);
+    if (![customizedTranslation isEqualToString:key]){
+        return customizedTranslation;
+    }
+    else{
+        return [self localizedStringForKey:key value:key table:nil];
+    }
+    
+    
+}
+
 - (NSString *) pathOfFileWithUrl:(NSString*)relativeUrl{
 	return [self pathOfFileWithUrl:relativeUrl forOrientation:999];
 }

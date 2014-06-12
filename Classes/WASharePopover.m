@@ -6,6 +6,8 @@
 //
 
 #import "WASharePopover.h"
+#import "NSBundle+WAAdditions.h"
+
 
 @implementation WASharePopover
 

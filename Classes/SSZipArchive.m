@@ -10,6 +10,8 @@
 #include "minizip/zip.h"
 #import "zlib.h"
 #import "zconf.h"
+#import "NSBundle+WAAdditions.h"
+
 
 #include <sys/stat.h>
 

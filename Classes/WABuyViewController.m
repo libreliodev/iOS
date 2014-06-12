@@ -11,6 +11,8 @@
 #import "WAModuleViewController.h"
 #import "NSString+WAURLString.h"
 #import "UIView+WAModuleView.h"
+#import "NSBundle+WAAdditions.h"
+
 
 
 @implementation WABuyViewController

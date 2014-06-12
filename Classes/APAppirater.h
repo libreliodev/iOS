@@ -37,6 +37,7 @@
 #import <Foundation/Foundation.h>
 #import "APAppiraterDelegate.h"
 #import <StoreKit/StoreKit.h>
+#import "NSBundle+WAAdditions.h"
 
 extern NSString *const kAppiraterFirstUseDate;
 extern NSString *const kAppiraterUseCount;

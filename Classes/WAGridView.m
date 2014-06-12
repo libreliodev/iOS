@@ -253,7 +253,7 @@
             }
             else{
                  //Add button
-                NSString * subscriptionAndSpaces = [NSString stringWithFormat:@"%@   ",NSLocalizedString(@"Subscription",@"" )];
+                NSString * subscriptionAndSpaces = [NSString stringWithFormat:@"%@   ",[[NSBundle mainBundle]stringForKey:@"Subscription"]];
                 [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"" orString:subscriptionAndSpaces andLink:@"buy://localhost/wanodownload.pdf"];
             }
 

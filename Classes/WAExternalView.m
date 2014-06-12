@@ -4,6 +4,8 @@
 #import "WAExternalView.h"
 #import "WAUtilities.h"
 #import "WAModuleViewController.h"
+#import "NSBundle+WAAdditions.h"
+
 
 
 
