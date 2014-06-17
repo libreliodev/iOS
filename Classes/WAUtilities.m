@@ -119,7 +119,7 @@
 	NSMutableArray *tempArray= [NSMutableArray array];
 	
 	//Check if lastImageNameWithoutExt contains "_";
-	NSRange range = [lastImageNameWithoutExt rangeOfString:@"_"];
+	NSRange range = [lastImageNameWithoutExt rangeOfString:@"_" options:NSBackwardsSearch];
 	if (range.location == NSNotFound){
 		//Add only 1 image in the array
 		[tempArray addObject:lastImageUrlString];
