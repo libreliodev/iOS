@@ -169,8 +169,8 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
-    //[self stringByEvaluatingJavaScriptFromString:@"window.alert=null;"];//Prevent alerts from being shown
-    //s[self stringByEvaluatingJavaScriptFromString:@"window.confirm=function(txt){return 1};"]; //Prevent confirms from being shown and returns default answer
+    [self stringByEvaluatingJavaScriptFromString:@"window.alert=null;"];//Prevent alerts from being shown
+    [self stringByEvaluatingJavaScriptFromString:@"window.confirm=function(txt){return 1};"]; //Prevent confirms from being shown and returns default answer
     
     
 }
