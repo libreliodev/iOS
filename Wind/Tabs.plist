@@ -38,9 +38,9 @@
 		<key>FileName</key>
 		<string>http://apphost/csvreader.html?waurl=/skis/skis.csv</string>
 		<key>Icon</key>
-		<string>facebook.png</string>
+		<string>globe.png</string>
 		<key>Title</key>
-		<string>Facebook</string>
+		<string>CSV Test</string>
 	</dict>
 </array>
 </plist>
