@@ -7,14 +7,16 @@
 //
 
 #import "WAURLProtocol.h"
+#import "NSBundle+WAAdditions.h"
 
 @implementation WAURLProtocol
 
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request
 {
-    NSLog(@"can init with request");
-    return [request.URL.host isEqualToString:@"localhost"];
+    BOOL ret = [request.URL.host isEqualToString:@"apphost"];
+    if (ret) NSLog(@"can init with request %@",request.URL);
+    return ret;
 }
 
 + (NSURLRequest *) canonicalRequestForRequest:(NSURLRequest *)request
@@ -28,7 +30,7 @@
     NSURLRequest *request = [self request];
     
     //Mock ajax call
-    NSString *path = [[NSBundle bundleForClass:self.class] pathForResource:@"ajax_info" ofType:@"txt"];
+    NSString *path = [[NSBundle mainBundle] pathOfFileWithUrl:request.URL.lastPathComponent];
     NSData *data = [NSData dataWithContentsOfFile:path];
     NSDictionary *headers = @{@"Access-Control-Allow-Origin" : @"*", @"Access-Control-Allow-Headers" : @"Content-Type"};
     NSHTTPURLResponse *response = [[NSHTTPURLResponse alloc] initWithURL:request.URL statusCode:200 HTTPVersion:@"1.1" headerFields:headers];

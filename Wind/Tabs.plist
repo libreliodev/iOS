@@ -36,7 +36,7 @@
 	</dict>
 	<dict>
 		<key>FileName</key>
-		<string>index.html</string>
+		<string>http://apphost/csvreader.html?waurl=/skis/skis.csv</string>
 		<key>Icon</key>
 		<string>facebook.png</string>
 		<key>Title</key>
