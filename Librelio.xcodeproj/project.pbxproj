@@ -300,6 +300,8 @@
 		149AB7EC19AAF4EB00296F89 /* icu_it.js in Sources */ = {isa = PBXBuildFile; fileRef = 149AB7E819AAF4EB00296F89 /* icu_it.js */; };
 		149AB7EF19AB04A100296F89 /* skis.csv in Resources */ = {isa = PBXBuildFile; fileRef = 149AB7ED19AB04A100296F89 /* skis.csv */; };
 		149AB7F019AB04A100296F89 /* skis.tmpl in Resources */ = {isa = PBXBuildFile; fileRef = 149AB7EE19AB04A100296F89 /* skis.tmpl */; };
+		149AB7F219AC67F000296F89 /* icu_en-US.js in Sources */ = {isa = PBXBuildFile; fileRef = 149AB7F119AC67F000296F89 /* icu_en-US.js */; };
+		149AB7F319AC67F000296F89 /* icu_en-US.js in Sources */ = {isa = PBXBuildFile; fileRef = 149AB7F119AC67F000296F89 /* icu_en-US.js */; };
 		14A309A518378F0F00A519DD /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 142DB0581836A30D0045DFD5 /* ioapi.c */; };
 		14A309A618378F0F00A519DD /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 142DB05A1836A30D0045DFD5 /* mztools.c */; };
 		14A309A718378F0F00A519DD /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 142DB05C1836A30D0045DFD5 /* unzip.c */; };
@@ -677,6 +679,7 @@
 		149AB7E819AAF4EB00296F89 /* icu_it.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = icu_it.js; sourceTree = "<group>"; };
 		149AB7ED19AB04A100296F89 /* skis.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = skis.csv; sourceTree = "<group>"; };
 		149AB7EE19AB04A100296F89 /* skis.tmpl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = skis.tmpl; sourceTree = "<group>"; };
+		149AB7F119AC67F000296F89 /* icu_en-US.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "icu_en-US.js"; sourceTree = "<group>"; };
 		14A1DB45145F04B1005366C7 /* Scanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scanner.h; sourceTree = "<group>"; };
 		14A1DB46145F04B1005366C7 /* Scanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scanner.m; sourceTree = "<group>"; };
 		14A1DB61145F1F23005366C7 /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
@@ -1454,6 +1457,7 @@
 		149AB1D619AAEFFD00296F89 /* localeplanet */ = {
 			isa = PBXGroup;
 			children = (
+				149AB7F119AC67F000296F89 /* icu_en-US.js */,
 				149AB7E719AAF4EB00296F89 /* icu_en.js */,
 				149AB7E819AAF4EB00296F89 /* icu_it.js */,
 				149AB22819AAEFFD00296F89 /* icu_de.js */,
@@ -2251,6 +2255,7 @@
 				149086FB17E375D700943DD2 /* NSDate+WAAdditions.m in Sources */,
 				149086FC17E375D700943DD2 /* WAMissingResourcesDownloader.m in Sources */,
 				149086FD17E375D700943DD2 /* WAZoomImage.m in Sources */,
+				149AB7F319AC67F000296F89 /* icu_en-US.js in Sources */,
 				149086FE17E375D700943DD2 /* WAAddressAnnotation.m in Sources */,
 				149086FF17E375D700943DD2 /* WASplashWebViewController.m in Sources */,
 				1490870017E375D700943DD2 /* WASplashScreenViewController.m in Sources */,
@@ -2340,6 +2345,7 @@
 				14DB11CB164BEDC3001FE76B /* WAVideoView.m in Sources */,
 				14A309A918378F0F00A519DD /* SSZipArchive.m in Sources */,
 				14DB11CC164BEDC3001FE76B /* UIView+WAModuleView.m in Sources */,
+				149AB7F219AC67F000296F89 /* icu_en-US.js in Sources */,
 				14DB11CD164BEDC3001FE76B /* UIColor+WAAdditions.m in Sources */,
 				14DB11CF164BEDC3001FE76B /* WAShareView.m in Sources */,
 				14DB11D0164BEDC3001FE76B /* WABarButtonItemWithLink.m in Sources */,

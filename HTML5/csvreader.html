@@ -31,22 +31,20 @@
         "locale": "en-US"
       },
         assets = 'assets';
-        // Debug
-        console = new Object();
-        console.log = function(log) {
-            var iframe = document.createElement("IFRAME");
-            iframe.setAttribute("src", "ios-log:#iOS#" + log);
-            document.documentElement.appendChild(iframe);
-            iframe.parentNode.removeChild(iframe);
-            iframe = null;
-        };
-    console.debug = console.log;
-    console.info = console.log;
-    console.warn = console.log;
-    console.error = console.log;
     </script>
     <script src="assets/lib/url.min.js"></script>
     <script src="assets/js/helper.js"></script>
+    <script>
+      (function() {
+        var httpreq_open = XMLHttpRequest.prototype.open;
+        XMLHttpRequest.prototype.open = function(m, url_str, a2, a3, a4) {
+          /* url('hostname', url_str) == config.s3Bucket + '.s3.amazonaws.com' */
+          if (url_protocol(url_str) === null)
+            url_str = 'app://' + url_str;
+          return httpreq_open.call(this, m, url_str, a2, a3, a4);
+        }
+      })();
+    </script>
     <script src="assets/lib/jquery.min.js"></script>
     <script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/lib/sprintf.min.js"></script>
