@@ -59,22 +59,9 @@
 		1490868117E375D700943DD2 /* WASplashScreenViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1424381114BC36BE005ABB4A /* WASplashScreenViewController_iPad.xib */; };
 		1490868217E375D700943DD2 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 146E000417E22654000EE3DB /* list.png */; };
 		1490868317E375D700943DD2 /* WASplashScreenViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1424381214BC36BE005ABB4A /* WASplashScreenViewController_iPhone.xib */; };
-		1490868417E375D700943DD2 /* WAPrixIpad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CAA230E14D183AE00D458AC /* WAPrixIpad.xib */; };
-		1490868517E375D700943DD2 /* WAPrixIphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CA81E9D14D8192E00D735E0 /* WAPrixIphone.xib */; };
-		1490868617E375D700943DD2 /* WATableSelectionIphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C9C5A4F14D822F4009825D9 /* WATableSelectionIphone.xib */; };
-		1490868717E375D700943DD2 /* WAResultsViewIpad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C9C5A6514D83106009825D9 /* WAResultsViewIpad.xib */; };
-		1490868817E375D700943DD2 /* WALexiqueIpad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CD009C914DAD994003D4E73 /* WALexiqueIpad.xib */; };
-		1490868917E375D700943DD2 /* WALexiqueIphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CA9B83614DC043000DE9B1E /* WALexiqueIphone.xib */; };
-		1490868A17E375D700943DD2 /* WADetailsIphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCA0551214F4DBA3008AB289 /* WADetailsIphone.xib */; };
 		1490868B17E375D700943DD2 /* list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 146E000517E22654000EE3DB /* list@2x.png */; };
-		1490868C17E375D700943DD2 /* WAPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC2E46F814F8F03600F44BCA /* WAPopoverView.xib */; };
 		1490868D17E375D700943DD2 /* top-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 1462319117E1FE1D0066084C /* top-list.png */; };
 		1490868E17E375D700943DD2 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 146EFFFF17E20F49000EE3DB /* back@2x.png */; };
-		1490868F17E375D700943DD2 /* WAGenericPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCB35DA514F15F10005CC152 /* WAGenericPopover.xib */; };
-		1490869017E375D700943DD2 /* WAAdvancedSearchPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CAAC09F14E96B1D00D6D4F3 /* WAAdvancedSearchPopover.xib */; };
-		1490869117E375D700943DD2 /* WAResultsViewIphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C4E9A3014D95D040073B75C /* WAResultsViewIphone.xib */; };
-		1490869317E375D700943DD2 /* WATableSelectionIpad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14AC87AB16240C1600CB9C18 /* WATableSelectionIpad.xib */; };
-		1490869417E375D700943DD2 /* WATableSelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14AC87AC16240C1600CB9C18 /* WATableSelectionCell.xib */; };
 		1490869517E375D700943DD2 /* rss.png in Resources */ = {isa = PBXBuildFile; fileRef = 1490866B17E332A200943DD2 /* rss.png */; };
 		1490869617E375D700943DD2 /* black.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BCB168EC39C006B0AA4 /* black.png */; };
 		1490869717E375D700943DD2 /* BottomBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BD4168EC3DB006B0AA4 /* BottomBarBackground.png */; };
@@ -170,19 +157,6 @@
 		149086FE17E375D700943DD2 /* WAAddressAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D37B6114B6DEAA00BA49C0 /* WAAddressAnnotation.m */; };
 		149086FF17E375D700943DD2 /* WASplashWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1424381314BC36BE005ABB4A /* WASplashWebViewController.m */; };
 		1490870017E375D700943DD2 /* WASplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1424381514BC36BE005ABB4A /* WASplashScreenViewController.m */; };
-		1490870117E375D700943DD2 /* WATableContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA0172614CEDA3700286E71 /* WATableContainerView.m */; };
-		1490870217E375D700943DD2 /* WAPrixViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA0172B14CEDD8E00286E71 /* WAPrixViewController.m */; };
-		1490870317E375D700943DD2 /* WAPageContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC255D5514D300B900845E23 /* WAPageContainerController.m */; };
-		1490870417E375D700943DD2 /* WATableSelectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC72AE1A14D70F3900E34132 /* WATableSelectionController.m */; };
-		1490870517E375D700943DD2 /* WAResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9C5A6B14D8371D009825D9 /* WAResultsViewController.m */; };
-		1490870617E375D700943DD2 /* WALexiqueController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD009CF14DADEC9003D4E73 /* WALexiqueController.m */; };
-		1490870717E375D700943DD2 /* WADatabaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEA923B14D829F90075DC54 /* WADatabaseController.m */; };
-		1490870817E375D700943DD2 /* WADetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA858514E1397E0036D61B /* WADetailsViewController.m */; };
-		1490870917E375D700943DD2 /* WAAdvancedSearchPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC0A414E9729F00D6D4F3 /* WAAdvancedSearchPopoverController.m */; };
-		1490870A17E375D700943DD2 /* WABuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9028E814EA3B9B005C5D1C /* WABuyViewController.m */; };
-		1490870B17E375D700943DD2 /* WAGenericPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB35DA014F0F0DD005CC152 /* WAGenericPopover.m */; };
-		1490870C17E375D700943DD2 /* WAPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAC851E14E6F400000BF0AF /* WAPopoverViewController.m */; };
-		1490870D17E375D700943DD2 /* WATableSelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB046CF14FFDDC900E47096 /* WATableSelectionCell.m */; };
 		1490870E17E375D700943DD2 /* EAAppSubDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 149633B0150DE7CE0058E086 /* EAAppSubDelegate.m */; };
 		1490870F17E375D700943DD2 /* WASharePopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E1B95A1537F6D700153BA5 /* WASharePopover.m */; };
 		1490871017E375D700943DD2 /* WAShareActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E1B9651538157700153BA5 /* WAShareActionSheet.m */; };
@@ -260,19 +234,6 @@
 		14DB1171164BEDC3001FE76B /* WASplashWebViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1424381014BC36BE005ABB4A /* WASplashWebViewController_iPhone.xib */; };
 		14DB1172164BEDC3001FE76B /* WASplashScreenViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1424381114BC36BE005ABB4A /* WASplashScreenViewController_iPad.xib */; };
 		14DB1173164BEDC3001FE76B /* WASplashScreenViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1424381214BC36BE005ABB4A /* WASplashScreenViewController_iPhone.xib */; };
-		14DB1174164BEDC3001FE76B /* WAPrixIpad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CAA230E14D183AE00D458AC /* WAPrixIpad.xib */; };
-		14DB1177164BEDC3001FE76B /* WAPrixIphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CA81E9D14D8192E00D735E0 /* WAPrixIphone.xib */; };
-		14DB1178164BEDC3001FE76B /* WATableSelectionIphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C9C5A4F14D822F4009825D9 /* WATableSelectionIphone.xib */; };
-		14DB1179164BEDC3001FE76B /* WAResultsViewIpad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C9C5A6514D83106009825D9 /* WAResultsViewIpad.xib */; };
-		14DB117A164BEDC3001FE76B /* WALexiqueIpad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CD009C914DAD994003D4E73 /* WALexiqueIpad.xib */; };
-		14DB117C164BEDC3001FE76B /* WALexiqueIphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CA9B83614DC043000DE9B1E /* WALexiqueIphone.xib */; };
-		14DB1181164BEDC3001FE76B /* WADetailsIphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCA0551214F4DBA3008AB289 /* WADetailsIphone.xib */; };
-		14DB1183164BEDC3001FE76B /* WAPopoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC2E46F814F8F03600F44BCA /* WAPopoverView.xib */; };
-		14DB118D164BEDC3001FE76B /* WAGenericPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCB35DA514F15F10005CC152 /* WAGenericPopover.xib */; };
-		14DB118E164BEDC3001FE76B /* WAAdvancedSearchPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CAAC09F14E96B1D00D6D4F3 /* WAAdvancedSearchPopover.xib */; };
-		14DB118F164BEDC3001FE76B /* WAResultsViewIphone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C4E9A3014D95D040073B75C /* WAResultsViewIphone.xib */; };
-		14DB1191164BEDC3001FE76B /* WATableSelectionIpad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14AC87AB16240C1600CB9C18 /* WATableSelectionIpad.xib */; };
-		14DB1192164BEDC3001FE76B /* WATableSelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14AC87AC16240C1600CB9C18 /* WATableSelectionCell.xib */; };
 		14DB1195164BEDC3001FE76B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		14DB1196164BEDC3001FE76B /* WAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* WAAppDelegate.m */; };
 		14DB1197164BEDC3001FE76B /* WAPaginatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 767082FD0FEB223000BC5CD2 /* WAPaginatedView.m */; };
@@ -335,19 +296,6 @@
 		14DB11E0164BEDC3001FE76B /* WAAddressAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D37B6114B6DEAA00BA49C0 /* WAAddressAnnotation.m */; };
 		14DB11E1164BEDC3001FE76B /* WASplashWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1424381314BC36BE005ABB4A /* WASplashWebViewController.m */; };
 		14DB11E2164BEDC3001FE76B /* WASplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1424381514BC36BE005ABB4A /* WASplashScreenViewController.m */; };
-		14DB11E3164BEDC3001FE76B /* WATableContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA0172614CEDA3700286E71 /* WATableContainerView.m */; };
-		14DB11E4164BEDC3001FE76B /* WAPrixViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA0172B14CEDD8E00286E71 /* WAPrixViewController.m */; };
-		14DB11E5164BEDC3001FE76B /* WAPageContainerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC255D5514D300B900845E23 /* WAPageContainerController.m */; };
-		14DB11E6164BEDC3001FE76B /* WATableSelectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC72AE1A14D70F3900E34132 /* WATableSelectionController.m */; };
-		14DB11E7164BEDC3001FE76B /* WAResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9C5A6B14D8371D009825D9 /* WAResultsViewController.m */; };
-		14DB11E8164BEDC3001FE76B /* WALexiqueController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD009CF14DADEC9003D4E73 /* WALexiqueController.m */; };
-		14DB11E9164BEDC3001FE76B /* WADatabaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCEA923B14D829F90075DC54 /* WADatabaseController.m */; };
-		14DB11EA164BEDC3001FE76B /* WADetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA858514E1397E0036D61B /* WADetailsViewController.m */; };
-		14DB11EB164BEDC3001FE76B /* WAAdvancedSearchPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CAAC0A414E9729F00D6D4F3 /* WAAdvancedSearchPopoverController.m */; };
-		14DB11EC164BEDC3001FE76B /* WABuyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9028E814EA3B9B005C5D1C /* WABuyViewController.m */; };
-		14DB11ED164BEDC3001FE76B /* WAGenericPopover.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB35DA014F0F0DD005CC152 /* WAGenericPopover.m */; };
-		14DB11EE164BEDC3001FE76B /* WAPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCAC851E14E6F400000BF0AF /* WAPopoverViewController.m */; };
-		14DB11EF164BEDC3001FE76B /* WATableSelectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB046CF14FFDDC900E47096 /* WATableSelectionCell.m */; };
 		14DB11F0164BEDC3001FE76B /* EAAppSubDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 149633B0150DE7CE0058E086 /* EAAppSubDelegate.m */; };
 		14DB11F1164BEDC3001FE76B /* WASharePopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E1B95A1537F6D700153BA5 /* WASharePopover.m */; };
 		14DB11F2164BEDC3001FE76B /* WAShareActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E1B9651538157700153BA5 /* WAShareActionSheet.m */; };
@@ -589,8 +537,6 @@
 		14A80BEC168EC3DB006B0AA4 /* synchronize.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = synchronize.png; path = Resources/synchronize.png; sourceTree = "<group>"; };
 		14A80BED168EC3DB006B0AA4 /* video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = video.png; path = Resources/video.png; sourceTree = "<group>"; };
 		14A80BEE168EC3DB006B0AA4 /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = white.png; path = Resources/white.png; sourceTree = "<group>"; };
-		14AC87AB16240C1600CB9C18 /* WATableSelectionIpad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WATableSelectionIpad.xib; sourceTree = "<group>"; };
-		14AC87AC16240C1600CB9C18 /* WATableSelectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WATableSelectionCell.xib; sourceTree = "<group>"; };
 		14AF2A9C190E80A900FE87EC /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
 		14AF2A9D190E80A900FE87EC /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
 		14AF2A9E190E80A900FE87EC /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIFields.h; sourceTree = "<group>"; };
@@ -692,46 +638,9 @@
 		4CA92CA5130C2E9E003264DA /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		767082FC0FEB223000BC5CD2 /* WAPaginatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAPaginatedView.h; sourceTree = "<group>"; };
 		767082FD0FEB223000BC5CD2 /* WAPaginatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAPaginatedView.m; sourceTree = "<group>"; };
-		8C4E9A3014D95D040073B75C /* WAResultsViewIphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WAResultsViewIphone.xib; sourceTree = "<group>"; };
 		8C994BAB151B752D00DD10AF /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		8C9C5A4F14D822F4009825D9 /* WATableSelectionIphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WATableSelectionIphone.xib; sourceTree = "<group>"; };
-		8C9C5A6514D83106009825D9 /* WAResultsViewIpad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WAResultsViewIpad.xib; sourceTree = "<group>"; };
-		8C9C5A6A14D8371A009825D9 /* WAResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WAResultsViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		8C9C5A6B14D8371D009825D9 /* WAResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAResultsViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		8CA0172514CEDA3700286E71 /* WATableContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WATableContainerView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		8CA0172614CEDA3700286E71 /* WATableContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WATableContainerView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		8CA0172A14CEDD8E00286E71 /* WAPrixViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WAPrixViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		8CA0172B14CEDD8E00286E71 /* WAPrixViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAPrixViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		8CA81E9D14D8192E00D735E0 /* WAPrixIphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WAPrixIphone.xib; sourceTree = "<group>"; };
-		8CA9B83614DC043000DE9B1E /* WALexiqueIphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WALexiqueIphone.xib; sourceTree = "<group>"; };
-		8CAA230E14D183AE00D458AC /* WAPrixIpad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WAPrixIpad.xib; sourceTree = "<group>"; };
-		8CAAC09F14E96B1D00D6D4F3 /* WAAdvancedSearchPopover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WAAdvancedSearchPopover.xib; sourceTree = "<group>"; };
-		8CAAC0A314E9729F00D6D4F3 /* WAAdvancedSearchPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WAAdvancedSearchPopoverController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		8CAAC0A414E9729F00D6D4F3 /* WAAdvancedSearchPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAAdvancedSearchPopoverController.m; sourceTree = "<group>"; };
-		8CCA858414E1397E0036D61B /* WADetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WADetailsViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		8CCA858514E1397E0036D61B /* WADetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WADetailsViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		8CD009C914DAD994003D4E73 /* WALexiqueIpad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WALexiqueIpad.xib; sourceTree = "<group>"; };
-		8CD009CE14DADEC8003D4E73 /* WALexiqueController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WALexiqueController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		8CD009CF14DADEC9003D4E73 /* WALexiqueController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WALexiqueController.m; sourceTree = "<group>"; };
-		BC255D5414D300B900845E23 /* WAPageContainerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WAPageContainerController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		BC255D5514D300B900845E23 /* WAPageContainerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAPageContainerController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		BC2E46F814F8F03600F44BCA /* WAPopoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WAPopoverView.xib; sourceTree = "<group>"; };
 		BC6691BA164D1B8100C113F5 /* WASplashFileDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WASplashFileDownloader.h; sourceTree = "<group>"; };
 		BC6691BB164D1B8100C113F5 /* WASplashFileDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WASplashFileDownloader.m; sourceTree = "<group>"; };
-		BC72AE1914D70F3900E34132 /* WATableSelectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WATableSelectionController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		BC72AE1A14D70F3900E34132 /* WATableSelectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WATableSelectionController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		BC9028E814EA3B9B005C5D1C /* WABuyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WABuyViewController.m; sourceTree = "<group>"; };
-		BC9028E914EA3B9B005C5D1C /* WABuyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WABuyViewController.h; sourceTree = "<group>"; };
-		BCA0551214F4DBA3008AB289 /* WADetailsIphone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WADetailsIphone.xib; sourceTree = "<group>"; };
-		BCAC851D14E6F400000BF0AF /* WAPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAPopoverViewController.h; sourceTree = "<group>"; };
-		BCAC851E14E6F400000BF0AF /* WAPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAPopoverViewController.m; sourceTree = "<group>"; };
-		BCB046CE14FFDDC800E47096 /* WATableSelectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WATableSelectionCell.h; sourceTree = "<group>"; };
-		BCB046CF14FFDDC900E47096 /* WATableSelectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WATableSelectionCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		BCB35D9F14F0F0DD005CC152 /* WAGenericPopover.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAGenericPopover.h; sourceTree = "<group>"; };
-		BCB35DA014F0F0DD005CC152 /* WAGenericPopover.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAGenericPopover.m; sourceTree = "<group>"; };
-		BCB35DA514F15F10005CC152 /* WAGenericPopover.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WAGenericPopover.xib; sourceTree = "<group>"; };
-		BCEA923A14D829F90075DC54 /* WADatabaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WADatabaseController.h; sourceTree = "<group>"; };
-		BCEA923B14D829F90075DC54 /* WADatabaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WADatabaseController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1201,7 +1110,6 @@
 				1491964D1328A31C00DD54B1 /* WAModuleProtocol.h */,
 				146F6A97154E52620044821A /* Search Module */,
 				147FF3631488F20C00CC31F9 /* Table Module */,
-				14C7450C1459B6F400767C52 /* Database Module */,
 				14C744D31459AB9500767C52 /* Share Module */,
 				14DD779E14A60CDC004E06E5 /* ZoomImage Module */,
 				14C5D08E1264698E0034FE23 /* Paginated Module */,
@@ -1322,52 +1230,6 @@
 				14E1B9651538157700153BA5 /* WAShareActionSheet.m */,
 			);
 			name = "Share Module";
-			sourceTree = "<group>";
-		};
-		14C7450C1459B6F400767C52 /* Database Module */ = {
-			isa = PBXGroup;
-			children = (
-				8CAAC09F14E96B1D00D6D4F3 /* WAAdvancedSearchPopover.xib */,
-				8CAAC0A314E9729F00D6D4F3 /* WAAdvancedSearchPopoverController.h */,
-				8CAAC0A414E9729F00D6D4F3 /* WAAdvancedSearchPopoverController.m */,
-				BC9028E914EA3B9B005C5D1C /* WABuyViewController.h */,
-				BC9028E814EA3B9B005C5D1C /* WABuyViewController.m */,
-				BCEA923A14D829F90075DC54 /* WADatabaseController.h */,
-				BCEA923B14D829F90075DC54 /* WADatabaseController.m */,
-				BCA0551214F4DBA3008AB289 /* WADetailsIphone.xib */,
-				8CCA858414E1397E0036D61B /* WADetailsViewController.h */,
-				8CCA858514E1397E0036D61B /* WADetailsViewController.m */,
-				BCB35D9F14F0F0DD005CC152 /* WAGenericPopover.h */,
-				BCB35DA014F0F0DD005CC152 /* WAGenericPopover.m */,
-				BCB35DA514F15F10005CC152 /* WAGenericPopover.xib */,
-				8CD009CE14DADEC8003D4E73 /* WALexiqueController.h */,
-				8CD009CF14DADEC9003D4E73 /* WALexiqueController.m */,
-				8CD009C914DAD994003D4E73 /* WALexiqueIpad.xib */,
-				8CA9B83614DC043000DE9B1E /* WALexiqueIphone.xib */,
-				BC255D5414D300B900845E23 /* WAPageContainerController.h */,
-				BC255D5514D300B900845E23 /* WAPageContainerController.m */,
-				BC2E46F814F8F03600F44BCA /* WAPopoverView.xib */,
-				BCAC851D14E6F400000BF0AF /* WAPopoverViewController.h */,
-				BCAC851E14E6F400000BF0AF /* WAPopoverViewController.m */,
-				8CAA230E14D183AE00D458AC /* WAPrixIpad.xib */,
-				8CA81E9D14D8192E00D735E0 /* WAPrixIphone.xib */,
-				8CA0172A14CEDD8E00286E71 /* WAPrixViewController.h */,
-				8CA0172B14CEDD8E00286E71 /* WAPrixViewController.m */,
-				8C9C5A6A14D8371A009825D9 /* WAResultsViewController.h */,
-				8C9C5A6B14D8371D009825D9 /* WAResultsViewController.m */,
-				8C9C5A6514D83106009825D9 /* WAResultsViewIpad.xib */,
-				8C4E9A3014D95D040073B75C /* WAResultsViewIphone.xib */,
-				8CA0172514CEDA3700286E71 /* WATableContainerView.h */,
-				8CA0172614CEDA3700286E71 /* WATableContainerView.m */,
-				BCB046CE14FFDDC800E47096 /* WATableSelectionCell.h */,
-				BCB046CF14FFDDC900E47096 /* WATableSelectionCell.m */,
-				14AC87AC16240C1600CB9C18 /* WATableSelectionCell.xib */,
-				BC72AE1914D70F3900E34132 /* WATableSelectionController.h */,
-				BC72AE1A14D70F3900E34132 /* WATableSelectionController.m */,
-				14AC87AB16240C1600CB9C18 /* WATableSelectionIpad.xib */,
-				8C9C5A4F14D822F4009825D9 /* WATableSelectionIphone.xib */,
-			);
-			name = "Database Module";
 			sourceTree = "<group>";
 		};
 		14D08A1D13A9FE4400F0285D /* Video Module */ = {
@@ -1641,23 +1503,10 @@
 				144B2C5618229DE200CDD200 /* calendar@2x.png in Resources */,
 				1490868217E375D700943DD2 /* list.png in Resources */,
 				1490868317E375D700943DD2 /* WASplashScreenViewController_iPhone.xib in Resources */,
-				1490868417E375D700943DD2 /* WAPrixIpad.xib in Resources */,
-				1490868517E375D700943DD2 /* WAPrixIphone.xib in Resources */,
-				1490868617E375D700943DD2 /* WATableSelectionIphone.xib in Resources */,
-				1490868717E375D700943DD2 /* WAResultsViewIpad.xib in Resources */,
-				1490868817E375D700943DD2 /* WALexiqueIpad.xib in Resources */,
-				1490868917E375D700943DD2 /* WALexiqueIphone.xib in Resources */,
-				1490868A17E375D700943DD2 /* WADetailsIphone.xib in Resources */,
 				1490868B17E375D700943DD2 /* list@2x.png in Resources */,
-				1490868C17E375D700943DD2 /* WAPopoverView.xib in Resources */,
 				1490868D17E375D700943DD2 /* top-list.png in Resources */,
 				1490868E17E375D700943DD2 /* back@2x.png in Resources */,
-				1490868F17E375D700943DD2 /* WAGenericPopover.xib in Resources */,
-				1490869017E375D700943DD2 /* WAAdvancedSearchPopover.xib in Resources */,
-				1490869117E375D700943DD2 /* WAResultsViewIphone.xib in Resources */,
 				144B2C5918229DE200CDD200 /* documents.png in Resources */,
-				1490869317E375D700943DD2 /* WATableSelectionIpad.xib in Resources */,
-				1490869417E375D700943DD2 /* WATableSelectionCell.xib in Resources */,
 				1490869517E375D700943DD2 /* rss.png in Resources */,
 				1490869617E375D700943DD2 /* black.png in Resources */,
 				1490869717E375D700943DD2 /* BottomBarBackground.png in Resources */,
@@ -1714,23 +1563,10 @@
 				146232FF17E1FE210066084C /* globe@2x.png in Resources */,
 				14DB1172164BEDC3001FE76B /* WASplashScreenViewController_iPad.xib in Resources */,
 				14DB1173164BEDC3001FE76B /* WASplashScreenViewController_iPhone.xib in Resources */,
-				14DB1174164BEDC3001FE76B /* WAPrixIpad.xib in Resources */,
-				14DB1177164BEDC3001FE76B /* WAPrixIphone.xib in Resources */,
 				1490867017E332A200943DD2 /* rss@2x.png in Resources */,
-				14DB1178164BEDC3001FE76B /* WATableSelectionIphone.xib in Resources */,
-				14DB1179164BEDC3001FE76B /* WAResultsViewIpad.xib in Resources */,
-				14DB117A164BEDC3001FE76B /* WALexiqueIpad.xib in Resources */,
 				144B2C6D18229DE200CDD200 /* refresh@2x.png in Resources */,
-				14DB117C164BEDC3001FE76B /* WALexiqueIphone.xib in Resources */,
-				14DB1181164BEDC3001FE76B /* WADetailsIphone.xib in Resources */,
 				146232F917E1FE210066084C /* download.png in Resources */,
-				14DB1183164BEDC3001FE76B /* WAPopoverView.xib in Resources */,
-				14DB118D164BEDC3001FE76B /* WAGenericPopover.xib in Resources */,
-				14DB118E164BEDC3001FE76B /* WAAdvancedSearchPopover.xib in Resources */,
-				14DB118F164BEDC3001FE76B /* WAResultsViewIphone.xib in Resources */,
-				14DB1191164BEDC3001FE76B /* WATableSelectionIpad.xib in Resources */,
 				144B2C6718229DE200CDD200 /* info@2x.png in Resources */,
-				14DB1192164BEDC3001FE76B /* WATableSelectionCell.xib in Resources */,
 				14DB138F164C52C4001FE76B /* Application_.plist in Resources */,
 				14DB1390164C52C4001FE76B /* Default-568h@2x.png in Resources */,
 				14DB1391164C52C4001FE76B /* Default-Landscape.png in Resources */,
@@ -1890,19 +1726,6 @@
 				149086FE17E375D700943DD2 /* WAAddressAnnotation.m in Sources */,
 				149086FF17E375D700943DD2 /* WASplashWebViewController.m in Sources */,
 				1490870017E375D700943DD2 /* WASplashScreenViewController.m in Sources */,
-				1490870117E375D700943DD2 /* WATableContainerView.m in Sources */,
-				1490870217E375D700943DD2 /* WAPrixViewController.m in Sources */,
-				1490870317E375D700943DD2 /* WAPageContainerController.m in Sources */,
-				1490870417E375D700943DD2 /* WATableSelectionController.m in Sources */,
-				1490870517E375D700943DD2 /* WAResultsViewController.m in Sources */,
-				1490870617E375D700943DD2 /* WALexiqueController.m in Sources */,
-				1490870717E375D700943DD2 /* WADatabaseController.m in Sources */,
-				1490870817E375D700943DD2 /* WADetailsViewController.m in Sources */,
-				1490870917E375D700943DD2 /* WAAdvancedSearchPopoverController.m in Sources */,
-				1490870A17E375D700943DD2 /* WABuyViewController.m in Sources */,
-				1490870B17E375D700943DD2 /* WAGenericPopover.m in Sources */,
-				1490870C17E375D700943DD2 /* WAPopoverViewController.m in Sources */,
-				1490870D17E375D700943DD2 /* WATableSelectionCell.m in Sources */,
 				1490870E17E375D700943DD2 /* EAAppSubDelegate.m in Sources */,
 				1490870F17E375D700943DD2 /* WASharePopover.m in Sources */,
 				1490871017E375D700943DD2 /* WAShareActionSheet.m in Sources */,
@@ -1993,19 +1816,6 @@
 				14DB11E0164BEDC3001FE76B /* WAAddressAnnotation.m in Sources */,
 				14DB11E1164BEDC3001FE76B /* WASplashWebViewController.m in Sources */,
 				14DB11E2164BEDC3001FE76B /* WASplashScreenViewController.m in Sources */,
-				14DB11E3164BEDC3001FE76B /* WATableContainerView.m in Sources */,
-				14DB11E4164BEDC3001FE76B /* WAPrixViewController.m in Sources */,
-				14DB11E5164BEDC3001FE76B /* WAPageContainerController.m in Sources */,
-				14DB11E6164BEDC3001FE76B /* WATableSelectionController.m in Sources */,
-				14DB11E7164BEDC3001FE76B /* WAResultsViewController.m in Sources */,
-				14DB11E8164BEDC3001FE76B /* WALexiqueController.m in Sources */,
-				14DB11E9164BEDC3001FE76B /* WADatabaseController.m in Sources */,
-				14DB11EA164BEDC3001FE76B /* WADetailsViewController.m in Sources */,
-				14DB11EB164BEDC3001FE76B /* WAAdvancedSearchPopoverController.m in Sources */,
-				14DB11EC164BEDC3001FE76B /* WABuyViewController.m in Sources */,
-				14DB11ED164BEDC3001FE76B /* WAGenericPopover.m in Sources */,
-				14DB11EE164BEDC3001FE76B /* WAPopoverViewController.m in Sources */,
-				14DB11EF164BEDC3001FE76B /* WATableSelectionCell.m in Sources */,
 				14DB11F0164BEDC3001FE76B /* EAAppSubDelegate.m in Sources */,
 				14DB11F1164BEDC3001FE76B /* WASharePopover.m in Sources */,
 				14DB11F2164BEDC3001FE76B /* WAShareActionSheet.m in Sources */,
