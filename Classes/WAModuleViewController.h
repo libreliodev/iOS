@@ -9,7 +9,7 @@
 #import "WAModuleProtocol.h"
 #import "WATransparentToolbar.h"
 //#import "WATableViewController.h"
-#import "WATableContainerView.h"
+//#import "WATableContainerView.h"
 #import <MessageUI/MessageUI.h>
 
 
