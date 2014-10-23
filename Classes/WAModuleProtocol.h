@@ -35,7 +35,12 @@ typedef enum {
 } LinkType;
 
 
-
+typedef enum {
+    ModuleResizeModeFit,
+    ModuleResizeModeFill,
+    ModuleResizeModeFillWidth,
+    ModuleResizeModeFillHeight
+} ModuleResizeMode;
 
 
 
