@@ -24,7 +24,7 @@
 
 @implementation WAPDFParser
 
-@synthesize intParam,numberOfPages,outlineArray,currentString;
+@synthesize intParam,numberOfPages,outlineArray,currentString,pdfURL;
 #pragma mark -
 #pragma mark Lifecycle functions
 
@@ -292,6 +292,77 @@
 	CGImageRelease(newImageRef);
 	CGPDFDocumentRelease(pdf);
 	return ret;
+}
+
+-(UIImage*) drawTileForPage:(int)page withTileRect:(CGRect)tileRect withImageRect:(CGRect)wholeRect withCrop:(CGRect)crop
+{
+    CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL(pdfURL);
+    CGPDFPageRef pageRef = CGPDFDocumentGetPage(pdf, page);
+    CGRect pageRect = CGPDFPageGetBoxRect(pageRef, kCGPDFCropBox);
+    CGFloat xCrop = pageRect.origin.x + crop.origin.x;
+    CGFloat yCrop = pageRect.origin.y + crop.origin.y;
+    CGFloat pdfWidth = pageRect.size.width > crop.size.width ? crop.size.width : pageRect.size.width;
+    CGFloat pdfHeight = pageRect.size.height > crop.size.height ? crop.size.height : pageRect.size.height;
+    CGFloat hScale = wholeRect.size.width/pdfWidth;
+    CGFloat vScale = wholeRect.size.height/pdfHeight;
+    CGFloat currentScale = MIN(hScale,vScale);
+    wholeRect.size = CGSizeMake(pdfWidth*currentScale, pdfHeight*currentScale);//Adjust the wholeRect size so that it is proportional to the page size
+    tileRect = CGRectIntersection(wholeRect, tileRect);//Adjust the tileRect size so it does not go outside the wholeRect
+    
+    //UIGraphicsBeginImageContext(rect.size);NOT MULTI THREADABLE
+    //CGContextRef	context = UIGraphicsGetCurrentContext()
+    
+    //Create Graphic context, based on Quartz 2D programming guide
+    CGContextRef    context = NULL;
+    CGColorSpaceRef colorSpace;
+    void *          bitmapData;
+    int             bitmapByteCount;
+    int             bitmapBytesPerRow;
+    int pixelsWide = tileRect.size.width;
+    int pixelsHigh = tileRect.size.height;
+    
+    bitmapBytesPerRow   = (pixelsWide * 4);// 1
+    bitmapByteCount     = (bitmapBytesPerRow * pixelsHigh);
+    
+    colorSpace = CGColorSpaceCreateDeviceRGB();// 2
+    bitmapData = malloc( bitmapByteCount );// 3
+    context = CGBitmapContextCreate (bitmapData,// 4
+                                     pixelsWide,
+                                     pixelsHigh,
+                                     8,      // bits per component
+                                     bitmapBytesPerRow,
+                                     colorSpace,
+                                     kCGImageAlphaPremultipliedLast);
+    CGColorSpaceRelease( colorSpace );// 6
+    
+    
+    CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
+    CGContextFillRect(context,CGRectMake(0, 0, tileRect.size.width, tileRect.size.height));
+    
+    CGContextTranslateCTM(context, -xCrop*currentScale-tileRect.origin.x, -yCrop*currentScale-wholeRect.size.height+tileRect.size.height+tileRect.origin.y);//The y coordinate system is inverted on pdf, starts from bottom
+    
+    //CGContextScaleCTM(context, 1.0, -1.0);
+    CGContextScaleCTM(context, currentScale,currentScale);
+    
+    //Do not remove the 2 following lines which prevent memory crashes
+    //See http://stackoverflow.com/questions/2975240/cgcontextdrawpdfpage-taking-up-large-amounts-of-memory
+    CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
+    CGContextSetRenderingIntent(context, kCGRenderingIntentDefault);
+    
+    CGContextDrawPDFPage(context, pageRef);
+    CGImageRef newImageRef = CGBitmapContextCreateImage(context);
+    //SLog(@"Willl return tile for page %i withTileRect %f %f withImageRect %f %f",page,tileRect.size.width,tileRect.size.height,wholeRect.size.width,wholeRect.size.height);
+    
+    
+    //ret = UIGraphicsGetImageFromCurrentImageContext();
+    //UIGraphicsEndImageContext();
+    UIImage * ret = [UIImage imageWithCGImage:newImageRef];
+    // Clean up
+    CGContextRelease(context);
+    if (bitmapData) free(bitmapData);
+    CGImageRelease(newImageRef);
+    CGPDFDocumentRelease(pdf);
+    return ret;
 }	
 
 

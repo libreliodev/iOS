@@ -9,7 +9,8 @@
 
 @interface WAPaginatedView : UIView <UIScrollViewDelegate,
 													ThumbImageViewDelegate,
-													WAModuleProtocol> 
+													WAModuleProtocol,
+                                    UIGestureRecognizerDelegate>
 {
 	NSObject <WAParserProtocol> *pdfDocument;
 	NSString *urlString;
@@ -23,7 +24,9 @@
 	NSTimer * timer;
     
     int pagesPerScreenInPortrait,pagesPerScreenInLandscape,numberOfScreensCached;
-
+    
+    ModuleResizeMode resizeMode;
+    ModuleRectMode rectMode;
 
 }
 

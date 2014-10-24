@@ -34,8 +34,7 @@
 
 @synthesize pdfDocument,thumbnailsView,scrollView,currentViewController,timer;
 
-@synthesize pagesPerScreenInPortrait,pagesPerScreenInLandscape,numberOfScreensCached;
-
+@synthesize pagesPerScreenInPortrait,pagesPerScreenInLandscape,numberOfScreensCached,rectMode,resizeMode;
 
 
 #pragma mark -
@@ -98,20 +97,20 @@
         
         numberOfScreensCached = 2;
 
-		self.backgroundColor = [UIColor whiteColor];
+		self.backgroundColor = [UIColor blackColor];
 		
-		
+        self.clipsToBounds = YES;
+        
 		// Create scrollview and add it to the view .
 		scrollView = [[UIScrollView alloc] init];
-		scrollView.frame = self.frame;
+		scrollView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
 		scrollView.autoresizingMask = (UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight);
 		[self addSubview:scrollView];
 		
 		//Initial settings
 		currentScreen = 0;
 		
-		
-		
+        
 		//Scroll view settings
 		scrollView.bounces = YES;
 		//self.backgroundColor = [UIColor blackColor];
@@ -139,12 +138,11 @@
 		
 		
 		
-		
 		if (currentScreen == 0){
 			//There is still no screen displayed, we need to display one with the appropriate settings
 			//Create ScreenViews
 			numberOfScreens = [self screenForPage:[pdfDocument countData]]+1;
-			scrollView.contentSize = CGSizeMake(self.frame.size.width * numberOfScreens, self.frame.size.height);
+            scrollView.contentSize = CGSizeMake(self.frame.size.width * numberOfScreens, self.frame.size.height);
 			for (int i = 0;i<=2*numberOfScreensCached;i++) {
 				WAScreenView * screenView = [[WAScreenView alloc]initWithFrame:self.frame andParser:pdfDocument];
 				screenView.containingPdfView = self;
@@ -159,6 +157,8 @@
 
 				[screenView release];
 			}
+            
+            
 			//Go to screen
 			//Check wether we had stored a page
 			NSString *tempKey = [NSString stringWithFormat:@"%@-page",urlString];
@@ -229,13 +229,18 @@
 
 
 - (void) showScreen:(int)newScreen fromScreen:(int)oldScreen {
+    
     //SLog(@"Showing screen:%i from screen:%i",newScreen,oldScreen);
 	//Store the current page number
 	NSString *tempKey = [NSString stringWithFormat:@"%@-page",urlString];
 	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:[self pageForScreen:newScreen]] forKey:tempKey];
 	//update the visible screen
-	[[self  screenViewForScreen:oldScreen]setZoomScale:1.0];
-	[[self  screenViewForScreen:oldScreen]setContentOffset:CGPointMake(0, 0)];
+    WAScreenView *oldScreenView = [self  screenViewForScreen:oldScreen];
+    if(oldScreenView != nil)
+    {
+        [oldScreenView setZoomScale:1.0];
+        [oldScreenView setContentOffset:CGPointMake(0, 0)];
+    }
 	 
 	if ([self screenViewForScreen:newScreen]){
 		//Do nothing
@@ -251,6 +256,7 @@
 		if (![self screenViewForScreen:newScreen-i])[self moveAndUpdateScreenView:[self firstAvailableScreenView ] toScreen:newScreen-i];
 		if (![self screenViewForScreen:newScreen+i])[self moveAndUpdateScreenView:[self firstAvailableScreenView ] toScreen:newScreen+i];
 	}
+    
     //Notify visible pages
 	[self notifyVisiblePageViews];
 
@@ -259,9 +265,9 @@
 - (void)moveAndUpdateScreenView:(WAScreenView*)screenView toScreen:(int)screen{
 	screenView.firstPage = [self pageForScreen:screen];
 
-	CGRect newFrame = CGRectMake(self.frame.size.width * screen, 0,self.frame.size.width,self.frame.size.height);
+    CGRect newFrame = CGRectMake(self.frame.size.width * screen, 0,self.frame.size.width,self.frame.size.height);
 	screenView.frame = newFrame;
-	
+    
 }
 
 
@@ -272,6 +278,7 @@
 
 - (WAScreenView*) screenViewForScreen:(int)screen{
 	NSArray * screenViewsArray = [scrollView subviews];
+    
 	for ( WAScreenView * screenView in screenViewsArray ){
 		if (screenView.frame.origin.x == screen*self.frame.size.width) return screenView;
 		
@@ -303,23 +310,25 @@
 - (void) notifyVisiblePageViews{
 	//Check that curentViewController still exists; this might not be the case if deallocating is in progress
 	if (currentViewController){
-		//If this view controller is not the top in the navigation controller, send notification with empty array (meaning no visible page)
+		//If this view controller is not the top in the navigation controller, send 9 with empty array (meaning no visible page)
 		if ((currentViewController.navigationController)&&!(currentViewController.navigationController.topViewController==currentViewController)){
-			[[NSNotificationCenter defaultCenter] postNotificationName:@"didChangeVisiblePageViews" object:[NSArray array]]; 
+            [WAUtilities PDFDocument:pdfDocument postNotificationForName:@"didChangeVisiblePageViews" object:[NSArray array]];
 		}
 		//Otherwise, notify visible pages
 		else{
             //SLog(@"Will get visibleScreenView %i",currentScreen);
 			WAScreenView * visibleScreenView = [self screenViewForScreen:currentScreen];
-			NSArray *pageViewsArray = [visibleScreenView getVisiblePageViews];
-			[[NSNotificationCenter defaultCenter] postNotificationName:@"didChangeVisiblePageViews" object:pageViewsArray]; 
+            // make sure screenview is available
+            if(visibleScreenView != nil)
+            {
+                NSArray *pageViewsArray = [visibleScreenView getVisiblePageViews];
+                [WAUtilities PDFDocument:pdfDocument postNotificationForName:@"didChangeVisiblePageViews" object:pageViewsArray];
+            }
 		}
 	}
 
 	
 }
-
-
 
 - (void) turnPageRightDidAsk{
 	/**[UIView beginAnimations:nil context:nil];
@@ -335,14 +344,18 @@
 }
 
 - (void) toggleBottomBarDidAsk{
-	if (currentViewController.navigationController.navigationBarHidden) [self showBottomBarDidAsk];
-	else [self removeBottomBarDidAsk];
+	if((currentViewController.navigationController.navigationBarHidden && rectMode == ModuleRectModeFullscreen) ||
+       (thumbnailsView.hidden == YES && rectMode == ModuleRectModeSelf))
+        [self showBottomBarDidAsk];
+	else
+        [self removeBottomBarDidAsk];
 		
 }
 
 - (void) showBottomBarDidAsk{
 	//Show the navigation controller
-	[currentViewController.navigationController setNavigationBarHidden:NO animated:YES];		
+    if(rectMode == ModuleRectModeFullscreen)
+        [currentViewController.navigationController setNavigationBarHidden:NO animated:YES];
 	//Show the thumbnails and update the selected page if there are at least 7 pages
 	if ([pdfDocument countData]>6) {
 		thumbnailsView.hidden = NO;
@@ -364,11 +377,13 @@
 	BOOL userDidScroll = NO;//We need to detect if the user scrolled the thumbnailView after it has been displayed; in this case we do not hide it automatically
 	
 	if ((!userDidScroll)&&(currentViewController==currentViewController.navigationController.visibleViewController)){
-		[currentViewController.navigationController setNavigationBarHidden:YES animated:YES];		
+        if(rectMode == ModuleRectModeFullscreen)
+            [currentViewController.navigationController setNavigationBarHidden:YES animated:YES];
 		thumbnailsView.hidden = YES;
 		
 	}
-
+    else if(rectMode == ModuleRectModeSelf)
+        thumbnailsView.hidden = YES;
 	
  	
 }
@@ -380,6 +395,7 @@
 	
 	
 }
+
 #pragma mark -
 #pragma mark ScrollView delegate functions
 
@@ -401,7 +417,8 @@
 #pragma mark -
 #pragma mark ThumbImageView delegate methods
 - (void)thumbImageViewWasTappedAtPage:(int)pageTapped{
-	currentViewController.navigationController.navigationBarHidden = YES;
+    if(rectMode == ModuleRectModeFullscreen)
+        currentViewController.navigationController.navigationBarHidden = YES;
 	thumbnailsView.hidden=YES;	
 	
 	[self jumpToPage:pageTapped animated:YES];
@@ -441,7 +458,7 @@
 
 - (void)moduleViewWillAppear:(BOOL)animated{
     //Hide navbar if rootview
-    if ([self isRootModule]){
+    if ([self isRootModule] && rectMode == ModuleRectModeFullscreen){
         WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];
         //Depending on system version, we have a white or black nav bar
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
@@ -484,11 +501,11 @@
 
 - (void) moduleViewWillDisappear:(BOOL)animated{
     //SLog(@"Module view will disappear");
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"didChangeVisiblePageViews" object:[NSArray array]]; 	
+    [WAUtilities PDFDocument:pdfDocument postNotificationForName:@"didChangeVisiblePageViews" object:[NSArray array]];
 }
 
 
-	
+
 - (void) moduleWillRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
 	//Reset the scale to 1
 	[[self  screenViewForScreen:currentScreen]setZoomScale:1.0];
@@ -520,7 +537,6 @@
 - (void) jumpToRow:(int)row{
     [self jumpToPage:row animated:YES];
 }
-
 
 
 @end

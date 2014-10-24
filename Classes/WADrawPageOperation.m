@@ -73,8 +73,7 @@
 
 - (void)fireNotification:(NSString*)cacheUrl {
     //SLog(@"Will notify %@",cacheUrl);
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"didEndDrawPageOperation" object:cacheUrl]; 
-
+    [WAUtilities PDFDocument:pdfDocument postNotificationForName:@"didEndDrawPageOperation" object:cacheUrl];
 }
 
 

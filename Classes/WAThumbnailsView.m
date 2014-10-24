@@ -28,13 +28,22 @@
 		self.separatorStyle = UITableViewCellSeparatorStyleNone;
 		self.scrollIndicatorInsets=UIEdgeInsetsMake(0.0,0.0,0.0,[UIScreen mainScreen].bounds.size.height*185/1024-8);
 		self.backgroundColor = [[UIColor darkGrayColor]colorWithAlphaComponent:0.7f];
-		
+        
+        //Create tap recognizers and add them to the view.
+        UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+        singleTapGestureRecognizer.numberOfTapsRequired = 1;
+        singleTapGestureRecognizer.delegate = self;
+        [singleTapGestureRecognizer setCancelsTouchesInView:NO];
+        [self addGestureRecognizer:singleTapGestureRecognizer];
 	}
 	return self;
 }
 
 
-
+- (void)handleSingleTap:(id)sender
+{
+    
+}
 
 #pragma mark -
 #pragma mark Table view data source
@@ -122,33 +131,36 @@
 #pragma mark Notifications
 - (void) didEndDrawPageOperationWithNotification:(NSNotification *) notification
 {
-	NSString *returnedCacheUrl = notification.object;
-	
-	NSRange pageRange = [returnedCacheUrl rangeOfString:@"page"];
-	NSRange sizeRange = [returnedCacheUrl rangeOfString:@"size"];
-	NSRange pageNumberRange = NSMakeRange(pageRange.location+4, sizeRange.location-(pageRange.location+4));
-	int returnedPage = [[returnedCacheUrl substringWithRange:pageNumberRange]intValue];
-	NSRange sizeNumberRange = NSMakeRange(sizeRange.location+4,[returnedCacheUrl length]-(sizeRange.location+4));
-	int drawSize = [[returnedCacheUrl substringWithRange:sizeNumberRange]intValue];
-
-	NSString * returnedPdfUrl = [[WAUtilities directoryUrlOfUrlString:returnedCacheUrl]stringByReplacingOccurrencesOfString:@"_cache" withString:@".pdf"] ;
-    NSString * neededPdfUrl = [pdfDocument.urlString noArgsPartOfUrlString];
-    neededPdfUrl = [WAUtilities absoluteUrlOfRelativeUrl:neededPdfUrl relativeToUrl:@""];
-
-	//Check if the returned CacheUrl corresponds to the current pdf document
-	if ([returnedPdfUrl isEqualToString:neededPdfUrl]){
-		NSIndexPath*indexPath = [NSIndexPath indexPathForRow:returnedPage-1 inSection:0];
-		UITableViewCell *cell = [self cellForRowAtIndexPath:indexPath];
-		if ((cell)&&(drawSize==PDFPageViewSizeSmall)){
-			UIImage * img = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:returnedCacheUrl]];
-			cell.imageView.image = img;
-			
-		}
-		
-	}
-	
-
-	
+    NSDictionary *mobj = notification.object;
+    if([mobj isKindOfClass:[NSDictionary class]] && [mobj objectForKey:@"pdfDocument"] == pdfDocument)
+    {
+        NSString *returnedCacheUrl = [mobj objectForKey:@"object"];
+        
+        NSRange pageRange = [returnedCacheUrl rangeOfString:@"page"];
+        NSRange sizeRange = [returnedCacheUrl rangeOfString:@"size"];
+        NSRange pageNumberRange = NSMakeRange(pageRange.location+4, sizeRange.location-(pageRange.location+4));
+        int returnedPage = [[returnedCacheUrl substringWithRange:pageNumberRange]intValue];
+        NSRange sizeNumberRange = NSMakeRange(sizeRange.location+4,[returnedCacheUrl length]-(sizeRange.location+4));
+        int drawSize = [[returnedCacheUrl substringWithRange:sizeNumberRange]intValue];
+        
+        NSString * returnedPdfUrl = [[WAUtilities directoryUrlOfUrlString:returnedCacheUrl]stringByReplacingOccurrencesOfString:@"_cache" withString:@".pdf"] ;
+        NSString * neededPdfUrl = [pdfDocument.urlString noArgsPartOfUrlString];
+        neededPdfUrl = [WAUtilities absoluteUrlOfRelativeUrl:neededPdfUrl relativeToUrl:@""];
+        
+        //Check if the returned CacheUrl corresponds to the current pdf document
+        if ([returnedPdfUrl isEqualToString:neededPdfUrl]){
+            NSIndexPath*indexPath = [NSIndexPath indexPathForRow:returnedPage-1 inSection:0];
+            UITableViewCell *cell = [self cellForRowAtIndexPath:indexPath];
+            if ((cell)&&(drawSize==PDFPageViewSizeSmall)){
+                UIImage * img = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:returnedCacheUrl]];
+                cell.imageView.image = img;
+                
+            }
+            
+        }
+        
+        
+    }
 }
 
 

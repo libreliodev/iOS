@@ -233,6 +233,30 @@
 		//SLog(@"We do nothing");
 	}
 	else {
+        if([moduleView respondsToSelector:@selector(setRectMode:)])
+            [moduleView setRectMode:[self checkFullScreen] ? ModuleRectModeFullscreen : ModuleRectModeSelf];
+        if([moduleView respondsToSelector:@selector(setResizeMode:)])
+        {
+            // eval resizeMode
+            NSString *resizeModeStr = [moduleUrlString valueOfParameterInUrlStringforKey:@"waresize"];
+            ModuleResizeMode resizeMode;
+            if([resizeModeStr isKindOfClass:[NSString class]])
+            {
+                if([resizeModeStr isEqualToString:@"fit"])
+                    resizeMode = ModuleResizeModeFit;
+                else if([resizeModeStr isEqualToString:@"fill"])
+                    resizeMode = ModuleResizeModeFill;
+                else if([resizeModeStr isEqualToString:@"width"])
+                    resizeMode = ModuleResizeModeFillWidth;
+                else if([resizeModeStr isEqualToString:@"height"])
+                    resizeMode = ModuleResizeModeFillHeight;
+                else
+                    resizeMode = ModuleResizeModeFit;
+            }
+            else
+                resizeMode = ModuleResizeModeFit;
+            [moduleView setResizeMode:resizeMode];
+        }
 		moduleView.frame = containingRect;
 		moduleView.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
 		[containingView addSubview:moduleView];

@@ -15,7 +15,7 @@
 
 @property (nonatomic, retain)  NSMutableArray * outlineArray;
 @property (nonatomic, retain)   NSMutableString * currentString;
-
+@property (nonatomic, assign) CFURLRef pdfURL;
 
 @property (nonatomic, retain) NSString * urlString;
 @property int numberOfPages;
@@ -30,6 +30,7 @@
 - (void) addDrawPageOperationForPage :(int)page atSize:(PDFPageViewSize)size withPriority:(NSOperationQueuePriority)priority;
 -(UIImage*) drawImageForPage:(int)page atSize:(PDFPageViewSize)size;
 -(UIImage*) drawTileForPage:(int)page withTileRect:(CGRect)tileRect withImageRect:(CGRect)wholeRect;
+-(UIImage*) drawTileForPage:(int)page withTileRect:(CGRect)tileRect withImageRect:(CGRect)wholeRect withCrop:(CGRect)crop;
 - (CGRect) getRectAtPage:(int)page;
 
 - (void) buildOutlineArray;

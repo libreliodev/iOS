@@ -38,7 +38,6 @@ typedef enum {
 @property (nonatomic, retain) UIImageView *view2;
 @property (nonatomic, retain) NSTimer * timer;
 @property SlideShowTransition transition;
-@property ModuleResizeMode resizeMode;
 @property SlideShowScrollDirection scrollDirection;
 @property int repeat;
 @property int timerCount;

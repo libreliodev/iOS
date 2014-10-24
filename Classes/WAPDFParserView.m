@@ -104,50 +104,57 @@
 #pragma mark Notifications
 - (void) didChangeVisiblePageViewsWithNotification:(NSNotification *) notification
 {
-	
-	NSArray *pageViewsArray = notification.object;
-	if ([pageViewsArray containsObject:self]) [self didBecomeVisible];
-	else [self didBecomeInvisible];
+    NSDictionary *mobj = notification.object;
+    if([mobj isKindOfClass:[NSDictionary class]] && [mobj objectForKey:@"pdfDocument"] == pdfDocument)
+    {
+        NSArray *pageViewsArray = [mobj objectForKey:@"object"];
+        if ([pageViewsArray containsObject:self]) [self didBecomeVisible];
+        else [self didBecomeInvisible];
+    }
 }
 
 
 
 - (void) didEndDrawPageOperationWithNotification:(NSNotification *) notification
 {
-	NSString *returnedCacheUrl = notification.object;
-
-	
-	NSRange pageRange = [returnedCacheUrl rangeOfString:@"page"];
-	NSRange sizeRange = [returnedCacheUrl rangeOfString:@"size"];
-	NSRange pageNumberRange = NSMakeRange(pageRange.location+4, sizeRange.location-(pageRange.location+4));
-	int returnedPage = [[returnedCacheUrl substringWithRange:pageNumberRange]intValue];
-	NSRange sizeNumberRange = NSMakeRange(sizeRange.location+4,[returnedCacheUrl length]-(sizeRange.location+4));
-	int drawSize = [[returnedCacheUrl substringWithRange:sizeNumberRange]intValue];
-	
-	
-	NSString * returnedPdfUrl = [[WAUtilities directoryUrlOfUrlString:returnedCacheUrl]stringByReplacingOccurrencesOfString:@"_cache" withString:@".pdf"] ;
-    
-    NSString * neededPdfUrl = [pdfDocument.urlString noArgsPartOfUrlString];
-    neededPdfUrl = [WAUtilities absoluteUrlOfRelativeUrl:neededPdfUrl relativeToUrl:@""];
-    
-   //SLog(@"returnedPage:%i , neededPage:%i, returnedSize:%i ",returnedPage,self.page,drawSize);
-    //SLog(@"returnedCacheUrl:%@",returnedCacheUrl);
-    //SLog(@"returnedPDF:%@ neededPDF:%@",returnedPdfUrl,neededPdfUrl);
-
-	
-	//Test if the document of the notification is our current document; this might not be the case if antoher document was opened before
-	 if ([returnedPdfUrl isEqualToString:neededPdfUrl]){
-		//Test if this is the page and size we need
-		if ((self.page==returnedPage)&&(drawSize==PDFPageViewSizeBig)){
-            //SLog(@"Received new image for page %i",self.page);
-            UIImage * img = [(WAPDFParser*) pdfDocument getImageForPage:returnedPage atSize:PDFPageViewSizeBig];
-            self.image = img;
-            [activityIndicator stopAnimating];
-            [self increaseTiledViewDetail];
-
-
-		}
-	}
+    NSDictionary *mobj = notification.object;
+    if([mobj isKindOfClass:[NSDictionary class]] && [mobj objectForKey:@"pdfDocument"] == pdfDocument)
+    {
+        NSString *returnedCacheUrl = [mobj objectForKey:@"object"];
+        
+        
+        NSRange pageRange = [returnedCacheUrl rangeOfString:@"page"];
+        NSRange sizeRange = [returnedCacheUrl rangeOfString:@"size"];
+        NSRange pageNumberRange = NSMakeRange(pageRange.location+4, sizeRange.location-(pageRange.location+4));
+        int returnedPage = [[returnedCacheUrl substringWithRange:pageNumberRange]intValue];
+        NSRange sizeNumberRange = NSMakeRange(sizeRange.location+4,[returnedCacheUrl length]-(sizeRange.location+4));
+        int drawSize = [[returnedCacheUrl substringWithRange:sizeNumberRange]intValue];
+        
+        
+        NSString * returnedPdfUrl = [[WAUtilities directoryUrlOfUrlString:returnedCacheUrl]stringByReplacingOccurrencesOfString:@"_cache" withString:@".pdf"] ;
+        
+        NSString * neededPdfUrl = [pdfDocument.urlString noArgsPartOfUrlString];
+        neededPdfUrl = [WAUtilities absoluteUrlOfRelativeUrl:neededPdfUrl relativeToUrl:@""];
+        
+        //SLog(@"returnedPage:%i , neededPage:%i, returnedSize:%i ",returnedPage,self.page,drawSize);
+        //SLog(@"returnedCacheUrl:%@",returnedCacheUrl);
+        //SLog(@"returnedPDF:%@ neededPDF:%@",returnedPdfUrl,neededPdfUrl);
+        
+        
+        //Test if the document of the notification is our current document; this might not be the case if antoher document was opened before
+        if ([returnedPdfUrl isEqualToString:neededPdfUrl]){
+            //Test if this is the page and size we need
+            if ((self.page==returnedPage)&&(drawSize==PDFPageViewSizeBig)){
+                //SLog(@"Received new image for page %i",self.page);
+                UIImage * img = [(WAPDFParser*) pdfDocument getImageForPage:returnedPage atSize:PDFPageViewSizeBig];
+                self.image = img;
+                [activityIndicator stopAnimating];
+                [self increaseTiledViewDetail];
+                
+                
+            }
+        }
+    }
 }
 
 
@@ -165,12 +172,20 @@
         //Add buttons for all links
         NSArray * tempArray = [(WAPDFParser*) pdfDocument getLinksOnPage:self.page];
         CGRect pageRect = CGRectFromString([pdfDocument getDataAtRow:self.page forDataCol:DataColRect]);
-        CGFloat scale = (pageRect.size.width>0)?self.frame.size.width/pageRect.size.width:0;
-        for (NSDictionary * tempDic in tempArray){
-            NSValue *rectValue = [tempDic objectForKey:@"Rect"];
-            CGRect rect = [rectValue CGRectValue];
-            CGRect scaledRect = CGRectMake(rect.origin.x*scale, rect.origin.y*scale, rect.size.width*scale, rect.size.height*scale);
-            [self addButtonInRect:scaledRect withLink:[tempDic objectForKey:@"URL"] atScale:scale];		
+        if(pageRect.size.width > 0 && pageRect.size.height > 0)
+        {
+            CGFloat hScale = self.frame.size.width / pageRect.size.width;
+            CGFloat vScale = self.frame.size.height / pageRect.size.height;
+            CGFloat scale = self.contentMode == UIViewContentModeScaleAspectFill ? MAX(hScale, vScale) : MIN(hScale, vScale);
+            CGFloat offX = self.contentMode == UIViewContentModeScaleAspectFill && vScale > hScale ? (self.frame.size.width - scale * pageRect.size.width) / 2.0 : 0;
+            CGFloat offY = self.contentMode == UIViewContentModeScaleAspectFill && hScale > vScale ? (self.frame.size.height - scale * pageRect.size.height) / 2.0 : 0;
+            
+            for (NSDictionary * tempDic in tempArray){
+                NSValue *rectValue = [tempDic objectForKey:@"Rect"];
+                CGRect rect = [rectValue CGRectValue];
+                CGRect scaledRect = CGRectMake(rect.origin.x*scale + offX, rect.origin.y*scale + offY, rect.size.width*scale, rect.size.height*scale);
+                [self addButtonInRect:scaledRect withLink:[tempDic objectForKey:@"URL"] atScale:scale];
+            }
         }
         [self addTiledView];
         [[[WAOperationsManager sharedManager] defaultQueue] setSuspended:NO];
@@ -296,6 +311,7 @@
 -  (void) addTiledView{
 	if (![self viewWithTag:999]){
 		WATilingView * tilingView = [[WATilingView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        tilingView.contentMode = UIViewContentModeScaleToFill;
         //SLog(@"Adding tiledview %@ for view %@",tilingView,self);
 		[self addSubview:tilingView];
 		[self sendSubviewToBack:tilingView];
