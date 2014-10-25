@@ -408,7 +408,7 @@
     //absoluteUrlString = @"/wind_387/p40tests_7.jpg?warect=self";
     NSURL * url = [NSURL URLWithString:annotURLString];
 	CGRect rect = button.frame;
-    rect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width*4.0, rect.size.height*8.0);
+    rect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
 	if ([url.scheme isEqualToString:@"goto"]){
 		int newPage = [url.host intValue];
 		
