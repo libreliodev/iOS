@@ -11,6 +11,6 @@
  Downloads missing resources, for a document already downloaded
  */
 
-@interface WAMissingResourcesDownloader : WADocumentDownloader <NSURLConnectionDelegate>
+@interface WAResourcesDownloader : WADocumentDownloader <NSURLConnectionDelegate>
 
 @end

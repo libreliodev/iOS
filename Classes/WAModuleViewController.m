@@ -12,7 +12,7 @@
 #import "WAUtilities.h"
 #import "WADownloadingView.h"
 #import "WADocumentDownloadsManager.h"
-#import "WAMissingResourcesDownloader.h"
+#import "WAResourcesDownloader.h"
 
 
 #import "WABarButtonItemWithLink.h"

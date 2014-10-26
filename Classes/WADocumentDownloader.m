@@ -15,9 +15,14 @@
 #import "NSBundle+WAAdditions.h"
 #import "NSDate+WAAdditions.h"
 
-@implementation WADocumentDownloader 
+@implementation WADocumentDownloader
+{
+    NSDate *responseLastModified;
+    NSString *currentHandlePath;
+    BOOL downloadResources;
+}
 
-@synthesize parser,currentUrlString,receivedData,handle,filesize,nnewResourcesArray,mutableResourcesArray,oldResourcesArray, currentMessage,currentProgress;
+@synthesize parser,currentUrlString,receivedData,handle,filesize,nnewResourcesArray,mutableResourcesArray,oldResourcesArray, currentMessage,currentProgress,processStartTime;
 
 
 - (NSString *) urlString
@@ -34,14 +39,13 @@
     
     
     
-    //SLog(@"WADocumentDownloader (or subclass launched for Url:%@",theString);
-
+    //NSLog(@"WADocumentDownloader (or subclass launched for Url:%@",theString);
+    processStartTime = [[[NSDate alloc] initWithTimeInterval:0 sinceDate:[NSDate date]] retain];
+    
     [self downloadMainFile];
     
     //Add observer
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didEndDrawPageOperationWithNotification:) name:@"didEndDrawPageOperation" object:nil];
-    
-
     
 }
 
@@ -55,35 +59,65 @@
 	[filesize release];
 	[urlString release];
 	[receivedData release];
-	[handle release];
-	[nnewResourcesArray release];
+    if(handle != nil)
+        [handle release];
+    if(processStartTime != nil)
+        [processStartTime release];
+    [currentHandlePath release];
+    if(nnewResourcesArray)
+    {
+        [self releaseArrayObjects:nnewResourcesArray];
+        [nnewResourcesArray release];
+    }
 	[mutableResourcesArray release];
 	[oldResourcesArray release];
     [currentMessage release];
     [super dealloc];
 }
 
+- (void)releaseArrayObjects:(NSArray*)arr
+{
+    for(id obj in arr)
+        [obj release];
+}
+
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response
 {
-    //SLog(@"Connection started, received %i headers with dic: %@",[[response allHeaderFields]count],[[response allHeaderFields]description]);
-	[receivedData setLength:0];
+    //NSLog(@"Connection started, statusCode %d, received %d headers with dic: %@",(int)[response statusCode], (int)[[response allHeaderFields]count],[[response allHeaderFields]description]);
+    NSDictionary *headers = [response allHeaderFields];
+    NSString *responseLastModifiedStr = [headers objectForKey:@"Last-Modified"];
+    if(responseLastModified != nil)
+        [responseLastModified release];
+    if([responseLastModifiedStr isKindOfClass:[NSString class]])
+        responseLastModified = [[NSDate dateWithHeaderString:responseLastModifiedStr] retain];
+    if(![responseLastModified isKindOfClass:[NSDate class]])
+        responseLastModified = [[[NSDate alloc] initWithTimeInterval:0 sinceDate:[NSDate date]] retain];
+
+    [receivedData setLength:0];
     filesize = [[NSNumber numberWithLong: [response expectedContentLength] ] retain];
     
-    //Hack for version 4.3 in PdfBrowser
-    if (![response respondsToSelector:@selector(statusCode)]) return;
+    NSInteger statusCode;
     
+    //Hack for version 4.3 in PdfBrowser
+    if (![response respondsToSelector:@selector(statusCode)])
+        statusCode = 200;
+    else
+        statusCode = [response statusCode];
     //SLog(@"Did respond to selector");
     
     //Trigger error if one of the following statusCodes is returned
-    if (([response statusCode]==304)||([response statusCode]==401)||([response statusCode]==402)||([response statusCode]==403)||([response statusCode]==461)||([response statusCode]==462)||([response statusCode]==463)){
-        //SLog(@"Connection error %i",[response statusCode]);
-        NSDictionary * userDic = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%li",(long)[response statusCode]] forKey:@"SSErrorHTTPStatusCodeKey"];
+    if ((statusCode==304)||(statusCode==401)||(statusCode==402)||(statusCode==403)||(statusCode==461)||(statusCode==462)||(statusCode==463)){
+        //SLog(@"Connection error %i",statusCode);
+        NSDictionary * userDic = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%li",(long)statusCode] forKey:@"SSErrorHTTPStatusCodeKey"];
 		NSError * error = [NSError errorWithDomain:@"Librelio" code:2 userInfo:userDic];
 
         
         [self connection:connection didFailWithError:error];
     }
-
+    else
+    {
+        handle = [[NSFileHandle fileHandleForWritingAtPath:currentHandlePath] retain];
+    }
 	
 	
     
@@ -95,7 +129,7 @@
 	
     NSNumber* curLength = [NSNumber numberWithLong:[receivedData length] ];
     currentProgress = ([curLength floatValue]+[handle offsetInFile]) / [filesize floatValue] ;
-    //SLog(@"Downloaded %f ",currentProgress);
+    //NSLog(@"Downloaded %f ",currentProgress);
 	//progressView.progress = progress;
 	if( receivedData.length > 1000000 && handle!=nil )
 	{
@@ -109,7 +143,7 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     
-    //SLog(@"Download error for connection %@:%@",connection,error);
+    //NSLog(@"Download error for connection %@:%@",connection,error);
     NSDictionary * userInfo = error.userInfo;
     NSString * httpStatus = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"SSErrorHTTPStatusCodeKey"]];
     //SLog(@"Status %@",httpStatus);
@@ -188,10 +222,8 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-	//SLog(@"Did finish loading %@",connection);
-    [handle writeData:self.receivedData];
-	
-    
+	//NSLog(@"Did finish loading %@",connection);
+    [self endSavingCurrentFile];
     
 	
 	//Remove from queue
@@ -203,6 +235,13 @@
 	
 }
 
+- (void)endSavingCurrentFile
+{
+    if(handle != nil && [self.receivedData isKindOfClass:[NSData class]] && [self.receivedData length] > 0)
+        [handle writeData:self.receivedData];
+    
+    [self setDateForFileAtPath:currentHandlePath created:responseLastModified modified:[NSDate date]];
+}
 
 
 
@@ -220,7 +259,8 @@
 		//Try to get file after approval by Apple or Password check
 		[self launchConnectionWithUrlString:completeUrl];
 		//Initialize handle and receivedData
-		[handle release];
+        if(handle != nil)
+            [handle release];
 		NSString *tempUrlString = [NSString stringWithFormat:@"TempWa/%@", currentUrlString];
 		[WAUtilities storeFileWithUrlString:tempUrlString withData:nil];
 		NSString * path = [[NSBundle mainBundle] pathOfFileWithUrl:tempUrlString];
@@ -248,24 +288,33 @@
 
 
 - (void)didReceiveNotModifiedHeaderForConnection:(NSURLConnection *)connection {
-    //SLog(@"Not modified");
-    [[[WAFileDownloadsManager sharedManager] downloadQueue] removeObjectIdenticalTo:connection];
+    //NSLog(@"Not modified %@", connection);
+    
+    //Copy existing file into cache dir
+    NSString *filePath = [[NSBundle mainBundle] pathOfFileWithUrl:[currentUrlString noArgsPartOfUrlString]];
+    NSString *dirPath = [WAUtilities cacheFolderPath];
+    NSString *tmpFilePath = [NSString stringWithFormat:@"%@/TempWa/%@",dirPath,[currentUrlString noArgsPartOfUrlString]];
+    NSError *error = nil;
+    [[NSFileManager defaultManager] removeItemAtPath:tmpFilePath error:nil];
+    [[NSFileManager defaultManager] copyItemAtPath:filePath toPath:tmpFilePath error:&error];
+    if(error != nil)
+    {
+        NSLog(@"Couldn't copy file to cache: %@", error);
+    }
+    /*
+    //[[[WAFileDownloadsManager sharedManager] downloadQueue] removeObjectIdenticalTo:connection];
 	if ([currentUrlString isEqual:urlString]){
 		//We were downloading the main resource, no need to go further
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"didSucceedIssueDownload" object:urlString];
+        //[[NSNotificationCenter defaultCenter] postNotificationName:@"didSucceedIssueDownload" object:urlString];
         
         //Update modification date of local file; this will avoid unnecessary queries to distant server until expiration of cache
-        NSString* path = [[NSBundle mainBundle] pathOfFileWithUrl:[urlString noArgsPartOfUrlString]];
-         NSDictionary * dateAttDic = [NSDictionary dictionaryWithObject:[NSDate date] forKey:NSFileModificationDate];
-         NSError *error = nil;
-         [[NSFileManager defaultManager] setAttributes:dateAttDic ofItemAtPath:path error:&error];
+        //[self setDateForFileAtPath:currentHandlePath created:responseLastModified modified:[NSDate date]];
 
         
+        //[[[WADocumentDownloadsManager sharedManager] issuesQueue] removeObjectIdenticalTo:self];//This will release this instance if not owned by a download view
         
-        [[[WADocumentDownloadsManager sharedManager] issuesQueue] removeObjectIdenticalTo:self];//This will release this instance if not owned by a download view
-        
-        
+        //[self didDownloadMainFile];
 	}
 	else {
 		//Delete the content of the file so that we do not keep a corrupted file
@@ -273,7 +322,7 @@
 		//We were downloading a resource, let's be tolerant and move to the next one
 		//[self downloadNextResource];NOT NEEDED,connexiondidfinishloading will be called,  produces bug
 	}
-    
+    */
 }
 
 
@@ -292,7 +341,8 @@
 	[WAUtilities storeFileWithUrlString:tempUrlString withData:nil];
 	NSString * path = [[NSBundle mainBundle] pathOfFileWithUrl:tempUrlString];
     //SLog(@"pathOfFileWithUrl:%@",path);
-	handle = [[NSFileHandle fileHandleForWritingAtPath:path] retain];
+    currentHandlePath = [path retain];
+    handle = nil;
 	receivedData = [[NSMutableData alloc]init];
 
 	[self launchConnectionWithUrlString:completeUrl];
@@ -307,7 +357,7 @@
     parser =  (NSObject <WAParserProtocol> *)[[theClass alloc] init];
     parser.urlString = tempUrlString;
     
-    //SLog(@"parser count data:%i for Url:%@",[parser countData],tempUrlString);
+    //NSLog(@"parser count data:%i for Url:%@",[parser countData],tempUrlString);
     if (!([parser countData]>0)){
         //SLog(@"File corrupted: %@",tempUrlString);
         //The file is corrupted, let us notify an error
@@ -333,6 +383,9 @@
     for (NSString * relativeResourceUrl in resourcesArray){
         NSString *absUrl ;
         
+        NSRange tmpRange = [relativeResourceUrl rangeOfString:@"/TempWa/"];
+        if(tmpRange.location == 0)
+            relativeResourceUrl = [relativeResourceUrl substringFromIndex:tmpRange.length];
         if (forcedUrl){
             if ([relativeResourceUrl valueOfParameterInUrlStringforKey:@"waurl"]){
                 //If the waurl argument is already included in the resources url, no need to change it
@@ -355,22 +408,23 @@
         
         
         
-        if (![tempArray containsObject:absUrl]) [tempArray addObject:absUrl];
+        if (![tempArray containsObject:absUrl]) [tempArray addObject:[absUrl retain]];
         
     }
 
 
     
 	nnewResourcesArray = [[NSArray alloc]initWithArray:tempArray];
-    //SLog(@"nnewResourcesArray:%@",nnewResourcesArray);
 	if (nnewResourcesArray&&[parser shouldCompleteDownloadResources]){
 		mutableResourcesArray = [[NSMutableArray alloc ]initWithArray: nnewResourcesArray];
         //SLog(@"MutableRessources:%@",nnewResourcesArray);
+        downloadResources = YES;
 		[self downloadNextResource];//Start looping in newResourcesArray
 	}
 	else {
         //SLog(@"Launch didDownloadAllResources from didDownloadMainFile");
         currentUrlString = nil;//This is important because there is a test in didEndDrawPageOperationWithNotification
+        downloadResources = NO;
          [[[WADocumentDownloadsManager sharedManager] issuesQueue] removeObjectIdenticalTo:self];//Remove self from issuesQueue now, because WAMissingResourecesDwnloader may need to add itself again immediately after
 		[self didDownloadAllResources];//No resources to download now
 	}
@@ -383,14 +437,19 @@
 		NSString * nextUrlString = [mutableResourcesArray lastObject];
 		
 		//Open new handle
-		[handle release];
+        if(handle != nil)
+        {
+            [handle release];
+            handle = nil; // clear handle variable for next request
+        }
 		NSString *tempUrlString = [NSString stringWithFormat:@"TempWa/%@", nextUrlString];
 		//Create empty file
 		[WAUtilities storeFileWithUrlString:tempUrlString withData:nil];
+        
 		NSString * path = [[NSBundle mainBundle] pathOfFileWithUrl:tempUrlString];
         //SLog(@"handle path:%@",path);
-		handle = [[NSFileHandle fileHandleForWritingAtPath:path] retain];
-		
+        [currentHandlePath release];
+        currentHandlePath = [path retain];
 		
 		[currentUrlString release];
 		currentUrlString = [[NSString alloc]initWithString: nextUrlString];
@@ -438,6 +497,7 @@
         //SLog(@"Will move main %@ to %@",[NSString stringWithFormat:@"%@/TempWa/%@",dirPath,[urlString noArgsPartOfUrlString]], urlString);
         [WAUtilities storeFileWithUrlString:urlString withFileAtPath:[NSString stringWithFormat:@"%@/TempWa/%@",dirPath,[urlString noArgsPartOfUrlString]]];//Move the main file
         
+        
         //Store generated cache files
         NSString * cacheDirUrlString = [urlString urlOfCacheFileWithName:@""];
         cacheDirUrlString = [cacheDirUrlString substringToIndex:[cacheDirUrlString length]-1];//Remove final "/"
@@ -445,20 +505,35 @@
         NSString * tempCacheDirUrlString = [[NSString stringWithFormat:@"TempWa/%@", urlString] urlOfCacheFileWithName:@""];
         //SLog(@"Will move cache %@ to %@",[NSString stringWithFormat:@"%@/%@",dirPath,tempCacheDirUrlString], tempCacheDirUrlString);
         [WAUtilities storeFileWithUrlString:cacheDirUrlString withFileAtPath:[NSString stringWithFormat:@"%@/%@",dirPath,tempCacheDirUrlString]];//Move the cache dir
-        
-        //Loop through resources
-        for (NSString * loopedUrlString in nnewResourcesArray){
-            loopedUrlString = [loopedUrlString noArgsPartOfUrlString];//Remove the args
-            NSString *tempUrlString = [NSString stringWithFormat:@"%@/TempWa/%@", dirPath,loopedUrlString];
-            //SLog(@"Will move %@ to %@",tempUrlString, loopedUrlString);
-            [WAUtilities storeFileWithUrlString:loopedUrlString withFileAtPath:tempUrlString];
+        if(downloadResources == YES)
+        {
+            //Loop through resources
+            for (NSString * loopedUrlString in nnewResourcesArray){
+                loopedUrlString = [loopedUrlString noArgsPartOfUrlString];//Remove the args
+                NSString *tempUrlString = [NSString stringWithFormat:@"%@/TempWa/%@", dirPath,loopedUrlString];
+                //SLog(@"Will move %@ to %@",tempUrlString, loopedUrlString);
+                [WAUtilities storeFileWithUrlString:loopedUrlString withFileAtPath:tempUrlString];
+            }
         }
         
         //Store plist with metadata and list of resources for this download
         NSString * mainFilePath = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
         NSString * plistPath = [WAUtilities urlByChangingExtensionOfUrlString:mainFilePath toSuffix:@"_metadata.plist"];
+        
+            //Update metadata plist
+        NSMutableDictionary * prevMetaDic = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+            
+        if(downloadResources == YES && [[prevMetaDic objectForKey:@"Resources"] isKindOfClass:[NSArray class]])
+            [self deleteUnusedOldResources:[prevMetaDic objectForKey:@"Resources"]]; // deletes useless resources from previous download operation
+        
         NSMutableDictionary * metaDic = [NSMutableDictionary dictionary];
-        if (nnewResourcesArray) [metaDic setObject:nnewResourcesArray forKey:@"Resources"];
+        if(downloadResources && nnewResourcesArray)
+        {
+            [metaDic setObject:nnewResourcesArray forKey:@"Resources"];
+            [metaDic setObject:@"YES" forKey:@"DownloadComplete"];
+        }
+        else if(downloadResources == NO && [[prevMetaDic objectForKey:@"Resources"] isKindOfClass:[NSArray class]])
+            [metaDic setObject:[prevMetaDic objectForKey:@"Resources"] forKey:@"Resources"];
         [metaDic setObject:[NSDate date] forKey:@"DownloadDate"];
         [metaDic setObject:urlString forKey:@"FileUrl"];
         
@@ -531,28 +606,33 @@
 
 
 
-- (void) deleteUnusedOldResources{
-	//TODO: complete
+- (void) deleteUnusedOldResources:(NSArray*)resources
+{
+    // remove old files if not exist anymore
+    for(NSString *oldFileUrlString in resources)
+    {
+        NSDate *modDate = [WAUtilities dateOfFileWithUrlString:oldFileUrlString];
+        if([modDate isKindOfClass:[NSDate class]] && [processStartTime compare:modDate] == NSOrderedDescending)
+        {
+            NSString *path = [[NSBundle mainBundle] pathOfFileWithUrl:[oldFileUrlString noArgsPartOfUrlString]];
+            [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+        }
+    }
 }
 #pragma mark -
 #pragma mark Helper methods
 - (void) launchConnectionWithUrlString:completeUrl{
-    
-    NSMutableURLRequest * urlRequest =[NSMutableURLRequest requestWithURL:[NSURL URLWithString:completeUrl]];
-    
-    //Prevent download if local file is more recent than remote (except if 
-    
-   NSDate * last = [WAUtilities dateOfFileWithUrlString:[currentUrlString noArgsPartOfUrlString]];
-    //NSDate * last = nil;
 
+    NSMutableURLRequest * urlRequest =[NSMutableURLRequest requestWithURL:[NSURL URLWithString:completeUrl]];
+    urlRequest.cachePolicy = NSURLRequestReloadIgnoringCacheData;
+    //Prevent download if local file is more recent than remote (except if
+   NSDate * last = [WAUtilities creationDateOfFileWithUrlString:[currentUrlString noArgsPartOfUrlString]];
+    //NSDate * last = nil;
     if (last){
-        //SLog(@"Will set If-Modified-Since to %@",[last headerString]);
         [urlRequest setValue:[last headerString] forHTTPHeaderField:@"If-Modified-Since"]; // conditonal load
 
     }
-
-     
-
+    //NSLog(@"request: %@\nModDate: %@ %@", completeUrl, [last headerString], [currentUrlString noArgsPartOfUrlString]);
     
 	NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:urlRequest  delegate:self];
     //SLog(@"will launch connection for %@ with connexion %@",completeUrl,conn);
@@ -571,7 +651,15 @@
 	else return AuthenticationTypeAppStore;
 }
 
-
-
+- (void)setDateForFileAtPath:(NSString*)path created:(NSDate*)creationDate modified:(NSDate*)modifiedDate
+{
+    NSDictionary * modDateAttDic = [NSDictionary dictionaryWithObject:modifiedDate forKey:NSFileModificationDate];
+    NSDictionary * dateAttDic = [NSDictionary dictionaryWithObject:creationDate forKey:NSFileCreationDate];
+    
+    NSError *error = nil;
+    
+    [[NSFileManager defaultManager] setAttributes:modDateAttDic ofItemAtPath:path error:&error];
+    [[NSFileManager defaultManager] setAttributes:dateAttDic ofItemAtPath:path error:&error];
+}
 
 @end

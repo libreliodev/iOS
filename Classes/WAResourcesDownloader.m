@@ -5,21 +5,22 @@
 //  Copyright (c) 2011 WidgetAvenue - Librelio. All rights reserved.
 //
 
-#import "WAMissingResourcesDownloader.h"
+#import "WAResourcesDownloader.h"
 #import "NSString+WAURLString.h"
 #import "NSBundle+WAAdditions.h"
 #import "WADocumentDownloadsManager.h"
 
-@implementation WAMissingResourcesDownloader
+@implementation WAResourcesDownloader
 
 
 - (void) setUrlString: (NSString *) theString
 {
-    //SLog(@"WAMissingResourcesDownloader launched for Url:%@",theString);
+    //NSLog(@"WAResourcesDownloader launched for Url:%@",theString);
 	
 	urlString = [[NSString alloc]initWithString: theString];
      [self didDownloadMainFile];    //No need to download main file
-
+    processStartTime = [[[NSDate alloc] initWithTimeInterval:0 sinceDate:[NSDate date]] retain];
+    
 }
 
 
@@ -68,18 +69,18 @@
         
         
         //If the resource is not present on the device, add it to the download queue
-        if ((![tempArray containsObject:absUrl])&&(![[NSBundle mainBundle]pathOfFileWithUrl:absUrl])) [tempArray addObject:absUrl];
+        if (![tempArray containsObject:absUrl]) [tempArray addObject:[absUrl retain]];
         
     }
     
     
     
-	nnewResourcesArray = [[NSArray alloc]initWithArray:tempArray];
-	if ([nnewResourcesArray count]){
-		mutableResourcesArray = [[NSMutableArray alloc ]initWithArray: nnewResourcesArray];
+	self.nnewResourcesArray = [[NSArray alloc]initWithArray:tempArray];
+	if ([self.nnewResourcesArray count]){
+		self.mutableResourcesArray = [[NSMutableArray alloc ]initWithArray: self.nnewResourcesArray];
         //SLog(@"Missing resources:%@",nnewResourcesArray);
         
-        receivedData = [[NSMutableData alloc]init];
+        self.receivedData = [[NSMutableData alloc]init];
 
     
 		[self downloadNextResource];//Start looping in newResourcesArray
@@ -111,17 +112,14 @@
     NSString * mainFilePath = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
     NSString * plistPath = [WAUtilities urlByChangingExtensionOfUrlString:mainFilePath toSuffix:@"_metadata.plist"];
     
-     if (nnewResourcesArray){
-         NSMutableDictionary * metaDic = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
-         NSArray * concatArray = [nnewResourcesArray arrayByAddingObjectsFromArray:[metaDic objectForKey:@"Resources"]];
-         [metaDic setObject:concatArray forKey:@"Resources"];
-         
-         [metaDic writeToFile:plistPath atomically:YES];
-         
-        
-    }
+    NSMutableDictionary * metaDic = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+    if([[metaDic objectForKey:@"Resources"] isKindOfClass:[NSArray class]])
+        [self deleteUnusedOldResources:[metaDic objectForKey:@"Resources"]];
     
- 
+    if(self.nnewResourcesArray)
+        [metaDic setObject:self.nnewResourcesArray forKey:@"Resources"];
+    [metaDic setObject:@"YES" forKey:@"DownloadComplete"];
+    [metaDic writeToFile:plistPath atomically:YES];
     
     //SLog(@"sharedManager before remove:%@",[[WADocumentDownloadsManager sharedManager]issuesQueue]);
 
@@ -139,26 +137,26 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-
-    [handle writeData:self.receivedData];
+    //NSLog(@"Did finish loading %@",connection);
+    [self endSavingCurrentFile];
     
     //Move the file from TempWA directory to relevant place
     NSString * dirPath = [WAUtilities cacheFolderPath];
     NSString *tempUrlString = [NSString stringWithFormat:@"%@/TempWa/%@", dirPath,[currentUrlString noArgsPartOfUrlString]];
-    //SLog(@"Will move %@ to %@",tempUrlString, currentUrlString);
+    //NSLog(@"Will move %@ to %@",tempUrlString, curUrlString);
     [WAUtilities storeFileWithUrlString:currentUrlString withFileAtPath:tempUrlString];
 
-    
+        
        
     //SLog(@"Will send didSucceedResourceDownload notification for connection %@",connection); 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"didSucceedResourceDownload" object:urlString];
 
-	
+    [currentUrlString release];
     
-	//Continue with other downloads
-	if ([currentUrlString isEqual:urlString]) [self didDownloadMainFile];
-	else [self downloadNextResource];
-	
+    //Continue with other downloads
+    if ([currentUrlString isEqual:urlString]) [self didDownloadMainFile];
+    else [self downloadNextResource];
+    
 }
 
 

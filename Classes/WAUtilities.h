@@ -18,6 +18,7 @@
 + (NSString *)cacheFolderPath;
 + (NSString *) hashPartOfUrlString:(NSString*)urlString; //Returns the part after the # sign
 + (NSDate *) dateOfFileWithUrlString:(NSString*)name;
++ (NSDate *) creationDateOfFileWithUrlString:(NSString*)urlString;
 + (NSString*)directoryUrlOfUrlString:(NSString*)urlString;//Returns the Url of the directory
 + (NSString*) absoluteUrlOfRelativeUrl:(NSString*)relativeUrl relativeToUrl:(NSString*)baseUrl;
 + (NSString*) urlByChangingExtensionOfUrlString:(NSString*)urlString toSuffix:(NSString*)newExtension;

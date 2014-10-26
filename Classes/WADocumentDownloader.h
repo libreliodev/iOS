@@ -30,8 +30,9 @@ typedef enum {
 	NSMutableArray * mutableResourcesArray;
 	NSArray * oldResourcesArray;
     NSString *currentMessage;
-     CGFloat currentProgress;
-
+    CGFloat currentProgress;
+    
+    NSDate *processStartTime;
     
 }
 @property (nonatomic, retain)	NSString *urlString;
@@ -45,6 +46,7 @@ typedef enum {
 @property (nonatomic,retain) NSArray * oldResourcesArray;
 @property (nonatomic,retain) NSString *currentMessage;
 @property (nonatomic,assign) CGFloat currentProgress;
+@property (nonatomic,retain) NSDate *processStartTime;
 
 - (AuthenticationType) getAuthenticationType;
 - (void) downloadMainFile;
@@ -53,12 +55,12 @@ typedef enum {
 - (void) didDownloadAllResources;
 - (void) notifyDownloadFinished;
 - (void)didReceiveNotModifiedHeaderForConnection:(NSURLConnection *)connection ;
-- (void) deleteUnusedOldResources;
+- (void) deleteUnusedOldResources:(NSArray*)resources;
 
 - (void) launchConnectionWithUrlString:completeUrl;
 
 - (void) didEndDrawPageOperationWithNotification:(NSNotification *) notification;
 
-
+- (void)endSavingCurrentFile;
 
 @end

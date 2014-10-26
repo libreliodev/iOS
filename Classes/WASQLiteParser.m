@@ -2,7 +2,7 @@
 #import "NSString+WAURLString.h"
 #import "NSBundle+WAAdditions.m"
 #import "WADocumentDownloadsManager.h"
-#import "WAMissingResourcesDownloader.h"
+#import "WAResourcesDownloader.h"
 
 
 

@@ -7,7 +7,7 @@
 #import "WADocumentDownloadsManager.h"
 #import "WADocumentDownloader.h"
 #import "WANewsstandIssueDownloader.h"
-#import "WAMissingResourcesDownloader.h"
+#import "WAResourcesDownloader.h"
 #import "WAPDFParser.h"
 #import "NSString+WAURLString.h"
 #import "NSBundle+WAAdditions.h"
@@ -166,7 +166,7 @@
             [issue release];
         }
         else {
-           WAMissingResourcesDownloader * issue = [[WAMissingResourcesDownloader alloc]init];
+           WAResourcesDownloader * issue = [[WAResourcesDownloader alloc]init];
             [[[WADocumentDownloadsManager sharedManager] issuesQueue]addObject:issue];
            issue.urlString = urlString;
             [issue release];

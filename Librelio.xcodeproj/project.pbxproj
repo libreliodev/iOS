@@ -152,7 +152,7 @@
 		149086F917E375D700943DD2 /* WASQLiteParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 147B34D9146C13BA0002CC17 /* WASQLiteParser.m */; };
 		149086FA17E375D700943DD2 /* WANewsstandIssueDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 147B3531146E78930002CC17 /* WANewsstandIssueDownloader.m */; };
 		149086FB17E375D700943DD2 /* NSDate+WAAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14897FF9146FB37F00C6A5C6 /* NSDate+WAAdditions.m */; };
-		149086FC17E375D700943DD2 /* WAMissingResourcesDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DD776C14A4F938004E06E5 /* WAMissingResourcesDownloader.m */; };
+		149086FC17E375D700943DD2 /* WAResourcesDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DD776C14A4F938004E06E5 /* WAResourcesDownloader.m */; };
 		149086FD17E375D700943DD2 /* WAZoomImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DD77A014A60D64004E06E5 /* WAZoomImage.m */; };
 		149086FE17E375D700943DD2 /* WAAddressAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D37B6114B6DEAA00BA49C0 /* WAAddressAnnotation.m */; };
 		149086FF17E375D700943DD2 /* WASplashWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1424381314BC36BE005ABB4A /* WASplashWebViewController.m */; };
@@ -291,7 +291,7 @@
 		14DB11DB164BEDC3001FE76B /* WASQLiteParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 147B34D9146C13BA0002CC17 /* WASQLiteParser.m */; };
 		14DB11DC164BEDC3001FE76B /* WANewsstandIssueDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 147B3531146E78930002CC17 /* WANewsstandIssueDownloader.m */; };
 		14DB11DD164BEDC3001FE76B /* NSDate+WAAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14897FF9146FB37F00C6A5C6 /* NSDate+WAAdditions.m */; };
-		14DB11DE164BEDC3001FE76B /* WAMissingResourcesDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DD776C14A4F938004E06E5 /* WAMissingResourcesDownloader.m */; };
+		14DB11DE164BEDC3001FE76B /* WAResourcesDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DD776C14A4F938004E06E5 /* WAResourcesDownloader.m */; };
 		14DB11DF164BEDC3001FE76B /* WAZoomImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DD77A014A60D64004E06E5 /* WAZoomImage.m */; };
 		14DB11E0164BEDC3001FE76B /* WAAddressAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D37B6114B6DEAA00BA49C0 /* WAAddressAnnotation.m */; };
 		14DB11E1164BEDC3001FE76B /* WASplashWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1424381314BC36BE005ABB4A /* WASplashWebViewController.m */; };
@@ -586,8 +586,8 @@
 		14DB137F164C52C4001FE76B /* Tabs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tabs.plist; sourceTree = "<group>"; };
 		14DB1380164C52C4001FE76B /* wind-generic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wind-generic.png"; sourceTree = "<group>"; };
 		14DB1381164C52C4001FE76B /* wind_355.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wind_355.png; sourceTree = "<group>"; };
-		14DD776B14A4F937004E06E5 /* WAMissingResourcesDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAMissingResourcesDownloader.h; sourceTree = "<group>"; };
-		14DD776C14A4F938004E06E5 /* WAMissingResourcesDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAMissingResourcesDownloader.m; sourceTree = "<group>"; };
+		14DD776B14A4F937004E06E5 /* WAResourcesDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAResourcesDownloader.h; sourceTree = "<group>"; };
+		14DD776C14A4F938004E06E5 /* WAResourcesDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAResourcesDownloader.m; sourceTree = "<group>"; };
 		14DD779F14A60D64004E06E5 /* WAZoomImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAZoomImage.h; sourceTree = "<group>"; };
 		14DD77A014A60D64004E06E5 /* WAZoomImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAZoomImage.m; sourceTree = "<group>"; };
 		14DF9B22145D4FE10031C52F /* NSString+WAURLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+WAURLString.h"; sourceTree = "<group>"; };
@@ -829,8 +829,8 @@
 				14A1DC0B14629D48005366C7 /* WADocumentDownloader.m */,
 				147B3530146E78920002CC17 /* WANewsstandIssueDownloader.h */,
 				147B3531146E78930002CC17 /* WANewsstandIssueDownloader.m */,
-				14DD776B14A4F937004E06E5 /* WAMissingResourcesDownloader.h */,
-				14DD776C14A4F938004E06E5 /* WAMissingResourcesDownloader.m */,
+				14DD776B14A4F937004E06E5 /* WAResourcesDownloader.h */,
+				14DD776C14A4F938004E06E5 /* WAResourcesDownloader.m */,
 			);
 			name = Downloader;
 			sourceTree = "<group>";
@@ -1721,7 +1721,7 @@
 				149086F917E375D700943DD2 /* WASQLiteParser.m in Sources */,
 				149086FA17E375D700943DD2 /* WANewsstandIssueDownloader.m in Sources */,
 				149086FB17E375D700943DD2 /* NSDate+WAAdditions.m in Sources */,
-				149086FC17E375D700943DD2 /* WAMissingResourcesDownloader.m in Sources */,
+				149086FC17E375D700943DD2 /* WAResourcesDownloader.m in Sources */,
 				149086FD17E375D700943DD2 /* WAZoomImage.m in Sources */,
 				149086FE17E375D700943DD2 /* WAAddressAnnotation.m in Sources */,
 				149086FF17E375D700943DD2 /* WASplashWebViewController.m in Sources */,
@@ -1811,7 +1811,7 @@
 				14DB11DB164BEDC3001FE76B /* WASQLiteParser.m in Sources */,
 				14DB11DC164BEDC3001FE76B /* WANewsstandIssueDownloader.m in Sources */,
 				14DB11DD164BEDC3001FE76B /* NSDate+WAAdditions.m in Sources */,
-				14DB11DE164BEDC3001FE76B /* WAMissingResourcesDownloader.m in Sources */,
+				14DB11DE164BEDC3001FE76B /* WAResourcesDownloader.m in Sources */,
 				14DB11DF164BEDC3001FE76B /* WAZoomImage.m in Sources */,
 				14DB11E0164BEDC3001FE76B /* WAAddressAnnotation.m in Sources */,
 				14DB11E1164BEDC3001FE76B /* WASplashWebViewController.m in Sources */,

@@ -107,6 +107,18 @@
 
 }
 
++ (NSDate*) creationDateOfFileWithUrlString:(NSString*)urlString{
+    NSString * tempPath = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
+    //SLog(@"finding date of file %@",tempPath);
+    NSDate * ret = nil;//Return nil by default
+    //Check if the file is in the app bundle, or the cache directory; if it is in the cache bundle, the date does not mean anything, so we return nil;
+    if (tempPath &&[tempPath hasPrefix:[self cacheFolderPath]]){
+        ret = [[[NSFileManager defaultManager] attributesOfItemAtPath:tempPath error:NULL] objectForKey:NSFileCreationDate] ;
+    }
+    
+    return ret;
+}
+
 
 
 
@@ -176,7 +188,8 @@
 + (void) storeFileWithUrlString:(NSString*)urlString withFileAtPath:(NSString*)tempFilePath{
 	NSString *newFilePath = [urlString pathOfStorageForUrlString];
 	NSString* dirPath=[self directoryUrlOfUrlString:newFilePath];
-	if (![[NSFileManager defaultManager] fileExistsAtPath:dirPath]) {
+
+    if (![[NSFileManager defaultManager] fileExistsAtPath:dirPath]) {
 		//Directory does not exist, must be created
 		[[NSFileManager defaultManager] createDirectoryAtPath:dirPath withIntermediateDirectories:YES attributes:nil error:NULL]; 
 		
@@ -189,15 +202,15 @@
 		if (([attDic fileSize]==0)&&([attDic fileType]==NSFileTypeRegular)){
 			//If this is a file (not a directory) and the size is zero, delete it, 
 			[[NSFileManager defaultManager]removeItemAtPath:tempFilePath error:nil];
-            //SLog(@"Deleted empty file");
+            //NSLog(@"Deleted empty file");
 		}
 		else{
 			//Move the file or directory
 			[[NSFileManager defaultManager] removeItemAtPath:newFilePath error:&error2];//Remove existing file at filePath, if there is one
 			//if (error2) SLog(@"Error:%@ when removing file at path:%@",[error2 localizedDescription],newFilePath);
 			[[NSFileManager defaultManager] moveItemAtPath:tempFilePath toPath:newFilePath error:&error];
-			//if (error) SLog(@"Error:%@ with file at path:%@",error,tempFilePath);
-            //else SLog(@"moved from %@ to %@",tempFilePath,newFilePath);
+			//if (error) NSLog(@"Error:%@ with file at path:%@",error,tempFilePath);
+            //else NSLog(@"moved from %@ to %@",tempFilePath,newFilePath);
             
         }
 
@@ -281,7 +294,7 @@
 
 
 + (BOOL) isCheckUpdateNeededForUrlString:(NSString*)urlString{
-	//SLog(@"Checking update needed? for url:%@",urlString);
+	// NSLog(@"Checking update needed? for url:%@  isLocalUrl: %d",urlString, (int)[urlString isLocalUrl]);
 	if ([urlString isLocalUrl]) {
 		NSString * path = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
 		if (!path) {
@@ -296,6 +309,7 @@
 				NSDate * fileModifDate = [self dateOfFileWithUrlString:urlString];
 				NSDate * nextCheckDate = [fileModifDate dateByAddingTimeInterval:60*mn];//waupdate parameter is in minutes
 				NSDate * nowDate = [NSDate date];
+                //NSLog(@"path: %@ compare: nextCheckDate: %@  now: %@", path, nextCheckDate, nowDate);
 				if (![path hasPrefix:[self cacheFolderPath]]){
                     //SLog(@"Document in app bunde, update needed");
 					return YES; //The document is in the app bundle, we should check if an update is needed
