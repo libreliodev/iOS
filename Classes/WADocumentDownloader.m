@@ -454,6 +454,9 @@
             [WAUtilities storeFileWithUrlString:loopedUrlString withFileAtPath:tempUrlString];
         }
         
+        // delete unused resources from previous file
+        [self deleteUnusedOldResources];
+        
         //Store plist with metadata and list of resources for this download
         NSString * mainFilePath = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
         NSString * plistPath = [WAUtilities urlByChangingExtensionOfUrlString:mainFilePath toSuffix:@"_metadata.plist"];
@@ -530,9 +533,23 @@
 
 
 
-
+// Should initialize parse before invoking
 - (void) deleteUnusedOldResources{
-	//TODO: complete
+    NSArray *newResources = [self getParserResourcesUrlString];
+    NSString * mainFilePath = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
+    NSString * plistPath = [WAUtilities urlByChangingExtensionOfUrlString:mainFilePath toSuffix:@"_metadata.plist"];
+    NSDictionary *metaDic =  [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    if(metaDic != nil && [[metaDic objectForKey:@"Resources"] isKindOfClass:[NSArray class]])
+    {
+        for(NSString *oldRes in [metaDic objectForKey:@"Resources"])
+        {
+            if(![newResources containsObject:oldRes])
+            {
+                NSString *path = [[NSBundle mainBundle] pathOfFileWithUrl:[oldRes noArgsPartOfUrlString]];
+                [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+            }
+        }
+    }
 }
 #pragma mark -
 #pragma mark Helper methods
@@ -571,7 +588,47 @@
 	else return AuthenticationTypeAppStore;
 }
 
-
+- (NSArray*)getParserResourcesUrlString
+{
+    NSArray * imagesArray = [parser getRessources];
+    
+    //SLog(@"Images Array:%@",imagesArray);
+    //Add the absolute Url to tempArray
+    NSString * forcedUrl = [urlString valueOfParameterInUrlStringforKey:@"waurl"];
+    //SLog(@"Forced Url:%@",forcedUrl);
+    NSMutableArray *tempArray= [NSMutableArray array];
+    for (NSString * relativeResourceUrl in imagesArray){
+        NSString *absUrl ;
+        
+        if (forcedUrl){
+            if ([relativeResourceUrl valueOfParameterInUrlStringforKey:@"waurl"]){
+                //If the waurl argument is already included in the resources url, no need to change it
+                absUrl = [WAUtilities absoluteUrlOfRelativeUrl:relativeResourceUrl relativeToUrl:urlString];
+            }
+            else{
+                //Remove the leading localhost in noArgsUrl
+                if ([relativeResourceUrl hasPrefix:@"http://localhost/"]) relativeResourceUrl = [relativeResourceUrl substringFromIndex:17];
+                //Get the remote absolute url
+                NSString * remoteAbsUrl = [WAUtilities absoluteUrlOfRelativeUrl:relativeResourceUrl relativeToUrl:forcedUrl];
+                //Get the destination (local) absolute url
+                absUrl = [WAUtilities absoluteUrlOfRelativeUrl:relativeResourceUrl relativeToUrl:urlString];
+                absUrl = [absUrl urlByAddingParameterInUrlStringWithKey:@"waurl" withValue:remoteAbsUrl];
+                
+                
+            }
+            
+        }
+        else{
+            absUrl = [WAUtilities absoluteUrlOfRelativeUrl:relativeResourceUrl relativeToUrl:urlString];
+        }
+        
+        
+        //If the resource is not present on the device, add it to the download queue
+        if ((![tempArray containsObject:absUrl])) [tempArray addObject:absUrl];
+        
+    }
+    return [NSArray arrayWithArray:tempArray];
+}
 
 
 @end

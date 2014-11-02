@@ -68,7 +68,7 @@
         
         
         //If the resource is not present on the device, add it to the download queue
-        if ((![tempArray containsObject:absUrl])&&(![[NSBundle mainBundle]pathOfFileWithUrl:absUrl])) [tempArray addObject:absUrl];
+        if ((![tempArray containsObject:absUrl])) [tempArray addObject:absUrl];
         
     }
     
@@ -113,8 +113,7 @@
     
      if (nnewResourcesArray){
          NSMutableDictionary * metaDic = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
-         NSArray * concatArray = [nnewResourcesArray arrayByAddingObjectsFromArray:[metaDic objectForKey:@"Resources"]];
-         [metaDic setObject:concatArray forKey:@"Resources"];
+         [metaDic setObject:nnewResourcesArray forKey:@"Resources"];
          
          [metaDic writeToFile:plistPath atomically:YES];
          
