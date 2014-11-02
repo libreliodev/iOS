@@ -166,9 +166,28 @@
 
 - (int) countNumberOfReferencesForResourceWithUrlString:(NSString*) urlString {
     
-    //TODO
-    
-    return 1;//Temporary
+    NSString *dirPath = [WAUtilities cacheFolderPath];
+    NSDirectoryEnumerator *enumerator = [[NSFileManager defaultManager] enumeratorAtPath:dirPath];
+    NSInteger count = 0;
+    NSString *metaCheckPath;
+    while((metaCheckPath = [enumerator nextObject]))
+    {
+        // if checkPath ends with searchStr
+        NSString *searchStr = @"_metadata.plist";
+        NSRange searchStrRange = [metaCheckPath rangeOfString:searchStr];
+        if(searchStrRange.location != NSNotFound &&
+           metaCheckPath.length == searchStrRange.location + searchStr.length)
+        {
+            // count +1 if exists in resources
+            NSMutableDictionary * metaDic = [NSMutableDictionary dictionaryWithContentsOfFile:[NSString stringWithFormat:@"%@/%@", dirPath, metaCheckPath]];
+            if(metaDic != nil &&
+               [[metaDic objectForKey:@"Resources"] isKindOfClass:[NSArray class]] &&
+               [[metaDic objectForKey:@"Resources"] containsObject:urlString])
+                count++;
+            
+        }
+    }
+    return count;
 }
 
 
