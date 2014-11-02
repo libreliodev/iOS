@@ -15,4 +15,5 @@
 
 - (NSString *) pathOfFileWithUrl:(NSString*)relativeUrl forOrientation:(UIInterfaceOrientation)orientation;
 - (void) unzipFileWithUrlString:(NSString*) urlString;
+- (int) countNumberOfReferencesForResourceWithUrlString:(NSString*) urlString;
 @end

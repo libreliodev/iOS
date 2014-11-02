@@ -164,5 +164,12 @@
     
 }
 
+- (int) countNumberOfReferencesForResourceWithUrlString:(NSString*) urlString {
+    
+    //TODO
+    
+    return 1;//Temporary
+}
+
 
 @end
