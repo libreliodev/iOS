@@ -538,11 +538,17 @@
     NSString * mainFilePath = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
     NSString * plistPath = [WAUtilities urlByChangingExtensionOfUrlString:mainFilePath toSuffix:@"_metadata.plist"];
     NSDictionary *metaDic =  [NSDictionary dictionaryWithContentsOfFile:plistPath];
-    if(metaDic != nil && [[metaDic objectForKey:@"Resources"] isKindOfClass:[NSArray class]])
+    if(nnewResourcesArray && metaDic != nil && [[metaDic objectForKey:@"Resources"] isKindOfClass:[NSArray class]])
     {
+        // remove "/TempWa/" prefix from nnewResources and put it in newResources
+        NSMutableArray *tmpArray = [[[NSMutableArray alloc] init] retain];
+        for(NSString *res in nnewResourcesArray)
+            [tmpArray addObject:[res substringFromIndex:[@"/TempWa/" length]]];
+        NSArray *newResources = [NSArray arrayWithArray:tmpArray];
+        [tmpArray release];
         for(NSString *oldRes in [metaDic objectForKey:@"Resources"])
         {
-            if(![nnewResourcesArray containsObject:oldRes])
+            if(![newResources containsObject:oldRes])
             {
                 NSString *path = [[NSBundle mainBundle] pathOfFileWithUrl:[oldRes noArgsPartOfUrlString]];
                 [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
