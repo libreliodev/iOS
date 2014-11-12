@@ -10,10 +10,6 @@ typedef enum {
 	SlideShowTransitionDissolve
 } SlideShowTransition;
 
-typedef enum {
-    SlideShowScrollVertically,
-    SlideShowScrollHorizontally
-} SlideShowScrollDirection;
 
 @interface WASlideShowView : UIView <UIScrollViewDelegate,UIGestureRecognizerDelegate, WAModuleProtocol>{
 
@@ -28,8 +24,6 @@ typedef enum {
 	int timerCount;
 	UIViewController* currentViewController;
 	
-    ModuleResizeMode resizeMode;
-    SlideShowScrollDirection scrollDirection;
 	
 	
 }
@@ -38,8 +32,6 @@ typedef enum {
 @property (nonatomic, retain) UIImageView *view2;
 @property (nonatomic, retain) NSTimer * timer;
 @property SlideShowTransition transition;
-@property ModuleResizeMode resizeMode;
-@property SlideShowScrollDirection scrollDirection;
 @property int repeat;
 @property int timerCount;
 

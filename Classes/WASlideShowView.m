@@ -12,11 +12,8 @@
 
 
 @implementation WASlideShowView
-{
-    NSArray *images;
-}
 
-@synthesize scrollView,view1,view2,transition,timerCount,timer,repeat,currentViewController,resizeMode,scrollDirection;
+@synthesize scrollView,view1,view2,transition,timerCount,timer,repeat,currentViewController;
 
 
 
@@ -48,7 +45,7 @@
         
 		view1.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
 		[self addSubview:view1];
-		view1.contentMode = UIViewContentModeScaleToFill;
+		view1.contentMode = UIViewContentModeScaleAspectFit;
 		view1.backgroundColor = [UIColor clearColor];
         
 		// Create scrollview and add it to the view .
@@ -68,19 +65,6 @@
         else if ([transitionString isEqualToString:@"dissolve"]) transition = SlideShowTransitionDissolve;
         else transition = SlideShowTransitionMoveIn;
         
-        // eval resizeMode
-        NSString *resizeModeStr = [urlString valueOfParameterInUrlStringforKey:@"waresize"];
-        if([resizeModeStr isEqualToString:@"fit"])
-            resizeMode = ModuleResizeModeFit;
-        else if([resizeModeStr isEqualToString:@"fill"])
-            resizeMode = ModuleResizeModeFill;
-        else if([resizeModeStr isEqualToString:@"width"])
-            resizeMode = ModuleResizeModeFillWidth;
-        else if([resizeModeStr isEqualToString:@"height"])
-            resizeMode = ModuleResizeModeFillHeight;
-        else
-            resizeMode = ModuleResizeModeFill;
-        
         //Populate the array of image paths
         NSArray * urlStringsArray = [WAUtilities arrayOfImageUrlStringsForUrlString:urlString];
         NSMutableArray *tempArray= [NSMutableArray array];
@@ -91,28 +75,25 @@
         imagePathArray = [[NSArray alloc]initWithArray:tempArray];
         int count = (int)[imagePathArray count];
         
-        NSMutableArray *m_images = [[NSMutableArray alloc] init];
-        for(NSString *path in imagePathArray)
-            [m_images addObject:[UIImage imageWithContentsOfFile:path]];
-        images = [NSArray arrayWithArray:m_images];
-        [m_images release];
-        
-        
-        // find expected scroll direction
-        scrollDirection = [self findExpectedScrollDirection];
-        
         switch (transition) {
             case SlideShowTransitionMoveIn: {
                 //In this case, we put all images inside the scrollview
-                [self insertTransitionMoveInImages];
+                for (int i = 0;i<count;i++) {
+                    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:[imagePathArray objectAtIndex:count-(i+1)]]];//Start with the last image
+                    imageView.frame = CGRectMake(self.frame.size.width * i, 0, self.frame.size.width, self.frame.size.height);
+                    imageView.contentMode = UIViewContentModeScaleAspectFit;
+                    [scrollView addSubview:imageView];
+                    imageView.autoresizingMask  = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
+                    [imageView release];
+                    scrollView.contentSize = CGSizeMake(self.frame.size.width * count, self.frame.size.height);
+                    
+                    //
+                }
                 break;
                 
             }
             default:{
-                view1.image = [images objectAtIndex:count-1];
-                
-                view1.frame = [self imageViewFrame:view1 withScreenSize:self.frame.size];
-                
+                view1.image = [UIImage imageWithContentsOfFile:[imagePathArray objectAtIndex:count-1]];
                 scrollView.contentSize = CGSizeMake(2000000.0, self.frame.size.height);//Infinite size!
                 scrollView.pagingEnabled = NO;
                 scrollView.showsHorizontalScrollIndicator = NO;
@@ -147,105 +128,13 @@
     }
 }
 
-- (SlideShowScrollDirection)findExpectedScrollDirection
-{
-    NSInteger bal = 0;
-    for(UIImage *image in images)
-    {
-        NSInteger ratio = image.size.width / image.size.height;
-        if(resizeMode == ModuleResizeModeFit)
-        {
-            if(ratio > 1.0)
-                bal += 1; // fits in width
-            else
-                bal -= 1; // fits in height
-        }
-        else
-        {
-            if(ratio > 1.0)
-                bal -= 1; // fits in height
-            else
-                bal += 1; // fits in width
-        }
-    }
-    return bal < 0 ? SlideShowScrollHorizontally : SlideShowScrollVertically;
-}
-
-- (void)insertTransitionMoveInImages
-{
-    int count = (int)[images count];
-    for (int i = 0;i<count;i++) {
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[images objectAtIndex:count-(i+1)]];//Start with the last image
-        
-        CGRect rect = [self imageViewFrame:imageView withScreenSize:self.frame.size];
-        imageView.frame = CGRectMake(rect.origin.x +
-                                     (scrollDirection == SlideShowScrollHorizontally ? i : 0) * self.frame.size.width,
-                                     rect.origin.y +
-                                     (scrollDirection == SlideShowScrollVertically ? i : 0) * self.frame.size.height,
-                                     rect.size.width, rect.size.height);
-        imageView.contentMode = UIViewContentModeScaleToFill;
-        [scrollView addSubview:imageView];
-        imageView.autoresizingMask  = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
-        [imageView release];
-    }
-    scrollView.contentSize = [self contentSizeForTransitionMoveInMode];
-
-}
-
-- (CGSize)contentSizeForTransitionMoveInMode
-{
-    return CGSizeMake((scrollDirection == SlideShowScrollHorizontally ? [images count] : 1) * self.frame.size.width,
-                      (scrollDirection == SlideShowScrollVertically ? [images count] : 1) * self.frame.size.height);
-}
-
-- (CGRect)imageViewFrame:(UIImageView*)imageView withScreenSize:(CGSize)screenSize
-{
-    CGFloat x, y, w, h, ratio;
-    ModuleResizeMode rmode = resizeMode;
-    
-    ratio = imageView.image.size.width / imageView.image.size.height;
-    
-    if(rmode == ModuleResizeModeFill)
-    {
-        if(ratio > 1.0)
-            rmode = ModuleResizeModeFillHeight;
-        else
-            rmode = ModuleResizeModeFillWidth;
-    }
-    switch(rmode)
-    {
-        case ModuleResizeModeFit:
-        default:
-            if(ratio > 1.0)
-            {
-                w = screenSize.width;
-                h = w / ratio;
-            }
-            else
-            {
-                h = screenSize.height;
-                w = h * ratio;
-            }
-            break;
-        case ModuleResizeModeFillWidth:
-            w = screenSize.width;
-            h = w / ratio;
-            break;
-        case ModuleResizeModeFillHeight:
-            h = screenSize.height;
-            w = h * ratio;
-            break;
-    }
-    
-    // center image
-    x = (screenSize.width - w) / 2.0;
-    y = (screenSize.height - h) / 2.0;
-    
-    return CGRectMake(x, y, w, h);
-}
 
 
-#pragma mark end scrollDelegateFunction
+
+
+
+
+#pragma mark end scrollDelegateFunctioin
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
 	
 	if (transition ==SlideShowTransitionNone){
