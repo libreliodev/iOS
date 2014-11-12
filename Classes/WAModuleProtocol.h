@@ -42,10 +42,7 @@ typedef enum {
     ModuleResizeModeFillHeight
 } ModuleResizeMode;
 
-typedef enum {
-    ModuleRectModeSelf,
-    ModuleRectModeFullscreen
-} ModuleRectMode;
+
 
 
 @protocol WAModuleProtocol <NSObject>
@@ -54,9 +51,6 @@ typedef enum {
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation;
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
-
-@property (nonatomic, assign) ModuleRectMode rectMode;
-@property ModuleResizeMode resizeMode;
 
 @required
 

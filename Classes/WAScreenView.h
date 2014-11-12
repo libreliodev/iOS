@@ -14,7 +14,6 @@
 @interface WAScreenView : UIScrollView <UIScrollViewDelegate,UIGestureRecognizerDelegate> {
 	WAPaginatedView * containingPdfView;
 	int firstPage;
-    CGRect screenRect;
 	UIView * containerView;//Needed for zoom to work smoothly
     NSObject <WAParserProtocol> *pdfDocument;
 }

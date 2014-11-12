@@ -62,11 +62,4 @@
     return newImage;
 }
 
-- (UIImage*)imageByCrop:(CGRect)rect
-{
-    CGImageRef imageRef = CGImageCreateWithImageInRect([self CGImage], rect);
-    UIImage *cropped = [UIImage imageWithCGImage:imageRef];
-    return cropped;
-}
-
 @end;

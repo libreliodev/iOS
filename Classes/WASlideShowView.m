@@ -68,6 +68,18 @@
         else if ([transitionString isEqualToString:@"dissolve"]) transition = SlideShowTransitionDissolve;
         else transition = SlideShowTransitionMoveIn;
         
+        // eval resizeMode
+        NSString *resizeModeStr = [urlString valueOfParameterInUrlStringforKey:@"waresize"];
+        if([resizeModeStr isEqualToString:@"fit"])
+            resizeMode = ModuleResizeModeFit;
+        else if([resizeModeStr isEqualToString:@"fill"])
+            resizeMode = ModuleResizeModeFill;
+        else if([resizeModeStr isEqualToString:@"width"])
+            resizeMode = ModuleResizeModeFillWidth;
+        else if([resizeModeStr isEqualToString:@"height"])
+            resizeMode = ModuleResizeModeFillHeight;
+        else
+            resizeMode = ModuleResizeModeFill;
         
         //Populate the array of image paths
         NSArray * urlStringsArray = [WAUtilities arrayOfImageUrlStringsForUrlString:urlString];
@@ -99,7 +111,7 @@
             default:{
                 view1.image = [images objectAtIndex:count-1];
                 
-                view1.frame = [WAUtilities frameForSize:view1.image.size withScreenSize:self.frame.size resizeMode:resizeMode];
+                view1.frame = [self imageViewFrame:view1 withScreenSize:self.frame.size];
                 
                 scrollView.contentSize = CGSizeMake(2000000.0, self.frame.size.height);//Infinite size!
                 scrollView.pagingEnabled = NO;
@@ -165,7 +177,7 @@
     for (int i = 0;i<count;i++) {
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[images objectAtIndex:count-(i+1)]];//Start with the last image
         
-        CGRect rect = [WAUtilities frameForSize:imageView.image.size withScreenSize:self.frame.size resizeMode:resizeMode];
+        CGRect rect = [self imageViewFrame:imageView withScreenSize:self.frame.size];
         imageView.frame = CGRectMake(rect.origin.x +
                                      (scrollDirection == SlideShowScrollHorizontally ? i : 0) * self.frame.size.width,
                                      rect.origin.y +
@@ -185,6 +197,53 @@
     return CGSizeMake((scrollDirection == SlideShowScrollHorizontally ? [images count] : 1) * self.frame.size.width,
                       (scrollDirection == SlideShowScrollVertically ? [images count] : 1) * self.frame.size.height);
 }
+
+- (CGRect)imageViewFrame:(UIImageView*)imageView withScreenSize:(CGSize)screenSize
+{
+    CGFloat x, y, w, h, ratio;
+    ModuleResizeMode rmode = resizeMode;
+    
+    ratio = imageView.image.size.width / imageView.image.size.height;
+    
+    if(rmode == ModuleResizeModeFill)
+    {
+        if(ratio > 1.0)
+            rmode = ModuleResizeModeFillHeight;
+        else
+            rmode = ModuleResizeModeFillWidth;
+    }
+    switch(rmode)
+    {
+        case ModuleResizeModeFit:
+        default:
+            if(ratio > 1.0)
+            {
+                w = screenSize.width;
+                h = w / ratio;
+            }
+            else
+            {
+                h = screenSize.height;
+                w = h * ratio;
+            }
+            break;
+        case ModuleResizeModeFillWidth:
+            w = screenSize.width;
+            h = w / ratio;
+            break;
+        case ModuleResizeModeFillHeight:
+            h = screenSize.height;
+            w = h * ratio;
+            break;
+    }
+    
+    // center image
+    x = (screenSize.width - w) / 2.0;
+    y = (screenSize.height - h) / 2.0;
+    
+    return CGRectMake(x, y, w, h);
+}
+
 
 #pragma mark end scrollDelegateFunction
 - (void)scrollViewDidScroll:(UIScrollView *)sender {

@@ -50,8 +50,4 @@
 + (void) resizeNibView:(NSString*) nibName defaultNib:(NSString*) defaultNibName inView:(UIView*) containingView;
 + (CGSize) sizeForResizedNibView:(NSString*) nibName defaultNib:(NSString*) defaultNibName inRect:(CGRect)contaningRect;
 
-+ (void)PDFDocument:(id)pdfDocument postNotificationForName:(NSString*)name object:(id)obj;
-
-+ (CGRect)frameForSize:(CGSize)size withScreenSize:(CGSize)screenSize resizeMode:(ModuleResizeMode)resizeMode;
-
 @end

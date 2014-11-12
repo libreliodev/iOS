@@ -50,7 +50,8 @@
 		[self setBackgroundColor:[UIColor blackColor]];
 		self.maximumZoomScale = kMaxZoom;
 		self.minimumZoomScale = kMinZoom;
-		        
+		
+        
         
 		
 		
@@ -104,6 +105,7 @@
     
 	[self updatePages];
     
+	
 	
 }
 
@@ -163,37 +165,10 @@
 	if ((rect.size.width>0)&&(rect.size.height>0)){
 		hScale = self.frame.size.width/rect.size.width;
 		vScale = self.frame.size.height/rect.size.height;
-        ModuleResizeMode resizeMode = ((WAPaginatedView*)self.superview.superview).resizeMode;
-        switch(resizeMode)
-        {
-            case ModuleResizeModeFillWidth:
-                if(hScale < vScale)
-                    resizeMode = ModuleResizeModeFill;
-                break;
-            case ModuleResizeModeFillHeight:
-                if(vScale < hScale)
-                    resizeMode = ModuleResizeModeFill;
-                break;
-            default:
-                break;
-        }
-        switch(resizeMode)
-        {
-            case ModuleResizeModeFill:
-                fRect = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
-                pv1.contentMode = UIViewContentModeScaleAspectFill;
-                break;
-            case ModuleResizeModeFillWidth:
-            case ModuleResizeModeFillHeight:
-            case ModuleResizeModeFit:
-                scale = MIN(hScale, vScale);
-                fRect = CGRectMake((self.frame.size.width-scale*rect.size.width)/2, (self.frame.size.height-scale*rect.size.height)/2, scale*rect.size.width, scale*rect.size.height);
-                pv1.contentMode = UIViewContentModeScaleToFill;
-                break;
-        }
+		scale = MIN(hScale, vScale);
         
-    }
-    pv1.clipsToBounds = YES;
+	}
+	fRect = CGRectMake(self.frame.size.width/2-scale*rect.size.width/2, self.frame.size.height/2-scale*rect.size.height/2, scale*rect.size.width, scale*rect.size.height);
 	pv1.frame= fRect;
 	pv2.hidden = YES;
 }
@@ -212,74 +187,21 @@
 	if ((rect.size.width>0)&&(rect.size.height>0)){
 		hScale = self.frame.size.width*0.5f/rect.size.width;//The screen is divided by 2
 		vScale = self.frame.size.height/rect.size.height;
-        ModuleResizeMode resizeMode = ((WAPaginatedView*)self.superview.superview).resizeMode;
-        switch(resizeMode)
-        {
-            case ModuleResizeModeFillWidth:
-                if(hScale < vScale)
-                    resizeMode = ModuleResizeModeFill;
-                break;
-            case ModuleResizeModeFillHeight:
-                if(vScale < hScale)
-                    resizeMode = ModuleResizeModeFill;
-                break;
-            default:
-                break;
-        }
-        switch(resizeMode)
-        {
-            case ModuleResizeModeFill:
-                fRect = CGRectMake(0, 0, self.frame.size.width/2.0, self.frame.size.height);
-                pv1.contentMode = UIViewContentModeScaleAspectFill;
-                break;
-            case ModuleResizeModeFillWidth:
-            case ModuleResizeModeFillHeight:
-            case ModuleResizeModeFit:
-                scale = MIN(hScale, vScale);
-                fRect = CGRectMake(self.frame.size.width/2-scale*rect.size.width, self.frame.size.height/2-scale*rect.size.height/2, scale*rect.size.width, scale*rect.size.height);
-                pv1.contentMode = UIViewContentModeScaleToFill;
-                break;
-        }
+		scale = MIN(hScale, vScale);
 	}
-    
+	fRect = CGRectMake(self.frame.size.width/2-scale*rect.size.width, self.frame.size.height/2-scale*rect.size.height/2, scale*rect.size.width, scale*rect.size.height);
 	pv1.frame= fRect;
-
-    //Now for page 2
+	
+	//Now for page 2
 	pv2.hidden = NO;
 	rect= CGRectFromString([pdfDocument getDataAtRow:firstPage+1 forDataCol:DataColRect]);;
 	if ((rect.size.width>0)&&(rect.size.height>0)){
 		hScale = self.frame.size.width*0.5f/rect.size.width;//The screen is divided by 2
 		vScale = self.frame.size.height/rect.size.height;
-        ModuleResizeMode resizeMode = ((WAPaginatedView*)self.superview.superview).resizeMode;
-        switch(resizeMode)
-        {
-            case ModuleResizeModeFillWidth:
-                if(hScale < vScale)
-                    resizeMode = ModuleResizeModeFill;
-                break;
-            case ModuleResizeModeFillHeight:
-                if(vScale < hScale)
-                    resizeMode = ModuleResizeModeFill;
-                break;
-            default:
-                break;
-        }
-        switch(resizeMode)
-        {
-            case ModuleResizeModeFill:
-                fRect = CGRectMake(self.frame.size.width/2, 0, self.frame.size.width/2, self.frame.size.height);
-                pv2.contentMode = UIViewContentModeScaleAspectFill;
-                break;
-            case ModuleResizeModeFillWidth:
-            case ModuleResizeModeFillHeight:
-            case ModuleResizeModeFit:
-                scale = MIN(hScale, vScale);
-                fRect = CGRectMake(self.frame.size.width/2, self.frame.size.height/2-scale*rect.size.height/2, scale*rect.size.width, scale*rect.size.height);
-                pv2.contentMode = UIViewContentModeScaleToFill;
-                break;
-        }
+		scale = MIN(hScale, vScale);
         
 	}
+	fRect = CGRectMake(self.frame.size.width/2, self.frame.size.height/2-scale*rect.size.height/2, scale*rect.size.width, scale*rect.size.height);
 	pv2.backgroundColor = [UIColor blackColor];
 	pv2.frame= fRect;
 	
@@ -362,7 +284,7 @@
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
 	CGPoint point = [recognizer locationInView:self];
 	//SLog(@"Point tapped: %f, %f", point.x, point.y);
-
+	
     if (point.x < self.bounds.size.width/8 )[[self containingPdfView] turnPageLeftDidAsk];//Tapped at the left
 	else if (point.x > self.bounds.size.width*7/8 )[[self containingPdfView] turnPageRightDidAsk];//Tapped at the right
 	//else if (point.y > self.bounds.size.height*7/8 )[[self screenViewDelegate] showBottomBarDidAsk];//Tapped at the bottom
@@ -377,6 +299,7 @@
 - (void)handleDoubleTap:(UITapGestureRecognizer *)recognizer {
 	CGPoint point = [recognizer locationInView:self];
 	CGPoint center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+	
 	
 	if (self.zoomScale !=1) [self setZoomScale:1 animated:YES];
 	else{
@@ -404,11 +327,8 @@
 	WAButtonWithLink *button = (WAButtonWithLink *)sender;
 	NSString * annotURLString =button.link;
 	NSString * absoluteUrlString = [WAUtilities absoluteUrlOfRelativeUrl:annotURLString relativeToUrl:containingPdfView.urlString];
-    //absoluteUrlString = [NSString stringWithFormat:@"%@?warect=self", pdfDocument.urlString];
-    //absoluteUrlString = @"/wind_387/p40tests_7.jpg?warect=self";
-    NSURL * url = [NSURL URLWithString:annotURLString];
+	NSURL * url = [NSURL URLWithString:annotURLString];
 	CGRect rect = button.frame;
-    rect = CGRectMake(rect.origin.x, rect.origin.y, rect.size.width*4.0, rect.size.height*8.0);
 	if ([url.scheme isEqualToString:@"goto"]){
 		int newPage = [url.host intValue];
 		

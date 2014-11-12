@@ -547,44 +547,5 @@
 	
 }
 
-+ (void)PDFDocument:(id)pdfDocument postNotificationForName:(NSString*)name object:(id)obj
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:name object:@{
-                                                                             @"pdfDocument": pdfDocument,
-                                                                             @"object": obj
-                                                                             }];
-}
-
-
-
-+ (CGRect)frameForSize:(CGSize)size withScreenSize:(CGSize)screenSize resizeMode:(ModuleResizeMode)resizeMode
-{
-    CGFloat w, h, vScale, hScale, scale;
-    
-    vScale = screenSize.height / size.height;
-    hScale = screenSize.width / size.width;
-    
-
-    switch(resizeMode)
-    {
-        case ModuleResizeModeFill:
-            scale = MAX(vScale, hScale);
-            break;
-        case ModuleResizeModeFit:
-            scale = MIN(vScale, hScale);
-            break;
-        case ModuleResizeModeFillWidth:
-            scale = hScale;
-            break;
-        case ModuleResizeModeFillHeight:
-            scale = vScale;
-            break;
-    }
-    
-    w = size.width * scale;
-    h = size.height * scale;
-    
-    return CGRectMake((screenSize.width - w) / 2.0, (screenSize.height - h) / 2.0, w, h);
-}
 
 @end
