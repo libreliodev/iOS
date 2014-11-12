@@ -65,7 +65,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response
 {
-    NSLog(@"Connection started, received %i headers with dic: %@",[[response allHeaderFields]count],[[response allHeaderFields]description]);
+    //SLog(@"Connection started, received %i headers with dic: %@",[[response allHeaderFields]count],[[response allHeaderFields]description]);
 	[receivedData setLength:0];
     filesize = [[NSNumber numberWithLong: [response expectedContentLength] ] retain];
     
@@ -109,10 +109,10 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     
-    NSLog(@"Download error for connection %@:%@",connection,error);
+    //SLog(@"Download error for connection %@:%@",connection,error);
     NSDictionary * userInfo = error.userInfo;
     NSString * httpStatus = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"SSErrorHTTPStatusCodeKey"]];
-    NSLog(@"Status %@",httpStatus);
+    //SLog(@"Status %@",httpStatus);
 	//If a 304 status code is received, trigger didReceiveNotModifiedHeaderForConnection
 	if ([httpStatus isEqualToString:@"304"]){
         [self didReceiveNotModifiedHeaderForConnection:connection];

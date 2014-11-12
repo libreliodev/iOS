@@ -15,7 +15,7 @@
 
 - (void) setUrlString: (NSString *) theString
 {
-    NSLog(@"WAMissingResourcesDownloader launched for Url:%@",theString);
+    //SLog(@"WAMissingResourcesDownloader launched for Url:%@",theString);
 	
 	urlString = [[NSString alloc]initWithString: theString];
      [self didDownloadMainFile];    //No need to download main file
@@ -36,7 +36,7 @@
      
     NSArray * imagesArray = [parser getRessources];
     
-    NSLog(@"Images Array:%@",imagesArray);
+    //SLog(@"Images Array:%@",imagesArray);
     //Add the absolute Url to tempArray
     NSString * forcedUrl = [urlString valueOfParameterInUrlStringforKey:@"waurl"];
     //SLog(@"Forced Url:%@",forcedUrl);
@@ -67,8 +67,8 @@
         }
         
         
-        //Add it to the download queue
-        if (![tempArray containsObject:absUrl]) [tempArray addObject:absUrl];
+        //If the resource is not present on the device, add it to the download queue
+        if ((![tempArray containsObject:absUrl])&&(![[NSBundle mainBundle]pathOfFileWithUrl:absUrl])) [tempArray addObject:absUrl];
         
     }
     
@@ -77,7 +77,7 @@
 	nnewResourcesArray = [[NSArray alloc]initWithArray:tempArray];
 	if ([nnewResourcesArray count]){
 		mutableResourcesArray = [[NSMutableArray alloc ]initWithArray: nnewResourcesArray];
-        NSLog(@"Missing resources:%@",nnewResourcesArray);
+        //SLog(@"Missing resources:%@",nnewResourcesArray);
         
         receivedData = [[NSMutableData alloc]init];
 
