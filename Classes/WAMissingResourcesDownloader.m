@@ -68,6 +68,7 @@
         
         
         //If the resource is not present on the device, add it to the download queue
+        //TODO
         if ((![tempArray containsObject:absUrl])&&(![[NSBundle mainBundle]pathOfFileWithUrl:absUrl])) [tempArray addObject:absUrl];
         
     }
