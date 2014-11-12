@@ -211,11 +211,8 @@
     {
         //Delete resources
         for (NSString *resourceUrlString in resourcesArray){
-            if([[NSBundle mainBundle] countNumberOfReferencesForResourceWithUrlString:resourceUrlString] <= 1)
-            {
-                NSString * resPath = [[NSBundle mainBundle] pathOfFileWithUrl:resourceUrlString];
-                [[NSFileManager defaultManager]removeItemAtPath:resPath error:NULL];
-            }
+            NSString * resPath = [[NSBundle mainBundle] pathOfFileWithUrl:resourceUrlString];
+            [[NSFileManager defaultManager]removeItemAtPath:resPath error:NULL];
         }
         
         //Delete cache
