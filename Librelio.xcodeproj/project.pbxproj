@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		142F533117E0BF6D00E69AAC /* WARootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 142F532F17E0BF6D00E69AAC /* WARootViewController.m */; };
 		144B2C5218229DE200CDD200 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 144B2C4718229DE200CDD200 /* calendar.png */; };
 		144B2C5318229DE200CDD200 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 144B2C4718229DE200CDD200 /* calendar.png */; };
 		144B2C5518229DE200CDD200 /* calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 144B2C4818229DE200CDD200 /* calendar@2x.png */; };
@@ -98,7 +97,6 @@
 		149086B717E375D700943DD2 /* WAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* WAAppDelegate.m */; };
 		149086B817E375D700943DD2 /* WAPaginatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 767082FD0FEB223000BC5CD2 /* WAPaginatedView.m */; };
 		149086B917E375D700943DD2 /* WAScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FF9952123A660C007DD4A6 /* WAScreenView.m */; };
-		149086BA17E375D700943DD2 /* WARootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 142F532F17E0BF6D00E69AAC /* WARootViewController.m */; };
 		149086BB17E375D700943DD2 /* WAPDFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9D118124B192D001692AD /* WAPDFParser.m */; };
 		149086BC17E375D700943DD2 /* WAThumbnailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9D14D124B36D7001692AD /* WAThumbnailsView.m */; };
 		149086BD17E375D700943DD2 /* WARSSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C5D09112646A170034FE23 /* WARSSViewController.m */; };
@@ -391,8 +389,6 @@
 		142DB05F1836A30D0045DFD5 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		142DB0601836A30D0045DFD5 /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
 		142DB0611836A30D0045DFD5 /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
-		142F532E17E0BF6D00E69AAC /* WARootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WARootViewController.h; sourceTree = "<group>"; };
-		142F532F17E0BF6D00E69AAC /* WARootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WARootViewController.m; sourceTree = "<group>"; };
 		1434385E129F7B9A00C06282 /* WAButtonWithLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAButtonWithLink.h; sourceTree = "<group>"; };
 		1434385F129F7B9A00C06282 /* WAButtonWithLink.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAButtonWithLink.m; sourceTree = "<group>"; };
 		14343A1D12A02A5700C06282 /* WAMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WAMapView.h; path = Classes/WAMapView.h; sourceTree = "<group>"; };
@@ -1074,8 +1070,6 @@
 				1424382614BC381B005ABB4A /* SplashScreen */,
 				1D3623240D0F684500981E51 /* WAAppDelegate.h */,
 				1D3623250D0F684500981E51 /* WAAppDelegate.m */,
-				142F532E17E0BF6D00E69AAC /* WARootViewController.h */,
-				142F532F17E0BF6D00E69AAC /* WARootViewController.m */,
 				14E007DF1274716F005514AA /* WAUtilities.h */,
 				14E007E01274716F005514AA /* WAUtilities.m */,
 			);
@@ -1660,7 +1654,6 @@
 				144B2C7B182388F500CDD200 /* APAppirater.m in Sources */,
 				149086B817E375D700943DD2 /* WAPaginatedView.m in Sources */,
 				149086B917E375D700943DD2 /* WAScreenView.m in Sources */,
-				149086BA17E375D700943DD2 /* WARootViewController.m in Sources */,
 				149086BB17E375D700943DD2 /* WAPDFParser.m in Sources */,
 				149086BC17E375D700943DD2 /* WAThumbnailsView.m in Sources */,
 				149086BD17E375D700943DD2 /* WARSSViewController.m in Sources */,
@@ -1749,7 +1742,6 @@
 				14DB1196164BEDC3001FE76B /* WAAppDelegate.m in Sources */,
 				14DB1197164BEDC3001FE76B /* WAPaginatedView.m in Sources */,
 				14DB1198164BEDC3001FE76B /* WAScreenView.m in Sources */,
-				142F533117E0BF6D00E69AAC /* WARootViewController.m in Sources */,
 				14DB1199164BEDC3001FE76B /* WAPDFParser.m in Sources */,
 				14DB119A164BEDC3001FE76B /* WAThumbnailsView.m in Sources */,
 				14DB119B164BEDC3001FE76B /* WARSSViewController.m in Sources */,

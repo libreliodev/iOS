@@ -1,28 +1,27 @@
 //  Copyright 2011 WidgetAvenue - Librelio. All rights reserved.
 
 #import <UIKit/UIKit.h>
-#import "WAPaymentTransactionObserver.h"	
+#import "WAPaymentTransactionObserver.h"
 #import "WAPListParser.h"
 #import "EAAppSubDelegate.h"
 
 #import "WASplashScreenViewController.h"
-#import "WARootViewController.h"
 
 
 
 @interface WAAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> {
-	UIWindow *window;
-	WARootViewController *appTabBarController;
+    UIWindow *window;
+    UIViewController *rootViewController;
     WASplashScreenViewController * splashScreenViewController;
-	WAPaymentTransactionObserver *observer;
+    WAPaymentTransactionObserver *observer;
     EAAppSubDelegate * apnsSubDelegate;
     NSMetadataQuery * metadataQuery;
-
-
+    
+    
 }
 
 @property (nonatomic, retain) UIWindow *window;
-@property (nonatomic, retain) UITabBarController *appTabBarController;
+@property (nonatomic, retain) UITabBarController *rootViewController;
 @property (nonatomic, retain) WASplashScreenViewController * splashScreenViewController;
 @property (nonatomic, retain) EAAppSubDelegate * apnsSubDelegate;
 @property (nonatomic, retain) NSMetadataQuery * metadataQuery;
