@@ -109,26 +109,12 @@
         if (![WAUtilities isBigScreen]) nibName = @"WASplashScreenViewController_iPhone";
         splashScreenViewController = [[WASplashScreenViewController alloc]initWithNibName:nibName bundle:nil];
         
-        /**Old code, may have caused problems with Apple's reviews
-         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
-         {
-         // iPhone
-         splashScreenViewController = [[WASplashScreenViewController alloc]initWithNibName:@"WASplashScreenViewController_iPhone" bundle:nil];
-         
-         }
-         else
-         {
-         // iPad
-         
-         splashScreenViewController = [[WASplashScreenViewController alloc]initWithNibName:@"WASplashScreenViewController_iPad" bundle:nil];
-         
-         }**/
-        
         
         
         // Show the default splash screen
         splashScreenViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
         [rootViewController presentModalViewController:splashScreenViewController animated:NO];
+        NSLog(@"SplashscreenViewController presented");
         //splashScreenViewController.view.hidden= YES;//Keep the view hidden until the image is received
         splashScreenViewController.rootViewController = rootViewController;
         
@@ -147,24 +133,9 @@
     //SLog(@"Application did become active");
     // Clear application badge
     application.applicationIconBadgeNumber = 0;
-    //Check if publisherCode1 changed; if yes, we need to update the tabs
-    NSString * old = [[NSUserDefaults standardUserDefaults]objectForKey:@"OldPublisherCode1"];
-    old = old?old:@"waempty";
-    NSString * new = [[NSUserDefaults standardUserDefaults]objectForKey:@"PublisherCode1"];
-    new = new?new:@"waempty";
-    //SLog(@"old:%@,new:%@",old,new);
-    if (![old isEqual:new]){
-        [[NSUserDefaults standardUserDefaults]setObject:new forKey:@"OldPublisherCode1"];
-        //SLog(@"will updateRootViewCOntroller");
-        [self updateRootViewController];
-    }
-    else{
-        //Request ad if appropriate; this needs to be done here (and not in "didFinishLaunchingWithOptions") so that the ad is also displayed when the app awakes from background
-        
-        [splashScreenViewController requestAd];
-    }
-    
-    
+
+    //Request ad if appropriate; this needs to be done here (and not in "didFinishLaunchingWithOptions") so that the ad is also displayed when the app awakes from background
+    [splashScreenViewController requestAd];
     
     
     //Register event with GA

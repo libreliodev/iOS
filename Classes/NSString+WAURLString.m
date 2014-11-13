@@ -147,6 +147,28 @@
 	
 }
 
+- (NSString*) urlBySubstitutingHyphensWithResolutionForOrientation:(UIInterfaceOrientation)orientation{
+    if ([self rangeOfString:@"--x--"].location == NSNotFound){
+        return self;
+    }
+    else{
+        CGFloat height = [[ UIScreen mainScreen ]bounds].size.height;
+        CGFloat width = [[ UIScreen mainScreen ]bounds].size.width;
+        NSString*resolution;
+        switch(orientation)
+        {
+            case UIInterfaceOrientationPortrait:
+            case UIInterfaceOrientationPortraitUpsideDown:
+                resolution =  [NSString stringWithFormat:@"--%fx%fpx",width,height];
+            default:
+                resolution =  [NSString stringWithFormat:@"--%fx%fpx",height,width];
+        }
+        NSString * ret = [self stringByReplacingOccurrencesOfString:@"----" withString:resolution];
+        return ret;
+        
+    }
+}
+
 - (NSString*) urlByRemovingFinalUnderscoreInUrlString{
 	NSRange range = [self rangeOfString:@"_." options:NSBackwardsSearch];
 	NSString * ret = self;

@@ -22,6 +22,7 @@
 - (NSString *) urlOfUnzippedFolder;
 - (NSString*) urlOfCacheFileWithName:(NSString*)fileName;
 - (NSString*) urlByChangingSchemeOfUrlStringToScheme:(NSString*)newScheme;
+- (NSString*) urlBySubstitutingHyphensWithResolutionForOrientation:(UIInterfaceOrientation)orientation;
 - (NSString*) urlByRemovingFinalUnderscoreInUrlString;
 - (BOOL) isUrlStringOfSameFileAsUrlString:(NSString*) otherUrlString;
 - (NSString *) valueOfParameterInUrlStringforKey:(NSString*)key;

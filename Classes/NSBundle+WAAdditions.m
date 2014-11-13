@@ -60,7 +60,8 @@
         NSString * orientationString=@"";
         switch (orientation) {
             case UIInterfaceOrientationPortrait:
-            case UIInterfaceOrientationPortraitUpsideDown:{
+            case UIInterfaceOrientationPortraitUpsideDown:
+            case UIInterfaceOrientationUnknown:{
                 orientationString = @"Portrait";
                 break;
             }
