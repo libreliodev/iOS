@@ -163,7 +163,7 @@
             default:
                 resolution =  [NSString stringWithFormat:@"--%fx%fpx",height,width];
         }
-        NSString * ret = [self stringByReplacingOccurrencesOfString:@"----" withString:resolution];
+        NSString * ret = [self stringByReplacingOccurrencesOfString:@"--x--" withString:resolution];
         return ret;
         
     }
@@ -262,6 +262,22 @@
 	return [NSString stringWithFormat:@"%@/%@_cache/%@",pdfDirUrl,pdfNameWithoutExt,fileName];
 	
 }
+
+
+- (NSString*) urlOfMainFileOfPackageWithUrlString{
+    //If extension is .plugin, change url string.
+    NSString* extension = [self pathExtension];
+    if ([extension isEqualToString:@"plugin"]){
+        NSString * fileName = [self nameOfFileWithoutExtensionOfUrlString];
+        return ([NSString stringWithFormat:@"%@/%@.pdf",self,fileName]);
+        
+    }
+    else{
+        return self;
+    }
+
+}
+
 
 -   (NSString *) urlOfUnzippedFolder{
     //If there is a waroot arg, use it

@@ -122,7 +122,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	int row = (int)indexPath.row+1;
 	NSString * newUrlString = [parser getDataAtRow:row forDataCol:DataColDetailLink];
-	
+	//Change url if file is a package
+    
+    newUrlString = [newUrlString urlOfMainFileOfPackageWithUrlString];
+    
 	WAModuleViewController * loadingViewController = [[WAModuleViewController alloc]init];
 	loadingViewController.moduleUrlString= [WAUtilities absoluteUrlOfRelativeUrl:newUrlString relativeToUrl:urlString] ;
     //SLog(@"Should load %@",[WAUtilities absoluteUrlOfRelativeUrl:newUrlString relativeToUrl:urlString]);

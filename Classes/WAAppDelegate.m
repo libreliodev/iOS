@@ -95,7 +95,7 @@
     window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]; //We are not using a Xib
     
     //SLog(@"Will updateRootViewController");
-    [self updateRootViewController];
+    [self createRootViewController];
     //SLog(@"Did updateRootViewController");
     
     
@@ -119,7 +119,8 @@
         splashScreenViewController.rootViewController = rootViewController;
         
     }
-    //SLog(@"Will launch appirater");
+    
+      //SLog(@"Will launch appirater");
     
     //Notify appirater that launching is finished
     [Appirater appLaunched:YES];
@@ -181,11 +182,11 @@
     NSString * urlString;
     
     if ([url isFileURL]){
-        //SLog(@"Is File Url %@ with annotation %@",url,annotation);
+        NSLog(@"Is File Url %@ with annotation %@",url,annotation);
         //url represents a  file
         
         //Define the urlString to open the module
-        urlString = [NSString stringWithFormat:@"Inbox/%@",[[url absoluteString] lastPathComponent]];
+        urlString = [NSString stringWithFormat:@"/Inbox/%@",[[url absoluteString] lastPathComponent]];
         
         //Move document from document directory to cache
         [WAUtilities storeFileWithUrlString:urlString withFileAtPath:[url path]];
@@ -204,6 +205,11 @@
         [metaDic setObject:[NSDate date] forKey:@"DownloadDate"];
         [metaDic setObject:urlString forKey:@"FileUrl"];
         [metaDic writeToFile:plistPath atomically:YES];
+         
+        
+        //If file is package, change Url
+        
+        urlString = [urlString urlOfMainFileOfPackageWithUrlString];
         
         
         
@@ -217,10 +223,14 @@
         
         //Add waupdate=0 so that the document is updated every time it is opened
         urlString = [urlString urlByAddingParameterInUrlStringWithKey:@"waupdate" withValue:@"0"];//This permits cached file to be refreshed everytime the main document is changed
+        urlString = [NSString stringWithFormat:@"/%@",urlString];
+        
         
         
         
     }
+    //Add leading slash in order to have absolute Url
+ 
     //SLog(@"Will load url:%@",urlString);
     WAModuleViewController * moduleViewController = [[WAModuleViewController alloc]init];
     moduleViewController.moduleUrlString= urlString;
@@ -305,16 +315,11 @@
 
 
 
-- (void) updateRootViewController {
+- (void) createRootViewController {
     //Create the views
     WAPListParser * parser = [[WAPListParser alloc]init];
     parser.urlString = @"/Tabs.plist";
     
-    if (rootViewController){
-        window.rootViewController = nil;
-        [rootViewController release];
-    }
-    //SLog(@"Will init WARootViewController");
     
     if ([parser countData]>1){
         //If TabsPlist contains more than 1 item, we do use tabs
@@ -352,9 +357,8 @@
         
         
     }
-    
-    
-    
+
+     
     window.rootViewController = rootViewController;
     window.backgroundColor = [UIColor blackColor];
     //SLog(@"Will add subview");
@@ -375,7 +379,7 @@
     //Check if the view is a webview; in this case, we load it for speed reasons
     if ((tabviews.count>0)&&([tabUrlString typeOfParserOfUrlString]==ParserTypeHTML)&&(![tabUrlString isLocalUrl])){
         //SLog(@"Will load view in background with Url %@",urlString);
-        moduleViewController.view.tag = 111;			//Hack: force loadView if it is a webview with an external URL except for tab 1
+        //moduleViewController.view.tag = 111;			//Hack: force loadView if it is a webview with an external URL except for tab 1
         
     }
     

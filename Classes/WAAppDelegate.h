@@ -31,7 +31,7 @@
 /**
  * @brief: Builds or update the root view controller (tab view)
  **/
-- (void) updateRootViewController;
+- (void) createRootViewController;
 
 /**
  * @brief: Adds a view controller to the tab views

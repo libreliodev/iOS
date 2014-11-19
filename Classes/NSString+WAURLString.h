@@ -21,6 +21,7 @@
 - (NSString *) pathOfStorageForUrlString;
 - (NSString *) urlOfUnzippedFolder;
 - (NSString*) urlOfCacheFileWithName:(NSString*)fileName;
+- (NSString*) urlOfMainFileOfPackageWithUrlString;
 - (NSString*) urlByChangingSchemeOfUrlStringToScheme:(NSString*)newScheme;
 - (NSString*) urlBySubstitutingHyphensWithResolutionForOrientation:(UIInterfaceOrientation)orientation;
 - (NSString*) urlByRemovingFinalUnderscoreInUrlString;
