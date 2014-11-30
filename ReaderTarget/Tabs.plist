@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>FileName</key>
+		<string>Publications.plist?waupdate=120&amp;waurl=s3%3A%2F%2Flibrelio-europe%2Fceol%2Fhorizons%2FMagazines.plist</string>
+		<key>Icon</key>
+		<string>download.png</string>
+		<key>Title</key>
+		<string>Exemples</string>
+	</dict>
+	<dict>
+		<key>FileName</key>
+		<string>file://localhost/local.local</string>
+		<key>Icon</key>
+		<string>folder.png</string>
+		<key>Title</key>
+		<string>Downloads</string>
+	</dict>
+	<dict>
+		<key>FileName</key>
+		<string>file://localhost/itunes.local?waview=8&amp;wasuffix=pdf&amp;wadepth=0&amp;wadir=Documents</string>
+		<key>Icon</key>
+		<string>documents.png</string>
+		<key>Title</key>
+		<string>iTunes</string>
+	</dict>
+	<dict>
+		<key>FileName</key>
+		<string>http://www.widgetavenue.com/Librelio/</string>
+		<key>Icon</key>
+		<string>information.png</string>
+		<key>Title</key>
+		<string>Librelio</string>
+	</dict>
+</array>
+</plist>
