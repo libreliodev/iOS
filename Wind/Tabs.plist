@@ -28,19 +28,19 @@
 	</dict>
 	<dict>
 		<key>FileName</key>
-		<string>http://www.windmag.com?wabar=bo</string>
+		<string>http://apphost/data.tsv</string>
 		<key>Icon</key>
 		<string>globe.png</string>
 		<key>Title</key>
-		<string>Site</string>
+		<string>TSV test</string>
 	</dict>
 	<dict>
 		<key>FileName</key>
-		<string>https://www.facebook.com/windmag?waubar=no</string>
+		<string>zzzzzzzz://apphost/csvreader.html?waurl=/skis/skis.csv</string>
 		<key>Icon</key>
-		<string>facebook.png</string>
+		<string>globe.png</string>
 		<key>Title</key>
-		<string>Facebook</string>
+		<string>CSV Test</string>
 	</dict>
 </array>
 </plist>

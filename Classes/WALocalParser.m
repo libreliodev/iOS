@@ -230,7 +230,7 @@
         [[NSFileManager defaultManager]removeItemAtPath:filePath error:NULL];
         
         //Delete _metadata.plist file
-        NSString * metadataUrlString = [WAUtilities urlByChangingExtensionOfUrlString:fileUrl toSuffix:@"_metadata.plist"];
+        NSString * metadataUrlString = [fileUrl urlByChangingExtensionOfUrlStringToSuffix:@"_metadata.plist"];
         NSString * metadataPath = [[NSBundle mainBundle] pathOfFileWithUrl:metadataUrlString];
         [[NSFileManager defaultManager]removeItemAtPath:metadataPath error:NULL];
 

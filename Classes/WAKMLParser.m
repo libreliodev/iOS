@@ -138,7 +138,7 @@
 			NSString * htmlBody = [self getStringForXPath:(xmlChar *)[xPath cStringUsingEncoding: NSASCIIStringEncoding ]];
 
 			//Get the template html
-			NSString * templatePath = [[NSBundle mainBundle] pathOfFileWithUrl:[WAUtilities urlByChangingExtensionOfUrlString:urlString toSuffix:@".html"]];
+			NSString * templatePath = [[NSBundle mainBundle] pathOfFileWithUrl:[urlString urlByChangingExtensionOfUrlStringToSuffix:@".html"]];
 			if (!templatePath) templatePath = [[NSBundle mainBundle] pathOfFileWithUrl:@"HTMLTemplate.html"];
 			NSString * templateString = [NSString stringWithContentsOfFile:templatePath encoding:NSUTF8StringEncoding error:nil];
 			NSString * ret = [NSString stringWithFormat:templateString,title,htmlBody]; 

@@ -21,6 +21,8 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import "WAURLProtocol.h"
+
 
 
 @implementation WAAppDelegate
@@ -48,6 +50,9 @@
     
     //Create subdelegate for push notifications
     apnsSubDelegate = [[EAAppSubDelegate alloc]init];
+    
+    //Register NSURLProtocol
+    [NSURLProtocol registerClass:[WAURLProtocol class]];
     
     
     //Launch Google analytics

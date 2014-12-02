@@ -70,7 +70,7 @@
 			ret= [tempDic objectForKey:@"Subtitle"];
 			break;
 		case DataColImage:{
-			NSString * imgUrl = [WAUtilities urlByChangingExtensionOfUrlString:noUnderscoreUrlString toSuffix:@".png"];
+			NSString * imgUrl = [noUnderscoreUrlString urlByChangingExtensionOfUrlStringToSuffix:@".png"];
 			NSString * imgPath = [[NSBundle mainBundle] pathOfFileWithUrl:imgUrl];
 			ret = imgPath;
 			break;}
@@ -279,7 +279,7 @@
         NSString *pdfUrl = [dic objectForKey: @"FileName"];
         pdfUrl = [pdfUrl urlByRemovingFinalUnderscoreInUrlString];//Remove underscore
         pdfUrl = [WAUtilities absoluteUrlOfRelativeUrl:pdfUrl relativeToUrl:urlString];
-        NSString * coverUrl = [WAUtilities urlByChangingExtensionOfUrlString:pdfUrl toSuffix:@".png"];
+        NSString * coverUrl = [pdfUrl urlByChangingExtensionOfUrlStringToSuffix:@".png"];
         [tempArray2 addObject:coverUrl];
     }	
     

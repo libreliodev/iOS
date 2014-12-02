@@ -187,6 +187,13 @@
     
 }
 
+- (NSString*) urlByChangingExtensionOfUrlStringToSuffix:(NSString*)newSuffix{
+    NSString *fileName = [self noArgsPartOfUrlString];
+    NSString *newFileName = [NSString stringWithFormat:@"%@%@", [fileName nameOfFileWithoutExtensionOfUrlString],newSuffix];
+    return [WAUtilities absoluteUrlOfRelativeUrl:newFileName relativeToUrl:self];
+    
+}
+
 
 - (BOOL) isUrlStringOfSameFileAsUrlString:(NSString*) otherUrlString {
     NSString * noLocalHost1 = [self stringByReplacingOccurrencesOfString:@"http://localhost" withString:@""];

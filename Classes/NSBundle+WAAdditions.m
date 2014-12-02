@@ -48,7 +48,7 @@
 	NSString *deviceName = [WAUtilities isBigScreen] ? @"ipad" : @"iphone";
 	NSString * extension = [filePath pathExtension];	
 	NSString *suffix = [NSString stringWithFormat:@"~%@.%@",deviceName,extension];
-	NSString *filePathWithDeviceSuffix = [WAUtilities urlByChangingExtensionOfUrlString:filePath toSuffix:suffix];
+	NSString *filePathWithDeviceSuffix = [filePath urlByChangingExtensionOfUrlStringToSuffix:suffix];
     
     //Build names with orientation (and device) suffixes
     NSString * filePathWithOrientationSuffix;
@@ -72,8 +72,8 @@
             }
         }
          //SLog(@"File path:%@ orientation:%@ ext:%@",filePath, orientationString,extension);
-        filePathWithOrientationSuffix = [WAUtilities urlByChangingExtensionOfUrlString:filePath toSuffix:[NSString stringWithFormat:@"-%@.%@",orientationString,extension]];
-        filePathWithOrientationAndDeviceSuffix = [WAUtilities urlByChangingExtensionOfUrlString:filePath toSuffix:[NSString stringWithFormat:@"-%@~%@.%@",orientationString,deviceName,extension]];
+        filePathWithOrientationSuffix = [filePath urlByChangingExtensionOfUrlStringToSuffix:[NSString stringWithFormat:@"-%@.%@",orientationString,extension]];
+        filePathWithOrientationAndDeviceSuffix = [filePath urlByChangingExtensionOfUrlStringToSuffix:[NSString stringWithFormat:@"-%@~%@.%@",orientationString,deviceName,extension]];
          //SLog(@"filePathWithOrientationAndDeviceSuffix:%@",filePathWithOrientationAndDeviceSuffix);
     }
     

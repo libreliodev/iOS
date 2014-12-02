@@ -88,7 +88,7 @@
 	else {
         //Update the metadata plist to reflect the fact that download is complete
         NSString * mainFilePath = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
-        NSString * plistPath = [WAUtilities urlByChangingExtensionOfUrlString:mainFilePath toSuffix:@"_metadata.plist"];
+        NSString * plistPath = [mainFilePath urlByChangingExtensionOfUrlStringToSuffix:@"_metadata.plist"];
         NSMutableDictionary * metaDic = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
         //SLog(@"Will set downloadcomplete");
         [metaDic setObject:@"YES" forKey:@"DownloadComplete"];
@@ -110,7 +110,7 @@
     
     //Update metadata plist
     NSString * mainFilePath = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
-    NSString * plistPath = [WAUtilities urlByChangingExtensionOfUrlString:mainFilePath toSuffix:@"_metadata.plist"];
+    NSString * plistPath = [mainFilePath urlByChangingExtensionOfUrlStringToSuffix:@"_metadata.plist"];
     
      if (nnewResourcesArray){
          NSMutableDictionary * metaDic = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];

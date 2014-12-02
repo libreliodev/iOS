@@ -223,6 +223,8 @@
 		1462330317E1FE210066084C /* newspaper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1462319017E1FE1D0066084C /* newspaper@2x.png */; };
 		1462330517E1FE210066084C /* top-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 1462319117E1FE1D0066084C /* top-list.png */; };
 		1462330717E1FE210066084C /* top-list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1462319217E1FE1D0066084C /* top-list@2x.png */; };
+		1468D6B41994ADDE00FECF1A /* ajax_info.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1468D6B21994ADDE00FECF1A /* ajax_info.txt */; };
+		1468D6B51994ADDE00FECF1A /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 1468D6B31994ADDE00FECF1A /* index.html */; };
 		146E000117E20F49000EE3DB /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 146EFFFE17E20F49000EE3DB /* back.png */; };
 		146E000317E20F49000EE3DB /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 146EFFFF17E20F49000EE3DB /* back@2x.png */; };
 		146E000717E22654000EE3DB /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 146E000417E22654000EE3DB /* list.png */; };
@@ -374,6 +376,8 @@
 		1490873D17E43B3B00943DD2 /* path.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1490873C17E43B3B00943DD2 /* path.txt */; };
 		1494A1AB16FAC24100DE034A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E0178B16F9CC5B007EC00E /* CoreData.framework */; };
 		1494B53016FB0D2300DE034A /* news.rss in Resources */ = {isa = PBXBuildFile; fileRef = 1494B52F16FB0D2300DE034A /* news.rss */; };
+		149AB7EF19AB04A100296F89 /* skis.csv in Resources */ = {isa = PBXBuildFile; fileRef = 149AB7ED19AB04A100296F89 /* skis.csv */; };
+		149AB7F019AB04A100296F89 /* skis.tmpl in Resources */ = {isa = PBXBuildFile; fileRef = 149AB7EE19AB04A100296F89 /* skis.tmpl */; };
 		14A309A518378F0F00A519DD /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 142DB0581836A30D0045DFD5 /* ioapi.c */; };
 		14A309A618378F0F00A519DD /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 142DB05A1836A30D0045DFD5 /* mztools.c */; };
 		14A309A718378F0F00A519DD /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 142DB05C1836A30D0045DFD5 /* unzip.c */; };
@@ -409,6 +413,8 @@
 		14A80CA8168EC3DB006B0AA4 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BEE168EC3DB006B0AA4 /* white.png */; };
 		14AF2AA4190E80D300FE87EC /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14AF2AA2190E80D200FE87EC /* libGoogleAnalyticsServices.a */; };
 		14AF2AA5190E80D300FE87EC /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14AF2AA2190E80D200FE87EC /* libGoogleAnalyticsServices.a */; };
+		14D8296C19A2098E0059F3E0 /* WAURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D8296B19A2098E0059F3E0 /* WAURLProtocol.m */; };
+		14D8296D19A2098E0059F3E0 /* WAURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D8296B19A2098E0059F3E0 /* WAURLProtocol.m */; };
 		14DB116C164BEDC3001FE76B /* HTMLTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 14D46E381354A52000B388A8 /* HTMLTemplate.html */; };
 		14DB116D164BEDC3001FE76B /* WAFileManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142533121361BEFE00F6BB3D /* WAFileManagerCell.xib */; };
 		14DB116F164BEDC3001FE76B /* WAGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FD065B14222B1D002F9E35 /* WAGridCell.xib */; };
@@ -653,6 +659,8 @@
 		14639F2B12802FD300185D53 /* WAGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAGridView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		14687CD3135C6C3F000DEB82 /* WAPlainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAPlainView.h; sourceTree = "<group>"; };
 		14687CD4135C6C3F000DEB82 /* WAPlainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAPlainView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		1468D6B21994ADDE00FECF1A /* ajax_info.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ajax_info.txt; sourceTree = "<group>"; };
+		1468D6B31994ADDE00FECF1A /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		146DAA791543D077000B7B69 /* WAAtomParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAAtomParser.h; sourceTree = "<group>"; };
 		146DAA7A1543D077000B7B69 /* WAAtomParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAAtomParser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		146E000417E22654000EE3DB /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = list.png; path = Resources/list.png; sourceTree = "<group>"; };
@@ -705,6 +713,8 @@
 		1494B52F16FB0D2300DE034A /* news.rss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = news.rss; sourceTree = "<group>"; };
 		149633AF150DE7CE0058E086 /* EAAppSubDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAAppSubDelegate.h; sourceTree = "<group>"; };
 		149633B0150DE7CE0058E086 /* EAAppSubDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAAppSubDelegate.m; sourceTree = "<group>"; };
+		149AB7ED19AB04A100296F89 /* skis.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = skis.csv; sourceTree = "<group>"; };
+		149AB7EE19AB04A100296F89 /* skis.tmpl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = skis.tmpl; sourceTree = "<group>"; };
 		14A1DB45145F04B1005366C7 /* Scanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scanner.h; sourceTree = "<group>"; };
 		14A1DB46145F04B1005366C7 /* Scanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scanner.m; sourceTree = "<group>"; };
 		14A1DB61145F1F23005366C7 /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
@@ -772,6 +782,8 @@
 		14D37B6014B6DEAA00BA49C0 /* WAAddressAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WAAddressAnnotation.h; path = Classes/WAAddressAnnotation.h; sourceTree = "<group>"; };
 		14D37B6114B6DEAA00BA49C0 /* WAAddressAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WAAddressAnnotation.m; path = Classes/WAAddressAnnotation.m; sourceTree = "<group>"; };
 		14D46E381354A52000B388A8 /* HTMLTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HTMLTemplate.html; sourceTree = "<group>"; };
+		14D8296A19A2098E0059F3E0 /* WAURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAURLProtocol.h; sourceTree = "<group>"; };
+		14D8296B19A2098E0059F3E0 /* WAURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAURLProtocol.m; sourceTree = "<group>"; };
 		14DB1215164BEDC4001FE76B /* Wind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14DB136E164C52C4001FE76B /* Application.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Application.plist; sourceTree = "<group>"; };
 		14DB136F164C52C4001FE76B /* Application_.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Application_.plist; sourceTree = "<group>"; };
@@ -1345,6 +1357,8 @@
 				1D3623250D0F684500981E51 /* WAAppDelegate.m */,
 				14E007DF1274716F005514AA /* WAUtilities.h */,
 				14E007E01274716F005514AA /* WAUtilities.m */,
+				14D8296A19A2098E0059F3E0 /* WAURLProtocol.h */,
+				14D8296B19A2098E0059F3E0 /* WAURLProtocol.m */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -1391,6 +1405,7 @@
 				14E1A201138678B800111E6C /* External Module */,
 				14C52F941264A56E000B272B /* Grid Module */,
 				14577FBD129C339800E75640 /* Map module */,
+				14D8295D19A1C5820059F3E0 /* CSV module */,
 				1400003012B341FC00BD96ED /* Text Module */,
 			);
 			name = Modules;
@@ -1508,9 +1523,20 @@
 			name = "Video Module";
 			sourceTree = "<group>";
 		};
+		14D8295D19A1C5820059F3E0 /* CSV module */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CSV module";
+			sourceTree = "<group>";
+		};
 		14DB136D164C52C4001FE76B /* WindTarget */ = {
 			isa = PBXGroup;
 			children = (
+				149AB7ED19AB04A100296F89 /* skis.csv */,
+				149AB7EE19AB04A100296F89 /* skis.tmpl */,
+				1468D6B21994ADDE00FECF1A /* ajax_info.txt */,
+				1468D6B31994ADDE00FECF1A /* index.html */,
 				1494B52F16FB0D2300DE034A /* news.rss */,
 				14DB136E164C52C4001FE76B /* Application.plist */,
 				14DB136F164C52C4001FE76B /* Application_.plist */,
@@ -1930,6 +1956,7 @@
 				146232FD17E1FE210066084C /* folder@2x.png in Resources */,
 				144B2C5518229DE200CDD200 /* calendar@2x.png in Resources */,
 				14DB116C164BEDC3001FE76B /* HTMLTemplate.html in Resources */,
+				149AB7EF19AB04A100296F89 /* skis.csv in Resources */,
 				14DB116D164BEDC3001FE76B /* WAFileManagerCell.xib in Resources */,
 				14DB116F164BEDC3001FE76B /* WAGridCell.xib in Resources */,
 				14DB1170164BEDC3001FE76B /* WASplashWebViewController_iPad.xib in Resources */,
@@ -1946,6 +1973,7 @@
 				14DB1391164C52C4001FE76B /* Default-Landscape.png in Resources */,
 				14DB1392164C52C4001FE76B /* Default-Landscape@2x.png in Resources */,
 				144B2C6418229DE200CDD200 /* info.png in Resources */,
+				1468D6B41994ADDE00FECF1A /* ajax_info.txt in Resources */,
 				14DB1393164C52C4001FE76B /* Default-Portrait.png in Resources */,
 				14DB1394164C52C4001FE76B /* Default-Portrait@2x.png in Resources */,
 				14DB1395164C52C4001FE76B /* Default.png in Resources */,
@@ -1988,6 +2016,7 @@
 				14A80C4D168EC3DB006B0AA4 /* iphone.png in Resources */,
 				14A80C54168EC3DB006B0AA4 /* Loader.png in Resources */,
 				14A80C5B168EC3DB006B0AA4 /* newspaper.png in Resources */,
+				1468D6B51994ADDE00FECF1A /* index.html in Resources */,
 				14A80C69168EC3DB006B0AA4 /* Placeholder.png in Resources */,
 				146E000917E22654000EE3DB /* list@2x.png in Resources */,
 				14A80C77168EC3DB006B0AA4 /* rotate.png in Resources */,
@@ -2122,6 +2151,7 @@
 				149086B617E375D700943DD2 /* main.m in Sources */,
 				144B2C7B182388F500CDD200 /* APAppirater.m in Sources */,
 				149086B817E375D700943DD2 /* WAPaginatedView.m in Sources */,
+				14D8296D19A2098E0059F3E0 /* WAURLProtocol.m in Sources */,
 				149086B917E375D700943DD2 /* WAScreenView.m in Sources */,
 				149086BB17E375D700943DD2 /* WAPDFParser.m in Sources */,
 				149086BC17E375D700943DD2 /* WAThumbnailsView.m in Sources */,
