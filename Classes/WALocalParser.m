@@ -137,7 +137,7 @@
             
             //If file is a package, find main file
             NSString * mainFileUrl = [noUnderscoreUrlString urlOfMainFileOfPackageWithUrlString];
-            NSString * imgUrl = [WAUtilities urlByChangingExtensionOfUrlString:mainFileUrl toSuffix:@".png"];
+            NSString * imgUrl = [mainFileUrl urlByChangingExtensionOfUrlStringToSuffix:@".png"];
 			NSString * imgPath = [[NSBundle mainBundle] pathOfFileWithUrl:imgUrl];
 			//If there is no image, generate it or use Default.png
             UIImage * img = [UIImage  imageWithContentsOfFile:imgPath];

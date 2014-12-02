@@ -34,13 +34,5 @@
 		<key>Title</key>
 		<string>TSV test</string>
 	</dict>
-	<dict>
-		<key>FileName</key>
-		<string>zzzzzzzz://apphost/csvreader.html?waurl=/skis/skis.csv</string>
-		<key>Icon</key>
-		<string>globe.png</string>
-		<key>Title</key>
-		<string>CSV Test</string>
-	</dict>
 </array>
 </plist>
