@@ -20,7 +20,6 @@
 + (NSDate *) dateOfFileWithUrlString:(NSString*)name;
 + (NSString*)directoryUrlOfUrlString:(NSString*)urlString;//Returns the Url of the directory
 + (NSString*) absoluteUrlOfRelativeUrl:(NSString*)relativeUrl relativeToUrl:(NSString*)baseUrl;
-+ (NSString*) urlByChangingExtensionOfUrlString:(NSString*)urlString toSuffix:(NSString*)newExtension;
 + (NSString*) urlByRemovingContainingFolderIfSameNameInUrlString:(NSString*)urlString ;//If the url is in the form http://site/document/document.ext, returns http://site/document.ext
 + (BOOL) isCheckUpdateNeededForUrlString:(NSString*)urlString;//Returns true if the server should be queried to check wether a file is up to date
 

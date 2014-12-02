@@ -133,7 +133,7 @@
 		}
 		case DataColImage:{
 			NSString *noUnderscoreUrlString = [tempFileUrl urlByRemovingFinalUnderscoreInUrlString];//Remove the final underscore
-			NSString * imgUrl = [WAUtilities urlByChangingExtensionOfUrlString:noUnderscoreUrlString toSuffix:@".png"];
+			NSString * imgUrl = [noUnderscoreUrlString urlByChangingExtensionOfUrlStringToSuffix:@".png"];
 			NSString * imgPath = [[NSBundle mainBundle] pathOfFileWithUrl:imgUrl];
 			//If there is no image, generate it or use Default.png
             UIImage * img = [UIImage  imageWithContentsOfFile:imgPath];
@@ -226,7 +226,7 @@
         [[NSFileManager defaultManager]removeItemAtPath:filePath error:NULL];
         
         //Delete _metadata.plist file
-        NSString * metadataUrlString = [WAUtilities urlByChangingExtensionOfUrlString:fileUrl toSuffix:@"_metadata.plist"];
+        NSString * metadataUrlString = [fileUrl urlByChangingExtensionOfUrlStringToSuffix:@"_metadata.plist"];
         NSString * metadataPath = [[NSBundle mainBundle] pathOfFileWithUrl:metadataUrlString];
         [[NSFileManager defaultManager]removeItemAtPath:metadataPath error:NULL];
 

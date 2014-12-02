@@ -456,7 +456,7 @@
         
         //Store plist with metadata and list of resources for this download
         NSString * mainFilePath = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
-        NSString * plistPath = [WAUtilities urlByChangingExtensionOfUrlString:mainFilePath toSuffix:@"_metadata.plist"];
+        NSString * plistPath = [mainFilePath urlByChangingExtensionOfUrlStringToSuffix:@"_metadata.plist"];
         NSMutableDictionary * metaDic = [NSMutableDictionary dictionary];
         if (nnewResourcesArray) [metaDic setObject:nnewResourcesArray forKey:@"Resources"];
         [metaDic setObject:[NSDate date] forKey:@"DownloadDate"];
@@ -472,7 +472,7 @@
         NSString * noUnderscoreUrlPath = [[NSBundle mainBundle] pathOfFileWithUrl:noUnderscoreUrlString];//Check the path of the file without underscore
         if (noUnderscoreUrlPath&&(![mainFilePath isEqualToString:noUnderscoreUrlPath])){
             [[NSFileManager defaultManager]removeItemAtPath:noUnderscoreUrlPath error:NULL];//delete the no underscore file if it exists, and is not the same as the just downloaded file
-            NSString * noUnderscorePlistPath = [WAUtilities urlByChangingExtensionOfUrlString:noUnderscoreUrlPath toSuffix:@"_metadata.plist"];
+            NSString * noUnderscorePlistPath = [noUnderscoreUrlPath urlByChangingExtensionOfUrlStringToSuffix:@"_metadata.plist"];
             [[NSFileManager defaultManager]removeItemAtPath:noUnderscorePlistPath error:NULL];//delete the metadata plist
             //Delete cache
             NSString * cacheUrlString = [noUnderscoreUrlString urlOfCacheFileWithName:@""];

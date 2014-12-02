@@ -210,7 +210,7 @@
     
     //Add the cover image
 	NSString *noUnderscoreUrlString = [urlString urlByRemovingFinalUnderscoreInUrlString];//Remove the final underscore]
-    NSString * imgUrl = [WAUtilities urlByChangingExtensionOfUrlString:noUnderscoreUrlString toSuffix:@".png"];//Change extension to png
+    NSString * imgUrl = [noUnderscoreUrlString urlByChangingExtensionOfUrlStringToSuffix:@".png"];//Change extension to png
     NSString * relativeCoverUrl = [imgUrl lastPathComponent];//Use relative Url
     [resourcesAr addObject:relativeCoverUrl];
 

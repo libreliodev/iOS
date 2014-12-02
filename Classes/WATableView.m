@@ -231,7 +231,7 @@
         
         //Conventionally, the message html file has the same name as the main file, with the html extension; find the corresponding url;
         NSString * htmlMessageUrl = [[urlString noArgsPartOfUrlString] urlByChangingSchemeOfUrlStringToScheme:@"http"];
-        htmlMessageUrl = [WAUtilities urlByChangingExtensionOfUrlString:htmlMessageUrl toSuffix:@".html?warect=self"];
+        htmlMessageUrl = [htmlMessageUrl urlByChangingExtensionOfUrlStringToSuffix:@".html?warect=self"];
         WAModuleViewController * moduleViewController = [[WAModuleViewController alloc]init];
         
         //Load the html module

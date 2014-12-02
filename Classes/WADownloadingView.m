@@ -51,7 +51,7 @@
 	//Add image view
 	imageView = [[UIImageView alloc]init];
 	NSString *noUnderscoreUrlString = [urlString urlByRemovingFinalUnderscoreInUrlString];//Remove the final underscore
-	NSString * pngPath = [[NSBundle mainBundle] pathOfFileWithUrl:[WAUtilities urlByChangingExtensionOfUrlString:noUnderscoreUrlString toSuffix:@".png"]];
+	NSString * pngPath = [[NSBundle mainBundle] pathOfFileWithUrl:[noUnderscoreUrlString urlByChangingExtensionOfUrlStringToSuffix:@".png"]];
 	if (pngPath) imageView.image  = [UIImage imageWithContentsOfFile:pngPath];
 	else imageView.image = [UIImage imageNamed:@"Default-Portrait.png"];
 	imageView.contentMode = UIViewContentModeScaleAspectFit;

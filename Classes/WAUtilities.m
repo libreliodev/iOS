@@ -81,12 +81,6 @@
 
 }
 
-+ (NSString*) urlByChangingExtensionOfUrlString:(NSString*)urlString toSuffix:(NSString*)newSuffix{
-	NSString *fileName = [urlString noArgsPartOfUrlString];
-	NSString *newFileName = [NSString stringWithFormat:@"%@%@", [fileName nameOfFileWithoutExtensionOfUrlString],newSuffix];
-	return [self absoluteUrlOfRelativeUrl:newFileName relativeToUrl:urlString];
-
-}
 
 
 + (NSString*) urlByRemovingContainingFolderIfSameNameInUrlString:(NSString*)urlString {
@@ -222,7 +216,7 @@
     [[NSFileManager defaultManager]removeItemAtPath:path error:NULL];
     
     //Update the metadata dic if needed
-    NSString * plistUrl = [WAUtilities urlByChangingExtensionOfUrlString:urlString toSuffix:@"_metadata.plist"];
+    NSString * plistUrl = [urlString urlByChangingExtensionOfUrlStringToSuffix:@"_metadata.plist"];
     NSString * plistPath = [[NSBundle mainBundle] pathOfFileWithUrl:plistUrl];
     if (plistPath){
         NSMutableDictionary * metaDic = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
@@ -340,7 +334,7 @@
         }
         else {
             NSString * mainFilePath = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
-            NSString * metadataPlistPath = [WAUtilities urlByChangingExtensionOfUrlString:mainFilePath toSuffix:@"_metadata.plist"];
+            NSString * metadataPlistPath = [mainFilePath urlByChangingExtensionOfUrlStringToSuffix:@"_metadata.plist"];
             NSDictionary * metaDic = [NSDictionary dictionaryWithContentsOfFile:metadataPlistPath];
             if (![metaDic objectForKey:@"DownloadComplete"]) return YES;
             else return NO;

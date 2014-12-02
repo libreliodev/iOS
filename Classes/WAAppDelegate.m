@@ -233,7 +233,7 @@
 		//Create and store metadata plist
 		NSString * mainFilePath = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
         //SLog(@"urlString is %@ mainPath is %@",urlString,mainFilePath);
-		NSString * plistPath = [WAUtilities urlByChangingExtensionOfUrlString:mainFilePath toSuffix:@"_metadata.plist"];
+		NSString * plistPath = [mainFilePath urlByChangingExtensionOfUrlStringToSuffix:@"_metadata.plist"];
 		NSMutableDictionary * metaDic = [NSMutableDictionary dictionary];
 		[metaDic setObject:[NSDate date] forKey:@"DownloadDate"];
 		[metaDic setObject:urlString forKey:@"FileUrl"];
