@@ -279,11 +279,15 @@
         return ([NSString stringWithFormat:@"%@/%@.pdf",self,fileName]);
         
     }
+    else if ([extension isEqualToString:@"rtfd"]){
+        return ([NSString stringWithFormat:@"%@/index.html",self]);
+    }
     else{
         return self;
     }
-
+    
 }
+
 
 
 -   (NSString *) urlOfUnzippedFolder{
