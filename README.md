@@ -16,10 +16,5 @@ This project is Copyright 20012-2013 WidgetAvenue - Librelio, except included li
 The use of the Google Analytics library is governed by the following terms: http://www.google.com/analytics/tos.html
 
 
-
-## Source code of libraries used
-- EasyAPNS library: https://github.com/manifestinteractive/easyapns
- 
-
 ## Documentation
 The documentation is available in the [wiki](https://github.com/libreliodev/iOS/wiki).
