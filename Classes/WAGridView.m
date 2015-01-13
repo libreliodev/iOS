@@ -17,7 +17,7 @@
 
 @implementation WAGridView
 
-@synthesize parser,currentViewController,refreshControl;
+@synthesize parser,currentViewController,refreshControl,currentCollectionView;
 
 - (id)init {
     if (self = [super init]) {
@@ -45,16 +45,27 @@
         urlString = [[NSString alloc]initWithString: theString];
         //Initial setup is needed
         
+        self.separatorStyle = UITableViewCellSeparatorStyleNone;//We user a tableview because we want to have a refresh control, but we don't want it to be visible
+
         
         UIView * nibView = [UIView getNibView:[urlString nameOfFileWithoutExtensionOfUrlString] defaultNib:@"WAGridCell" forOrientation:999];
         cellNibSize = nibView.frame.size;
         //SLog(@"cellNibSize:%f,%f",nibView.frame.size.width,nibView.frame.size.height);
         
-        self.delegate = self;//UITableView delegate
-        self.dataSource = self;//UITableViewDataSource delegate
-        self.rowHeight = cellNibSize.height+2*kVerticalMargin;
-        self.separatorStyle = UITableViewCellSeparatorStyleNone;
+        UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
+        currentCollectionView=[[UICollectionView alloc] initWithFrame:self.frame collectionViewLayout:layout];
+        currentCollectionView.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
+
+        [currentCollectionView setDataSource:self];
+        [currentCollectionView setDelegate:self];
         
+        [currentCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
+        [currentCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerIdentifier"];
+        
+        [currentCollectionView setBackgroundColor:[UIColor redColor]];
+        
+        
+        [self addSubview:currentCollectionView];
         
         
         
@@ -67,7 +78,7 @@
             background.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
             background.contentMode = UIViewContentModeScaleAspectFill;
             background.image = [UIImage imageWithContentsOfFile:bgPath];
-            self.backgroundView = background;
+            //self.backgroundView = background;
             [background release];
         }
         
@@ -120,21 +131,54 @@
 
 
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    //SLog(@"Number of sections: %i",[[layoutDic objectForKey:@"SectionViews" ]count]);
-    return 1;
+    return parser.countData;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    int nbCols = [self numberofColumns];
-    int ret = floor(([parser countData]-1)/nbCols)+1;
-    //SLog(@"nbCol:%i,count:%i,ret:%i",nbCols,[parser countData],ret);
-    return (ret);
+    UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
+    
+    UIView * nibView = [cell.contentView viewWithTag:1000];
+    if (nibView == nil) {
+        
+        cell.backgroundColor=[UIColor greenColor];
+        UIView * nibView = [UIView getNibView:[urlString nameOfFileWithoutExtensionOfUrlString] defaultNib:@"WAGridCell" forOrientation:999];
+        nibView.autoresizingMask = UIViewAutoresizingNone;
+        nibView.frame = cell.contentView.frame;
+        [cell.contentView addSubview:nibView];
+        nibView.tag = 1000;
+
+        
+    }
+    [nibView populateNibWithParser:parser withButtonDelegate:self   forRow:(int)indexPath.row+1];
+
+
+    return cell;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+
+- (UICollectionReusableView *)collectionView: (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:
+                                         UICollectionElementKindSectionHeader withReuseIdentifier:@"headerIdentifier" forIndexPath:indexPath];
+    headerView.backgroundColor = [UIColor yellowColor];
+    return headerView;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return cellNibSize;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    CGSize headerSize = CGSizeMake(320, 44);
+    return headerSize;
+}
+
+
+
+/**- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%f",self.frame.size.width];//This prevents the same cells to be used in portrait and landscape mode, which poses problems.
@@ -185,6 +229,7 @@
     return cell;
     
 }
+ **/
 
 
 
@@ -197,6 +242,7 @@
     [urlString release];
     [parser release];
     [refreshControl release];
+    [currentCollectionView release];
     [super dealloc];
 }
 
@@ -277,7 +323,7 @@
     
     //Update the table
     [self initParser];
-    [self reloadData];
+    [currentCollectionView reloadData];
     
     
     
@@ -294,7 +340,7 @@
 - (void) moduleWillAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
     //Update the table
     [self initParser];
-    [self reloadData];
+    [currentCollectionView reloadData];
     
 }
 
@@ -309,7 +355,7 @@
     NSString *notificatedUrl = notification.object;
     //SLog(@"notification.object:%@",notification.object);
     if ([notificatedUrl respondsToSelector:@selector(noArgsPartOfUrlString)]){
-        if ([[notificatedUrl noArgsPartOfUrlString]isEqualToString:[urlString noArgsPartOfUrlString]])     [self reloadData];
+        if ([[notificatedUrl noArgsPartOfUrlString]isEqualToString:[urlString noArgsPartOfUrlString]])     [currentCollectionView reloadData];
     }
     
     [refreshControl endRefreshing];

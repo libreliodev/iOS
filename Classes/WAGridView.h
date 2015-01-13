@@ -8,18 +8,20 @@
 
 @class WAGridCell;
 
-@interface WAGridView : UITableView <UITableViewDelegate,UITableViewDataSource, UIGestureRecognizerDelegate,WAModuleProtocol>
+@interface WAGridView : UITableView <UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate,WAModuleProtocol>
 {
 	NSString *urlString;
 	UIViewController* currentViewController;
 	NSObject <WAParserProtocol> * parser;
     CGSize cellNibSize;
     UIRefreshControl *refreshControl;
+    UICollectionView * currentCollectionView;
 	
 }
 
 @property (nonatomic,retain) NSObject <WAParserProtocol> * parser;
 @property (nonatomic,retain) UIRefreshControl *refreshControl;
+@property (nonatomic,retain) UICollectionView * currentCollectionView;
 
 
 
