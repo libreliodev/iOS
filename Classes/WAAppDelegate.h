@@ -5,14 +5,17 @@
 #import "WAPListParser.h"
 #import "WAAppSubDelegate.h"
 
-#import "WASplashScreenViewController.h"
+#import "DFPInterstitial.h"
+#import "GADInterstitialDelegate.h"
 
 
 
-@interface WAAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> {
+
+
+@interface WAAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate,GADInterstitialDelegate> {
     UIWindow *window;
     UIViewController *rootViewController;
-    WASplashScreenViewController * splashScreenViewController;
+    DFPInterstitial * startInterstitial;
     WAPaymentTransactionObserver *observer;
     WAAppSubDelegate * apnsSubDelegate;
     NSMetadataQuery * metadataQuery;
@@ -22,7 +25,7 @@
 
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) UITabBarController *rootViewController;
-@property (nonatomic, retain) WASplashScreenViewController * splashScreenViewController;
+@property (nonatomic, retain) DFPInterstitial * startInterstitial;
 @property (nonatomic, retain) WAAppSubDelegate * apnsSubDelegate;
 @property (nonatomic, retain) NSMetadataQuery * metadataQuery;
 

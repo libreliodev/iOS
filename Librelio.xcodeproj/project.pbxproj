@@ -12,11 +12,7 @@
 		142EBB031A2B018C00BBDD97 /* HTMLTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 14D46E381354A52000B388A8 /* HTMLTemplate.html */; };
 		142EBB041A2B018C00BBDD97 /* WAFileManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142533121361BEFE00F6BB3D /* WAFileManagerCell.xib */; };
 		142EBB051A2B018C00BBDD97 /* WAGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FD065B14222B1D002F9E35 /* WAGridCell.xib */; };
-		142EBB061A2B018C00BBDD97 /* WASplashWebViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1424380F14BC36BE005ABB4A /* WASplashWebViewController_iPad.xib */; };
-		142EBB071A2B018C00BBDD97 /* WASplashWebViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1424381014BC36BE005ABB4A /* WASplashWebViewController_iPhone.xib */; };
 		142EBB081A2B018C00BBDD97 /* globe@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1462318E17E1FE1D0066084C /* globe@2x.png */; };
-		142EBB091A2B018C00BBDD97 /* WASplashScreenViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1424381114BC36BE005ABB4A /* WASplashScreenViewController_iPad.xib */; };
-		142EBB0A1A2B018C00BBDD97 /* WASplashScreenViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1424381214BC36BE005ABB4A /* WASplashScreenViewController_iPhone.xib */; };
 		142EBB0B1A2B018C00BBDD97 /* rss@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1490866C17E332A200943DD2 /* rss@2x.png */; };
 		142EBB0C1A2B018C00BBDD97 /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 144B2C5018229DE200CDD200 /* refresh@2x.png */; };
 		142EBB0D1A2B018C00BBDD97 /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 1462318B17E1FE1D0066084C /* download.png */; };
@@ -130,8 +126,6 @@
 		142EBB8E1A2B018C00BBDD97 /* WAMissingResourcesDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DD776C14A4F938004E06E5 /* WAMissingResourcesDownloader.m */; };
 		142EBB8F1A2B018C00BBDD97 /* WAZoomImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DD77A014A60D64004E06E5 /* WAZoomImage.m */; };
 		142EBB901A2B018C00BBDD97 /* WAAddressAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D37B6114B6DEAA00BA49C0 /* WAAddressAnnotation.m */; };
-		142EBB911A2B018C00BBDD97 /* WASplashWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1424381314BC36BE005ABB4A /* WASplashWebViewController.m */; };
-		142EBB921A2B018C00BBDD97 /* WASplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1424381514BC36BE005ABB4A /* WASplashScreenViewController.m */; };
 		142EBB931A2B018C00BBDD97 /* WAAppSubDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 149633B0150DE7CE0058E086 /* WAAppSubDelegate.m */; };
 		142EBB941A2B018C00BBDD97 /* WASharePopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E1B95A1537F6D700153BA5 /* WASharePopover.m */; };
 		142EBB951A2B018C00BBDD97 /* WAShareActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E1B9651538157700153BA5 /* WAShareActionSheet.m */; };
@@ -143,7 +137,6 @@
 		142EBB9B1A2B018C00BBDD97 /* WAImgParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 140DF34416197E7400815F26 /* WAImgParser.m */; };
 		142EBB9C1A2B018C00BBDD97 /* WAImgParserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 140DF35316198BD000815F26 /* WAImgParserView.m */; };
 		142EBB9D1A2B018C00BBDD97 /* UIImage+WAAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C35A0116295EEE00320A42 /* UIImage+WAAdditions.m */; };
-		142EBB9E1A2B018C00BBDD97 /* WASplashFileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6691BB164D1B8100C113F5 /* WASplashFileDownloader.m */; };
 		142EBBA01A2B018C00BBDD97 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E0178B16F9CC5B007EC00E /* CoreData.framework */; };
 		142EBBA11A2B018C00BBDD97 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		142EBBA21A2B018C00BBDD97 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -197,6 +190,24 @@
 		142EBBE91A2E5F7000BBDD97 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 142EBBE81A2E5F7000BBDD97 /* index.html */; };
 		142EBBEA1A2F588A00BBDD97 /* WAURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D8296B19A2098E0059F3E0 /* WAURLProtocol.m */; };
 		143A03691A68661C00CFD39A /* Test.plist in Resources */ = {isa = PBXBuildFile; fileRef = 143A03681A68661C00CFD39A /* Test.plist */; };
+		143A038C1A6DAC1800CFD39A /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 143A038A1A6DAC1800CFD39A /* libGoogleAdMobAds.a */; };
+		143A038D1A6DAC1900CFD39A /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 143A038A1A6DAC1800CFD39A /* libGoogleAdMobAds.a */; };
+		143A038E1A6DAC1900CFD39A /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 143A038A1A6DAC1800CFD39A /* libGoogleAdMobAds.a */; };
+		143A038F1A6DAC1900CFD39A /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 143A038B1A6DAC1800CFD39A /* README.txt */; };
+		143A03901A6DAC1900CFD39A /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 143A038B1A6DAC1800CFD39A /* README.txt */; };
+		143A03911A6DAC1900CFD39A /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 143A038B1A6DAC1800CFD39A /* README.txt */; };
+		143A03931A6DACD600CFD39A /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143A03921A6DACD600CFD39A /* AdSupport.framework */; };
+		143A03941A6DACFA00CFD39A /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143A03921A6DACD600CFD39A /* AdSupport.framework */; };
+		143A03951A6DAD0400CFD39A /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143A03921A6DACD600CFD39A /* AdSupport.framework */; };
+		143A03971A6DAD2F00CFD39A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143A03961A6DAD2F00CFD39A /* CoreTelephony.framework */; };
+		143A03981A6DAD3C00CFD39A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143A03961A6DAD2F00CFD39A /* CoreTelephony.framework */; };
+		143A03991A6DAD4E00CFD39A /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143A03961A6DAD2F00CFD39A /* CoreTelephony.framework */; };
+		143A039C1A6DAD7600CFD39A /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143A039A1A6DAD7600CFD39A /* EventKit.framework */; };
+		143A039D1A6DAD7600CFD39A /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143A039B1A6DAD7600CFD39A /* EventKitUI.framework */; };
+		143A039E1A6DAD9700CFD39A /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143A039A1A6DAD7600CFD39A /* EventKit.framework */; };
+		143A039F1A6DAD9700CFD39A /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143A039B1A6DAD7600CFD39A /* EventKitUI.framework */; };
+		143A03A01A6DADA400CFD39A /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143A039A1A6DAD7600CFD39A /* EventKit.framework */; };
+		143A03A11A6DADA400CFD39A /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143A039B1A6DAD7600CFD39A /* EventKitUI.framework */; };
 		144B2C5218229DE200CDD200 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 144B2C4718229DE200CDD200 /* calendar.png */; };
 		144B2C5318229DE200CDD200 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 144B2C4718229DE200CDD200 /* calendar.png */; };
 		144B2C5518229DE200CDD200 /* calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 144B2C4818229DE200CDD200 /* calendar@2x.png */; };
@@ -245,13 +256,9 @@
 		1490867A17E375D700943DD2 /* HTMLTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 14D46E381354A52000B388A8 /* HTMLTemplate.html */; };
 		1490867B17E375D700943DD2 /* WAFileManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142533121361BEFE00F6BB3D /* WAFileManagerCell.xib */; };
 		1490867C17E375D700943DD2 /* WAGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FD065B14222B1D002F9E35 /* WAGridCell.xib */; };
-		1490867D17E375D700943DD2 /* WASplashWebViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1424380F14BC36BE005ABB4A /* WASplashWebViewController_iPad.xib */; };
 		1490867E17E375D700943DD2 /* rss@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1490866C17E332A200943DD2 /* rss@2x.png */; };
 		1490867F17E375D700943DD2 /* top-list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1462319217E1FE1D0066084C /* top-list@2x.png */; };
-		1490868017E375D700943DD2 /* WASplashWebViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1424381014BC36BE005ABB4A /* WASplashWebViewController_iPhone.xib */; };
-		1490868117E375D700943DD2 /* WASplashScreenViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1424381114BC36BE005ABB4A /* WASplashScreenViewController_iPad.xib */; };
 		1490868217E375D700943DD2 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 146E000417E22654000EE3DB /* list.png */; };
-		1490868317E375D700943DD2 /* WASplashScreenViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1424381214BC36BE005ABB4A /* WASplashScreenViewController_iPhone.xib */; };
 		1490868B17E375D700943DD2 /* list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 146E000517E22654000EE3DB /* list@2x.png */; };
 		1490868D17E375D700943DD2 /* top-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 1462319117E1FE1D0066084C /* top-list.png */; };
 		1490868E17E375D700943DD2 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 146EFFFF17E20F49000EE3DB /* back@2x.png */; };
@@ -347,8 +354,6 @@
 		149086FC17E375D700943DD2 /* WAMissingResourcesDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DD776C14A4F938004E06E5 /* WAMissingResourcesDownloader.m */; };
 		149086FD17E375D700943DD2 /* WAZoomImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DD77A014A60D64004E06E5 /* WAZoomImage.m */; };
 		149086FE17E375D700943DD2 /* WAAddressAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D37B6114B6DEAA00BA49C0 /* WAAddressAnnotation.m */; };
-		149086FF17E375D700943DD2 /* WASplashWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1424381314BC36BE005ABB4A /* WASplashWebViewController.m */; };
-		1490870017E375D700943DD2 /* WASplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1424381514BC36BE005ABB4A /* WASplashScreenViewController.m */; };
 		1490870E17E375D700943DD2 /* WAAppSubDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 149633B0150DE7CE0058E086 /* WAAppSubDelegate.m */; };
 		1490870F17E375D700943DD2 /* WASharePopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E1B95A1537F6D700153BA5 /* WASharePopover.m */; };
 		1490871017E375D700943DD2 /* WAShareActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E1B9651538157700153BA5 /* WAShareActionSheet.m */; };
@@ -360,7 +365,6 @@
 		1490871617E375D700943DD2 /* WAImgParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 140DF34416197E7400815F26 /* WAImgParser.m */; };
 		1490871717E375D700943DD2 /* WAImgParserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 140DF35316198BD000815F26 /* WAImgParserView.m */; };
 		1490871817E375D700943DD2 /* UIImage+WAAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C35A0116295EEE00320A42 /* UIImage+WAAdditions.m */; };
-		1490871917E375D700943DD2 /* WASplashFileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6691BB164D1B8100C113F5 /* WASplashFileDownloader.m */; };
 		1490871B17E375D700943DD2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14E0178B16F9CC5B007EC00E /* CoreData.framework */; };
 		1490871C17E375D700943DD2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1424380514BC359E005ABB4A /* SystemConfiguration.framework */; };
 		1490871D17E375D700943DD2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -424,10 +428,6 @@
 		14DB116C164BEDC3001FE76B /* HTMLTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 14D46E381354A52000B388A8 /* HTMLTemplate.html */; };
 		14DB116D164BEDC3001FE76B /* WAFileManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 142533121361BEFE00F6BB3D /* WAFileManagerCell.xib */; };
 		14DB116F164BEDC3001FE76B /* WAGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14FD065B14222B1D002F9E35 /* WAGridCell.xib */; };
-		14DB1170164BEDC3001FE76B /* WASplashWebViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1424380F14BC36BE005ABB4A /* WASplashWebViewController_iPad.xib */; };
-		14DB1171164BEDC3001FE76B /* WASplashWebViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1424381014BC36BE005ABB4A /* WASplashWebViewController_iPhone.xib */; };
-		14DB1172164BEDC3001FE76B /* WASplashScreenViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1424381114BC36BE005ABB4A /* WASplashScreenViewController_iPad.xib */; };
-		14DB1173164BEDC3001FE76B /* WASplashScreenViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1424381214BC36BE005ABB4A /* WASplashScreenViewController_iPhone.xib */; };
 		14DB1195164BEDC3001FE76B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		14DB1196164BEDC3001FE76B /* WAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* WAAppDelegate.m */; };
 		14DB1197164BEDC3001FE76B /* WAPaginatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 767082FD0FEB223000BC5CD2 /* WAPaginatedView.m */; };
@@ -488,8 +488,6 @@
 		14DB11DE164BEDC3001FE76B /* WAMissingResourcesDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DD776C14A4F938004E06E5 /* WAMissingResourcesDownloader.m */; };
 		14DB11DF164BEDC3001FE76B /* WAZoomImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DD77A014A60D64004E06E5 /* WAZoomImage.m */; };
 		14DB11E0164BEDC3001FE76B /* WAAddressAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D37B6114B6DEAA00BA49C0 /* WAAddressAnnotation.m */; };
-		14DB11E1164BEDC3001FE76B /* WASplashWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1424381314BC36BE005ABB4A /* WASplashWebViewController.m */; };
-		14DB11E2164BEDC3001FE76B /* WASplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1424381514BC36BE005ABB4A /* WASplashScreenViewController.m */; };
 		14DB11F0164BEDC3001FE76B /* WAAppSubDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 149633B0150DE7CE0058E086 /* WAAppSubDelegate.m */; };
 		14DB11F1164BEDC3001FE76B /* WASharePopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E1B95A1537F6D700153BA5 /* WASharePopover.m */; };
 		14DB11F2164BEDC3001FE76B /* WAShareActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E1B9651538157700153BA5 /* WAShareActionSheet.m */; };
@@ -541,7 +539,6 @@
 		14DB13A1164C52C4001FE76B /* wind_355.png in Resources */ = {isa = PBXBuildFile; fileRef = 14DB1381164C52C4001FE76B /* wind_355.png */; };
 		14E42D4A183BC5590062825A /* WAZippedHtmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E42D48183BC5590062825A /* WAZippedHtmlParser.m */; };
 		14E42D4B183BC5590062825A /* WAZippedHtmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E42D48183BC5590062825A /* WAZippedHtmlParser.m */; };
-		BC6691C0164D1B8100C113F5 /* WASplashFileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = BC6691BB164D1B8100C113F5 /* WASplashFileDownloader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -558,14 +555,6 @@
 		1415A65712BA94BC00B16395 /* WASlideShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WASlideShowView.m; sourceTree = "<group>"; };
 		1424380514BC359E005ABB4A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		1424380714BC35B2005ABB4A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		1424380F14BC36BE005ABB4A /* WASplashWebViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WASplashWebViewController_iPad.xib; sourceTree = "<group>"; };
-		1424381014BC36BE005ABB4A /* WASplashWebViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WASplashWebViewController_iPhone.xib; sourceTree = "<group>"; };
-		1424381114BC36BE005ABB4A /* WASplashScreenViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WASplashScreenViewController_iPad.xib; sourceTree = "<group>"; };
-		1424381214BC36BE005ABB4A /* WASplashScreenViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WASplashScreenViewController_iPhone.xib; sourceTree = "<group>"; };
-		1424381314BC36BE005ABB4A /* WASplashWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WASplashWebViewController.m; sourceTree = "<group>"; };
-		1424381414BC36BE005ABB4A /* WASplashWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WASplashWebViewController.h; sourceTree = "<group>"; };
-		1424381514BC36BE005ABB4A /* WASplashScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WASplashScreenViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		1424381614BC36BE005ABB4A /* WASplashScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WASplashScreenViewController.h; sourceTree = "<group>"; };
 		1425322613606BF200F6BB3D /* WATabTabParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WATabTabParser.h; sourceTree = "<group>"; };
 		1425322713606BF200F6BB3D /* WATabTabParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WATabTabParser.m; sourceTree = "<group>"; };
 		1425323613606C7D00F6BB3D /* WAParserProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WAParserProtocol.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -623,6 +612,39 @@
 		143725AB128574FE00EB176B /* WAPDFParserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAPDFParserView.h; sourceTree = "<group>"; };
 		143725AC128574FE00EB176B /* WAPDFParserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAPDFParserView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		143A03681A68661C00CFD39A /* Test.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Test.plist; path = ../../../Downloads/Test.plist; sourceTree = "<group>"; };
+		143A036D1A6DAC1800CFD39A /* DFPBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPBannerView.h; sourceTree = "<group>"; };
+		143A036E1A6DAC1800CFD39A /* DFPExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPExtras.h; sourceTree = "<group>"; };
+		143A036F1A6DAC1800CFD39A /* DFPInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPInterstitial.h; sourceTree = "<group>"; };
+		143A03701A6DAC1800CFD39A /* DFPSwipeableBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPSwipeableBannerView.h; sourceTree = "<group>"; };
+		143A03711A6DAC1800CFD39A /* GADAdSizeDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSizeDelegate.h; sourceTree = "<group>"; };
+		143A03721A6DAC1800CFD39A /* GADAppEventDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAppEventDelegate.h; sourceTree = "<group>"; };
+		143A03731A6DAC1800CFD39A /* GADSwipeableBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADSwipeableBannerViewDelegate.h; sourceTree = "<group>"; };
+		143A03751A6DAC1800CFD39A /* GADCustomEventBanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventBanner.h; sourceTree = "<group>"; };
+		143A03761A6DAC1800CFD39A /* GADCustomEventBannerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventBannerDelegate.h; sourceTree = "<group>"; };
+		143A03771A6DAC1800CFD39A /* GADCustomEventExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventExtras.h; sourceTree = "<group>"; };
+		143A03781A6DAC1800CFD39A /* GADCustomEventInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventInterstitial.h; sourceTree = "<group>"; };
+		143A03791A6DAC1800CFD39A /* GADCustomEventInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventInterstitialDelegate.h; sourceTree = "<group>"; };
+		143A037A1A6DAC1800CFD39A /* GADCustomEventRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADCustomEventRequest.h; sourceTree = "<group>"; };
+		143A037C1A6DAC1800CFD39A /* GADSearchBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADSearchBannerView.h; sourceTree = "<group>"; };
+		143A037D1A6DAC1800CFD39A /* GADSearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADSearchRequest.h; sourceTree = "<group>"; };
+		143A037E1A6DAC1800CFD39A /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
+		143A037F1A6DAC1800CFD39A /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
+		143A03801A6DAC1800CFD39A /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
+		143A03811A6DAC1800CFD39A /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
+		143A03821A6DAC1800CFD39A /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
+		143A03831A6DAC1800CFD39A /* GADInAppPurchase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInAppPurchase.h; sourceTree = "<group>"; };
+		143A03841A6DAC1800CFD39A /* GADInAppPurchaseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInAppPurchaseDelegate.h; sourceTree = "<group>"; };
+		143A03851A6DAC1800CFD39A /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
+		143A03861A6DAC1800CFD39A /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
+		143A03871A6DAC1800CFD39A /* GADModules.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADModules.h; sourceTree = "<group>"; };
+		143A03881A6DAC1800CFD39A /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
+		143A03891A6DAC1800CFD39A /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
+		143A038A1A6DAC1800CFD39A /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
+		143A038B1A6DAC1800CFD39A /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		143A03921A6DACD600CFD39A /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		143A03961A6DAD2F00CFD39A /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		143A039A1A6DAD7600CFD39A /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
+		143A039B1A6DAD7600CFD39A /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		14443FC015465D3200F1D227 /* WAHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAHTMLParser.h; sourceTree = "<group>"; };
 		14443FC115465D3200F1D227 /* WAHTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAHTMLParser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		144B16401365BE9000C47C92 /* WAKMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAKMLParser.h; sourceTree = "<group>"; };
@@ -867,8 +889,6 @@
 		767082FC0FEB223000BC5CD2 /* WAPaginatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAPaginatedView.h; sourceTree = "<group>"; };
 		767082FD0FEB223000BC5CD2 /* WAPaginatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAPaginatedView.m; sourceTree = "<group>"; };
 		8C994BAB151B752D00DD10AF /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		BC6691BA164D1B8100C113F5 /* WASplashFileDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WASplashFileDownloader.h; sourceTree = "<group>"; };
-		BC6691BB164D1B8100C113F5 /* WASplashFileDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WASplashFileDownloader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -876,7 +896,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				143A039E1A6DAD9700CFD39A /* EventKit.framework in Frameworks */,
+				143A039F1A6DAD9700CFD39A /* EventKitUI.framework in Frameworks */,
+				143A03981A6DAD3C00CFD39A /* CoreTelephony.framework in Frameworks */,
+				143A03941A6DACFA00CFD39A /* AdSupport.framework in Frameworks */,
 				142EBBA01A2B018C00BBDD97 /* CoreData.framework in Frameworks */,
+				143A038D1A6DAC1900CFD39A /* libGoogleAdMobAds.a in Frameworks */,
 				142EBBA11A2B018C00BBDD97 /* Foundation.framework in Frameworks */,
 				142EBBA21A2B018C00BBDD97 /* UIKit.framework in Frameworks */,
 				142EBBA31A2B018C00BBDD97 /* CoreGraphics.framework in Frameworks */,
@@ -905,7 +930,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				143A03A01A6DADA400CFD39A /* EventKit.framework in Frameworks */,
+				143A03A11A6DADA400CFD39A /* EventKitUI.framework in Frameworks */,
+				143A03971A6DAD2F00CFD39A /* CoreTelephony.framework in Frameworks */,
+				143A03951A6DAD0400CFD39A /* AdSupport.framework in Frameworks */,
 				14A309B01837903F00A519DD /* libz.dylib in Frameworks */,
+				143A038E1A6DAC1900CFD39A /* libGoogleAdMobAds.a in Frameworks */,
 				1490871B17E375D700943DD2 /* CoreData.framework in Frameworks */,
 				1490871C17E375D700943DD2 /* SystemConfiguration.framework in Frameworks */,
 				1490871D17E375D700943DD2 /* Foundation.framework in Frameworks */,
@@ -934,7 +964,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				143A039C1A6DAD7600CFD39A /* EventKit.framework in Frameworks */,
+				143A039D1A6DAD7600CFD39A /* EventKitUI.framework in Frameworks */,
+				143A03991A6DAD4E00CFD39A /* CoreTelephony.framework in Frameworks */,
+				143A03931A6DACD600CFD39A /* AdSupport.framework in Frameworks */,
 				1494A1AB16FAC24100DE034A /* CoreData.framework in Frameworks */,
+				143A038C1A6DAC1800CFD39A /* libGoogleAdMobAds.a in Frameworks */,
 				14DB11FC164BEDC3001FE76B /* Foundation.framework in Frameworks */,
 				14DB11FD164BEDC3001FE76B /* UIKit.framework in Frameworks */,
 				14DB11FE164BEDC3001FE76B /* CoreGraphics.framework in Frameworks */,
@@ -1003,23 +1038,6 @@
 				140DF35316198BD000815F26 /* WAImgParserView.m */,
 			);
 			name = IMG;
-			sourceTree = "<group>";
-		};
-		1424382614BC381B005ABB4A /* SplashScreen */ = {
-			isa = PBXGroup;
-			children = (
-				1424380F14BC36BE005ABB4A /* WASplashWebViewController_iPad.xib */,
-				1424381014BC36BE005ABB4A /* WASplashWebViewController_iPhone.xib */,
-				1424381114BC36BE005ABB4A /* WASplashScreenViewController_iPad.xib */,
-				1424381214BC36BE005ABB4A /* WASplashScreenViewController_iPhone.xib */,
-				1424381314BC36BE005ABB4A /* WASplashWebViewController.m */,
-				1424381414BC36BE005ABB4A /* WASplashWebViewController.h */,
-				1424381514BC36BE005ABB4A /* WASplashScreenViewController.m */,
-				1424381614BC36BE005ABB4A /* WASplashScreenViewController.h */,
-				BC6691BA164D1B8100C113F5 /* WASplashFileDownloader.h */,
-				BC6691BB164D1B8100C113F5 /* WASplashFileDownloader.m */,
-			);
-			name = SplashScreen;
 			sourceTree = "<group>";
 		};
 		1425321D13606AE600F6BB3D /* Parsers */ = {
@@ -1148,6 +1166,74 @@
 				1415A65712BA94BC00B16395 /* WASlideShowView.m */,
 			);
 			name = "SlideShow Module";
+			sourceTree = "<group>";
+		};
+		143A036A1A6DAC1800CFD39A /* GoogleMobileAds */ = {
+			isa = PBXGroup;
+			children = (
+				143A036B1A6DAC1800CFD39A /* Add-ons */,
+				143A037E1A6DAC1800CFD39A /* GADAdMobExtras.h */,
+				143A037F1A6DAC1800CFD39A /* GADAdNetworkExtras.h */,
+				143A03801A6DAC1800CFD39A /* GADAdSize.h */,
+				143A03811A6DAC1800CFD39A /* GADBannerView.h */,
+				143A03821A6DAC1800CFD39A /* GADBannerViewDelegate.h */,
+				143A03831A6DAC1800CFD39A /* GADInAppPurchase.h */,
+				143A03841A6DAC1800CFD39A /* GADInAppPurchaseDelegate.h */,
+				143A03851A6DAC1800CFD39A /* GADInterstitial.h */,
+				143A03861A6DAC1800CFD39A /* GADInterstitialDelegate.h */,
+				143A03871A6DAC1800CFD39A /* GADModules.h */,
+				143A03881A6DAC1800CFD39A /* GADRequest.h */,
+				143A03891A6DAC1800CFD39A /* GADRequestError.h */,
+				143A038A1A6DAC1800CFD39A /* libGoogleAdMobAds.a */,
+				143A038B1A6DAC1800CFD39A /* README.txt */,
+			);
+			path = GoogleMobileAds;
+			sourceTree = "<group>";
+		};
+		143A036B1A6DAC1800CFD39A /* Add-ons */ = {
+			isa = PBXGroup;
+			children = (
+				143A036C1A6DAC1800CFD39A /* DoubleClick */,
+				143A03741A6DAC1800CFD39A /* Mediation */,
+				143A037B1A6DAC1800CFD39A /* Search */,
+			);
+			path = "Add-ons";
+			sourceTree = "<group>";
+		};
+		143A036C1A6DAC1800CFD39A /* DoubleClick */ = {
+			isa = PBXGroup;
+			children = (
+				143A036D1A6DAC1800CFD39A /* DFPBannerView.h */,
+				143A036E1A6DAC1800CFD39A /* DFPExtras.h */,
+				143A036F1A6DAC1800CFD39A /* DFPInterstitial.h */,
+				143A03701A6DAC1800CFD39A /* DFPSwipeableBannerView.h */,
+				143A03711A6DAC1800CFD39A /* GADAdSizeDelegate.h */,
+				143A03721A6DAC1800CFD39A /* GADAppEventDelegate.h */,
+				143A03731A6DAC1800CFD39A /* GADSwipeableBannerViewDelegate.h */,
+			);
+			path = DoubleClick;
+			sourceTree = "<group>";
+		};
+		143A03741A6DAC1800CFD39A /* Mediation */ = {
+			isa = PBXGroup;
+			children = (
+				143A03751A6DAC1800CFD39A /* GADCustomEventBanner.h */,
+				143A03761A6DAC1800CFD39A /* GADCustomEventBannerDelegate.h */,
+				143A03771A6DAC1800CFD39A /* GADCustomEventExtras.h */,
+				143A03781A6DAC1800CFD39A /* GADCustomEventInterstitial.h */,
+				143A03791A6DAC1800CFD39A /* GADCustomEventInterstitialDelegate.h */,
+				143A037A1A6DAC1800CFD39A /* GADCustomEventRequest.h */,
+			);
+			path = Mediation;
+			sourceTree = "<group>";
+		};
+		143A037B1A6DAC1800CFD39A /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				143A037C1A6DAC1800CFD39A /* GADSearchBannerView.h */,
+				143A037D1A6DAC1800CFD39A /* GADSearchRequest.h */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		14443FBD15465CD200F1D227 /* RSS */ = {
@@ -1361,7 +1447,6 @@
 			children = (
 				144B2C75182388B600CDD200 /* Appirater */,
 				149633AE150DE70A0058E086 /* Notifications */,
-				1424382614BC381B005ABB4A /* SplashScreen */,
 				1D3623240D0F684500981E51 /* WAAppDelegate.h */,
 				1D3623250D0F684500981E51 /* WAAppDelegate.m */,
 				14E007DF1274716F005514AA /* WAUtilities.h */,
@@ -1678,6 +1763,11 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				143A039A1A6DAD7600CFD39A /* EventKit.framework */,
+				143A039B1A6DAD7600CFD39A /* EventKitUI.framework */,
+				143A03961A6DAD2F00CFD39A /* CoreTelephony.framework */,
+				143A03921A6DACD600CFD39A /* AdSupport.framework */,
+				143A036A1A6DAC1800CFD39A /* GoogleMobileAds */,
 				14E0172F16F9C5F4007EC00E /* Google Analytics */,
 				14E0178B16F9CC5B007EC00E /* CoreData.framework */,
 				14F94D61160C557200A68F2A /* Social.framework */,
@@ -1821,16 +1911,13 @@
 				142EBB031A2B018C00BBDD97 /* HTMLTemplate.html in Resources */,
 				142EBB041A2B018C00BBDD97 /* WAFileManagerCell.xib in Resources */,
 				142EBB051A2B018C00BBDD97 /* WAGridCell.xib in Resources */,
-				142EBB061A2B018C00BBDD97 /* WASplashWebViewController_iPad.xib in Resources */,
-				142EBB071A2B018C00BBDD97 /* WASplashWebViewController_iPhone.xib in Resources */,
 				142EBBD51A2B021A00BBDD97 /* wind_355.png in Resources */,
 				142EBB081A2B018C00BBDD97 /* globe@2x.png in Resources */,
 				142EBBD21A2B021A00BBDD97 /* Publications.plist in Resources */,
 				142EBBBF1A2B021A00BBDD97 /* Default-Landscape@2x.png in Resources */,
-				142EBB091A2B018C00BBDD97 /* WASplashScreenViewController_iPad.xib in Resources */,
-				142EBB0A1A2B018C00BBDD97 /* WASplashScreenViewController_iPhone.xib in Resources */,
 				142EBB0B1A2B018C00BBDD97 /* rss@2x.png in Resources */,
 				142EBBC31A2B021A00BBDD97 /* Default@2x.png in Resources */,
+				143A03901A6DAC1900CFD39A /* README.txt in Resources */,
 				142EBB0C1A2B018C00BBDD97 /* refresh@2x.png in Resources */,
 				142EBBCB1A2B021A00BBDD97 /* Icon.png in Resources */,
 				142EBB0D1A2B018C00BBDD97 /* download.png in Resources */,
@@ -1907,15 +1994,12 @@
 				1490867A17E375D700943DD2 /* HTMLTemplate.html in Resources */,
 				1490867B17E375D700943DD2 /* WAFileManagerCell.xib in Resources */,
 				1490867C17E375D700943DD2 /* WAGridCell.xib in Resources */,
-				1490867D17E375D700943DD2 /* WASplashWebViewController_iPad.xib in Resources */,
 				1490873D17E43B3B00943DD2 /* path.txt in Resources */,
 				1490867E17E375D700943DD2 /* rss@2x.png in Resources */,
 				1490867F17E375D700943DD2 /* top-list@2x.png in Resources */,
-				1490868017E375D700943DD2 /* WASplashWebViewController_iPhone.xib in Resources */,
-				1490868117E375D700943DD2 /* WASplashScreenViewController_iPad.xib in Resources */,
 				144B2C5618229DE200CDD200 /* calendar@2x.png in Resources */,
 				1490868217E375D700943DD2 /* list.png in Resources */,
-				1490868317E375D700943DD2 /* WASplashScreenViewController_iPhone.xib in Resources */,
+				143A03911A6DAC1900CFD39A /* README.txt in Resources */,
 				1490868B17E375D700943DD2 /* list@2x.png in Resources */,
 				1490868D17E375D700943DD2 /* top-list.png in Resources */,
 				1490868E17E375D700943DD2 /* back@2x.png in Resources */,
@@ -1973,11 +2057,7 @@
 				14DB116D164BEDC3001FE76B /* WAFileManagerCell.xib in Resources */,
 				14DB116F164BEDC3001FE76B /* WAGridCell.xib in Resources */,
 				142EBBE91A2E5F7000BBDD97 /* index.html in Resources */,
-				14DB1170164BEDC3001FE76B /* WASplashWebViewController_iPad.xib in Resources */,
-				14DB1171164BEDC3001FE76B /* WASplashWebViewController_iPhone.xib in Resources */,
 				146232FF17E1FE210066084C /* globe@2x.png in Resources */,
-				14DB1172164BEDC3001FE76B /* WASplashScreenViewController_iPad.xib in Resources */,
-				14DB1173164BEDC3001FE76B /* WASplashScreenViewController_iPhone.xib in Resources */,
 				1490867017E332A200943DD2 /* rss@2x.png in Resources */,
 				144B2C6D18229DE200CDD200 /* refresh@2x.png in Resources */,
 				146232F917E1FE210066084C /* download.png in Resources */,
@@ -2038,6 +2118,7 @@
 				14A80C69168EC3DB006B0AA4 /* Placeholder.png in Resources */,
 				146E000917E22654000EE3DB /* list@2x.png in Resources */,
 				14A80C77168EC3DB006B0AA4 /* rotate.png in Resources */,
+				143A038F1A6DAC1900CFD39A /* README.txt in Resources */,
 				14A80C85168EC3DB006B0AA4 /* share-button.png in Resources */,
 				146E000317E20F49000EE3DB /* back@2x.png in Resources */,
 				146232F717E1FE210066084C /* facebook@2x.png in Resources */,
@@ -2145,8 +2226,6 @@
 				142EBB8E1A2B018C00BBDD97 /* WAMissingResourcesDownloader.m in Sources */,
 				142EBB8F1A2B018C00BBDD97 /* WAZoomImage.m in Sources */,
 				142EBB901A2B018C00BBDD97 /* WAAddressAnnotation.m in Sources */,
-				142EBB911A2B018C00BBDD97 /* WASplashWebViewController.m in Sources */,
-				142EBB921A2B018C00BBDD97 /* WASplashScreenViewController.m in Sources */,
 				142EBB931A2B018C00BBDD97 /* WAAppSubDelegate.m in Sources */,
 				142EBB941A2B018C00BBDD97 /* WASharePopover.m in Sources */,
 				142EBB951A2B018C00BBDD97 /* WAShareActionSheet.m in Sources */,
@@ -2158,7 +2237,6 @@
 				142EBB9B1A2B018C00BBDD97 /* WAImgParser.m in Sources */,
 				142EBB9C1A2B018C00BBDD97 /* WAImgParserView.m in Sources */,
 				142EBB9D1A2B018C00BBDD97 /* UIImage+WAAdditions.m in Sources */,
-				142EBB9E1A2B018C00BBDD97 /* WASplashFileDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2235,8 +2313,6 @@
 				149086FC17E375D700943DD2 /* WAMissingResourcesDownloader.m in Sources */,
 				149086FD17E375D700943DD2 /* WAZoomImage.m in Sources */,
 				149086FE17E375D700943DD2 /* WAAddressAnnotation.m in Sources */,
-				149086FF17E375D700943DD2 /* WASplashWebViewController.m in Sources */,
-				1490870017E375D700943DD2 /* WASplashScreenViewController.m in Sources */,
 				1490870E17E375D700943DD2 /* WAAppSubDelegate.m in Sources */,
 				1490870F17E375D700943DD2 /* WASharePopover.m in Sources */,
 				1490871017E375D700943DD2 /* WAShareActionSheet.m in Sources */,
@@ -2248,7 +2324,6 @@
 				1490871617E375D700943DD2 /* WAImgParser.m in Sources */,
 				1490871717E375D700943DD2 /* WAImgParserView.m in Sources */,
 				1490871817E375D700943DD2 /* UIImage+WAAdditions.m in Sources */,
-				1490871917E375D700943DD2 /* WASplashFileDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2325,8 +2400,6 @@
 				14DB11DE164BEDC3001FE76B /* WAMissingResourcesDownloader.m in Sources */,
 				14DB11DF164BEDC3001FE76B /* WAZoomImage.m in Sources */,
 				14DB11E0164BEDC3001FE76B /* WAAddressAnnotation.m in Sources */,
-				14DB11E1164BEDC3001FE76B /* WASplashWebViewController.m in Sources */,
-				14DB11E2164BEDC3001FE76B /* WASplashScreenViewController.m in Sources */,
 				14DB11F0164BEDC3001FE76B /* WAAppSubDelegate.m in Sources */,
 				14DB11F1164BEDC3001FE76B /* WASharePopover.m in Sources */,
 				14DB11F2164BEDC3001FE76B /* WAShareActionSheet.m in Sources */,
@@ -2338,7 +2411,6 @@
 				14DB11F8164BEDC3001FE76B /* WAImgParser.m in Sources */,
 				14DB11F9164BEDC3001FE76B /* WAImgParserView.m in Sources */,
 				14DB11FA164BEDC3001FE76B /* UIImage+WAAdditions.m in Sources */,
-				BC6691C0164D1B8100C113F5 /* WASplashFileDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2385,6 +2457,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)/Classes",
+					"$(PROJECT_DIR)/GoogleMobileAds",
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
@@ -2421,6 +2494,7 @@
 					"$(SRCROOT)",
 					"\\\"$(SRCROOT)/Classes\\\"",
 					"$(PROJECT_DIR)/Classes",
+					"$(PROJECT_DIR)/GoogleMobileAds",
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
@@ -2455,6 +2529,7 @@
 					"$(SRCROOT)",
 					"\\\"$(SRCROOT)/Classes\\\"",
 					"$(PROJECT_DIR)/Classes",
+					"$(PROJECT_DIR)/GoogleMobileAds",
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
@@ -2491,6 +2566,7 @@
 					"$(SRCROOT)",
 					"$(inherited)",
 					"$(PROJECT_DIR)/Classes",
+					"$(PROJECT_DIR)/GoogleMobileAds",
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
@@ -2526,6 +2602,7 @@
 					"$(SRCROOT)",
 					"$(inherited)",
 					"$(PROJECT_DIR)/Classes",
+					"$(PROJECT_DIR)/GoogleMobileAds",
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
@@ -2559,6 +2636,7 @@
 					"$(SRCROOT)",
 					"$(inherited)",
 					"$(PROJECT_DIR)/Classes",
+					"$(PROJECT_DIR)/GoogleMobileAds",
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
@@ -2609,6 +2687,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)/Classes",
+					"$(PROJECT_DIR)/GoogleMobileAds",
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
@@ -2645,6 +2724,7 @@
 					"$(SRCROOT)",
 					"\\\"$(SRCROOT)/Classes\\\"",
 					"$(PROJECT_DIR)/Classes",
+					"$(PROJECT_DIR)/GoogleMobileAds",
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (
@@ -2679,6 +2759,7 @@
 					"$(SRCROOT)",
 					"\\\"$(SRCROOT)/Classes\\\"",
 					"$(PROJECT_DIR)/Classes",
+					"$(PROJECT_DIR)/GoogleMobileAds",
 				);
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = (

@@ -29,7 +29,7 @@
 
 @synthesize window = _window;
 @synthesize rootViewController = _appTabBarController;
-@synthesize splashScreenViewController;
+@synthesize startInterstitial;
 @synthesize apnsSubDelegate;
 @synthesize metadataQuery;
 
@@ -115,28 +115,6 @@
     //SLog(@"Did updateRootViewController");
     
     
-    // Splash screen
-    
-    // Show the splash screen only if the key "Splash" is specified
-    if ([app_Dic objectForKey:@"Splash"])
-    {
-        // Check device
-        NSString * nibName = @"WASplashScreenViewController_iPad";//Default
-        if (![WAUtilities isBigScreen]) nibName = @"WASplashScreenViewController_iPhone";
-        splashScreenViewController = [[WASplashScreenViewController alloc]initWithNibName:nibName bundle:nil];
-        
-        
-        
-        // Show the default splash screen
-        splashScreenViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [rootViewController presentModalViewController:splashScreenViewController animated:NO];
-        //SLog(@"SplashscreenViewController presented");
-        //splashScreenViewController.view.hidden= YES;//Keep the view hidden until the image is received
-        splashScreenViewController.rootViewController = rootViewController;
-        
-    }
-    
-      //SLog(@"Will launch appirater");
     
     //Notify appirater that launching is finished
     [Appirater appLaunched:YES];
@@ -147,12 +125,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    //SLog(@"Application did become active");
+    NSLog(@"Application did become active");
     // Clear application badge
     application.applicationIconBadgeNumber = 0;
 
     //Request ad if appropriate; this needs to be done here (and not in "didFinishLaunchingWithOptions") so that the ad is also displayed when the app awakes from background
-    [splashScreenViewController requestAd];
+    startInterstitial = [[DFPInterstitial alloc] init];
+    startInterstitial.adUnitID = @"/166877488/test";
+    startInterstitial.delegate = self;
+    GADRequest *request = [GADRequest request];
+    request.testDevices = @[ GAD_SIMULATOR_ID ];
+    [startInterstitial loadRequest:request];
+
+    [startInterstitial loadRequest:[GADRequest request]];
     
     
     //Register event with GA
@@ -309,7 +294,7 @@
     [observer release];
     [window release];
     [rootViewController release];
-    [splashScreenViewController release];
+    [startInterstitial release];
     [metadataQuery release];
     
     [apnsSubDelegate release];
@@ -591,7 +576,25 @@
     return YES;
 }
 
+#pragma mark
+#pragma mark GADInterstitialDelegate implementation
+- (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
+    NSLog(@"Received ad successfully");
+    [startInterstitial presentFromRootViewController:rootViewController];
+}
+
+
+- (void)interstitial:(DFPInterstitial *)interstitial
+didFailToReceiveAdWithError:(GADRequestError *)error {
+    NSLog(@"interstitialDidFailToReceiveAdWithError: %@ for interstitial%@", [error localizedDescription],interstitial);
+}
+
+- (void)interstitialDidDismissScreen:(DFPInterstitial *)interstitial {
+    NSLog(@"interstitialDidDismissScreen");
+}
 
 @end
+
+
 
 
