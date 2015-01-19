@@ -14,6 +14,7 @@
 	UIViewController* currentViewController;
 	NSObject <WAParserProtocol> * parser;
     CGSize cellNibSize;
+    CGSize headerNibSize;
     UIRefreshControl *refreshControl;
     UICollectionView * currentCollectionView;
 	

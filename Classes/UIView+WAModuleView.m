@@ -161,29 +161,37 @@
 	}
 }
 
-
-+ (UIView *)getNibView:(NSString*) nibName defaultNib:(NSString*) defaultNibName forOrientation:(UIInterfaceOrientation)orientation{
++ (NSString *)getNibName:(NSString*) nibName defaultNib:(NSString*) defaultNibName forOrientation:(UIInterfaceOrientation)orientation{
     //SLog(@"Getting nib %@ with default %@",nibName, defaultNibName);
-	//Check if nibName.xib exists, otherwise use defaultNibName; 
+    //Check if nibName.xib exists, otherwise use defaultNibName;
     NSString * nibUrlString = [nibName stringByAppendingString:@".nib"];//see http://stackoverflow.com/questions/923706/checking-if-a-nib-or-xib-file-exists for explanation of using "nib" extension instead of "xib"
     NSString * nibPath = [[NSBundle mainBundle]pathOfFileWithUrl:nibUrlString forOrientation:orientation];
     //SLog(@"nibPath: %@",nibPath);
-	if(nibPath) nibName = [nibPath nameOfFileWithoutExtensionOfUrlString];
+    if(nibPath) nibName = [nibPath nameOfFileWithoutExtensionOfUrlString];
     else {
         nibPath = [[NSBundle mainBundle]pathOfFileWithUrl:[defaultNibName stringByAppendingString:@".nib"] forOrientation:orientation];
         if (nibPath) {
             nibName = defaultNibName;
-
+            
         }
         else{
             return nil;
         }
     }
+    NSLog (@"will return nibName:%@",nibName);
+    return nibName;
+
+}
+
+
++ (UIView *)getNibView:(NSString*) nibName defaultNib:(NSString*) defaultNibName forOrientation:(UIInterfaceOrientation)orientation{
+    NSString * chosenNibName = [self getNibName:nibName defaultNib:defaultNibName forOrientation:orientation];
+    if (!chosenNibName) return nil;
+
 	NSArray*    topLevelObjs = nil;
-    //SLog(@"NibName:%@",nibName);
-	topLevelObjs=	[[NSBundle mainBundle] loadNibNamed:nibName owner:nil options:nil];
+    NSLog(@"chosenNibName:%@",chosenNibName);
+	topLevelObjs=	[[NSBundle mainBundle] loadNibNamed:chosenNibName owner:nil options:nil];
 	
-	if (!topLevelObjs) topLevelObjs = [[NSBundle mainBundle] loadNibNamed:defaultNibName owner:nil options:nil];
 	UIView * nibView = [topLevelObjs lastObject];
     
 	return nibView;

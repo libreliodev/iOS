@@ -48,20 +48,30 @@
         
         self.separatorStyle = UITableViewCellSeparatorStyleNone;//We use a tableview because we want to have a refresh control, but we don't want it to be visible
 
-        
-        UIView * nibView = [UIView getNibView:[urlString nameOfFileWithoutExtensionOfUrlString] defaultNib:@"WAGridCell" forOrientation:999];
-        cellNibSize = nibView.frame.size;
+        NSString * cellNibTestName = [[urlString nameOfFileWithoutExtensionOfUrlString]stringByAppendingString:@"_cell"];
+        NSString * cellNibName = [UIView getNibName:cellNibTestName defaultNib:@"WAGridCell" forOrientation:999];
+        UIView * cellNibView = [UIView getNibView:cellNibTestName defaultNib:@"WAGridCell" forOrientation:999];
+        cellNibSize = cellNibView.frame.size;
         //SLog(@"cellNibSize:%f,%f",nibView.frame.size.width,nibView.frame.size.height);
         
+        //Set header view
+        NSString * headerNibTestName = [[urlString nameOfFileWithoutExtensionOfUrlString]stringByAppendingString:@"_header"];
+        NSString * headerNibName = [UIView getNibName:headerNibTestName defaultNib:@"WAGridHeader" forOrientation:999];
+        UIView * headerNibView = [UIView getNibView:headerNibTestName defaultNib:@"WAGridHeader" forOrientation:999];
+        headerNibSize = headerNibView.frame.size;
+        //SLog(@"cellNibSize:%f,%f",nibView.frame.size.width,nibView.frame.size.height);
+ 
+        
         UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
+        [layout setHeaderReferenceSize:CGSizeMake(320, 50)];
         currentCollectionView=[[UICollectionView alloc] initWithFrame:self.frame collectionViewLayout:layout];
         currentCollectionView.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
 
         [currentCollectionView setDataSource:self];
         [currentCollectionView setDelegate:self];
         
-        [currentCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
-        [currentCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerIdentifier"];
+        [currentCollectionView registerNib:[UINib nibWithNibName:cellNibName bundle:nil] forCellWithReuseIdentifier:@"cellIdentifier"];
+         [currentCollectionView registerNib:[UINib nibWithNibName:headerNibName bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerIdentifier"];
         
         //[currentCollectionView setBackgroundColor:[UIColor redColor]];
         
@@ -141,22 +151,7 @@
 {
     UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
     
-    UIView * nibView = [cell.contentView viewWithTag:1000];
-    if (nibView == nil) {
-        //SLog(@"Will generate gridview");
-        
-        //cell.backgroundColor=[UIColor greenColor];
-        nibView = [UIView getNibView:[urlString nameOfFileWithoutExtensionOfUrlString] defaultNib:@"WAGridCell" forOrientation:999];
-        nibView.autoresizingMask = UIViewAutoresizingNone;
-        nibView.frame = cell.contentView.frame;
-        [cell.contentView addSubview:nibView];
-        nibView.tag = 1000;
-        //SLog(@"nibview %@",nibView);
-
-        
-    }
-
-    [nibView populateNibWithParser:parser withButtonDelegate:self   forRow:(int)indexPath.row+1];
+    [cell populateNibWithParser:parser withButtonDelegate:self   forRow:(int)indexPath.row+1];
 
 
     return cell;
@@ -166,7 +161,6 @@
 - (UICollectionReusableView *)collectionView: (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:
                                          UICollectionElementKindSectionHeader withReuseIdentifier:@"headerIdentifier" forIndexPath:indexPath];
-    //headerView.backgroundColor = [UIColor yellowColor];
     return headerView;
 }
 

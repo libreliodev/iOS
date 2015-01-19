@@ -17,6 +17,7 @@
 
 - (void) populateNibWithParser:(NSObject <WAParserProtocol>*)parser withButtonDelegate:(NSObject*)delegate  forRow:(int)row;
 
++ (NSString *)getNibName:(NSString*) nibName defaultNib:(NSString*) defaultNibName forOrientation:(UIInterfaceOrientation)orientation;
 + (UIView *)getNibView:(NSString*) nibName defaultNib:(NSString*) defaultNibName forOrientation:(UIInterfaceOrientation)orientation;
 
 
