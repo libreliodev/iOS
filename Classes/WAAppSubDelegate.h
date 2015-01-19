@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface EAAppSubDelegate : NSObject
+@interface WAAppSubDelegate : NSObject
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)devToken;
 

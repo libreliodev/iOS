@@ -18,8 +18,8 @@
     
     BOOL ret = [request.URL.host isEqualToString:@"apphost"];
     if (ret) {
-        NSLog(@"can init with request %@",request.URL);
-        NSLog(@"Headers:%@",request.allHTTPHeaderFields);
+        //SLog(@"can init with request %@",request.URL);
+        //SLog(@"Headers:%@",request.allHTTPHeaderFields);
     }
     return ret;
 }
@@ -42,7 +42,7 @@
 
     //If request is for a tsv  file, and does not have a referer, we should redirect to index.html
     if (![request valueForHTTPHeaderField:@"Referer"]&&[[request.URL pathExtension]isEqualToString:@"tsv"] ){
-        NSLog(@"TSV!!!!");
+        //SLog(@"TSV!!!!");
         NSString * fileName  = [[urlString noArgsPartOfUrlString] lastPathComponent];
         NSString * indexUrlString = [urlString stringByReplacingOccurrencesOfString:fileName withString:@"index.html"];
         path = [[NSBundle mainBundle] pathOfFileWithUrl:indexUrlString];

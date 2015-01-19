@@ -34,7 +34,6 @@
 
 - (void) didFinishDownloadWithNotification:(NSNotification *) notification;
 
--(int)numberofColumns;
 
 @end
 

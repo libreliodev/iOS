@@ -47,7 +47,7 @@
     urlString = [[NSString alloc]initWithString: theString];
 
     
-    NSLog(@"html view started for %@",urlString);
+    //SLog(@"html view started for %@",urlString);
     UIColor * bgColor = [UIColor whiteColor];//This is the default background
     NSString *bgColorString = [urlString valueOfParameterInUrlStringforKey:@"wabgcolor"];
     if (bgColorString) bgColor = [UIColor colorFromString:bgColorString];
@@ -87,7 +87,7 @@
     //Check if parser returns an html string
     NSString * htmlString = [parser getDataAtRow:0 forDataCol:DataColHTML];
     NSString * urlToLoad = [parser getDataAtRow:0 forDataCol:DataColDetailLink];
-    NSLog(@"URLToLoad:%@",urlToLoad);
+    //SLog(@"URLToLoad:%@",urlToLoad);
     if (htmlString){
         NSURL *baseURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathOfFileWithUrl:urlToLoad]];
         //SLog(@"Will load baseurl:%@ with html:%@",baseURL,htmlString);
@@ -110,13 +110,13 @@
             if (waBase){
                 NSData *htmldata = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:urlToLoad]];
                 baseURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@",waBase]];
-                NSLog(@"base:%@",[baseURL absoluteString]);
+                //SLog(@"base:%@",[baseURL absoluteString]);
                 [self loadData:htmldata MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:baseURL];
 
                 
             }
             else{
-                NSLog(@"will load url:%@",baseURL);
+                //SLog(@"will load url:%@",baseURL);
                 
                 [self loadRequest:[NSURLRequest requestWithURL:baseURL]];
             }
@@ -244,11 +244,11 @@
         return NO;
     }
     NSString *requestString = [[[request URL] absoluteString] stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
-    //NSLog(requestString);
+    ////SLog(requestString);
     
     if ([requestString hasPrefix:@"ios-log:"]) {
         NSString* logString = [[requestString componentsSeparatedByString:@":#iOS#"] objectAtIndex:1];
-        NSLog(@"UIWebView console: %@", logString);
+        //SLog(@"UIWebView console: %@", logString);
         return NO;
     }
     if (waBase){

@@ -132,7 +132,7 @@
 		142EBB901A2B018C00BBDD97 /* WAAddressAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D37B6114B6DEAA00BA49C0 /* WAAddressAnnotation.m */; };
 		142EBB911A2B018C00BBDD97 /* WASplashWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1424381314BC36BE005ABB4A /* WASplashWebViewController.m */; };
 		142EBB921A2B018C00BBDD97 /* WASplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1424381514BC36BE005ABB4A /* WASplashScreenViewController.m */; };
-		142EBB931A2B018C00BBDD97 /* EAAppSubDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 149633B0150DE7CE0058E086 /* EAAppSubDelegate.m */; };
+		142EBB931A2B018C00BBDD97 /* WAAppSubDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 149633B0150DE7CE0058E086 /* WAAppSubDelegate.m */; };
 		142EBB941A2B018C00BBDD97 /* WASharePopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E1B95A1537F6D700153BA5 /* WASharePopover.m */; };
 		142EBB951A2B018C00BBDD97 /* WAShareActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E1B9651538157700153BA5 /* WAShareActionSheet.m */; };
 		142EBB961A2B018C00BBDD97 /* WAAtomParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 146DAA7A1543D077000B7B69 /* WAAtomParser.m */; };
@@ -196,6 +196,7 @@
 		142EBBE71A2E5F5E00BBDD97 /* d3.tip.v0.6.3.js in Resources */ = {isa = PBXBuildFile; fileRef = 142EBBE41A2E5F5E00BBDD97 /* d3.tip.v0.6.3.js */; };
 		142EBBE91A2E5F7000BBDD97 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 142EBBE81A2E5F7000BBDD97 /* index.html */; };
 		142EBBEA1A2F588A00BBDD97 /* WAURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D8296B19A2098E0059F3E0 /* WAURLProtocol.m */; };
+		143A03691A68661C00CFD39A /* Test.plist in Resources */ = {isa = PBXBuildFile; fileRef = 143A03681A68661C00CFD39A /* Test.plist */; };
 		144B2C5218229DE200CDD200 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 144B2C4718229DE200CDD200 /* calendar.png */; };
 		144B2C5318229DE200CDD200 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 144B2C4718229DE200CDD200 /* calendar.png */; };
 		144B2C5518229DE200CDD200 /* calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 144B2C4818229DE200CDD200 /* calendar@2x.png */; };
@@ -218,6 +219,9 @@
 		144B2C6E18229DE200CDD200 /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 144B2C5018229DE200CDD200 /* refresh@2x.png */; };
 		144B2C7A182388F500CDD200 /* APAppirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 144B2C77182388F500CDD200 /* APAppirater.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		144B2C7B182388F500CDD200 /* APAppirater.m in Sources */ = {isa = PBXBuildFile; fileRef = 144B2C77182388F500CDD200 /* APAppirater.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		1451ECB31A6576840019BCA6 /* WAGridHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1451ECB21A6576840019BCA6 /* WAGridHeader.xib */; };
+		1451ECB41A6576840019BCA6 /* WAGridHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1451ECB21A6576840019BCA6 /* WAGridHeader.xib */; };
+		1451ECB51A6576840019BCA6 /* WAGridHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1451ECB21A6576840019BCA6 /* WAGridHeader.xib */; };
 		146232F517E1FE210066084C /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 1462318917E1FE1C0066084C /* facebook.png */; };
 		146232F717E1FE210066084C /* facebook@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1462318A17E1FE1D0066084C /* facebook@2x.png */; };
 		146232F917E1FE210066084C /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 1462318B17E1FE1D0066084C /* download.png */; };
@@ -345,7 +349,7 @@
 		149086FE17E375D700943DD2 /* WAAddressAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D37B6114B6DEAA00BA49C0 /* WAAddressAnnotation.m */; };
 		149086FF17E375D700943DD2 /* WASplashWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1424381314BC36BE005ABB4A /* WASplashWebViewController.m */; };
 		1490870017E375D700943DD2 /* WASplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1424381514BC36BE005ABB4A /* WASplashScreenViewController.m */; };
-		1490870E17E375D700943DD2 /* EAAppSubDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 149633B0150DE7CE0058E086 /* EAAppSubDelegate.m */; };
+		1490870E17E375D700943DD2 /* WAAppSubDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 149633B0150DE7CE0058E086 /* WAAppSubDelegate.m */; };
 		1490870F17E375D700943DD2 /* WASharePopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E1B95A1537F6D700153BA5 /* WASharePopover.m */; };
 		1490871017E375D700943DD2 /* WAShareActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E1B9651538157700153BA5 /* WAShareActionSheet.m */; };
 		1490871117E375D700943DD2 /* WAAtomParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 146DAA7A1543D077000B7B69 /* WAAtomParser.m */; };
@@ -486,7 +490,7 @@
 		14DB11E0164BEDC3001FE76B /* WAAddressAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D37B6114B6DEAA00BA49C0 /* WAAddressAnnotation.m */; };
 		14DB11E1164BEDC3001FE76B /* WASplashWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1424381314BC36BE005ABB4A /* WASplashWebViewController.m */; };
 		14DB11E2164BEDC3001FE76B /* WASplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1424381514BC36BE005ABB4A /* WASplashScreenViewController.m */; };
-		14DB11F0164BEDC3001FE76B /* EAAppSubDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 149633B0150DE7CE0058E086 /* EAAppSubDelegate.m */; };
+		14DB11F0164BEDC3001FE76B /* WAAppSubDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 149633B0150DE7CE0058E086 /* WAAppSubDelegate.m */; };
 		14DB11F1164BEDC3001FE76B /* WASharePopover.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E1B95A1537F6D700153BA5 /* WASharePopover.m */; };
 		14DB11F2164BEDC3001FE76B /* WAShareActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E1B9651538157700153BA5 /* WAShareActionSheet.m */; };
 		14DB11F3164BEDC3001FE76B /* WAAtomParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 146DAA7A1543D077000B7B69 /* WAAtomParser.m */; };
@@ -618,6 +622,7 @@
 		14343A1E12A02A5700C06282 /* WAMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WAMapView.m; path = Classes/WAMapView.m; sourceTree = "<group>"; };
 		143725AB128574FE00EB176B /* WAPDFParserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAPDFParserView.h; sourceTree = "<group>"; };
 		143725AC128574FE00EB176B /* WAPDFParserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAPDFParserView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		143A03681A68661C00CFD39A /* Test.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Test.plist; path = ../../../Downloads/Test.plist; sourceTree = "<group>"; };
 		14443FC015465D3200F1D227 /* WAHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAHTMLParser.h; sourceTree = "<group>"; };
 		14443FC115465D3200F1D227 /* WAHTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAHTMLParser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		144B16401365BE9000C47C92 /* WAKMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAKMLParser.h; sourceTree = "<group>"; };
@@ -644,6 +649,7 @@
 		1450749813421C0F0078C2B2 /* WABuyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WABuyView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		145150681438FCF2001B16CD /* UIColor+WAAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+WAAdditions.h"; sourceTree = "<group>"; };
 		145150691438FCF3001B16CD /* UIColor+WAAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+WAAdditions.m"; sourceTree = "<group>"; };
+		1451ECB21A6576840019BCA6 /* WAGridHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WAGridHeader.xib; sourceTree = "<group>"; };
 		14541D871307BAC2004A76D4 /* WAModuleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAModuleViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		14541D881307BAC2004A76D4 /* WADownloadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WADownloadingView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		14541D891307BAC2004A76D4 /* WAModuleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAModuleViewController.h; sourceTree = "<group>"; };
@@ -716,8 +722,8 @@
 		1490873C17E43B3B00943DD2 /* path.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = path.txt; sourceTree = "<group>"; };
 		1491964D1328A31C00DD54B1 /* WAModuleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAModuleProtocol.h; sourceTree = "<group>"; };
 		1494B52F16FB0D2300DE034A /* news.rss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = news.rss; sourceTree = "<group>"; };
-		149633AF150DE7CE0058E086 /* EAAppSubDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAAppSubDelegate.h; sourceTree = "<group>"; };
-		149633B0150DE7CE0058E086 /* EAAppSubDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EAAppSubDelegate.m; sourceTree = "<group>"; };
+		149633AF150DE7CE0058E086 /* WAAppSubDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAAppSubDelegate.h; sourceTree = "<group>"; };
+		149633B0150DE7CE0058E086 /* WAAppSubDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAAppSubDelegate.m; sourceTree = "<group>"; };
 		14A1DB45145F04B1005366C7 /* Scanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scanner.h; sourceTree = "<group>"; };
 		14A1DB46145F04B1005366C7 /* Scanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scanner.m; sourceTree = "<group>"; };
 		14A1DB61145F1F23005366C7 /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
@@ -1354,7 +1360,7 @@
 			isa = PBXGroup;
 			children = (
 				144B2C75182388B600CDD200 /* Appirater */,
-				149633AE150DE70A0058E086 /* EasyAPNS */,
+				149633AE150DE70A0058E086 /* Notifications */,
 				1424382614BC381B005ABB4A /* SplashScreen */,
 				1D3623240D0F684500981E51 /* WAAppDelegate.h */,
 				1D3623250D0F684500981E51 /* WAAppDelegate.m */,
@@ -1377,13 +1383,13 @@
 			path = ScriptTarget;
 			sourceTree = "<group>";
 		};
-		149633AE150DE70A0058E086 /* EasyAPNS */ = {
+		149633AE150DE70A0058E086 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
-				149633AF150DE7CE0058E086 /* EAAppSubDelegate.h */,
-				149633B0150DE7CE0058E086 /* EAAppSubDelegate.m */,
+				149633AF150DE7CE0058E086 /* WAAppSubDelegate.h */,
+				149633B0150DE7CE0058E086 /* WAAppSubDelegate.m */,
 			);
-			name = EasyAPNS;
+			name = Notifications;
 			sourceTree = "<group>";
 		};
 		149D0B13133B9AD9000AE3FA /* Modules */ = {
@@ -1458,6 +1464,7 @@
 		14C52F941264A56E000B272B /* Grid Module */ = {
 			isa = PBXGroup;
 			children = (
+				1451ECB21A6576840019BCA6 /* WAGridHeader.xib */,
 				14639F2A12802FD300185D53 /* WAGridView.h */,
 				14639F2B12802FD300185D53 /* WAGridView.m */,
 				14FD065B14222B1D002F9E35 /* WAGridCell.xib */,
@@ -1637,6 +1644,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				143A03681A68661C00CFD39A /* Test.plist */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -1853,6 +1861,7 @@
 				142EBB321A2B018C00BBDD97 /* favoris-button-remove.png in Resources */,
 				142EBB331A2B018C00BBDD97 /* favoris-button.png in Resources */,
 				142EBB341A2B018C00BBDD97 /* top-list.png in Resources */,
+				1451ECB41A6576840019BCA6 /* WAGridHeader.xib in Resources */,
 				142EBBC21A2B021A00BBDD97 /* Default.png in Resources */,
 				142EBB351A2B018C00BBDD97 /* calendar.png in Resources */,
 				142EBB361A2B018C00BBDD97 /* download@2x.png in Resources */,
@@ -1934,6 +1943,7 @@
 				149086A517E375D700943DD2 /* newspaper.png in Resources */,
 				149086A617E375D700943DD2 /* Placeholder.png in Resources */,
 				144B2C6E18229DE200CDD200 /* refresh@2x.png in Resources */,
+				1451ECB51A6576840019BCA6 /* WAGridHeader.xib in Resources */,
 				149086A717E375D700943DD2 /* rotate.png in Resources */,
 				149086A817E375D700943DD2 /* share-button.png in Resources */,
 				144B2C5F18229DE200CDD200 /* forward.png in Resources */,
@@ -1989,6 +1999,7 @@
 				14DB139B164C52C4001FE76B /* Icon.png in Resources */,
 				14DB139C164C52C4001FE76B /* Icon@2x.png in Resources */,
 				14DB139D164C52C4001FE76B /* Magazines.plist in Resources */,
+				143A03691A68661C00CFD39A /* Test.plist in Resources */,
 				14DB139E164C52C4001FE76B /* Magazines_background.png in Resources */,
 				14DB139F164C52C4001FE76B /* Tabs.plist in Resources */,
 				14DB13A0164C52C4001FE76B /* wind-generic.png in Resources */,
@@ -2003,6 +2014,7 @@
 				146E000717E22654000EE3DB /* list.png in Resources */,
 				1490866E17E332A200943DD2 /* rss.png in Resources */,
 				1462330117E1FE210066084C /* information@2x.png in Resources */,
+				1451ECB31A6576840019BCA6 /* WAGridHeader.xib in Resources */,
 				142EBBE51A2E5F5E00BBDD97 /* data.tsv in Resources */,
 				14A80BF9168EC3DB006B0AA4 /* button-question.png in Resources */,
 				14A80C00168EC3DB006B0AA4 /* damier.png in Resources */,
@@ -2135,7 +2147,7 @@
 				142EBB901A2B018C00BBDD97 /* WAAddressAnnotation.m in Sources */,
 				142EBB911A2B018C00BBDD97 /* WASplashWebViewController.m in Sources */,
 				142EBB921A2B018C00BBDD97 /* WASplashScreenViewController.m in Sources */,
-				142EBB931A2B018C00BBDD97 /* EAAppSubDelegate.m in Sources */,
+				142EBB931A2B018C00BBDD97 /* WAAppSubDelegate.m in Sources */,
 				142EBB941A2B018C00BBDD97 /* WASharePopover.m in Sources */,
 				142EBB951A2B018C00BBDD97 /* WAShareActionSheet.m in Sources */,
 				142EBB961A2B018C00BBDD97 /* WAAtomParser.m in Sources */,
@@ -2225,7 +2237,7 @@
 				149086FE17E375D700943DD2 /* WAAddressAnnotation.m in Sources */,
 				149086FF17E375D700943DD2 /* WASplashWebViewController.m in Sources */,
 				1490870017E375D700943DD2 /* WASplashScreenViewController.m in Sources */,
-				1490870E17E375D700943DD2 /* EAAppSubDelegate.m in Sources */,
+				1490870E17E375D700943DD2 /* WAAppSubDelegate.m in Sources */,
 				1490870F17E375D700943DD2 /* WASharePopover.m in Sources */,
 				1490871017E375D700943DD2 /* WAShareActionSheet.m in Sources */,
 				1490871117E375D700943DD2 /* WAAtomParser.m in Sources */,
@@ -2315,7 +2327,7 @@
 				14DB11E0164BEDC3001FE76B /* WAAddressAnnotation.m in Sources */,
 				14DB11E1164BEDC3001FE76B /* WASplashWebViewController.m in Sources */,
 				14DB11E2164BEDC3001FE76B /* WASplashScreenViewController.m in Sources */,
-				14DB11F0164BEDC3001FE76B /* EAAppSubDelegate.m in Sources */,
+				14DB11F0164BEDC3001FE76B /* WAAppSubDelegate.m in Sources */,
 				14DB11F1164BEDC3001FE76B /* WASharePopover.m in Sources */,
 				14DB11F2164BEDC3001FE76B /* WAShareActionSheet.m in Sources */,
 				14DB11F3164BEDC3001FE76B /* WAAtomParser.m in Sources */,

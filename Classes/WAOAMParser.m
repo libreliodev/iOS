@@ -27,9 +27,9 @@
     //Prepare the xml for parsing
     NSString * fileName = [urlString nameOfFileWithoutExtensionOfUrlString];
     NSString * xmlUrl = [NSString stringWithFormat:@"%@/Assets/%@_oam.xml",unzippedFolderUrlString,fileName];
-    NSLog(@"xmlUrl: %@",xmlUrl);
+    //SLog(@"xmlUrl: %@",xmlUrl);
      NSData * xmlData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:xmlUrl]];
-    NSLog(@"Read NSData for path %@ with length %i",[[NSBundle mainBundle] pathOfFileWithUrl:xmlUrl],xmlData.length);
+    //SLog(@"Read NSData for path %@ with length %i",[[NSBundle mainBundle] pathOfFileWithUrl:xmlUrl],xmlData.length);
 	doc = xmlReadMemory([xmlData bytes], (int)[xmlData length], "", NULL, HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR);
 	xpathCtx = xmlXPathNewContext(doc);
     xmlXPathRegisterNs(xpathCtx, (xmlChar *)"a", (xmlChar *)"http://openajax.org/metadata");

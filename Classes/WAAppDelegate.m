@@ -49,7 +49,7 @@
     
     
     //Create subdelegate for push notifications
-    apnsSubDelegate = [[EAAppSubDelegate alloc]init];
+    apnsSubDelegate = [[WAAppSubDelegate alloc]init];
     
     //Register NSURLProtocol
     [NSURLProtocol registerClass:[WAURLProtocol class]];
@@ -86,8 +86,19 @@
     
     
     // Add registration for remote notifications
-    [[UIApplication sharedApplication]
-     registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound|UIRemoteNotificationTypeNewsstandContentAvailability)];
+    if ([application respondsToSelector:@selector(isRegisteredForRemoteNotifications)])
+    {
+        // iOS 8 Notifications
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        
+        [application registerForRemoteNotifications];
+    }
+    else
+    {
+        // iOS < 8 Notifications
+        [application registerForRemoteNotificationTypes:
+         (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
+    }
     
     
     //If the app was launched by a notification, launch corresponding download
@@ -119,7 +130,7 @@
         // Show the default splash screen
         splashScreenViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
         [rootViewController presentModalViewController:splashScreenViewController animated:NO];
-        NSLog(@"SplashscreenViewController presented");
+        //SLog(@"SplashscreenViewController presented");
         //splashScreenViewController.view.hidden= YES;//Keep the view hidden until the image is received
         splashScreenViewController.rootViewController = rootViewController;
         
@@ -187,7 +198,7 @@
     NSString * urlString;
     
     if ([url isFileURL]){
-        NSLog(@"Is File Url %@ with annotation %@",url,annotation);
+        //SLog(@"Is File Url %@ with annotation %@",url,annotation);
         //url represents a  file
         
         //Define the urlString to open the module

@@ -3,7 +3,7 @@
 #import <UIKit/UIKit.h>
 #import "WAPaymentTransactionObserver.h"
 #import "WAPListParser.h"
-#import "EAAppSubDelegate.h"
+#import "WAAppSubDelegate.h"
 
 #import "WASplashScreenViewController.h"
 
@@ -14,7 +14,7 @@
     UIViewController *rootViewController;
     WASplashScreenViewController * splashScreenViewController;
     WAPaymentTransactionObserver *observer;
-    EAAppSubDelegate * apnsSubDelegate;
+    WAAppSubDelegate * apnsSubDelegate;
     NSMetadataQuery * metadataQuery;
     
     
@@ -23,7 +23,7 @@
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) UITabBarController *rootViewController;
 @property (nonatomic, retain) WASplashScreenViewController * splashScreenViewController;
-@property (nonatomic, retain) EAAppSubDelegate * apnsSubDelegate;
+@property (nonatomic, retain) WAAppSubDelegate * apnsSubDelegate;
 @property (nonatomic, retain) NSMetadataQuery * metadataQuery;
 
 

@@ -20,6 +20,7 @@
 @synthesize parser,currentViewController,refreshControl,currentCollectionView;
 
 - (id)init {
+    //SLog(@"Will init covers");
     if (self = [super init]) {
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(moduleViewDidAppear) name:UIApplicationDidBecomeActiveNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishDownloadWithNotification:) name:@"didSucceedResourceDownload" object:nil];
@@ -45,7 +46,7 @@
         urlString = [[NSString alloc]initWithString: theString];
         //Initial setup is needed
         
-        self.separatorStyle = UITableViewCellSeparatorStyleNone;//We user a tableview because we want to have a refresh control, but we don't want it to be visible
+        self.separatorStyle = UITableViewCellSeparatorStyleNone;//We use a tableview because we want to have a refresh control, but we don't want it to be visible
 
         
         UIView * nibView = [UIView getNibView:[urlString nameOfFileWithoutExtensionOfUrlString] defaultNib:@"WAGridCell" forOrientation:999];
@@ -62,7 +63,7 @@
         [currentCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
         [currentCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerIdentifier"];
         
-        [currentCollectionView setBackgroundColor:[UIColor redColor]];
+        //[currentCollectionView setBackgroundColor:[UIColor redColor]];
         
         
         [self addSubview:currentCollectionView];
@@ -78,7 +79,7 @@
             background.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
             background.contentMode = UIViewContentModeScaleAspectFill;
             background.image = [UIImage imageWithContentsOfFile:bgPath];
-            //self.backgroundView = background;
+            currentCollectionView.backgroundView = background;
             [background release];
         }
         
@@ -142,16 +143,19 @@
     
     UIView * nibView = [cell.contentView viewWithTag:1000];
     if (nibView == nil) {
+        //SLog(@"Will generate gridview");
         
-        cell.backgroundColor=[UIColor greenColor];
-        UIView * nibView = [UIView getNibView:[urlString nameOfFileWithoutExtensionOfUrlString] defaultNib:@"WAGridCell" forOrientation:999];
+        //cell.backgroundColor=[UIColor greenColor];
+        nibView = [UIView getNibView:[urlString nameOfFileWithoutExtensionOfUrlString] defaultNib:@"WAGridCell" forOrientation:999];
         nibView.autoresizingMask = UIViewAutoresizingNone;
         nibView.frame = cell.contentView.frame;
         [cell.contentView addSubview:nibView];
         nibView.tag = 1000;
+        //SLog(@"nibview %@",nibView);
 
         
     }
+
     [nibView populateNibWithParser:parser withButtonDelegate:self   forRow:(int)indexPath.row+1];
 
 
@@ -162,7 +166,7 @@
 - (UICollectionReusableView *)collectionView: (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:
                                          UICollectionElementKindSectionHeader withReuseIdentifier:@"headerIdentifier" forIndexPath:indexPath];
-    headerView.backgroundColor = [UIColor yellowColor];
+    //headerView.backgroundColor = [UIColor yellowColor];
     return headerView;
 }
 
@@ -175,62 +179,6 @@
     CGSize headerSize = CGSizeMake(320, 44);
     return headerSize;
 }
-
-
-
-/**- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%f",self.frame.size.width];//This prevents the same cells to be used in portrait and landscape mode, which poses problems.
-    
-    
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    int nbCols = [self numberofColumns];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
-        cell.backgroundColor = [UIColor clearColor];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        //Calculate left margin
-        CGFloat leftMargin = (self.frame.size.width-nbCols*(cellNibSize.width+2*kHorizontalMargin))/2;
-        
-        //Add subviews
-        for (int i = 1; i <=nbCols; i++){
-            UIView * nibView = [UIView getNibView:[urlString nameOfFileWithoutExtensionOfUrlString] defaultNib:@"WAGridCell" forOrientation:999];
-            nibView.autoresizingMask = UIViewAutoresizingNone;
-            nibView.frame = CGRectMake(leftMargin+kHorizontalMargin+(i-1)*(cellNibSize.width+2*kHorizontalMargin), kVerticalMargin,nibView.frame.size.width,nibView.frame.size.height);
-            [cell.contentView addSubview:nibView];
-            nibView.tag = 1000+i;
-            
-            
-        }
-        
-        
-    }
-    
-    cell.textLabel.hidden = YES;//Hide the standard textLabel view, otherwise our custom subviews get hiddeen
-    
-    for (int i = 1; i <=nbCols; i++){
-        UIView * nibView = [cell.contentView viewWithTag:1000+i];//Get  our Nib View
-        //SLog(@"Frame:%f,%f,%f,%f",nibView.frame.origin.x, nibView.frame.origin.y,nibView.frame.size.width,nibView.frame.size.height);
-        if ((indexPath.row*nbCols)+i<=[parser countData]){
-            [nibView populateNibWithParser:parser withButtonDelegate:self   forRow:(int)(indexPath.row*nbCols)+i];
-            [nibView setHidden:NO];
-        }
-        else{
-            [nibView setHidden:YES];
-        }
-        
-        
-    }
-    
-    
-    return cell;
-    
-}
- **/
-
 
 
 
@@ -363,16 +311,11 @@
 }
 
 #pragma mark Helper methods
-- (int) numberofColumns{
-    int ret = floor(self.frame.size.width/(cellNibSize.width+2*kHorizontalMargin));
-    return ret;
-    
-    
-}
 - (void)refresh:(UIRefreshControl *)refreshControl {
     //[refreshControl endRefreshing];
     WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];
     [vc checkUpdate:YES];
+    
     
 }
 
