@@ -165,12 +165,44 @@
     
 }
 
+- (NSString *) getAppId{
+    NSDictionary * app_Dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"]];
+    NSString * appShortId = [app_Dic objectForKey:@"AppId"];
+    if(!appShortId){
+        NSString * appLongId = [[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"];
+        NSArray *parts = [appLongId componentsSeparatedByString:@"."];
+        appShortId = [parts objectAtIndex:[parts count]-1];
+    }
+    
+    return appShortId;
+    
+}
+
+- (NSString *) getClientId{
+    NSDictionary * app_Dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"]];
+    NSString * clientShortId = [app_Dic objectForKey:@"ClientId"];
+    if(!clientShortId){
+        NSString * appLongId = [[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"];
+        NSArray *parts = [appLongId componentsSeparatedByString:@"."];
+        clientShortId = [parts objectAtIndex:[parts count]-2];
+        if ([clientShortId isEqualToString:@"widgetavenue"]) clientShortId = @"librelio";//this is for back compatibility reasons
+        
+        
+    }
+    
+    return clientShortId;
+    
+}
+
+
 - (int) countNumberOfReferencesForResourceWithUrlString:(NSString*) urlString {
     
     //TODO
     
     return 1;//Temporary
 }
+
+
 
 
 @end

@@ -189,7 +189,6 @@
 		142EBBE71A2E5F5E00BBDD97 /* d3.tip.v0.6.3.js in Resources */ = {isa = PBXBuildFile; fileRef = 142EBBE41A2E5F5E00BBDD97 /* d3.tip.v0.6.3.js */; };
 		142EBBE91A2E5F7000BBDD97 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 142EBBE81A2E5F7000BBDD97 /* index.html */; };
 		142EBBEA1A2F588A00BBDD97 /* WAURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D8296B19A2098E0059F3E0 /* WAURLProtocol.m */; };
-		143A03691A68661C00CFD39A /* Test.plist in Resources */ = {isa = PBXBuildFile; fileRef = 143A03681A68661C00CFD39A /* Test.plist */; };
 		143A038C1A6DAC1800CFD39A /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 143A038A1A6DAC1800CFD39A /* libGoogleAdMobAds.a */; };
 		143A038D1A6DAC1900CFD39A /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 143A038A1A6DAC1800CFD39A /* libGoogleAdMobAds.a */; };
 		143A038E1A6DAC1900CFD39A /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 143A038A1A6DAC1800CFD39A /* libGoogleAdMobAds.a */; };
@@ -611,7 +610,6 @@
 		14343A1E12A02A5700C06282 /* WAMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WAMapView.m; path = Classes/WAMapView.m; sourceTree = "<group>"; };
 		143725AB128574FE00EB176B /* WAPDFParserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAPDFParserView.h; sourceTree = "<group>"; };
 		143725AC128574FE00EB176B /* WAPDFParserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAPDFParserView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		143A03681A68661C00CFD39A /* Test.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Test.plist; path = ../../../Downloads/Test.plist; sourceTree = "<group>"; };
 		143A036D1A6DAC1800CFD39A /* DFPBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPBannerView.h; sourceTree = "<group>"; };
 		143A036E1A6DAC1800CFD39A /* DFPExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPExtras.h; sourceTree = "<group>"; };
 		143A036F1A6DAC1800CFD39A /* DFPInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DFPInterstitial.h; sourceTree = "<group>"; };
@@ -1729,7 +1727,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				143A03681A68661C00CFD39A /* Test.plist */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -2079,7 +2076,6 @@
 				14DB139B164C52C4001FE76B /* Icon.png in Resources */,
 				14DB139C164C52C4001FE76B /* Icon@2x.png in Resources */,
 				14DB139D164C52C4001FE76B /* Magazines.plist in Resources */,
-				143A03691A68661C00CFD39A /* Test.plist in Resources */,
 				14DB139E164C52C4001FE76B /* Magazines_background.png in Resources */,
 				14DB139F164C52C4001FE76B /* Tabs.plist in Resources */,
 				14DB13A0164C52C4001FE76B /* wind-generic.png in Resources */,

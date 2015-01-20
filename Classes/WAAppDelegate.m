@@ -134,7 +134,7 @@
     startInterstitial.adUnitID = @"/166877488/test";
     startInterstitial.delegate = self;
     GADRequest *request = [GADRequest request];
-    request.testDevices = @[ GAD_SIMULATOR_ID ];
+    //request.testDevices = @[ GAD_SIMULATOR_ID ];
     [startInterstitial loadRequest:request];
 
     [startInterstitial loadRequest:[GADRequest request]];

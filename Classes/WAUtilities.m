@@ -400,12 +400,10 @@
         return forcedUrl;
     }
     else{
-        NSString * appLongID = [[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"];
-        NSArray *parts = [appLongID componentsSeparatedByString:@"."];
-        NSString * appShortID = [parts objectAtIndex:[parts count]-1];
-        NSString * clientShortID = [parts objectAtIndex:[parts count]-2];
-        if ([clientShortID isEqualToString:@"widgetavenue"]) clientShortID = @"librelio";//this is for back compatibility reasons
-        NSString * completeUrl = [NSString stringWithFormat:@"%@/%@/%@%@",kDownloadUrl, clientShortID,appShortID,[urlString noArgsPartOfUrlString]];
+        NSString * appShortId = [[NSBundle mainBundle] getAppId];
+        NSString * clientShortId = [[NSBundle mainBundle] getClientId];
+        
+        NSString * completeUrl = [NSString stringWithFormat:@"%@/%@/%@%@",kDownloadUrl, clientShortId,appShortId,[urlString noArgsPartOfUrlString]];
         return completeUrl;
     }
 }
@@ -466,14 +464,11 @@
 	NSString * encodedUrl = [[urlString noArgsPartOfUrlString] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
 
 	//Get the client and app names
-	NSString * appLongID = [[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"];
-	NSArray *parts = [appLongID componentsSeparatedByString:@"."];
-	NSString * appShortID = [parts objectAtIndex:[parts count]-1];
-	NSString * clientShortID = [parts objectAtIndex:[parts count]-2];
-	if ([clientShortID isEqualToString:@"widgetavenue"]) clientShortID = @"librelio";//this is for back compatibility reasons
+    NSString * appShortId = [[NSBundle mainBundle] getAppId];
+    NSString * clientShortId = [[NSBundle mainBundle] getClientId];
 	
     NSString * deviceid = [self getUUID];
-	NSString * retUrl = [NSString stringWithFormat:kCheckPasswordUrl,password,codeService,encodedUrl,clientShortID,appShortID,deviceid];
+	NSString * retUrl = [NSString stringWithFormat:kCheckPasswordUrl,password,codeService,encodedUrl,clientShortId,appShortId,deviceid];
 	//SLog(@"retpassUrl=%@",retUrl);
 	return retUrl;
 	
@@ -490,11 +485,8 @@
 	NSString * encodedUrl = [[urlString noArgsPartOfUrlString] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     
 	//Get the client and app names
-	NSString * appLongID = [[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"];
-	NSArray *parts = [appLongID componentsSeparatedByString:@"."];
-	NSString * appShortID = [parts objectAtIndex:[parts count]-1];
-	NSString * clientShortID = [parts objectAtIndex:[parts count]-2];
-	if ([clientShortID isEqualToString:@"widgetavenue"]) clientShortID = @"librelio";//this is for back compatibility reasons
+    NSString * appShortId = [[NSBundle mainBundle] getAppId];
+    NSString * clientShortId = [[NSBundle mainBundle] getClientId];
 	
     NSString * deviceid = [self getUUID];
     NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];
@@ -502,7 +494,7 @@
     if (credentials) userService = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"UserService"];
 
     
-	NSString * retUrl = [NSString stringWithFormat:kCheckUsernamePasswordUrl,username,password,encodedUrl,clientShortID,appShortID,userService,deviceid];
+	NSString * retUrl = [NSString stringWithFormat:kCheckUsernamePasswordUrl,username,password,encodedUrl,clientShortId,appShortId,userService,deviceid];
 	//SLog(@"retpassUrl=%@",retUrl);
 	return retUrl;
 	

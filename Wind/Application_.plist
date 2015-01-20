@@ -6,8 +6,8 @@
 	<string>LibrelioS3</string>
 	<key>SharedSecret</key>
 	<string>zzzzzz</string>
-	<key>Splash</key>
-	<string></string>
+	<key>DfpPrefix</key>
+	<string>/166877488/developer_wind_</string>
 	<key>GoogleAnalyticsCode</key>
 	<string>UA-1732003-23</string>
 	<key>AppId</key>
