@@ -44,6 +44,10 @@
 - (NSString*) receiptForUrlString;
 
 
+- (NSString*) completeAdUnitCodeForShortCode:(NSString*)shortAdUnitCode;
+
+
+
 /**
  Deprecated
  @attention: Will work only if value is a single word
@@ -59,7 +63,5 @@
 
 - (NSString*) gaScreenForModuleWithName:(NSString*)moduleName withPage:(NSString*)pageName;
 
-- (NSString *)device;
-+ (NSString *)orientation;
 
 @end

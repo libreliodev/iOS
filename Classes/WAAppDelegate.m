@@ -129,15 +129,25 @@
     // Clear application badge
     application.applicationIconBadgeNumber = 0;
 
+    
     //Request ad if appropriate; this needs to be done here (and not in "didFinishLaunchingWithOptions") so that the ad is also displayed when the app awakes from background
-    startInterstitial = [[DFPInterstitial alloc] init];
-    startInterstitial.adUnitID = @"/166877488/test";
-    startInterstitial.delegate = self;
-    GADRequest *request = [GADRequest request];
-    //request.testDevices = @[ GAD_SIMULATOR_ID ];
-    [startInterstitial loadRequest:request];
-
-    [startInterstitial loadRequest:[GADRequest request]];
+    NSDictionary * app_Dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"]];
+    NSString * DfpPrefix = [app_Dic objectForKey:@"DfpPrefix"];
+    if (DfpPrefix){
+        startInterstitial = [[DFPInterstitial alloc] init];
+        NSString * shortUnitId = @"i000";//i000 is the code for startup instertitials
+        startInterstitial.adUnitID = [DfpPrefix completeAdUnitCodeForShortCode:shortUnitId];
+        NSLog(@"unitId:%@",startInterstitial.adUnitID);
+        startInterstitial.delegate = self;
+        GADRequest *request = [GADRequest request];
+        //request.testDevices = @[ GAD_SIMULATOR_ID ];
+        [startInterstitial loadRequest:request];
+        
+        [startInterstitial loadRequest:[GADRequest request]];
+        
+        
+        
+    }
     
     
     //Register event with GA

@@ -584,6 +584,35 @@
 
 }
 
+
+- (NSString*) completeAdUnitCodeForShortCode:(NSString*)shortAdUnitCode{
+    
+    //Check if there are several languages in the app; in this case, load ad in preferred language
+    NSDictionary * app_Dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"]];
+    NSString * language;
+    NSString * preferredLanguage;
+
+    if ([app_Dic objectForKey:@"Languages"]){
+        NSString * preferredPlist = [[NSUserDefaults standardUserDefaults] objectForKey:@"PreferredLanguagePlist"];
+        if (preferredPlist){
+            //Find the language corresponding to the prefered plist; the language name is after the last "_"
+            NSString * plistFileName = [preferredPlist nameOfFileWithoutExtensionOfUrlString];
+            NSArray *parts = [plistFileName componentsSeparatedByString:@"_"];
+            language = [parts objectAtIndex:[parts count]-1];
+            
+        }
+        else  language = [[NSLocale preferredLanguages] objectAtIndex:0];//If language has not been chosen by user yet, choose the default language
+        preferredLanguage = [language stringByAppendingString:@"_"];
+        
+    }
+    else{
+        preferredLanguage = @"";
+    }
+    return [[self stringByAppendingString:preferredLanguage] stringByAppendingString:shortAdUnitCode];
+
+}
+
+
 - (NSString*) queryStringByReplacingClause:(NSString*)clause withValue:(NSString*)newValue{
     NSString * oldValue = [self valueOfClause:(NSString*)clause];
     NSString * clauseAndNewValue = [NSString stringWithFormat:@" %@ %@",clause,newValue];
@@ -634,36 +663,6 @@
 
 }
 
-//Created by Vladimir
-- (NSString *)device
-{
-    NSString * ret = [NSString stringWithFormat:@"%@Ipad", self];//Default
-    if (![WAUtilities isBigScreen]) ret = [NSString stringWithFormat:@"%@Iphone", self];
-    return ret;
-    
-    /**Seems to have caused problems with Apple 
-    switch(UIDevice.currentDevice.userInterfaceIdiom)
-    {
-        case UIUserInterfaceIdiomPhone:
-            return [NSString stringWithFormat:@"%@Iphone", self];
-        default:
-            return [NSString stringWithFormat:@"%@Ipad", self];
-    }**/
-}
-//Created by Vladimir
-+ (NSString *)orientation
-{
-    // UIDevice.currentDevice.orientation improperly returns orientation
-	// Source: http://stackoverflow.com/a/6680597/124115
-	switch ([[UIApplication sharedApplication] statusBarOrientation])
-    {
-        case UIDeviceOrientationPortrait:
-        case UIDeviceOrientationPortraitUpsideDown:
-            return @"Portrait";
-        default:
-            return @"Landscape";
-    }
-}
 
 
 @end
