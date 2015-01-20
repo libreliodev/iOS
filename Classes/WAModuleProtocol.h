@@ -29,6 +29,7 @@ typedef enum {
     LinkTypeScan=23,
     LinkTypeOpenCVClient=24,
     LinkTypeAnalytics=25,
+    LinkTypeAds=26,
 
 
     

@@ -337,7 +337,8 @@
 	else if ([extension isEqualToString:@"kml"]) return LinkTypeMap;
 	else if ([extension isEqualToString:@"chart"]) return LinkTypeChart;
 	else if ([extension isEqualToString:@"scan"]) return LinkTypeScan;
-	else if ([extension isEqualToString:@"txt"]) return LinkTypeText;
+    else if ([extension isEqualToString:@"txt"]) return LinkTypeText;
+    else if ([extension isEqualToString:@"dfp"]) return LinkTypeAds;
 	else if (RSSrange.location != NSNotFound) return LinkTypeRSS;//The URL contains the word feed, we assume it is an RSS feed
 	else if (MAPrange.location != NSNotFound) return LinkTypeMap; 
 	else if (iTunesRange.location != NSNotFound) return LinkTypeExternal; 
@@ -440,6 +441,11 @@
             ret = @"WAAnalyticsView";
             break;
         }
+        case LinkTypeAds:{
+            ret = @"WAAdView";
+            break;
+        }
+
 
             
 

@@ -399,6 +399,7 @@
 		14A309AE18378F1000A519DD /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 142DB0611836A30D0045DFD5 /* SSZipArchive.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		14A309B01837903F00A519DD /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A309AF1837903F00A519DD /* libz.dylib */; };
 		14A309B11837908D00A519DD /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A309AF1837903F00A519DD /* libz.dylib */; };
+		14A7F8E71A6F01290090CFAB /* WAAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A7F8E61A6F01290090CFAB /* WAAdView.m */; };
 		14A80BCF168EC39C006B0AA4 /* black.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BCB168EC39C006B0AA4 /* black.png */; };
 		14A80BF2168EC3DB006B0AA4 /* BottomBarBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BD4168EC3DB006B0AA4 /* BottomBarBackground.png */; };
 		14A80BF9168EC3DB006B0AA4 /* button-question.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A80BD5168EC3DB006B0AA4 /* button-question.png */; };
@@ -762,6 +763,8 @@
 		14A309AF1837903F00A519DD /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		14A68F5C141E514600E16AE6 /* UIView+WAModuleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WAModuleView.h"; sourceTree = "<group>"; };
 		14A68F5D141E514600E16AE6 /* UIView+WAModuleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UIView+WAModuleView.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		14A7F8E51A6F01290090CFAB /* WAAdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WAAdView.h; path = Classes/WAAdView.h; sourceTree = "<group>"; };
+		14A7F8E61A6F01290090CFAB /* WAAdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WAAdView.m; path = Classes/WAAdView.m; sourceTree = "<group>"; };
 		14A80BCB168EC39C006B0AA4 /* black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = black.png; path = Resources/black.png; sourceTree = "<group>"; };
 		14A80BD4168EC3DB006B0AA4 /* BottomBarBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BottomBarBackground.png; path = Resources/BottomBarBackground.png; sourceTree = "<group>"; };
 		14A80BD5168EC3DB006B0AA4 /* button-question.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-question.png"; path = "Resources/button-question.png"; sourceTree = "<group>"; };
@@ -1491,6 +1494,7 @@
 				147A572D1314EEA4002BE435 /* Plain Module */,
 				147AEBBE13799B2000E209A9 /* Label Module */,
 				1425324613606EA600F6BB3D /* FileManagement Module */,
+				14A7F8E41A6F010D0090CFAB /* Ad Module */,
 				14C5D08F126469F10034FE23 /* RSS Module */,
 				14C52F951264A5C9000B272B /* HTML Module */,
 				1450749413421B220078C2B2 /* Buy Module */,
@@ -1518,6 +1522,16 @@
 				14A1DB46145F04B1005366C7 /* Scanner.m */,
 			);
 			name = PDFK;
+			sourceTree = "<group>";
+		};
+		14A7F8E41A6F010D0090CFAB /* Ad Module */ = {
+			isa = PBXGroup;
+			children = (
+				14A7F8E51A6F01290090CFAB /* WAAdView.h */,
+				14A7F8E61A6F01290090CFAB /* WAAdView.m */,
+			);
+			name = "Ad Module";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		14BA64111444D6DA00D2DCAF /* UI */ = {
@@ -2334,6 +2348,7 @@
 				14D8296C19A2098E0059F3E0 /* WAURLProtocol.m in Sources */,
 				14DB1199164BEDC3001FE76B /* WAPDFParser.m in Sources */,
 				14DB119A164BEDC3001FE76B /* WAThumbnailsView.m in Sources */,
+				14A7F8E71A6F01290090CFAB /* WAAdView.m in Sources */,
 				14DB119B164BEDC3001FE76B /* WARSSViewController.m in Sources */,
 				14DB119C164BEDC3001FE76B /* WAPaymentTransactionObserver.m in Sources */,
 				14DB119E164BEDC3001FE76B /* WAUtilities.m in Sources */,
