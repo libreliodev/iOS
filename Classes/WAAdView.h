@@ -7,7 +7,7 @@
 
 
 
-@interface WAAdView : DFPBannerView <WAModuleProtocol>{
+@interface WAAdView : DFPBannerView <WAModuleProtocol,GADBannerViewDelegate>{
 
 	NSString *urlString;
 	UIViewController* currentViewController;
@@ -16,8 +16,6 @@
 	
 }
 
-- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer;
-- (void) resetSlideShow;
 
 @end
 

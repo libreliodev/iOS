@@ -62,7 +62,7 @@
 			break;
 		}
 		default:{
-			playFullScreen=NO;//By default, elements are played in button rect except web links
+			playFullScreen=NO;//By default, elements are played in button rect except web links and a few others
 			if ([rectString isEqualToString:@"full"]) playFullScreen=YES;
 			break;
 			

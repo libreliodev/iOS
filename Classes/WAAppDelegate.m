@@ -143,7 +143,6 @@
         //request.testDevices = @[ GAD_SIMULATOR_ID ];
         [startInterstitial loadRequest:request];
         
-        [startInterstitial loadRequest:[GADRequest request]];
         
         
         

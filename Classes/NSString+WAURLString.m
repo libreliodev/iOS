@@ -321,7 +321,8 @@
 	else if ([scheme isEqualToString:@"self"]) return LinkTypeSelf;
 	else if ([scheme isEqualToString:@"buy"]) return LinkTypeBuy;
     else if ([scheme isEqualToString:@"search"]) return LinkTypeSearch;
-	else if ([scheme isEqualToString:@"share"]) return LinkTypeShare;
+    else if ([scheme isEqualToString:@"share"]) return LinkTypeShare;
+    else if ([scheme isEqualToString:@"ad"]) return LinkTypeAds;
 	else if ([externalSchemes containsObject:scheme]) return LinkTypeExternal;
 	else if ([scheme isEqualToString:@"file"]) return LinkTypeFileManager;
 	else if ([extension isEqualToString:@"mov"]||[extension isEqualToString:@"mp4"]) return LinkTypeVideo; 
@@ -338,7 +339,6 @@
 	else if ([extension isEqualToString:@"chart"]) return LinkTypeChart;
 	else if ([extension isEqualToString:@"scan"]) return LinkTypeScan;
     else if ([extension isEqualToString:@"txt"]) return LinkTypeText;
-    else if ([extension isEqualToString:@"dfp"]) return LinkTypeAds;
 	else if (RSSrange.location != NSNotFound) return LinkTypeRSS;//The URL contains the word feed, we assume it is an RSS feed
 	else if (MAPrange.location != NSNotFound) return LinkTypeMap; 
 	else if (iTunesRange.location != NSNotFound) return LinkTypeExternal; 
@@ -614,7 +614,7 @@
     else{
         preferredLanguage = @"";
     }
-    return [[self stringByAppendingString:preferredLanguage] stringByAppendingString:shortAdUnitCode];
+    return [NSString stringWithFormat:@"%@%@%@",self,preferredLanguage,shortAdUnitCode];
 
 }
 

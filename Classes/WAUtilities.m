@@ -404,6 +404,7 @@
         NSString * clientShortId = [[NSBundle mainBundle] getClientId];
         
         NSString * completeUrl = [NSString stringWithFormat:@"%@/%@/%@%@",kDownloadUrl, clientShortId,appShortId,[urlString noArgsPartOfUrlString]];
+        NSLog(@"completeUrl %@",completeUrl);
         return completeUrl;
     }
 }
