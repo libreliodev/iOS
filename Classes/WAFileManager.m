@@ -89,7 +89,7 @@
 
 	UIView * nibView = [[cell.contentView subviews]objectAtIndex:0];//Get  our Nib View
 	
-	[nibView populateNibWithParser:parser withButtonDelegate:self   forRow:(int)indexPath.row+1];
+	[nibView populateNibWithParser:parser withButtonDelegate:self withController:currentViewController  forRow:(int)indexPath.row+1];
 	
 	
     return cell;

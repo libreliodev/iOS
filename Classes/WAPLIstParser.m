@@ -250,7 +250,19 @@
 
 
 - (NSString*) getHeaderForDataCol:(DataCol)dataCol{
-	return nil;
+    NSString * ret;
+    switch (dataCol) {
+        case DataColAd:
+            ret= @"b000";
+            break;
+        default:
+            ret=nil;
+            
+    }
+	
+    
+    
+    return ret;
 	
 }
 

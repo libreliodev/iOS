@@ -151,7 +151,7 @@
 {
     UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
     
-    [cell populateNibWithParser:parser withButtonDelegate:self   forRow:(int)indexPath.row+1];
+    [cell populateNibWithParser:parser withButtonDelegate:self withController:currentViewController   forRow:(int)indexPath.row+1];
 
 
     return cell;
@@ -161,6 +161,7 @@
 - (UICollectionReusableView *)collectionView: (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:
                                          UICollectionElementKindSectionHeader withReuseIdentifier:@"headerIdentifier" forIndexPath:indexPath];
+    [headerView populateNibWithParser:parser withButtonDelegate:self withController:currentViewController forRow:0];
     return headerView;
 }
 
@@ -170,8 +171,7 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    CGSize headerSize = CGSizeMake(320, 44);
-    return headerSize;
+    return headerNibSize;
 }
 
 

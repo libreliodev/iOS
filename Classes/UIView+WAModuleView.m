@@ -94,12 +94,14 @@
 #pragma mark -
 #pragma mark Nib and Layout management methods
 
-- (void) populateNibWithParser:(NSObject <WAParserProtocol>*)parser withButtonDelegate:(NSObject*)delegate  forRow:(int)row{
+- (void) populateNibWithParser:(NSObject <WAParserProtocol>*)parser withButtonDelegate:(NSObject*)delegate withController:(UIViewController*)controller forRow:(int)row{
    	for (UIView * subView in self.subviews){
         //SLog(@"Found subview with tag %i.",subView.tag);
 		if (subView.tag>=0){
 			NSString * tempString;
-            tempString=[parser getDataAtRow:row forDataCol:(int)subView.tag];
+            if (row==0) tempString=[parser getHeaderForDataCol:(int)subView.tag];//This is conventional
+            else tempString=[parser getDataAtRow:row forDataCol:(int)subView.tag];
+
             //SLog(@"Found tempString:%@",tempString);
             //[parser getDataAtRow:row forQueryString:queryString forDataCol:subView.tag];Deprecated
 			if (!tempString){
@@ -151,9 +153,14 @@
 					
 					
 				}
+                else if ([subView conformsToProtocol:@protocol(WAModuleProtocol)]){
+                    NSLog(@"Conforms");
+                    UIView <WAModuleProtocol>* moduleView = (UIView <WAModuleProtocol>*)subView;
+                    moduleView.currentViewController = controller;
+                    moduleView.urlString = tempString;
 				
 				
-				
+                }
 			}
 			
 			

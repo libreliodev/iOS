@@ -15,7 +15,7 @@
 - (void) showActionSheet:(UIActionSheet*)actionSheet animated:(BOOL)animated;
 - (void) showPopover:(UIPopoverController*)popover animated:(BOOL)animated;
 
-- (void) populateNibWithParser:(NSObject <WAParserProtocol>*)parser withButtonDelegate:(NSObject*)delegate  forRow:(int)row;
+- (void) populateNibWithParser:(NSObject <WAParserProtocol>*)parser withButtonDelegate:(NSObject*)delegate withController:(UIViewController*)controller  forRow:(int)row;
 
 + (NSString *)getNibName:(NSString*) nibName defaultNib:(NSString*) defaultNibName forOrientation:(UIInterfaceOrientation)orientation;
 + (UIView *)getNibView:(NSString*) nibName defaultNib:(NSString*) defaultNibName forOrientation:(UIInterfaceOrientation)orientation;
