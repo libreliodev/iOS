@@ -63,7 +63,6 @@
  
         
         UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
-        [layout setHeaderReferenceSize:CGSizeMake(320, 50)];
         currentCollectionView=[[UICollectionView alloc] initWithFrame:self.frame collectionViewLayout:layout];
         currentCollectionView.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
 
@@ -175,9 +174,6 @@
 }
 
 
-
-
-
 - (void) dealloc
 {
     [[NSNotificationCenter defaultCenter]removeObserver:self];
@@ -194,7 +190,20 @@
 - (void)buttonAction:(id)sender{
     UIButton *button = (UIButton *)sender;
     NSString * newUrlString = [button titleForState:UIControlStateApplication];
-    [self openModule:newUrlString inView:button.superview inRect:button.frame];
+    NSString * absoluteUrlString = [WAUtilities absoluteUrlOfRelativeUrl:newUrlString relativeToUrl:urlString];
+    NSURL * url = [NSURL URLWithString:absoluteUrlString];
+    if ([url.scheme isEqualToString:@"detail"]){
+        int detailRow = [url.host intValue];
+        [self openModalView:detailRow];
+        
+
+    }
+    else{
+        [self openModule:newUrlString inView:button.superview inRect:button.frame];
+    }
+
+   //
+    
 }
 
 
@@ -206,6 +215,30 @@
     moduleViewController.containingRect= rect;
     [moduleViewController pushViewControllerIfNeededAndLoadModuleView];
     [moduleViewController release];
+}
+                                         
+- (void) openModalView:(int)detailRow{
+    NSLog(@"detailRow %i",detailRow);
+    NSString * modalNibTestName = [[urlString nameOfFileWithoutExtensionOfUrlString]stringByAppendingString:@"_modal"];
+    NSString * headerNibName = [UIView getNibName:modalNibTestName defaultNib:@"WAGridModal" forOrientation:999];
+
+    UIViewController* modalController = [[UIViewController alloc]initWithNibName:headerNibName bundle:[NSBundle mainBundle]];
+    modalController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    modalController.modalPresentationStyle =  UIModalPresentationFormSheet;
+    
+    /**CGPoint frameSize = CGPointMake([[UIScreen mainScreen] bounds].size.width*0.95f, [[UIScreen mainScreen] bounds].size.height*0.95f);
+     CGRect screenRect = [[UIScreen mainScreen] bounds];
+     CGFloat screenWidth = screenRect.size.width;
+     CGFloat screenHeight = screenRect.size.height;
+     
+     // Resizing for iOS 8
+     modalController.preferredContentSize = CGSizeMake(frameSize.x, frameSize.y);
+     // Resizing for <= iOS 7
+     modalController.view.superview.frame = CGRectMake((screenWidth - frameSize.x)/2, (screenHeight - frameSize.y)/2, frameSize.x, frameSize.y);**/
+    
+    [self.currentViewController presentViewController:modalController animated:YES completion:nil];
+    
+    
 }
 
 

@@ -114,11 +114,6 @@
 					UIImage * img = [UIImage imageWithContentsOfFile:tempString];
                     if (img){
                         imView.image = img;
-                        //Add shadow
-                        imView.layer.shadowRadius = 10.0;
-                        imView.layer.shadowOpacity = 0.4;
-                        imView.layer.shadowOffset = CGSizeMake( 20.0, 10.0 );
-                        
                     }
                     else{
                         //Delete corrupted file
@@ -145,7 +140,6 @@
 				}
 				else if  ([subView isKindOfClass:[UIButton class]]){
 					UIButton * buyButton = (UIButton*) subView; 
-					buyButton.backgroundColor = [buyButton titleShadowColorForState:UIControlStateNormal];//Conventionally, we use the shadow color to describe the background color
 					NSArray * parts = [tempString componentsSeparatedByString:@";"];
 					[buyButton setTitle:[parts objectAtIndex:0] forState:UIControlStateNormal];
 					[buyButton setTitle:[parts objectAtIndex:1] forState:UIControlStateApplication];//Store the link here

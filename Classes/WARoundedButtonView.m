@@ -21,6 +21,8 @@
 	//UIFont * newFont = [UIFont systemFontOfSize:self.frame.size.height/1.5];
 	//self.titleLabel.font = newFont;
 	//self.titleLabel.adjustsFontSizeToFitWidth = YES;
+    self.backgroundColor = [self titleShadowColorForState:UIControlStateNormal];//Back compatibility Conventionally, we use the shadow color to describe the background color
+
     self.titleLabel.adjustsFontSizeToFitWidth = YES;
     CGFloat cornerRadius = self.frame.size.height/6;
 	[[self layer] setCornerRadius:cornerRadius];

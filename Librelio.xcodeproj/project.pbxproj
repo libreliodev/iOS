@@ -539,6 +539,9 @@
 		14DB13A1164C52C4001FE76B /* wind_355.png in Resources */ = {isa = PBXBuildFile; fileRef = 14DB1381164C52C4001FE76B /* wind_355.png */; };
 		14E42D4A183BC5590062825A /* WAZippedHtmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E42D48183BC5590062825A /* WAZippedHtmlParser.m */; };
 		14E42D4B183BC5590062825A /* WAZippedHtmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E42D48183BC5590062825A /* WAZippedHtmlParser.m */; };
+		14F864B41A716A550031CBD4 /* WAGridModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14F864B31A716A550031CBD4 /* WAGridModal.xib */; };
+		14F864B51A716A550031CBD4 /* WAGridModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14F864B31A716A550031CBD4 /* WAGridModal.xib */; };
+		14F864B61A716A550031CBD4 /* WAGridModal.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14F864B31A716A550031CBD4 /* WAGridModal.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -873,6 +876,7 @@
 		14F1CE2E1316DEC6008B7873 /* WAFileDownloadsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAFileDownloadsManager.h; sourceTree = "<group>"; };
 		14F1CE2F1316DEC6008B7873 /* WAFileDownloadsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAFileDownloadsManager.m; sourceTree = "<group>"; };
 		14F3DE0B17ECF83A00383CA5 /* script.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = script.sh; sourceTree = "<group>"; };
+		14F864B31A716A550031CBD4 /* WAGridModal.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WAGridModal.xib; sourceTree = "<group>"; };
 		14F94D61160C557200A68F2A /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		14F94D71160C66CA00A68F2A /* SHKActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHKActivityIndicator.h; sourceTree = "<group>"; };
 		14F94D72160C66CA00A68F2A /* SHKActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHKActivityIndicator.m; sourceTree = "<group>"; };
@@ -1561,6 +1565,7 @@
 		14C52F941264A56E000B272B /* Grid Module */ = {
 			isa = PBXGroup;
 			children = (
+				14F864B31A716A550031CBD4 /* WAGridModal.xib */,
 				1451ECB21A6576840019BCA6 /* WAGridHeader.xib */,
 				14639F2A12802FD300185D53 /* WAGridView.h */,
 				14639F2B12802FD300185D53 /* WAGridView.m */,
@@ -1984,6 +1989,7 @@
 				142EBBBD1A2B021A00BBDD97 /* Default-568h@2x.png in Resources */,
 				142EBB451A2B018C00BBDD97 /* stop.png in Resources */,
 				142EBBD11A2B021A00BBDD97 /* partage.png in Resources */,
+				14F864B51A716A550031CBD4 /* WAGridModal.xib in Resources */,
 				142EBBC61A2B021A00BBDD97 /* Icon-60@2x.png in Resources */,
 				142EBB461A2B018C00BBDD97 /* synchronize.png in Resources */,
 				142EBB471A2B018C00BBDD97 /* video.png in Resources */,
@@ -2034,6 +2040,7 @@
 				149086A217E375D700943DD2 /* information.png in Resources */,
 				149086A317E375D700943DD2 /* iphone.png in Resources */,
 				149086A417E375D700943DD2 /* Loader.png in Resources */,
+				14F864B61A716A550031CBD4 /* WAGridModal.xib in Resources */,
 				144B2C6518229DE200CDD200 /* info.png in Resources */,
 				149086A517E375D700943DD2 /* newspaper.png in Resources */,
 				149086A617E375D700943DD2 /* Placeholder.png in Resources */,
@@ -2130,6 +2137,7 @@
 				14A80C77168EC3DB006B0AA4 /* rotate.png in Resources */,
 				143A038F1A6DAC1900CFD39A /* README.txt in Resources */,
 				14A80C85168EC3DB006B0AA4 /* share-button.png in Resources */,
+				14F864B41A716A550031CBD4 /* WAGridModal.xib in Resources */,
 				146E000317E20F49000EE3DB /* back@2x.png in Resources */,
 				146232F717E1FE210066084C /* facebook@2x.png in Resources */,
 				14A80C8C168EC3DB006B0AA4 /* slideshow.png in Resources */,

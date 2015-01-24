@@ -217,6 +217,10 @@
 				ret = nil;//File has not been downloaded, nothing to read!
 			}
 			break;
+        case DataColDetail:
+            ret= [NSString stringWithFormat:@";detail://%i",row];
+            break;
+
 		}
 		default:
             if (dataCol>100.0) ret =[tempDic objectForKey:[NSString stringWithFormat:@"%@%i",@"Col",dataCol]];

@@ -48,6 +48,7 @@ typedef enum {
     DataColClass=17,
     DataColNib=18,
     DataColAd=24,
+    DataColDetail=25,
     DataColNothing=999,
 } DataCol;
 
