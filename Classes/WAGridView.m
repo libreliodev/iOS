@@ -59,9 +59,10 @@
         NSString * headerNibName = [UIView getNibName:headerNibTestName defaultNib:@"WAGridHeader" forOrientation:999];
         UIView * headerNibView = [UIView getNibView:headerNibTestName defaultNib:@"WAGridHeader" forOrientation:999];
         headerNibSize = headerNibView.frame.size;
-        //SLog(@"cellNibSize:%f,%f",nibView.frame.size.width,nibView.frame.size.height);
+        if ([headerNibView viewWithTag:25]) rowInHeaderView=1; //If there is a button with a link to detailview in header nib, it means that header should contain first row
+        else rowInHeaderView=0;
  
-        
+        //Set collection view
         UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
         currentCollectionView=[[UICollectionView alloc] initWithFrame:self.frame collectionViewLayout:layout];
         currentCollectionView.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
@@ -143,14 +144,14 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return parser.countData;
+    return MAX(parser.countData-rowInHeaderView,0);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
     
-    [cell populateNibWithParser:parser withButtonDelegate:self withController:currentViewController   forRow:(int)indexPath.row+1];
+    [cell populateNibWithParser:parser withButtonDelegate:self withController:currentViewController   forRow:(int)indexPath.row+1+rowInHeaderView];
 
 
     return cell;
@@ -160,7 +161,7 @@
 - (UICollectionReusableView *)collectionView: (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:
                                          UICollectionElementKindSectionHeader withReuseIdentifier:@"headerIdentifier" forIndexPath:indexPath];
-    [headerView populateNibWithParser:parser withButtonDelegate:self withController:currentViewController forRow:0];
+    [headerView populateNibWithParser:parser withButtonDelegate:self withController:currentViewController forRow:rowInHeaderView];
     return headerView;
 }
 
@@ -220,9 +221,9 @@
 - (void) openModalView:(int)detailRow{
     NSLog(@"detailRow %i",detailRow);
     NSString * modalNibTestName = [[urlString nameOfFileWithoutExtensionOfUrlString]stringByAppendingString:@"_modal"];
-    NSString * headerNibName = [UIView getNibName:modalNibTestName defaultNib:@"WAGridModal" forOrientation:999];
+    NSString * modalNibName = [UIView getNibName:modalNibTestName defaultNib:@"WAGridModal" forOrientation:999];
 
-    UIViewController* modalController = [[UIViewController alloc]initWithNibName:headerNibName bundle:[NSBundle mainBundle]];
+    UIViewController* modalController = [[UIViewController alloc]initWithNibName:modalNibName bundle:[NSBundle mainBundle]];
     modalController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     modalController.modalPresentationStyle =  UIModalPresentationFormSheet;
     
@@ -239,8 +240,9 @@
     [self.currentViewController presentViewController:modalController animated:YES completion:nil];
     
     
+   
+    
 }
-
 
 
 #pragma mark -

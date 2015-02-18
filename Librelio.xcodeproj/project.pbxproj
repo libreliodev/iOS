@@ -721,7 +721,6 @@
 		147B34F6146C1B820002CC17 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		147B3530146E78920002CC17 /* WANewsstandIssueDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WANewsstandIssueDownloader.h; sourceTree = "<group>"; };
 		147B3531146E78930002CC17 /* WANewsstandIssueDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WANewsstandIssueDownloader.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		147B619517F334C900A4E413 /* Download.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Download.plist; sourceTree = "<group>"; };
 		148522BC128C617F00752C97 /* WATilingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WATilingView.h; sourceTree = "<group>"; };
 		148522BD128C617F00752C97 /* WATilingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WATilingView.m; sourceTree = "<group>"; };
 		14873E951282ECDC0075E915 /* WAOperationsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAOperationsManager.h; sourceTree = "<group>"; };
@@ -1466,7 +1465,6 @@
 			isa = PBXGroup;
 			children = (
 				1490873717E37BE100943DD2 /* Application.plist */,
-				147B619517F334C900A4E413 /* Download.plist */,
 				14F3DE0B17ECF83A00383CA5 /* script.sh */,
 				1490873C17E43B3B00943DD2 /* path.txt */,
 			);

@@ -15,6 +15,7 @@
 	NSObject <WAParserProtocol> * parser;
     CGSize cellNibSize;
     CGSize headerNibSize;
+    int rowInHeaderView;
     UIRefreshControl *refreshControl;
     UICollectionView * currentCollectionView;
 	
