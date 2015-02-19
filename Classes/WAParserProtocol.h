@@ -18,6 +18,7 @@ typedef enum {
     ParserTypeLocal=9,
     ParserTypeOAM=10,
     ParserTypeZip=11,
+    ParserTypeFolio=12,
 
 
     

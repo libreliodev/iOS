@@ -328,7 +328,7 @@
 	else if ([extension isEqualToString:@"mov"]||[extension isEqualToString:@"mp4"]) return LinkTypeVideo; 
 	else if ([extension isEqualToString:@"png"]||[extension isEqualToString:@"jpg"]) return LinkTypeSlideShow;
 	else if ([extension isEqualToString:@"mp3"]||[extension isEqualToString:@"mp3"]) return LinkTypeMusic;
-	else if ([extension isEqualToString:@"pdf"]) return LinkTypePaginated;
+	else if ([extension isEqualToString:@"pdf"]||[extension isEqualToString:@"folio"]) return LinkTypePaginated;
 	else if ([extension isEqualToString:@"gif"]) return LinkTypeAnimation;
 	else if ([extension isEqualToString:@"rss"]) return LinkTypeTable;
 	else if ([extension isEqualToString:@"atom"]) return LinkTypeTable;
@@ -469,7 +469,8 @@
 	else if ([extension isEqualToString:@"atom"]) return ParserTypeAtom;
 	else if ([extension isEqualToString:@"local"]) return ParserTypeLocal;
 	else if ([extension isEqualToString:@"oam"]) return ParserTypeOAM;
-	else if ([extension isEqualToString:@"zip"]) return ParserTypeZip;
+    else if ([extension isEqualToString:@"zip"]) return ParserTypeZip;
+    else if ([extension isEqualToString:@"folio"]) return ParserTypeFolio;
 	else return ParserTypeHTML;
 	
 }
@@ -516,9 +517,13 @@
 			break;
 		}
         case ParserTypeZip:{
-			ret = @"WAZippedHtmlParser";
-			break;
-		}
+            ret = @"WAZippedHtmlParser";
+            break;
+        }
+        case ParserTypeFolio:{
+            ret = @"WAFolioParser";
+            break;
+        }
 
 
 		default:

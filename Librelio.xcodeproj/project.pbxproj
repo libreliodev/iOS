@@ -207,6 +207,7 @@
 		143A039F1A6DAD9700CFD39A /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143A039B1A6DAD7600CFD39A /* EventKitUI.framework */; };
 		143A03A01A6DADA400CFD39A /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143A039A1A6DAD7600CFD39A /* EventKit.framework */; };
 		143A03A11A6DADA400CFD39A /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 143A039B1A6DAD7600CFD39A /* EventKitUI.framework */; };
+		144958FA1A94B87000C305F2 /* WAFolioParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 144958F81A94B87000C305F2 /* WAFolioParser.m */; };
 		144B2C5218229DE200CDD200 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 144B2C4718229DE200CDD200 /* calendar.png */; };
 		144B2C5318229DE200CDD200 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 144B2C4718229DE200CDD200 /* calendar.png */; };
 		144B2C5518229DE200CDD200 /* calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 144B2C4818229DE200CDD200 /* calendar@2x.png */; };
@@ -649,6 +650,8 @@
 		143A039B1A6DAD7600CFD39A /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		14443FC015465D3200F1D227 /* WAHTMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAHTMLParser.h; sourceTree = "<group>"; };
 		14443FC115465D3200F1D227 /* WAHTMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAHTMLParser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		144958F81A94B87000C305F2 /* WAFolioParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAFolioParser.m; sourceTree = "<group>"; };
+		144958F91A94B87000C305F2 /* WAFolioParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAFolioParser.h; sourceTree = "<group>"; };
 		144B16401365BE9000C47C92 /* WAKMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAKMLParser.h; sourceTree = "<group>"; };
 		144B16411365BE9000C47C92 /* WAKMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAKMLParser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		144B2C4718229DE200CDD200 /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = calendar.png; path = Resources/calendar.png; sourceTree = "<group>"; };
@@ -1050,6 +1053,7 @@
 				1425323613606C7D00F6BB3D /* WAParserProtocol.h */,
 				144ECA6914310981006EACBE /* WAParserViewProtocol.h */,
 				144ECA681430F715006EACBE /* PDF */,
+				144958F71A94B83E00C305F2 /* Folio */,
 				140DF34116197E1600815F26 /* IMG */,
 				147B34D7146C13180002CC17 /* SQLite */,
 				14BC0CF2139D1EC70063F3A0 /* Local */,
@@ -1256,6 +1260,15 @@
 				14443FC115465D3200F1D227 /* WAHTMLParser.m */,
 			);
 			name = HTML;
+			sourceTree = "<group>";
+		};
+		144958F71A94B83E00C305F2 /* Folio */ = {
+			isa = PBXGroup;
+			children = (
+				144958F81A94B87000C305F2 /* WAFolioParser.m */,
+				144958F91A94B87000C305F2 /* WAFolioParser.h */,
+			);
+			name = Folio;
 			sourceTree = "<group>";
 		};
 		144B163F1365BE3A00C47C92 /* KML */ = {
@@ -2403,6 +2416,7 @@
 				14DB11D2164BEDC3001FE76B /* NSString+WAURLString.m in Sources */,
 				14DB11D3164BEDC3001FE76B /* Scanner.m in Sources */,
 				14784D2618375C8200605C51 /* WAOAMParser.m in Sources */,
+				144958FA1A94B87000C305F2 /* WAFolioParser.m in Sources */,
 				14DB11D4164BEDC3001FE76B /* Font.m in Sources */,
 				14DB11D5164BEDC3001FE76B /* FontCollection.m in Sources */,
 				14DB11D6164BEDC3001FE76B /* RenderingState.m in Sources */,
