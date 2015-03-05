@@ -8,6 +8,7 @@
 #import "WAOperationsManager.h"
 #import "NSBundle+WAAdditions.h"
 #import "NSString+WAURLString.h"
+#import "UIColor+WAAdditions.h"
 
 #import <NewsstandKit/NewsstandKit.h>
 #import "WADocumentDownloadsManager.h"
@@ -326,6 +327,10 @@
 
 
 - (void) createRootViewController {
+    //We will need appDic again
+    NSDictionary * app_Dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"]];
+
+    
     //Create the views
     WAPListParser * parser = [[WAPListParser alloc]init];
     parser.urlString = @"/Tabs.plist";
@@ -351,7 +356,12 @@
         appTabBarController.viewControllers = 	tabviews;
         //SLog(@"Will test iOS7");
         
-        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) appTabBarController.tabBar.translucent = NO;
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+            appTabBarController.tabBar.translucent = NO;
+            if ([app_Dic objectForKey:@"BarColor"]) appTabBarController.tabBar.barTintColor = [UIColor colorFromString:[app_Dic objectForKey:@"BarColor"]] ;
+
+            
+        }
         
         
     }
