@@ -297,15 +297,19 @@
 - (void) transactionStatusDidChangeWithNotification:(NSNotification *) notification
 {
 	//Check whether the transaction is for a product requested here or a subscription
-	NSSet * acceptableIDs = [urlString relevantSKProductIDsForUrlString];
+	NSSet * acceptableLibrelioIDs = [urlString relevantLibrelioProductIDsForUrlString];
+    NSMutableSet * acceptableAppStoreIDs = [NSMutableSet set];
+    for (NSString * curentID in acceptableLibrelioIDs){
+        NSString * appStoreID =  [curentID appStoreProductIDForLibrelioProductID];
+        [acceptableAppStoreIDs addObject:appStoreID];
+    }
+
 	
 	SKPaymentTransaction *transaction = notification.object;
 	NSString * productId = transaction.payment.productIdentifier;
-	NSArray *parts = [productId componentsSeparatedByString:@"."];
-	NSString *shortID2 = [parts objectAtIndex:[parts count]-1];
 	
 	
-	if ([acceptableIDs containsObject:shortID2]){
+	if ([acceptableAppStoreIDs containsObject:productId]){
 		switch (transaction.transactionState)
 		{
 			case SKPaymentTransactionStateRestored:{
@@ -521,10 +525,10 @@
     if (credentials) sharedSecret = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"SharedSecret"];
     if (sharedSecret){
         NSMutableSet * productIdentifiers = [NSMutableSet set];
-        NSSet * relevantIDs = [urlString relevantSKProductIDsForUrlString];
+        NSSet * relevantIDs = [urlString relevantLibrelioProductIDsForUrlString];
         //SLog(@"Relevant ids:%@",relevantIDs);
         for (NSString * curentID in relevantIDs){
-            NSString * tempID = [NSString stringWithFormat:@"%@.%@",[[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"],curentID];
+            NSString * tempID =  [curentID appStoreProductIDForLibrelioProductID];
             [productIdentifiers addObject:tempID];
         }
         //Request the data

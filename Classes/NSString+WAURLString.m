@@ -554,7 +554,26 @@
     return NO;
 }
 
-- (NSSet*) relevantSKProductIDsForUrlString{
+- (NSString*) appStoreProductIDForLibrelioProductID{
+    NSString * ret = [NSString stringWithFormat:@"%@.%@",[[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"],self];
+    
+    //Check if we have specific IDs
+    NSDictionary * app_Dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"]];
+    NSDictionary * specificIds = [app_Dic objectForKey:@"SpecificAppStoreIDs"];
+    if (specificIds) {
+        NSString * specificId = [specificIds objectForKey:self];
+        if (specificId) ret = specificId;
+    }
+    
+
+    
+    return ret;
+
+    
+}
+
+
+- (NSSet*) relevantLibrelioProductIDsForUrlString{
     NSString * shortID = [[self urlByRemovingFinalUnderscoreInUrlString] nameOfFileWithoutExtensionOfUrlString];
 	NSSet * ret = [NSSet setWithObjects:shortID,@"MonthlySubscription",@"WeeklySubscription",@"QuarterlySubscription",@"YearlySubscription",@"HalfYearlySubscription",@"YearlySubscription2",@"HalfYearlySubscription2",@"HalfYearlySubscription3",@"FreeSubscription",nil];
     return ret;
@@ -576,7 +595,7 @@
 
 - (NSString*) receiptForUrlString{
     //Check whether we have active subscriptions, or if we already bought this product, or if a subscription code was provided earlier
-    NSSet * relevantIDs = [self relevantSKProductIDsForUrlString];
+    NSSet * relevantIDs = [self relevantLibrelioProductIDsForUrlString];
     NSString * receipt = nil;
     for(NSString * currentID in relevantIDs){
         NSString *tempKey = [NSString stringWithFormat:@"%@-receipt",currentID];

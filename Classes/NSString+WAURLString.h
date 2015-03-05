@@ -35,7 +35,8 @@
 - (NSString*) classNameOfParserOfUrlString;
 - (BOOL) shouldUseNewsstandForUrlString;
 
-- (NSSet*) relevantSKProductIDsForUrlString;
+- (NSString*) appStoreProductIDForLibrelioProductID;
+- (NSSet*) relevantLibrelioProductIDsForUrlString;
 - (NSString *) titleWithSubscriptionLengthForId:(NSString*)theId;
 
 /**

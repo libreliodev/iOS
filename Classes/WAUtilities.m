@@ -421,7 +421,7 @@
 
 + (NSString *) completeCheckAppStoreUrlforUrlString:(NSString*)urlString{
 	//Retrieve receipt if it has been stored
-    NSSet * relevantIDs = [urlString relevantSKProductIDsForUrlString];
+    NSSet * relevantIDs = [urlString relevantLibrelioProductIDsForUrlString];
     NSString * receipt = nil;
     NSString * userKey = nil;
     for(NSString * currentID in relevantIDs){
