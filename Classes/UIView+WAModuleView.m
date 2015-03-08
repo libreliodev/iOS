@@ -148,7 +148,7 @@
 					
 				}
                 else if ([subView conformsToProtocol:@protocol(WAModuleProtocol)]){
-                    NSLog(@"Conforms");
+                    //SLog(@"Conforms");
                     UIView <WAModuleProtocol>* moduleView = (UIView <WAModuleProtocol>*)subView;
                     moduleView.currentViewController = controller;
                     moduleView.urlString = tempString;
@@ -179,7 +179,7 @@
             return nil;
         }
     }
-    NSLog (@"will return nibName:%@",nibName);
+    //SLog (@"will return nibName:%@",nibName);
     return nibName;
 
 }
@@ -190,7 +190,7 @@
     if (!chosenNibName) return nil;
 
 	NSArray*    topLevelObjs = nil;
-    NSLog(@"chosenNibName:%@",chosenNibName);
+    //SLog(@"chosenNibName:%@",chosenNibName);
 	topLevelObjs=	[[NSBundle mainBundle] loadNibNamed:chosenNibName owner:nil options:nil];
 	
 	UIView * nibView = [topLevelObjs lastObject];

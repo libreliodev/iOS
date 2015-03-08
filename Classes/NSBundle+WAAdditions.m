@@ -165,9 +165,9 @@
     
 }
 
-- (NSString *) getAppId{
+- (NSString *) getLibrelioAppId{
     NSDictionary * app_Dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"]];
-    NSString * appShortId = [app_Dic objectForKey:@"AppId"];
+    NSString * appShortId = [app_Dic objectForKey:@"LibrelioAppId"];
     if(!appShortId){
         NSString * appLongId = [[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"];
         NSArray *parts = [appLongId componentsSeparatedByString:@"."];
@@ -178,9 +178,9 @@
     
 }
 
-- (NSString *) getClientId{
+- (NSString *) getLibrelioClientId{
     NSDictionary * app_Dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"]];
-    NSString * clientShortId = [app_Dic objectForKey:@"ClientId"];
+    NSString * clientShortId = [app_Dic objectForKey:@"LibrelioClientId"];
     if(!clientShortId){
         NSString * appLongId = [[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"];
         NSArray *parts = [appLongId componentsSeparatedByString:@"."];

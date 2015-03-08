@@ -20,15 +20,17 @@
 	NSString *plistName = [urlString noArgsPartOfUrlString];
 	NSString * plistPath = [[NSBundle mainBundle] pathOfFileWithUrl:plistName];
     //SLog(@"plistname:%@, plistpath:%@",plistName,plistPath);
-	dataArray = [[NSArray alloc ]initWithContentsOfFile:plistPath];
+	dataArray = [[NSMutableArray alloc ]initWithContentsOfFile:plistPath];
     //SLog(@"plist dataArray %@",dataArray);
     //If dataArray count is zero, it means that the root level of the plist is a dictionary, with a "Lines" key
     if(![dataArray count]){
         //SLog(@"dataArray count is null");
         [dataArray release];
-        dataArray = [[NSArray alloc ] initWithArray:[[NSDictionary dictionaryWithContentsOfFile:plistPath] valueForKey:@"Lines"]];
+        dataArray = [[NSMutableArray alloc ] initWithArray:[[NSDictionary dictionaryWithContentsOfFile:plistPath] valueForKey:@"Lines"]];
     }
     headerDic = [[NSDictionary alloc ] initWithDictionary:[[NSDictionary dictionaryWithContentsOfFile:plistPath] valueForKey:@"Headers"]];
+    
+    extraInfoStatus = NotNeeded;
 	
  
     
@@ -38,10 +40,11 @@
 
 - (void)dealloc
 {
-	[urlString release];
+
+    [urlString release];
 	[dataArray release];
     [headerDic release];
-	
+    NSLog(@"Will dealloc parser %@",self);
 	[super dealloc];
 }
 
@@ -230,6 +233,7 @@
    	return ret;
 }
 - (int) countData{
+    //SLog(@"Will count data array: %@",dataArray);
 	return (int)[dataArray count];
 	
 }
@@ -240,6 +244,9 @@
 
 - (void) startCacheOperations{
     
+ 
+
+    
 }
 
 
@@ -249,6 +256,7 @@
 
 - (BOOL) shouldCompleteDownloadResources{
     return NO;
+    
 }
 
 
@@ -295,6 +303,7 @@
         NSString *pdfUrl = [dic objectForKey: @"FileName"];
         pdfUrl = [pdfUrl urlByRemovingFinalUnderscoreInUrlString];//Remove underscore
         pdfUrl = [WAUtilities absoluteUrlOfRelativeUrl:pdfUrl relativeToUrl:urlString];
+        pdfUrl = [pdfUrl stringByReplacingOccurrencesOfString:@"TempWa//" withString:@""];//hack
         NSString * coverUrl = [pdfUrl urlByChangingExtensionOfUrlStringToSuffix:@".png"];
         [tempArray2 addObject:coverUrl];
     }	
@@ -304,10 +313,105 @@
 }
 
 - (CGFloat) cacheProgress{
+    //SLog(@"Cache finished %i",cacheFinished);
     return 1.0 ;
     
 }
 
+# pragma mark -
+# pragma mark SKProductsRequestDelegate
+
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
+{
+    
+    //SLog(@"Products received: valid %@ , invalid %@ urlString:%@",response.products,response.invalidProductIdentifiers,urlString);
+    extraInfoStatus = Downloaded;
+
+    //Parse response
+    NSArray * products = response.products;
+    NSMutableDictionary * parsedResponse = [NSMutableDictionary dictionary];
+    for (SKProduct *product in products) {
+        
+        //Format the price
+        NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+        [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+        [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+        [numberFormatter setLocale:product.priceLocale];
+        NSString *formattedPrice = [numberFormatter stringFromNumber:product.price];
+        [numberFormatter release];
+        //SLog(@"formattted price %@ for product id %@ to include in dic %@",formattedPrice,product.productIdentifier,parsedResponse);
+        
+        [parsedResponse setObject:formattedPrice forKey:product.productIdentifier];
+        
+     }
+    //SLog(@"parsedResponse:%@, dataarray:%@",parsedResponse,dataArray);
+    
+    //Add prices to plist
+    NSMutableArray * newDataArray= [NSMutableArray arrayWithArray:dataArray];
+    [dataArray enumerateObjectsUsingBlock:^(NSDictionary *dic, NSUInteger idx, BOOL *stop) {
+        NSString *pdfUrl = [dic objectForKey: @"FileName"];
+        NSString * librelioId = [[pdfUrl urlByRemovingFinalUnderscoreInUrlString] nameOfFileWithoutExtensionOfUrlString];
+        NSString * appStoreId = [librelioId appStoreProductIDForLibrelioProductID];
+        NSString * priceString = [parsedResponse objectForKey:appStoreId];
+        if (priceString){
+            NSMutableDictionary * newDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+            [newDic setObject:priceString forKey:@"Price"];
+            [newDataArray replaceObjectAtIndex:idx withObject:newDic];
+            
+        }
+                                     
+
+    }];
+    dataArray = newDataArray;
+
+    
+      //SLog(@"dataarray:%@",dataArray);
+     //Store plist with metadata and list of resources for this download
+     NSString * filePath = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
+     [dataArray writeToFile:filePath atomically:YES];
+
+    
+    //fire notification
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didGetExtraInformation" object:urlString];
+
+    
+    
+}
+
+- (void)request:(SKRequest *)request didFailWithError:(NSError *)error {
+    
+    //SLog(@"Products not received: %@",error);
+    extraInfoStatus = Downloaded;
+    //fire notification
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didGetExtraInformation" object:urlString];
+   
+    
+}
+
+- (BOOL) shouldGetExtraInformation{
+    if (extraInfoStatus == Needed){
+        NSMutableSet * productIdentifiers = [NSMutableSet set];
+        
+        for (NSDictionary * dic in dataArray){
+            NSString *pdfUrl = [dic objectForKey: @"FileName"];
+            NSString * librelioId = [[pdfUrl urlByRemovingFinalUnderscoreInUrlString] nameOfFileWithoutExtensionOfUrlString];
+            NSString * appStoreId = [librelioId appStoreProductIDForLibrelioProductID];
+            [productIdentifiers addObject:appStoreId];
+        }	
+
+         SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers];
+        
+        request.delegate = self;
+        [request start];
+        return YES;
+
+        
+        
+    }
+    else if (extraInfoStatus == Requested) return YES;
+    
+    else return NO;
+}
 
 
 

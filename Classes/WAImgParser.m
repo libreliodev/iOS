@@ -121,5 +121,11 @@
     
 }
 
+- (BOOL) shouldGetExtraInformation{
+    
+    return NO;
+}
+
+
 
 @end

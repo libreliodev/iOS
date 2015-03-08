@@ -38,9 +38,10 @@
 
     [self downloadMainFile];
     
-    //Add observer
+    //Add observers for cache
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didEndDrawPageOperationWithNotification:) name:@"didEndDrawPageOperation" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didGetExtraInformationWithNotification:) name:@"didGetExtraInformation" object:nil];
 
     
 }
@@ -54,6 +55,7 @@
 	[currentUrlString release];
 	[filesize release];
 	[urlString release];
+    NSLog(@"Did just release urlString %@ for docdownloader %@",urlString,self);
 	[receivedData release];
 	[handle release];
 	[nnewResourcesArray release];
@@ -307,7 +309,7 @@
     parser =  (NSObject <WAParserProtocol> *)[[theClass alloc] init];
     parser.urlString = tempUrlString;
     
-    //SLog(@"parser count data:%i for Url:%@",[parser countData],tempUrlString);
+    //SLog(@"parser count data:%i for Url:%@ for parser:%@",[parser countData],tempUrlString,parser);
     if (!([parser countData]>0)){
         //SLog(@"File corrupted: %@",tempUrlString);
         //The file is corrupted, let us notify an error
@@ -368,12 +370,15 @@
         //SLog(@"MutableRessources:%@",nnewResourcesArray);
 		[self downloadNextResource];//Start looping in newResourcesArray
 	}
-	else {
+	else if (![parser shouldGetExtraInformation]) {
         //SLog(@"Launch didDownloadAllResources from didDownloadMainFile");
         currentUrlString = nil;//This is important because there is a test in didEndDrawPageOperationWithNotification
-         [[[WADocumentDownloadsManager sharedManager] issuesQueue] removeObjectIdenticalTo:self];//Remove self from issuesQueue now, because WAMissingResourecesDwnloader may need to add itself again immediately after
+         //[[[WADocumentDownloadsManager sharedManager] issuesQueue] removeObjectIdenticalTo:self];//Remove self from issuesQueue now, because WAMissingResourecesDwnloader may need to add itself again immediately after
 		[self didDownloadAllResources];//No resources to download now
 	}
+    else{
+        //Wait for extra info, there will be a notification when it is avaialable
+    }
     
 	
 }
@@ -419,11 +424,11 @@
 }
 - (void) didDownloadAllResources{	
     
-    //Check if some extra caching operations are required
+    //Check if some extra caching operations or extra information are required
     currentProgress = [parser cacheProgress];
     //SLog(@"Current progress in did: %f", currentProgress);
-    if (currentProgress<0.99){
-        //We still need to wait for cache operations
+    if ((currentProgress<0.99)||([parser shouldGetExtraInformation])){
+        //We still need to wait for cache operations or extra info
         currentMessage = [[NSString alloc]initWithString: [[NSBundle mainBundle]stringForKey:@"Caching operation in progress"]];
         
      }
@@ -435,7 +440,7 @@
 
          //Store all temp files: main file, cache, and resources
         NSString * dirPath = [WAUtilities cacheFolderPath];
-        //SLog(@"Will move main %@ to %@",[NSString stringWithFormat:@"%@/TempWa/%@",dirPath,[urlString noArgsPartOfUrlString]], urlString);
+        NSLog(@"Will move main %@ to %@",[NSString stringWithFormat:@"%@/TempWa/%@",dirPath,[urlString noArgsPartOfUrlString]], urlString);
         [WAUtilities storeFileWithUrlString:urlString withFileAtPath:[NSString stringWithFormat:@"%@/TempWa/%@",dirPath,[urlString noArgsPartOfUrlString]]];//Move the main file
         
         //Store generated cache files
@@ -487,9 +492,10 @@
         
         
                 
+         [[[WADocumentDownloadsManager sharedManager] issuesQueue] removeObjectIdenticalTo:self];//This will release this instance if not owned by a download view
+        NSLog(@"Will notifyDownloadFinished");
         [self notifyDownloadFinished];
-        //SLog(@"Did download all resourcs");
-        [[[WADocumentDownloadsManager sharedManager] issuesQueue] removeObjectIdenticalTo:self];//This will release this instance if not owned by a download view
+        NSLog(@"Did notifyDownloadFinished");
 
         
         
@@ -505,6 +511,18 @@
     
 }
 
+
+- (void) didGetExtraInformationWithNotification:(NSNotification *) notification{
+    
+    NSLog(@"didGetExtraInformationWithNotification %@ %@",self,urlString);
+
+    //[[[WADocumentDownloadsManager sharedManager] issuesQueue] removeObjectIdenticalTo:self];//Remove self from issuesQueue now, because WAMissingResourecesDwnloader may need to add itself again immediately after
+
+    
+    //Trigger didDownloadAllResources again
+    [self didDownloadAllResources];
+
+}
 
 - (void) didEndDrawPageOperationWithNotification:(NSNotification *) notification{
     if ([currentUrlString isEqual:urlString]){

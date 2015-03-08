@@ -15,7 +15,7 @@
 
 - (void) setUrlString: (NSString *) theString
 {
-    //SLog(@"WAMissingResourcesDownloader launched for Url:%@",theString);
+    NSLog(@"WAMissingResourcesDownloader launched for Url:%@",theString);
 	
 	urlString = [[NSString alloc]initWithString: theString];
      [self didDownloadMainFile];    //No need to download main file

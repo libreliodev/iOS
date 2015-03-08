@@ -57,7 +57,9 @@ typedef enum {
 
 - (void) launchConnectionWithUrlString:completeUrl;
 
+- (void) didGetExtraInformationWithNotification:(NSNotification *) notification;
 - (void) didEndDrawPageOperationWithNotification:(NSNotification *) notification;
+
 
 
 

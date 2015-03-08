@@ -555,7 +555,7 @@
 }
 
 - (NSString*) appStoreProductIDForLibrelioProductID{
-    NSString * ret = [NSString stringWithFormat:@"%@.%@",[[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"],self];
+    NSString * ret = [NSString stringWithFormat:@"com.%@.%@.%@",[[NSBundle mainBundle] getLibrelioClientId],[[NSBundle mainBundle] getLibrelioAppId],self];
     
     //Check if we have specific IDs
     NSDictionary * app_Dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"]];

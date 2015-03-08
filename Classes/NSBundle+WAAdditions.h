@@ -15,8 +15,8 @@
 
 - (NSString *) pathOfFileWithUrl:(NSString*)relativeUrl forOrientation:(UIInterfaceOrientation)orientation;
 
-- (NSString *) getClientId;
-- (NSString *) getAppId;
+- (NSString *) getLibrelioClientId;
+- (NSString *) getLibrelioAppId;
 
 - (void) unzipFileWithUrlString:(NSString*) urlString;
 - (int) countNumberOfReferencesForResourceWithUrlString:(NSString*) urlString;

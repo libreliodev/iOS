@@ -511,12 +511,12 @@
     //Add SHKActivityIndicator
     [[SHKActivityIndicator currentIndicator] displayActivity:[[NSBundle mainBundle]stringForKey:@"Connecting..."]];
     
-    //Get the ID of the product. Our convention is that it is always the name of the file without extension
+    //Get the Librelio ID of the product. Our convention is that it is always the name of the file without extension
     NSString * shortID = [[urlString urlByRemovingFinalUnderscoreInUrlString] nameOfFileWithoutExtensionOfUrlString];
     //SLog(@"ShortID:%@, theString:%@",shortID,theString);
     
     //get product data
-    NSString * itemID = [NSString stringWithFormat:@"%@.%@",[[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleIdentifier"],shortID];
+    NSString * itemID = [shortID appStoreProductIDForLibrelioProductID];
     //SLog(@"ItemID:%@",itemID);
     SKProductsRequest *request;
     //Add all subscriptions, only if we have a secret key

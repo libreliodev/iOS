@@ -84,9 +84,10 @@
     observer = [[WAPaymentTransactionObserver alloc] init];
     [[SKPaymentQueue defaultQueue] addTransactionObserver:observer];
     
-    
-    
-    // Add registration for remote notifications
+#if TARGET_IPHONE_SIMULATOR
+   //Do nothing
+#else
+    // Add registration for remote notifications unles in simulator
     if ([application respondsToSelector:@selector(isRegisteredForRemoteNotifications)])
     {
         // iOS 8 Notifications
@@ -100,6 +101,8 @@
         [application registerForRemoteNotificationTypes:
          (UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];
     }
+#endif
+    
     
     
     //If the app was launched by a notification, launch corresponding download
@@ -126,7 +129,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    NSLog(@"Application did become active");
+    //SLog(@"Application did become active");
     // Clear application badge
     application.applicationIconBadgeNumber = 0;
 
@@ -138,7 +141,7 @@
         startInterstitial = [[DFPInterstitial alloc] init];
         NSString * shortUnitId = @"i000";//i000 is the code for startup instertitials
         startInterstitial.adUnitID = [DfpPrefix completeAdUnitCodeForShortCode:shortUnitId];
-        NSLog(@"unitId:%@",startInterstitial.adUnitID);
+        //SLog(@"unitId:%@",startInterstitial.adUnitID);
         startInterstitial.delegate = self;
         GADRequest *request = [GADRequest request];
         //request.testDevices = @[ GAD_SIMULATOR_ID ];
@@ -598,18 +601,18 @@
 #pragma mark
 #pragma mark GADInterstitialDelegate implementation
 - (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
-    NSLog(@"Received ad successfully");
+    //SLog(@"Received ad successfully");
     [startInterstitial presentFromRootViewController:rootViewController];
 }
 
 
 - (void)interstitial:(DFPInterstitial *)interstitial
 didFailToReceiveAdWithError:(GADRequestError *)error {
-    NSLog(@"interstitialDidFailToReceiveAdWithError: %@ for interstitial%@", [error localizedDescription],interstitial);
+    //SLog(@"interstitialDidFailToReceiveAdWithError: %@ for interstitial%@", [error localizedDescription],interstitial);
 }
 
 - (void)interstitialDidDismissScreen:(DFPInterstitial *)interstitial {
-    NSLog(@"interstitialDidDismissScreen");
+    //SLog(@"interstitialDidDismissScreen");
 }
 
 @end

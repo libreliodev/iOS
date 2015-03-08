@@ -112,6 +112,12 @@
     
 }
 
+- (BOOL) shouldGetExtraInformation{
+    
+    return NO;
+}
+
+
 #pragma mark -
 #pragma mark Utility functions
 

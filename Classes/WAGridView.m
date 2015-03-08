@@ -219,7 +219,7 @@
 }
                                          
 - (void) openModalView:(int)detailRow{
-    NSLog(@"detailRow %i",detailRow);
+    //SLog(@"detailRow %i",detailRow);
     NSString * modalNibTestName = [[urlString nameOfFileWithoutExtensionOfUrlString]stringByAppendingString:@"_modal"];
     NSString * modalNibName = [UIView getNibName:modalNibTestName defaultNib:@"WAGridModal" forOrientation:999];
 

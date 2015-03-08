@@ -400,11 +400,11 @@
         return forcedUrl;
     }
     else{
-        NSString * appShortId = [[NSBundle mainBundle] getAppId];
-        NSString * clientShortId = [[NSBundle mainBundle] getClientId];
+        NSString * appShortId = [[NSBundle mainBundle] getLibrelioAppId];
+        NSString * clientShortId = [[NSBundle mainBundle] getLibrelioClientId];
         
         NSString * completeUrl = [NSString stringWithFormat:@"%@/%@/%@%@",kDownloadUrl, clientShortId,appShortId,[urlString noArgsPartOfUrlString]];
-        NSLog(@"completeUrl %@",completeUrl);
+        //SLog(@"completeUrl %@",completeUrl);
         return completeUrl;
     }
 }
@@ -465,8 +465,8 @@
 	NSString * encodedUrl = [[urlString noArgsPartOfUrlString] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
 
 	//Get the client and app names
-    NSString * appShortId = [[NSBundle mainBundle] getAppId];
-    NSString * clientShortId = [[NSBundle mainBundle] getClientId];
+    NSString * appShortId = [[NSBundle mainBundle] getLibrelioAppId];
+    NSString * clientShortId = [[NSBundle mainBundle] getLibrelioClientId];
 	
     NSString * deviceid = [self getUUID];
 	NSString * retUrl = [NSString stringWithFormat:kCheckPasswordUrl,password,codeService,encodedUrl,clientShortId,appShortId,deviceid];
@@ -486,8 +486,8 @@
 	NSString * encodedUrl = [[urlString noArgsPartOfUrlString] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     
 	//Get the client and app names
-    NSString * appShortId = [[NSBundle mainBundle] getAppId];
-    NSString * clientShortId = [[NSBundle mainBundle] getClientId];
+    NSString * appShortId = [[NSBundle mainBundle] getLibrelioAppId];
+    NSString * clientShortId = [[NSBundle mainBundle] getLibrelioClientId];
 	
     NSString * deviceid = [self getUUID];
     NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];

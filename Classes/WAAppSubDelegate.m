@@ -43,7 +43,7 @@
 	NSString *host = @"apns.librelio.com";
 	
 	NSString *urlString = [NSString stringWithFormat:@"/apns/apns.php?task=%@&appname=%@&appversion=%@&deviceuid=%@&devicetoken=%@&devicename=%@", @"register", appName,appVersion, deviceUuid, deviceToken, deviceName];
-    NSLog(@"urlstring: %@",urlString);
+    //SLog(@"urlstring: %@",urlString);
 	
 	NSURL *url = [[NSURL alloc] initWithScheme:@"http" host:host path:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];

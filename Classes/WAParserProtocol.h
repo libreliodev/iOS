@@ -105,5 +105,7 @@ typedef enum {
  */
 - (BOOL) shouldCompleteDownloadResources;
 
+- (BOOL) shouldGetExtraInformation;
+
 
 @end

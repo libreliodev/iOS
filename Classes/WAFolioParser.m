@@ -23,7 +23,7 @@
     
     NSString * unzippedFolderUrlString = [urlString urlOfUnzippedFolder];
     
-    NSLog(@"unzippedFolderUrlString: %@",unzippedFolderUrlString);
+    //SLog(@"unzippedFolderUrlString: %@",unzippedFolderUrlString);
  
 
     //Prepare the xml for parsing
@@ -173,6 +173,11 @@
     
 	return ret;
 	
+}
+
+- (BOOL) shouldGetExtraInformation{
+    
+    return NO;
 }
 
 
