@@ -50,12 +50,14 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
     [parser cancelCacheOperations];
-    
+    NSLog(@"Will release parser %@ from downloader %@ for urlString %@",parser,self,urlString);
+   
     [parser release];
+    //SLog(@"Did release parser  from downloader %@ for urlString %@",self,urlString);
+
 	[currentUrlString release];
 	[filesize release];
 	[urlString release];
-    NSLog(@"Did just release urlString %@ for docdownloader %@",urlString,self);
 	[receivedData release];
 	[handle release];
 	[nnewResourcesArray release];
@@ -307,6 +309,7 @@
     NSString * className = [tempUrlString classNameOfParserOfUrlString];
     Class theClass = NSClassFromString(className);
     parser =  (NSObject <WAParserProtocol> *)[[theClass alloc] init];
+    //SLog(@"Init parser %@ from %@",parser,self);
     parser.urlString = tempUrlString;
     
     //SLog(@"parser count data:%i for Url:%@ for parser:%@",[parser countData],tempUrlString,parser);
@@ -370,15 +373,11 @@
         //SLog(@"MutableRessources:%@",nnewResourcesArray);
 		[self downloadNextResource];//Start looping in newResourcesArray
 	}
-	else if (![parser shouldGetExtraInformation]) {
+	else  {
         //SLog(@"Launch didDownloadAllResources from didDownloadMainFile");
         currentUrlString = nil;//This is important because there is a test in didEndDrawPageOperationWithNotification
-         //[[[WADocumentDownloadsManager sharedManager] issuesQueue] removeObjectIdenticalTo:self];//Remove self from issuesQueue now, because WAMissingResourecesDwnloader may need to add itself again immediately after
 		[self didDownloadAllResources];//No resources to download now
 	}
-    else{
-        //Wait for extra info, there will be a notification when it is avaialable
-    }
     
 	
 }
@@ -432,6 +431,11 @@
         currentMessage = [[NSString alloc]initWithString: [[NSBundle mainBundle]stringForKey:@"Caching operation in progress"]];
         
      }
+    
+    if ([parser shouldGetExtraInformation]){
+        //Do nothing, keep waiting, we will be notified
+    }
+
     else{
         
         //SLog(@"Did really download all resources");
@@ -440,7 +444,7 @@
 
          //Store all temp files: main file, cache, and resources
         NSString * dirPath = [WAUtilities cacheFolderPath];
-        NSLog(@"Will move main %@ to %@",[NSString stringWithFormat:@"%@/TempWa/%@",dirPath,[urlString noArgsPartOfUrlString]], urlString);
+        //SLog(@"Will move main %@ to %@",[NSString stringWithFormat:@"%@/TempWa/%@",dirPath,[urlString noArgsPartOfUrlString]], urlString);
         [WAUtilities storeFileWithUrlString:urlString withFileAtPath:[NSString stringWithFormat:@"%@/TempWa/%@",dirPath,[urlString noArgsPartOfUrlString]]];//Move the main file
         
         //Store generated cache files
@@ -489,13 +493,10 @@
            
         }
         
-        
-        
-                
-         [[[WADocumentDownloadsManager sharedManager] issuesQueue] removeObjectIdenticalTo:self];//This will release this instance if not owned by a download view
-        NSLog(@"Will notifyDownloadFinished");
+        [[[WADocumentDownloadsManager sharedManager] issuesQueue] removeObjectIdenticalTo:self];//This will release this instance if not owned by a download view; do it before notify Download Finished , because WAMissingResourecesDwnloader may need to add itself again immediately after
         [self notifyDownloadFinished];
-        NSLog(@"Did notifyDownloadFinished");
+        
+
 
         
         
@@ -514,7 +515,7 @@
 
 - (void) didGetExtraInformationWithNotification:(NSNotification *) notification{
     
-    NSLog(@"didGetExtraInformationWithNotification %@ %@",self,urlString);
+    //SLog(@"didGetExtraInformationWithNotification %@ %@",self,urlString);
 
     //[[[WADocumentDownloadsManager sharedManager] issuesQueue] removeObjectIdenticalTo:self];//Remove self from issuesQueue now, because WAMissingResourecesDwnloader may need to add itself again immediately after
 
@@ -573,7 +574,7 @@
 
     
 	NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:urlRequest  delegate:self];
-    //SLog(@"will launch connection for %@ with connexion %@",completeUrl,conn);
+    NSLog(@"will launch connection for %@ with connexion %@ in Downloader %@",completeUrl,conn,self);
     
 	//Add connection to download queue
 	[[[WAFileDownloadsManager sharedManager] downloadQueue] addObject:conn];

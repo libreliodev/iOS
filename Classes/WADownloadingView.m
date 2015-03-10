@@ -73,7 +73,7 @@
 	messageLabel.backgroundColor = [UIColor clearColor];
 	messageLabel.textColor = [UIColor whiteColor];
 	messageLabel.font = [UIFont systemFontOfSize:16];
-	messageLabel.textAlignment = UITextAlignmentCenter;
+	messageLabel.textAlignment = NSTextAlignmentCenter;
 	messageLabel.frame = CGRectMake(fWidth*0.1, 0.8*fHeight, 0.8*fWidth, 0.1*fHeight);
 	messageLabel.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
 	[self addSubview:messageLabel];
@@ -255,7 +255,7 @@
 }			  
 
 - (void) didSucceedIssueDownloadWithNotification:(NSNotification *) notification{
-        
+    //SLog(@"Downloading View received didSucceedIssueDownloadWithNotification");
     NSString *notificatedUrl = notification.object;
     if ([notificatedUrl isEqualToString:self.urlString  ]){
          //Create a fresh module
@@ -267,7 +267,7 @@
         [moduleViewController loadModuleView];
         //SLog(@"Download succeeded for url:%@",self.urlString );
 
-        //SLog(@"Will load module view and check update");
+        //SLog(@"Did load module view and check update");
         //[moduleViewController loadModuleViewAndCheckUpdate];Don't check update immediately, it crashes the app the 2nd time
         if ([self.superview isEqual:currentViewController.moduleView]){
             //In this case, the module is the main one under the viewcontroller => we need to let the view controller know

@@ -63,7 +63,7 @@
         UIBarButtonItem * cancelB = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:waSearchListController action:@selector(performButtonAction:)];
         
         waSearchListController.navigationItem.rightBarButtonItem = cancelB;
-        [currentViewController presentModalViewController:searchNavController animated:YES];
+        [currentViewController presentViewController:searchNavController animated:YES completion:nil];
     }
 
 

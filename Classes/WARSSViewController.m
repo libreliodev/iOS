@@ -42,7 +42,7 @@
     headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
 	headerLabel.text = [dataDic objectForKey:@"HeaderTitle"];
 	headerLabel.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
- 	headerLabel.textAlignment =   UITextAlignmentCenter;
+ 	headerLabel.textAlignment =   NSTextAlignmentCenter;
 	headerLabel.font = [UIFont boldSystemFontOfSize:20];//iPad
 	if (![WAUtilities isBigScreen]) 	headerLabel.font = [UIFont boldSystemFontOfSize:14];//iPhone
     headerLabel.backgroundColor = [UIColor clearColor];

@@ -179,7 +179,7 @@
 #pragma mark TapDetectingImageViewDelegate methods
 
 - (void)handleSingleTap:(UIGestureRecognizer *)gestureRecognizer {
-    [self.currentViewController dismissModalViewControllerAnimated:YES];
+    [self.currentViewController dismissViewControllerAnimated:YES completion:nil];
     //[self removeFromSuperview];
     
 }

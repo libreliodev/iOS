@@ -25,7 +25,7 @@
 	self.textLabel.frame= frame;*/
 	self.textLabel.frame= CGRectMake(cellH*0/100,0, cellH*17/100, cellH);
 	self.textLabel.font = [UIFont systemFontOfSize:12];
-	self.textLabel.textAlignment = UITextAlignmentCenter;
+	self.textLabel.textAlignment = NSTextAlignmentCenter;
 	self.textLabel.transform = CGAffineTransformMakeRotation(M_PI/2);
     //Depending on system version, we have a white or black nav bar
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {

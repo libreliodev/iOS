@@ -178,7 +178,7 @@
     else [self followDetailLink:detailLink];
     
     //iPhone Case
-    [self dismissModalViewControllerAnimated:YES]; 
+    [self dismissViewControllerAnimated:YES completion:nil];
     
     //SLog(@"Will remove search list from superview");
     [self.presentingSearchView removeFromSuperview];
@@ -235,7 +235,7 @@
  This method is triggered by the "done" button
  */
 - (void) performButtonAction:(id)sender{
-    [self dismissModalViewControllerAnimated:YES];  
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 
@@ -283,7 +283,7 @@
         moduleViewController.containingRect= self.view.frame;
         [moduleViewController pushViewControllerIfNeededAndLoadModuleView];
         [moduleViewController release];
-        [self dismissModalViewControllerAnimated:YES]; 
+        [self dismissViewControllerAnimated:YES  completion:nil]; 
 
     }
     

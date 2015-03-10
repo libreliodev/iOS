@@ -185,7 +185,7 @@
     [mailComposeViewController setMessageBody:completeText isHTML:YES];
     [mailComposeViewController addAttachmentData:UIImageJPEGRepresentation(theImage, 0.9) mimeType:@"image/jpeg" fileName:@"Image.jpg"];
     mailComposeViewController.mailComposeDelegate = self;
-    [self.currentViewController presentModalViewController:mailComposeViewController animated:YES];
+    [self.currentViewController presentViewController:mailComposeViewController animated:YES completion:nil];
     //SLog(@"Mail Composer presented");
     [mailComposeViewController release];
 
@@ -275,7 +275,7 @@
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
-    [self.currentViewController dismissModalViewControllerAnimated:YES];
+    [self.currentViewController dismissViewControllerAnimated:YES completion:nil];
     [self removeFromSuperview];
 
 }

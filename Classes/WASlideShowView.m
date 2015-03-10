@@ -192,7 +192,7 @@
 
 - (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
     if ([self isRootModule]){
-        [[self firstAvailableUIViewController]  dismissModalViewControllerAnimated:YES];
+        [[self firstAvailableUIViewController]  dismissViewControllerAnimated:YES completion:nil];
     }
     else{
        	WAModuleViewController * moduleViewController = [[WAModuleViewController alloc]init];

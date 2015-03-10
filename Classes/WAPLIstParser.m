@@ -16,8 +16,11 @@
 
 - (void) setUrlString: (NSString *) theString
 {
+
     urlString = [[NSString alloc]initWithString: theString];
-	NSString *plistName = [urlString noArgsPartOfUrlString];
+    //SLog(@"Will init parser %@ with UrlString %@",self, urlString);
+
+    NSString *plistName = [urlString noArgsPartOfUrlString];
 	NSString * plistPath = [[NSBundle mainBundle] pathOfFileWithUrl:plistName];
     //SLog(@"plistname:%@, plistpath:%@",plistName,plistPath);
 	dataArray = [[NSMutableArray alloc ]initWithContentsOfFile:plistPath];
@@ -30,7 +33,12 @@
     }
     headerDic = [[NSDictionary alloc ] initWithDictionary:[[NSDictionary dictionaryWithContentsOfFile:plistPath] valueForKey:@"Headers"]];
     
-    extraInfoStatus = NotNeeded;
+    
+    //Check if we need to chache prices
+    NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];
+     NSString * boolString = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"CachePrices"];
+    if (boolString) extraInfoStatus = Needed;
+    else extraInfoStatus = NotNeeded;
 	
  
     
@@ -40,11 +48,11 @@
 
 - (void)dealloc
 {
+    //SLog(@"Will dealloc parser %@ with UrlString %@",self, urlString);
 
     [urlString release];
 	[dataArray release];
-    [headerDic release];
-    NSLog(@"Will dealloc parser %@",self);
+   [headerDic release];
 	[super dealloc];
 }
 
@@ -324,7 +332,7 @@
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
     
-    //SLog(@"Products received: valid %@ , invalid %@ urlString:%@",response.products,response.invalidProductIdentifiers,urlString);
+    NSLog(@"Products received: valid %@ , invalid %@ urlString:%@",response.products,response.invalidProductIdentifiers,urlString);
     extraInfoStatus = Downloaded;
 
     //Parse response
@@ -362,7 +370,8 @@
                                      
 
     }];
-    dataArray = newDataArray;
+    [dataArray removeAllObjects];
+    [dataArray addObjectsFromArray:newDataArray];
 
     
       //SLog(@"dataarray:%@",dataArray);
@@ -402,6 +411,8 @@
          SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers];
         
         request.delegate = self;
+        extraInfoStatus = Requested;
+        //SLog(@"Will loaunch request %@",request );
         [request start];
         return YES;
 

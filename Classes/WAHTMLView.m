@@ -247,7 +247,7 @@
     ////SLog(requestString);
     
     if ([requestString hasPrefix:@"ios-log:"]) {
-        NSString* logString = [[requestString componentsSeparatedByString:@":#iOS#"] objectAtIndex:1];
+        //NSString* logString = [[requestString componentsSeparatedByString:@":#iOS#"] objectAtIndex:1];
         //SLog(@"UIWebView console: %@", logString);
         return NO;
     }

@@ -94,6 +94,7 @@
         }
         
         
+        
         //Tracking
         NSString * viewString = [urlString gaScreenForModuleWithName:@"Library" withPage:nil];
         // May return nil if a tracker has not already been initialized with a
@@ -127,6 +128,7 @@
         
     }
     [self initParser];
+ 
     
     
     
@@ -137,6 +139,7 @@
     Class theClass = NSClassFromString(className);
     parser =  (NSObject <WAParserProtocol> *)[[theClass alloc] init];
     parser.urlString = urlString;
+    //SLog(@"Did init parser %@ with count %i",parser,[parser countData]);
     
 }
 
@@ -144,6 +147,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
+    //SLog(@"number of items %i",MAX(parser.countData-rowInHeaderView,0));
     return MAX(parser.countData-rowInHeaderView,0);
 }
 
@@ -152,7 +156,7 @@
     UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
     
     [cell populateNibWithParser:parser withButtonDelegate:self withController:currentViewController   forRow:(int)indexPath.row+1+rowInHeaderView];
-
+    //SLog(@"handling cell %i",indexPath.row+1+rowInHeaderView);
 
     return cell;
 }
@@ -177,12 +181,14 @@
 
 - (void) dealloc
 {
+    //SLog(@"Will start dealloc gridview %@ count %i",self, [parser countData]);
     [[NSNotificationCenter defaultCenter]removeObserver:self];
     [urlString release];
     [parser release];
     [refreshControl release];
     [currentCollectionView release];
     [super dealloc];
+
 }
 
 #pragma mark -
@@ -250,7 +256,7 @@
 
 - (void)moduleViewWillAppear:(BOOL)animated{
     
-    
+    //SLog(@"moduleView will appear %@ with parser count %i",self,[parser countData]);
     //Reset toolbar
     WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];
     //Reset toolbar
@@ -332,7 +338,9 @@
     NSString *notificatedUrl = notification.object;
     //SLog(@"notification.object:%@",notification.object);
     if ([notificatedUrl respondsToSelector:@selector(noArgsPartOfUrlString)]){
-        if ([[notificatedUrl noArgsPartOfUrlString]isEqualToString:[urlString noArgsPartOfUrlString]])     [currentCollectionView reloadData];
+        if ([[notificatedUrl noArgsPartOfUrlString]isEqualToString:[urlString noArgsPartOfUrlString]])
+            //SLog(@"Will reload dta");
+            [currentCollectionView reloadData];
     }
     
     [refreshControl endRefreshing];
@@ -342,6 +350,7 @@
 #pragma mark Helper methods
 - (void)refresh:(UIRefreshControl *)refreshControl {
     //[refreshControl endRefreshing];
+    //SLog(@"Will update in %@",self);
     WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];
     [vc checkUpdate:YES];
     

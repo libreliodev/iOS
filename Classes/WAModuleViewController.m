@@ -87,7 +87,7 @@
             case LinkTypeZoomImage:
             case LinkTypeSlideShow:{
                 self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-                [initialViewController.navigationController presentModalViewController:self animated:YES];
+                [initialViewController.navigationController presentViewController:self animated:YES completion:nil];
                 break;
             }
 
@@ -238,6 +238,7 @@
 		[containingView addSubview:moduleView];
 		moduleView.currentViewController = initialViewController;
 		moduleView.urlString = moduleUrlString;	
+        //SLog(@"moduleViewWillAppear %@",moduleView);
         [moduleView moduleViewWillAppear:NO];//This is not triggered automatically when the module loads because it is too late
         
         //Register event with Google Analytics
