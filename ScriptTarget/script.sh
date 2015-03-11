@@ -15,8 +15,13 @@ do
 echo "Processing $f"
 filename="${f%.xib}"
 ibtool "$f" --compile "$filename.nib"
+
+cp "${SRCROOT}/ScriptTarget/Xib-PartialInfo.plist" "${TARGET_TEMP_DIR}/$filename-PartialInfo.plist" #hack to avoid error when building
 done
 
+echo "Done processing xibs"
+echo "${CONFIGURATION_TEMP_DIR}"
 
 #Copy all resources
-rsync -r "$PATH_TO_SOURCE/" ${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/
+echo "rsync -r --del $PATH_TO_SOURCE/ ${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/"
+rsync -r --del "$PATH_TO_SOURCE/" ${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/

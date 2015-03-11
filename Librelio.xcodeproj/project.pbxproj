@@ -739,6 +739,7 @@
 		1489B613168ECD2C00404BA6 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1489B614168ECD3D00404BA6 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1489B615168ECDB300404BA6 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		148AE9641AAFE83E001307DC /* Xib-PartialInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Xib-PartialInfo.plist"; sourceTree = "<group>"; };
 		148DD9461638FFF200C429A4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		148F208B1910CE7B008D44D6 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1490866B17E332A200943DD2 /* rss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rss.png; path = Resources/rss.png; sourceTree = "<group>"; };
@@ -1480,6 +1481,7 @@
 				1490873717E37BE100943DD2 /* Application.plist */,
 				14F3DE0B17ECF83A00383CA5 /* script.sh */,
 				1490873C17E43B3B00943DD2 /* path.txt */,
+				148AE9641AAFE83E001307DC /* Xib-PartialInfo.plist */,
 			);
 			path = ScriptTarget;
 			sourceTree = "<group>";
