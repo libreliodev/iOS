@@ -352,21 +352,30 @@
         [parsedResponse setObject:formattedPrice forKey:product.productIdentifier];
         
      }
-    //SLog(@"parsedResponse:%@, dataarray:%@",parsedResponse,dataArray);
+    NSLog(@"parsedResponse:%@, dataarray:%@",parsedResponse,dataArray);
     
     //Add prices to plist
     NSMutableArray * newDataArray= [NSMutableArray arrayWithArray:dataArray];
+    NSString * nullString = @"null";
+    NSSet * subscriptionIds = [nullString relevantLibrelioProductIDsForUrlString];//This will return subscription IDs
+
     [dataArray enumerateObjectsUsingBlock:^(NSDictionary *dic, NSUInteger idx, BOOL *stop) {
+        //Find the unit price
         NSString *pdfUrl = [dic objectForKey: @"FileName"];
         NSString * librelioId = [[pdfUrl urlByRemovingFinalUnderscoreInUrlString] nameOfFileWithoutExtensionOfUrlString];
         NSString * appStoreId = [librelioId appStoreProductIDForLibrelioProductID];
         NSString * priceString = [parsedResponse objectForKey:appStoreId];
-        if (priceString){
-            NSMutableDictionary * newDic = [NSMutableDictionary dictionaryWithDictionary:dic];
-            [newDic setObject:priceString forKey:@"Price"];
-            [newDataArray replaceObjectAtIndex:idx withObject:newDic];
-            
+        NSMutableDictionary * newDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+        if (priceString)  [newDic setObject:priceString forKey:@"Price"];
+        for (NSString * subscriptionId in subscriptionIds){
+            NSString * appStoreSubscriptionId = [subscriptionId appStoreProductIDForLibrelioProductID];
+            NSString * subscriptionPriceString = [parsedResponse objectForKey:appStoreSubscriptionId];
+            if (subscriptionPriceString)  [newDic setObject:subscriptionPriceString forKey:subscriptionId];
         }
+        [newDataArray replaceObjectAtIndex:idx withObject:newDic];
+        
+        //Add subscription ids
+        
                                      
 
     }];
@@ -374,7 +383,7 @@
     [dataArray addObjectsFromArray:newDataArray];
 
     
-      //SLog(@"dataarray:%@",dataArray);
+      NSLog(@"dataarray:%@",dataArray);
      //Store plist with metadata and list of resources for this download
      NSString * filePath = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
      [dataArray writeToFile:filePath atomically:YES];
@@ -399,8 +408,17 @@
 
 - (BOOL) shouldGetExtraInformation{
     if (extraInfoStatus == Needed){
-        NSMutableSet * productIdentifiers = [NSMutableSet set];
         
+        //Start by adding subscriptions
+        NSString * nullString = @"null";
+        NSSet * acceptableLibrelioIDs = [nullString relevantLibrelioProductIDsForUrlString];//This will return subscription IDs
+        NSMutableSet * productIdentifiers = [NSMutableSet set];
+        for (NSString * curentID in acceptableLibrelioIDs){
+            NSString * appStoreID =  [curentID appStoreProductIDForLibrelioProductID];
+            [productIdentifiers addObject:appStoreID];
+        }
+
+        //Now add individual ids
         for (NSDictionary * dic in dataArray){
             NSString *pdfUrl = [dic objectForKey: @"FileName"];
             NSString * librelioId = [[pdfUrl urlByRemovingFinalUnderscoreInUrlString] nameOfFileWithoutExtensionOfUrlString];

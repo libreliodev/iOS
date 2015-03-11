@@ -50,7 +50,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
     [parser cancelCacheOperations];
-    NSLog(@"Will release parser %@ from downloader %@ for urlString %@",parser,self,urlString);
+    //SLog(@"Will release parser %@ from downloader %@ for urlString %@",parser,self,urlString);
    
     [parser release];
     //SLog(@"Did release parser  from downloader %@ for urlString %@",self,urlString);
@@ -574,7 +574,7 @@
 
     
 	NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:urlRequest  delegate:self];
-    NSLog(@"will launch connection for %@ with connexion %@ in Downloader %@",completeUrl,conn,self);
+    //SLog(@"will launch connection for %@ with connexion %@ in Downloader %@",completeUrl,conn,self);
     
 	//Add connection to download queue
 	[[[WAFileDownloadsManager sharedManager] downloadQueue] addObject:conn];
