@@ -51,6 +51,11 @@ typedef enum {
     DataColAd=24,
     DataColDetail=25,
     DataColDismiss=26,
+    DataColUnitPrice = 30,
+    DataColMonthlySubscriptionPrice=31,
+    DataColQuarterlySubscriptionPrice=32,
+    DataColHalfYearlySubscriptionPrice=33,
+    DataColYearlySubscriptionPrice=34,
     DataColNothing=999,
 } DataCol;
 

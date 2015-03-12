@@ -234,7 +234,9 @@
         case DataColDismiss:
             ret= @";dismiss://";
             break;
-
+        case  DataColUnitPrice:
+            ret = [NSString stringWithFormat:@"%@;xxxxxx",[tempDic objectForKey:@"Price"]];
+            break;
             
         }
             
