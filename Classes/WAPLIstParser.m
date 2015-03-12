@@ -70,9 +70,16 @@
     //SLog(@"tempDic %@",tempDic);
 	NSString * absUrlString = [WAUtilities absoluteUrlOfRelativeUrl:[tempDic objectForKey:@"FileName"] relativeToUrl:urlString] ;
 	NSString *noUnderscoreUrlString = [absUrlString urlByRemovingFinalUnderscoreInUrlString];//Remove the final underscore
+    
+    NSString * urlStringWithTitle = [absUrlString urlByAddingParameterInUrlStringWithKey:@"watitle" withValue:[tempDic objectForKey:@"Title"]];
+    urlStringWithTitle = [urlStringWithTitle urlByAddingParameterInUrlStringWithKey:@"wasubtitle" withValue:[tempDic objectForKey:@"Subtitle"]];//Add the wasubtitle arg to the url
+
+ 
+    NSString * buyUrlString = [urlStringWithTitle urlByChangingSchemeOfUrlStringToScheme:@"buy"];
+
 	NSString * ret = nil;
-
-
+    
+ 
 	switch (dataCol) {
 		case DataColTitle:
 			ret= [tempDic objectForKey:@"Title"];
@@ -136,20 +143,16 @@
 				if ([noUnderscoreUrlString isEqualToString:absUrlString]){
 					//This is a free file, return the url with the text "Free Download"
 					NSString * txt = [[NSBundle mainBundle]stringForKey:@"Free Download"];
-					ret = [NSString stringWithFormat:@"%@;%@",txt, absUrlString]; 					
+					ret = [NSString stringWithFormat:@"%@;%@",txt, urlStringWithTitle];
 				}
 				else {
 					//This is a paying file, return buy URL with  the text "Download ..."
 					NSString * txt = [[NSBundle mainBundle]stringForKey:@"Download ..."];
-					NSString * buyUrlString = [absUrlString urlByChangingSchemeOfUrlStringToScheme:@"buy"];
-					ret = [NSString stringWithFormat:@"%@;%@",txt,buyUrlString]; 					
+					ret = [NSString stringWithFormat:@"%@;%@",txt,buyUrlString];
 					
 				}
-				//Add the title and date to the url
-				ret = [ret urlByAddingParameterInUrlStringWithKey:@"watitle" withValue:[tempDic objectForKey:@"Title"]];//Get complete URL with title
-				ret = [ret urlByAddingParameterInUrlStringWithKey:@"wasubtitle" withValue:[tempDic objectForKey:@"Subtitle"]];//Add the wasubtitle arg to the url
-                ret = [ret urlByAddingParameterInUrlStringWithKey:@"wadate" withValue:[tempDic objectForKey:@"IssueDate"]];//Add the wadate arg to the url
-
+                
+ 
 			}
 			break;
 		}
@@ -217,9 +220,7 @@
                 }
                 else{**/
                     NSString * txt = [[NSBundle mainBundle]stringForKey:@"Read"];
-                    NSString * urlStringWithTitle = [absUrlString urlByAddingParameterInUrlStringWithKey:@"watitle" withValue:[tempDic objectForKey:@"Title"]];
-                    urlStringWithTitle = [urlStringWithTitle urlByAddingParameterInUrlStringWithKey:@"wasubtitle" withValue:[tempDic objectForKey:@"Subtitle"]];//Add the wasubtitle arg to the url
-                    ret = [NSString stringWithFormat:@"%@;%@",txt,urlStringWithTitle];
+                     ret = [NSString stringWithFormat:@"%@;%@",txt,urlStringWithTitle];
 
                 //}
                 
@@ -235,7 +236,15 @@
             ret= @";dismiss://";
             break;
         case  DataColUnitPrice:
-            ret = [NSString stringWithFormat:@"%@;xxxxxx",[tempDic objectForKey:@"Price"]];
+            if ([[NSBundle mainBundle] pathOfFileWithUrl:absUrlString]){
+                //File already downloaded, don't show price
+               }
+            else{
+                NSString * price = [tempDic objectForKey:@"Price"];
+            
+                if (price) ret = [NSString stringWithFormat:@"%@;%@",price,buyUrlString];
+            }
+
             break;
             
         }
