@@ -190,11 +190,12 @@
     if (!chosenNibName) return nil;
 
 	NSArray*    topLevelObjs = nil;
-    //SLog(@"chosenNibName:%@",chosenNibName);
+    NSLog(@"chosenNibName:%@",chosenNibName);
 	topLevelObjs=	[[NSBundle mainBundle] loadNibNamed:chosenNibName owner:nil options:nil];
 	
 	UIView * nibView = [topLevelObjs lastObject];
-    
+    NSLog(@"will return:%@",nibView);
+   
 	return nibView;
 }
 

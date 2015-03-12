@@ -36,7 +36,8 @@
 
 - (void) didFinishDownloadWithNotification:(NSNotification *) notification;
 
-- (void) openModalView:(int)detailRow;
+- (void) openDetailView:(int)detailRow;
+- (void) dismissDetailView;
 
 
 @end

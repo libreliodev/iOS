@@ -50,6 +50,7 @@ typedef enum {
     DataColNib=18,
     DataColAd=24,
     DataColDetail=25,
+    DataColDismiss=26,
     DataColNothing=999,
 } DataCol;
 

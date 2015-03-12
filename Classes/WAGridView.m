@@ -52,7 +52,7 @@
         NSString * cellNibName = [UIView getNibName:cellNibTestName defaultNib:@"WAGridCell" forOrientation:999];
         UIView * cellNibView = [UIView getNibView:cellNibTestName defaultNib:@"WAGridCell" forOrientation:999];
         cellNibSize = cellNibView.frame.size;
-        //SLog(@"cellNibSize:%f,%f",nibView.frame.size.width,nibView.frame.size.height);
+        NSLog(@"cellNibSize:%f,%f",cellNibView.frame.size.width,cellNibView.frame.size.height);
         
         //Set header view
         NSString * headerNibTestName = [[urlString nameOfFileWithoutExtensionOfUrlString]stringByAppendingString:@"_header"];
@@ -201,11 +201,16 @@
     NSURL * url = [NSURL URLWithString:absoluteUrlString];
     if ([url.scheme isEqualToString:@"detail"]){
         int detailRow = [url.host intValue];
-        [self openModalView:detailRow];
+        [self openDetailView:detailRow];
         
 
     }
-    else{
+    else if ([url.scheme isEqualToString:@"dismiss"]){
+        [self dismissDetailView];
+    }
+    
+    
+    else {
         [self openModule:newUrlString inView:button.superview inRect:button.frame];
     }
 
@@ -224,31 +229,34 @@
     [moduleViewController release];
 }
                                          
-- (void) openModalView:(int)detailRow{
-    //SLog(@"detailRow %i",detailRow);
-    NSString * modalNibTestName = [[urlString nameOfFileWithoutExtensionOfUrlString]stringByAppendingString:@"_modal"];
-    NSString * modalNibName = [UIView getNibName:modalNibTestName defaultNib:@"WAGridModal" forOrientation:999];
-
-    UIViewController* modalController = [[UIViewController alloc]initWithNibName:modalNibName bundle:[NSBundle mainBundle]];
-    modalController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    modalController.modalPresentationStyle =  UIModalPresentationFormSheet;
-    
-    /**CGPoint frameSize = CGPointMake([[UIScreen mainScreen] bounds].size.width*0.95f, [[UIScreen mainScreen] bounds].size.height*0.95f);
-     CGRect screenRect = [[UIScreen mainScreen] bounds];
-     CGFloat screenWidth = screenRect.size.width;
-     CGFloat screenHeight = screenRect.size.height;
+- (void) openDetailView:(int)detailRow{
+    NSLog(@"detailRow %i",detailRow);
+ 
      
-     // Resizing for iOS 8
-     modalController.preferredContentSize = CGSizeMake(frameSize.x, frameSize.y);
-     // Resizing for <= iOS 7
-     modalController.view.superview.frame = CGRectMake((screenWidth - frameSize.x)/2, (screenHeight - frameSize.y)/2, frameSize.x, frameSize.y);**/
     
-    [self.currentViewController presentViewController:modalController animated:YES completion:nil];
+    NSString * modalNibTestName = [[urlString nameOfFileWithoutExtensionOfUrlString]stringByAppendingString:@"_modal"];
+    UIView * modalNibView = [UIView getNibView:modalNibTestName defaultNib:@"WAGridModal" forOrientation:999];
+    NSLog(@"modalNibView %@",modalNibView);
+    
+    modalNibView.frame = self.frame;
+    modalNibView.tag = 789;//This is conventional
+    modalNibView.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
+    NSLog(@"Will add subview %@",modalNibView);
+    [self addSubview:modalNibView];
+    [modalNibView populateNibWithParser:parser withButtonDelegate:self withController:currentViewController   forRow:detailRow];
+
+
     
     
    
     
 }
+
+- (void) dismissDetailView{
+    UIView * modalView = [self viewWithTag:789];
+    [modalView removeFromSuperview];
+}
+
 
 
 #pragma mark -

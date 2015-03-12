@@ -231,8 +231,13 @@
         case DataColDetail:
             ret= [NSString stringWithFormat:@";detail://%i",row];
             break;
+        case DataColDismiss:
+            ret= @";dismiss://";
+            break;
 
-		}
+            
+        }
+            
 		default:
             if (dataCol>100.0) ret =[tempDic objectForKey:[NSString stringWithFormat:@"%@%i",@"Col",dataCol]];
 			
