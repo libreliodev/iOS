@@ -427,6 +427,9 @@
 		14C467A91AB17EC100537042 /* CALayer+WAAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C467A81AB17EC100537042 /* CALayer+WAAdditions.m */; };
 		14C467AA1AB17EC100537042 /* CALayer+WAAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C467A81AB17EC100537042 /* CALayer+WAAdditions.m */; };
 		14C467AB1AB17EC100537042 /* CALayer+WAAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C467A81AB17EC100537042 /* CALayer+WAAdditions.m */; };
+		14C467AE1AB1907400537042 /* UIButton+WAAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C467AC1AB1907400537042 /* UIButton+WAAdditions.m */; };
+		14C467AF1AB1907400537042 /* UIButton+WAAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C467AC1AB1907400537042 /* UIButton+WAAdditions.m */; };
+		14C467B01AB1907400537042 /* UIButton+WAAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C467AC1AB1907400537042 /* UIButton+WAAdditions.m */; };
 		14D8296C19A2098E0059F3E0 /* WAURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D8296B19A2098E0059F3E0 /* WAURLProtocol.m */; };
 		14D8296D19A2098E0059F3E0 /* WAURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D8296B19A2098E0059F3E0 /* WAURLProtocol.m */; };
 		14DB116C164BEDC3001FE76B /* HTMLTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 14D46E381354A52000B388A8 /* HTMLTemplate.html */; };
@@ -814,6 +817,8 @@
 		14C35A0216295EEE00320A42 /* UIImage+WAAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WAAdditions.h"; sourceTree = "<group>"; };
 		14C467A71AB17EC100537042 /* CALayer+WAAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+WAAdditions.h"; sourceTree = "<group>"; };
 		14C467A81AB17EC100537042 /* CALayer+WAAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+WAAdditions.m"; sourceTree = "<group>"; };
+		14C467AC1AB1907400537042 /* UIButton+WAAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WAAdditions.m"; sourceTree = "<group>"; };
+		14C467AD1AB1907400537042 /* UIButton+WAAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+WAAdditions.h"; sourceTree = "<group>"; };
 		14C5D09012646A170034FE23 /* WARSSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WARSSViewController.h; sourceTree = "<group>"; };
 		14C5D09112646A170034FE23 /* WARSSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WARSSViewController.m; sourceTree = "<group>"; };
 		14C744D41459AF8800767C52 /* WAShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAShareView.h; sourceTree = "<group>"; };
@@ -1367,6 +1372,8 @@
 		147AEB671379873C00E209A9 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				14C467AC1AB1907400537042 /* UIButton+WAAdditions.m */,
+				14C467AD1AB1907400537042 /* UIButton+WAAdditions.h */,
 				14C35A0116295EEE00320A42 /* UIImage+WAAdditions.m */,
 				14C35A0216295EEE00320A42 /* UIImage+WAAdditions.h */,
 				14A68F5C141E514600E16AE6 /* UIView+WAModuleView.h */,
@@ -2202,6 +2209,7 @@
 				142EBB511A2B018C00BBDD97 /* WAPDFParser.m in Sources */,
 				142EBB521A2B018C00BBDD97 /* WAThumbnailsView.m in Sources */,
 				142EBB531A2B018C00BBDD97 /* WARSSViewController.m in Sources */,
+				14C467AF1AB1907400537042 /* UIButton+WAAdditions.m in Sources */,
 				142EBB541A2B018C00BBDD97 /* WAPaymentTransactionObserver.m in Sources */,
 				142EBB551A2B018C00BBDD97 /* WAUtilities.m in Sources */,
 				142EBB561A2B018C00BBDD97 /* WAIconDownloader.m in Sources */,
@@ -2290,6 +2298,7 @@
 				14D8296D19A2098E0059F3E0 /* WAURLProtocol.m in Sources */,
 				149086B917E375D700943DD2 /* WAScreenView.m in Sources */,
 				149086BB17E375D700943DD2 /* WAPDFParser.m in Sources */,
+				14C467B01AB1907400537042 /* UIButton+WAAdditions.m in Sources */,
 				149086BC17E375D700943DD2 /* WAThumbnailsView.m in Sources */,
 				149086BD17E375D700943DD2 /* WARSSViewController.m in Sources */,
 				149086BE17E375D700943DD2 /* WAPaymentTransactionObserver.m in Sources */,
@@ -2400,6 +2409,7 @@
 				14C467A91AB17EC100537042 /* CALayer+WAAdditions.m in Sources */,
 				14DB11B5164BEDC3001FE76B /* WAMapView.m in Sources */,
 				14DB11B6164BEDC3001FE76B /* WATextView.m in Sources */,
+				14C467AE1AB1907400537042 /* UIButton+WAAdditions.m in Sources */,
 				14DB11B7164BEDC3001FE76B /* WASlideShowView.m in Sources */,
 				14DB11B8164BEDC3001FE76B /* WAModuleViewController.m in Sources */,
 				14DB11B9164BEDC3001FE76B /* WADownloadingView.m in Sources */,

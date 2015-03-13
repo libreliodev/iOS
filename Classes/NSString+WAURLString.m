@@ -693,6 +693,29 @@
 
 }
 
+- (NSString *)stringFormattedRTF
+
+{
+    NSMutableString *result = [NSMutableString string];
+    
+    for ( int index = 0; index < [self length]; index++ ) {
+        NSString *temp = [self substringWithRange:NSMakeRange( index, 1 )];
+        unichar tempchar = [self characterAtIndex:index];
+        
+        if ( tempchar > 127) {
+            [result appendFormat:@"\\\'%02x", tempchar];
+        } else {
+            [result appendString:temp];
+        }
+    }
+    return result;
+}
+
+- (NSString*)stringWithRTFHeaderAndFooter{
+    NSString * rtfHeader = @"{\\rtf1\\ansi\\ansicpg1252\\cocoartf1344\\cocoasubrtf720\n{\\fonttbl\\f0\\fswiss\\fcharset0 Helvetica;}\n{\\colortbl;\\red255\\green255\\blue255;}\n\\paperw11900\\paperh16840\\margl1440\\margr1440\\vieww10800\\viewh8400\\viewkind0\n\\pard\\tx560\\tx1120\\tx1680\\tx2240\\tx2800\\tx3360\\tx3920\\tx4480\\tx5040\\tx5600\\tx6160\\tx6720\\pardirnatural\n\n\\f0 ";
+    return [NSString stringWithFormat:@"%@%@}",rtfHeader,self];
+
+}
 
 
 @end

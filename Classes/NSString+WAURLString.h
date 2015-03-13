@@ -65,4 +65,7 @@
 - (NSString*) gaScreenForModuleWithName:(NSString*)moduleName withPage:(NSString*)pageName;
 
 
+- (NSString *)stringFormattedRTF;
+- (NSString*)stringWithRTFHeaderAndFooter;
+
 @end

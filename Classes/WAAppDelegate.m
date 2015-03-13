@@ -141,7 +141,7 @@
         startInterstitial = [[DFPInterstitial alloc] init];
         NSString * shortUnitId = @"i000";//i000 is the code for startup instertitials
         startInterstitial.adUnitID = [DfpPrefix completeAdUnitCodeForShortCode:shortUnitId];
-        NSLog(@"unitId:%@",startInterstitial.adUnitID);
+        //SLog(@"unitId:%@",startInterstitial.adUnitID);
         startInterstitial.delegate = self;
         GADRequest *request = [GADRequest request];
         //request.testDevices = @[ GAD_SIMULATOR_ID ];

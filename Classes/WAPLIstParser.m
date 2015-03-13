@@ -238,13 +238,18 @@
         case  DataColUnitPrice:
             if ([[NSBundle mainBundle] pathOfFileWithUrl:absUrlString]){
                 //File already downloaded, don't show price
-               }
+            }
             else{
                 NSString * price = [tempDic objectForKey:@"Price"];
-            
+                
                 if (price) ret = [NSString stringWithFormat:@"%@;%@",price,buyUrlString];
             }
-
+            break;
+        case  DataColMonthlySubscriptionPrice:{
+            NSString * price = [tempDic objectForKey:@"MonthlySubscription"];
+                
+            if (price) ret = [NSString stringWithFormat:@"%@Ceci \\b Test \\b0;%@",price,buyUrlString];
+            }
             break;
             
         }
@@ -348,7 +353,7 @@
 - (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
 {
     
-    NSLog(@"Products received: valid %@ , invalid %@ urlString:%@",response.products,response.invalidProductIdentifiers,urlString);
+    //SLog(@"Products received: valid %@ , invalid %@ urlString:%@",response.products,response.invalidProductIdentifiers,urlString);
     extraInfoStatus = Downloaded;
 
     //Parse response
@@ -368,7 +373,7 @@
         [parsedResponse setObject:formattedPrice forKey:product.productIdentifier];
         
      }
-    NSLog(@"parsedResponse:%@, dataarray:%@",parsedResponse,dataArray);
+    //SLog(@"parsedResponse:%@, dataarray:%@",parsedResponse,dataArray);
     
     //Add prices to plist
     NSMutableArray * newDataArray= [NSMutableArray arrayWithArray:dataArray];
@@ -399,7 +404,7 @@
     [dataArray addObjectsFromArray:newDataArray];
 
     
-      NSLog(@"dataarray:%@",dataArray);
+      //SLog(@"dataarray:%@",dataArray);
      //Store plist with metadata and list of resources for this download
      NSString * filePath = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
      [dataArray writeToFile:filePath atomically:YES];

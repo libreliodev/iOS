@@ -52,7 +52,7 @@
         NSString * cellNibName = [UIView getNibName:cellNibTestName defaultNib:@"WAGridCell" forOrientation:999];
         UIView * cellNibView = [UIView getNibView:cellNibTestName defaultNib:@"WAGridCell" forOrientation:999];
         cellNibSize = cellNibView.frame.size;
-        NSLog(@"cellNibSize:%f,%f",cellNibView.frame.size.width,cellNibView.frame.size.height);
+        //SLog(@"cellNibSize:%f,%f",cellNibView.frame.size.width,cellNibView.frame.size.height);
         
         //Set header view
         NSString * headerNibTestName = [[urlString nameOfFileWithoutExtensionOfUrlString]stringByAppendingString:@"_header"];
@@ -230,18 +230,18 @@
 }
                                          
 - (void) openDetailView:(int)detailRow{
-    NSLog(@"detailRow %i",detailRow);
+    //SLog(@"detailRow %i",detailRow);
  
      
     
     NSString * modalNibTestName = [[urlString nameOfFileWithoutExtensionOfUrlString]stringByAppendingString:@"_modal"];
     UIView * modalNibView = [UIView getNibView:modalNibTestName defaultNib:@"WAGridModal" forOrientation:999];
-    NSLog(@"modalNibView %@",modalNibView);
+    //SLog(@"modalNibView %@",modalNibView);
     
     modalNibView.frame = self.frame;
     modalNibView.tag = 789;//This is conventional
     modalNibView.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
-    NSLog(@"Will add subview %@",modalNibView);
+    //SLog(@"Will add subview %@",modalNibView);
     [self addSubview:modalNibView];
     [modalNibView populateNibWithParser:parser withButtonDelegate:self withController:currentViewController   forRow:detailRow];
 

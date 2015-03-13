@@ -11,6 +11,7 @@
 #import "WABarButtonItemWithLink.h"
 #import "NSBundle+WAAdditions.h"
 #import "UIColor+WAAdditions.h"
+#import "UIButton+WAAdditions.h"
 #import "NSString+WAURLString.h"
 
 #import <QuartzCore/QuartzCore.h>
@@ -139,10 +140,10 @@
 					[wView loadHTMLString:tempString baseURL:baseURL];
 				}
 				else if  ([subView isKindOfClass:[UIButton class]]){
-					UIButton * buyButton = (UIButton*) subView; 
-					NSArray * parts = [tempString componentsSeparatedByString:@";"];
-					[buyButton setTitle:[parts objectAtIndex:0] forState:UIControlStateNormal];
-					[buyButton setTitle:[parts objectAtIndex:1] forState:UIControlStateApplication];//Store the link here
+                    NSArray * parts = [tempString componentsSeparatedByString:@";"];
+					UIButton * buyButton = (UIButton*) subView;
+                    buyButton.waTitle = [parts objectAtIndex:0];
+                    buyButton.waLink = [parts objectAtIndex:1];
 					[buyButton addTarget:delegate action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
 					
 					
@@ -190,11 +191,11 @@
     if (!chosenNibName) return nil;
 
 	NSArray*    topLevelObjs = nil;
-    NSLog(@"chosenNibName:%@",chosenNibName);
+    //SLog(@"chosenNibName:%@",chosenNibName);
 	topLevelObjs=	[[NSBundle mainBundle] loadNibNamed:chosenNibName owner:nil options:nil];
 	
 	UIView * nibView = [topLevelObjs lastObject];
-    NSLog(@"will return:%@",nibView);
+    //SLog(@"will return:%@",nibView);
    
 	return nibView;
 }
