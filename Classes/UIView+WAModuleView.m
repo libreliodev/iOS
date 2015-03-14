@@ -142,6 +142,7 @@
 				else if  ([subView isKindOfClass:[UIButton class]]){
                     NSArray * parts = [tempString componentsSeparatedByString:@";"];
 					UIButton * buyButton = (UIButton*) subView;
+
                     buyButton.waTitle = [parts objectAtIndex:0];
                     buyButton.waLink = [parts objectAtIndex:1];
 					[buyButton addTarget:delegate action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];

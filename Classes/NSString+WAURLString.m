@@ -703,7 +703,7 @@
         unichar tempchar = [self characterAtIndex:index];
         
         if ( tempchar > 127) {
-            [result appendFormat:@"\\\'%02x", tempchar];
+            [result appendFormat:@"\\uc0\\u%i ", tempchar];
         } else {
             [result appendString:temp];
         }

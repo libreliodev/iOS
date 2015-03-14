@@ -248,7 +248,7 @@
         case  DataColMonthlySubscriptionPrice:{
             NSString * price = [tempDic objectForKey:@"MonthlySubscription"];
                 
-            if (price) ret = [NSString stringWithFormat:@"%@Ceci \\b Test \\b0;%@",price,buyUrlString];
+            if (price) ret = [NSString stringWithFormat:@"%@;%@",price,buyUrlString];
             }
             break;
             
