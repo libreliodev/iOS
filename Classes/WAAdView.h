@@ -3,9 +3,8 @@
 
 #import <UIKit/UIKit.h>
 #import "WAModuleProtocol.h"
-#import "DFPBannerView.h"
 
-
+@import GoogleMobileAds;
 
 @interface WAAdView : DFPBannerView <WAModuleProtocol,GADBannerViewDelegate>{
 

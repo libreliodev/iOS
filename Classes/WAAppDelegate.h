@@ -5,9 +5,7 @@
 #import "WAPListParser.h"
 #import "WAAppSubDelegate.h"
 
-#import "DFPInterstitial.h"
-#import "GADInterstitialDelegate.h"
-
+@import GoogleMobileAds;
 
 
 

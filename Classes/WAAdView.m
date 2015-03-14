@@ -51,7 +51,7 @@
             self.delegate = self;
             //SLog(@"self.adUnitID %@",self.adUnitID);
             GADRequest *request = [GADRequest request];
-            request.testDevices = @[ GAD_SIMULATOR_ID ];
+            //request.testDevices = @[ GAD_SIMULATOR_ID ];
             [self loadRequest:request];
             
             
