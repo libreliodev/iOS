@@ -151,7 +151,7 @@
 
     
        
-    //SLog(@"Will send didSucceedResourceDownload notification for connection %@",connection); 
+    //SLog(@"Will send didSucceedResourceDownload notification for connection %@",connection);
     [[NSNotificationCenter defaultCenter] postNotificationName:@"didSucceedResourceDownload" object:urlString];
 
 	

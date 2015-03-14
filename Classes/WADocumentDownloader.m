@@ -493,7 +493,7 @@
            
         }
         
-        [[[WADocumentDownloadsManager sharedManager] issuesQueue] removeObjectIdenticalTo:self];//This will release this instance if not owned by a download view; do it before notify Download Finished , because WAMissingResourecesDwnloader may need to add itself again immediately after
+        [[[WADocumentDownloadsManager sharedManager] issuesQueue] removeObjectIdenticalTo:self];//This will release this instance if not owned by a download view; do it before notify Download Finished , because WAMissingResourecesDownloader may need to add itself again immediately after and will not otherwise
         [self notifyDownloadFinished];
         
 

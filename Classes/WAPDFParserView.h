@@ -29,6 +29,10 @@
 
 
 - (void) addButtonInRect:(CGRect)rect withLink:(NSString*)urlString atScale:(CGFloat)scale;
+- (void) removeButtonsNotNeededForCurrentOrientation;
+- (void) addButtons:(BOOL)forCurrentOrientationOnly;
+- (BOOL) isOrientationFromUrlStringActive:(NSString*) urlString;
+
 - (void) addTiledView;
 - (void) increaseTiledViewDetail;
 

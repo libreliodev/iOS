@@ -6,6 +6,8 @@
 #import "WAButtonWithLink.h"
 #import "WAOperationsManager.h"
 #import "WAVideoView.h"
+#import "WAModuleProtocol.h"
+#import "WAButtonWithLink.h"
 
 #import "NSString+WAURLString.h"
 #import "NSBundle+WAAdditions.h"
@@ -157,21 +159,16 @@
 #pragma mark Visibility 
 
 - (void) didBecomeVisible {
+    NSLog(@"Did become visible");
     //Check if the TiledView exists; if it does, it means that the page was already visible
     if (![self viewWithTag:999]){
         //There is a lot of work, stop the NSOperations to save memory
         [[[WAOperationsManager sharedManager] defaultQueue] setSuspended:YES];
         
         //Add buttons for all links
-        NSArray * tempArray = [(WAPDFParser*) pdfDocument getLinksOnPage:self.page];
-        CGRect pageRect = CGRectFromString([pdfDocument getDataAtRow:self.page forDataCol:DataColRect]);
-        CGFloat scale = (pageRect.size.width>0)?self.frame.size.width/pageRect.size.width:0;
-        for (NSDictionary * tempDic in tempArray){
-            NSValue *rectValue = [tempDic objectForKey:@"Rect"];
-            CGRect rect = [rectValue CGRectValue];
-            CGRect scaledRect = CGRectMake(rect.origin.x*scale, rect.origin.y*scale, rect.size.width*scale, rect.size.height*scale);
-            [self addButtonInRect:scaledRect withLink:[tempDic objectForKey:@"URL"] atScale:scale];		
-        }
+        [self addButtons:NO];
+        
+        //Add tiles view
         [self addTiledView];
         [[[WAOperationsManager sharedManager] defaultQueue] setSuspended:NO];
         
@@ -199,6 +196,9 @@
         [[self viewWithTag:999]removeFromSuperview];
         //SLog(@"Removed from superview in didBecomeVisible");
         [self addTiledView];
+        
+        [self addButtons:YES];
+        [self removeButtonsNotNeededForCurrentOrientation];
        
         
         
@@ -260,7 +260,6 @@
 	button.backgroundColor = [UIColor clearColor];
 	button.showsTouchWhenHighlighted = YES;
 
-	//Put the URL of the link (without hash) in the title, and make it invisible
 	NSString *noHash = [urlString noHashPartOfUrlString];
 	button.link = noHash;
 
@@ -288,6 +287,62 @@
 	[button addTarget:self.superview.superview action:@selector(performLinkAction:) forControlEvents:UIControlEventTouchUpInside];//The action is handled by the ScreenView instance, which is parent of containerView which is parent of self
 	[self addSubview:button];
 	
+}
+
+- (void) removeButtonsNotNeededForCurrentOrientation{
+    NSArray * subViewsArray =[self subviews];
+    for (UIView * subView in subViewsArray){
+        NSString * link = @"";
+        if ([subView conformsToProtocol:@protocol(WAModuleProtocol)]) {
+            link = [(UIView <WAModuleProtocol>*)subView urlString];
+        }
+        if ([subView isKindOfClass:[WAButtonWithLink class]]) {
+            link = [(WAButtonWithLink*)subView link];
+        }
+        NSLog(@"link: %@",link);
+        if (link){
+            if ([link valueOfParameterInUrlStringforKey:@"waorientation"]&&![self isOrientationFromUrlStringActive:link]) [subView removeFromSuperview];
+            
+        }
+    }
+    
+    
+}
+
+- (void) addButtons:(BOOL)forCurrentOrientationOnly;
+{
+    
+    NSArray * tempArray = [(WAPDFParser*) pdfDocument getLinksOnPage:self.page];
+    CGRect pageRect = CGRectFromString([pdfDocument getDataAtRow:self.page forDataCol:DataColRect]);
+    CGFloat scale = (pageRect.size.width>0)?self.frame.size.width/pageRect.size.width:0;
+    for (NSDictionary * tempDic in tempArray){
+        NSValue *rectValue = [tempDic objectForKey:@"Rect"];
+        CGRect rect = [rectValue CGRectValue];
+        CGRect scaledRect = CGRectMake(rect.origin.x*scale, rect.origin.y*scale, rect.size.width*scale, rect.size.height*scale);
+        NSString * annotURLString =[tempDic objectForKey:@"URL"];
+        if ([annotURLString valueOfParameterInUrlStringforKey:@"waorientation"]){
+           if ([self isOrientationFromUrlStringActive:annotURLString]) {
+                //Add the button
+                [self addButtonInRect:scaledRect withLink:annotURLString atScale:scale];
+
+            }
+            
+        }
+        else if (!forCurrentOrientationOnly){
+            [self addButtonInRect:scaledRect withLink:annotURLString atScale:scale];
+        }
+            
+
+     }
+
+}
+
+- (BOOL) isOrientationFromUrlStringActive:(NSString*) urlString{
+    NSString* currentOrientation = (self.superview.superview.frame.size.width<self.superview.superview.frame.size.height)?@"portrait":@"landscape";//self.superview.superview is screen view, from which we deduct orientation
+    if ([[currentOrientation uppercaseString] isEqualToString:[[urlString valueOfParameterInUrlStringforKey:@"waorientation"]uppercaseString]]) return YES;
+    else return NO;
+    
+    
 }
 
 #pragma mark -

@@ -47,10 +47,10 @@
     /*    NSError *error = nil;
         //NSString * rtf = [@"test \n\\b \\i marche" stringWithRTFHeaderAndFooter];
         NSString * rtf = [[title stringFormattedRTF] stringWithRTFHeaderAndFooter];
-        NSLog(@"rtf: %@",rtf);
+        //SLog(@"rtf: %@",rtf);
         NSData * data = [rtf dataUsingEncoding:NSASCIIStringEncoding];
         NSAttributedString *attString = [[NSAttributedString alloc] initWithData:data options:@{NSDocumentTypeDocumentAttribute:NSRTFTextDocumentType} documentAttributes:nil error:&error];
-        NSLog(@"Error initWithData:%@",error);
+        //SLog(@"Error initWithData:%@",error);
         
  
         //NSMutableAttributedString *attString = [[NSMutableAttributedString alloc] initWithString:title];
