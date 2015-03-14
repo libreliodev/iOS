@@ -21,28 +21,30 @@
 -(void)setWaTitle:(NSString*)title
 {
     
-    //If xib title contains %@, do not override it
+    //If xib title contains %@, do not override it, replace %@ with title
     NSString * xibTitle= [self titleForState:UIControlStateNormal];
-    NSString *  xibAttTitle = [[self attributedTitleForState:UIControlStateNormal] string];
     NSRange rangeTitle = [xibTitle rangeOfString:@"%@"];
     if ((xibTitle) && (rangeTitle.location != NSNotFound)) {
-        title= [NSString stringWithFormat:xibTitle,title];
-        NSLog(@"New title %@",title);
+        title= [xibTitle stringByReplacingOccurrencesOfString:@"%@" withString:title];
     }
+    [self setTitle:title forState:UIControlStateNormal];
+
+
+    NSString *  xibAttTitle = [[self attributedTitleForState:UIControlStateNormal]string];
     NSRange rangeAttTitle = [xibAttTitle rangeOfString:@"%@"];
     if ((xibAttTitle) && (rangeAttTitle.location != NSNotFound)) {
-        NSLog(@"xibAttTitle %@ location %i",xibAttTitle,rangeAttTitle.location);
-        title= [NSString stringWithFormat:xibAttTitle,title];
-        NSLog(@"New title %@",title);
+        NSMutableAttributedString * newAttString = [[NSMutableAttributedString alloc]initWithAttributedString:[self attributedTitleForState:UIControlStateNormal]];
+        [[newAttString mutableString] replaceOccurrencesOfString:@"%@" withString:title options:NSCaseInsensitiveSearch range:NSMakeRange(0, newAttString.string.length)];
+        [self setAttributedTitle:newAttString forState:UIControlStateNormal];
+        [newAttString release];
+    }
+    else{
+        //This should never happen, use attributed strings only with %@
     }
   
 
-    //If title contains \, consider it's an rtf, and use attributed string
-    NSRange range = [title rangeOfString:@"\\"];
-    if (range.location == NSNotFound) {
-        [self setTitle:title forState:UIControlStateNormal];
-    } else {
-        NSError *error = nil;
+    //No longer useed, kept for future reference
+    /*    NSError *error = nil;
         //NSString * rtf = [@"test \n\\b \\i marche" stringWithRTFHeaderAndFooter];
         NSString * rtf = [[title stringFormattedRTF] stringWithRTFHeaderAndFooter];
         NSLog(@"rtf: %@",rtf);
@@ -57,9 +59,8 @@
          [self setAttributedTitle:attString forState:UIControlStateNormal];
         [attString release];
         
-    }
+    }*/
 
- /*
     
 }
 

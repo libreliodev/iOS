@@ -248,6 +248,8 @@
 		146E000317E20F49000EE3DB /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 146EFFFF17E20F49000EE3DB /* back@2x.png */; };
 		146E000717E22654000EE3DB /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 146E000417E22654000EE3DB /* list.png */; };
 		146E000917E22654000EE3DB /* list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 146E000517E22654000EE3DB /* list@2x.png */; };
+		1476D73B1AB40B7100954A57 /* WAAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A7F8E61A6F01290090CFAB /* WAAdView.m */; };
+		1476D73C1AB40B7200954A57 /* WAAdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A7F8E61A6F01290090CFAB /* WAAdView.m */; };
 		14784D2618375C8200605C51 /* WAOAMParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 14784D2318375C8200605C51 /* WAOAMParser.m */; };
 		14784D2718375C8200605C51 /* WAOAMParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 14784D2318375C8200605C51 /* WAOAMParser.m */; };
 		1489B60C168ECC3D00404BA6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1489B611168ECC3D00404BA6 /* Localizable.strings */; };
@@ -2226,6 +2228,7 @@
 				142EBB601A2B018C00BBDD97 /* WAThumbnailCell.m in Sources */,
 				142EBB611A2B018C00BBDD97 /* unzip.c in Sources */,
 				142EBB621A2B018C00BBDD97 /* WADrawPageOperation.m in Sources */,
+				1476D73B1AB40B7100954A57 /* WAAdView.m in Sources */,
 				142EBB631A2B018C00BBDD97 /* WATilingView.m in Sources */,
 				142EBB641A2B018C00BBDD97 /* WAButtonWithLink.m in Sources */,
 				142EBB651A2B018C00BBDD97 /* WAMapView.m in Sources */,
@@ -2315,6 +2318,7 @@
 				149086D117E375D700943DD2 /* WAPDFParserView.m in Sources */,
 				14A309AC18378F1000A519DD /* unzip.c in Sources */,
 				149086D217E375D700943DD2 /* WAThumbnailCell.m in Sources */,
+				1476D73C1AB40B7200954A57 /* WAAdView.m in Sources */,
 				149086D317E375D700943DD2 /* WADrawPageOperation.m in Sources */,
 				149086D417E375D700943DD2 /* WATilingView.m in Sources */,
 				149086D517E375D700943DD2 /* WAButtonWithLink.m in Sources */,
