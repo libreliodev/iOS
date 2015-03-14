@@ -39,20 +39,22 @@
 		
 	}
 	else {
+        NSLog(@"AdView started");
         urlString = [[NSString alloc]initWithString: theString];
         self.rootViewController = currentViewController;
         
         NSDictionary * app_Dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"]];
         NSString * DfpPrefix = [app_Dic objectForKey:@"DfpPrefix"];
         if (DfpPrefix){
-            NSString * shortUnitId = [[urlString noArgsPartOfUrlString] lastPathComponent];
+            //NSString * shortUnitId = [[urlString noArgsPartOfUrlString] lastPathComponent];
             //SLog (@"url: %@, short:%@",urlString,shortUnitId);
-            self.adUnitID = [DfpPrefix completeAdUnitCodeForShortCode:shortUnitId];
+            //self.adUnitID = [DfpPrefix completeAdUnitCodeForShortCode:shortUnitId];
+            self.adUnitID = @"/6499/example/banner";
             self.delegate = self;
             //SLog(@"self.adUnitID %@",self.adUnitID);
-            GADRequest *request = [GADRequest request];
+            //GADRequest *request = [GADRequest request];
             //request.testDevices = @[ GAD_SIMULATOR_ID ];
-            [self loadRequest:request];
+            [self loadRequest:[DFPRequest request]];
             
             
        }
@@ -109,12 +111,12 @@
 
 /// Called when an ad request loaded an ad.
 - (void)adViewDidReceiveAd:(DFPBannerView *)adView {
-    //SLog(@"adViewDidReceiveAd");
+    NSLog(@"adViewDidReceiveAd %@", adView);
 }
 
 /// Called when an ad request failed.
 - (void)adView:(DFPBannerView *)adView didFailToReceiveAdWithError:(GADRequestError *)error {
-    //SLog(@"adViewDidFailToReceiveAdWithError: %@", [error localizedDescription]);
+    NSLog(@"adViewDidFailToReceiveAdWithError: %@", [error localizedDescription]);
 }
 
 /// Called just before presenting the user a full screen view, such as

@@ -63,6 +63,7 @@
     else if ([string isEqualToString:@"Blue"]) return [UIColor blueColor];
     else if ([string isEqualToString:@"Gray"]) return [UIColor grayColor];
     else if ([string isEqualToString:@"Green"]) return [UIColor greenColor];
+    else if ([string isEqualToString:@"LightGray"]) return [UIColor lightGrayColor];
     else return [self colorFromHex:string];
 
     

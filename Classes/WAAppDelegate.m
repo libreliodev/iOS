@@ -360,7 +360,31 @@
         
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
             appTabBarController.tabBar.translucent = NO;
-            if ([app_Dic objectForKey:@"BarColor"]) appTabBarController.tabBar.barTintColor = [UIColor colorFromString:[app_Dic objectForKey:@"BarColor"]] ;
+            if ([app_Dic objectForKey:@"BarColor"]) {
+                NSArray * parts = [[app_Dic objectForKey:@"BarColor"] componentsSeparatedByString:@";"];
+                UIColor * color1= [UIColor colorFromString:[parts objectAtIndex:0]];
+                appTabBarController.tabBar.barTintColor = color1;
+                if ([parts count]>1){
+                    UIColor * color2= [UIColor colorFromString:[parts objectAtIndex:1]];
+                    UIColor * color3= [UIColor colorFromString:[parts objectAtIndex:2]];
+                    appTabBarController.tabBar.tintColor = [UIColor lightGrayColor];
+                    
+                    for (UITabBarItem *item in appTabBarController.tabBar.items) {
+                        item.image = [item.image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ];
+                     };
+                    
+                    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                       color3, NSForegroundColorAttributeName,
+                                                                       nil] forState:UIControlStateNormal];
+                    
+                    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                                       color2, NSForegroundColorAttributeName,
+                                                                       nil] forState:UIControlStateSelected];                }
+
+                    
+                }
+                
+            
 
             
         }
