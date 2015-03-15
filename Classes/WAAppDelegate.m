@@ -624,14 +624,14 @@
 #pragma mark
 #pragma mark GADInterstitialDelegate implementation
 - (void)interstitialDidReceiveAd:(DFPInterstitial *)ad {
-    NSLog(@"Received ad successfully %@",ad);
+    //SLog(@"Received ad successfully %@",ad);
     [startInterstitial presentFromRootViewController:rootViewController];
 }
 
 
 - (void)interstitial:(DFPInterstitial *)interstitial
 didFailToReceiveAdWithError:(GADRequestError *)error {
-    NSLog(@"interstitialDidFailToReceiveAdWithError: %@ for interstitial%@", [error localizedDescription],interstitial);
+    //SLog(@"interstitialDidFailToReceiveAdWithError: %@ for interstitial%@", [error localizedDescription],interstitial);
 }
 
 - (void)interstitialDidDismissScreen:(DFPInterstitial *)interstitial {

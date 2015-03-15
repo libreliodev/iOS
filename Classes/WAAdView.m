@@ -39,7 +39,7 @@
 		
 	}
 	else {
-        NSLog(@"AdView started");
+        //SLog(@"AdView started");
         urlString = [[NSString alloc]initWithString: theString];
         self.rootViewController = currentViewController;
         
@@ -111,12 +111,12 @@
 
 /// Called when an ad request loaded an ad.
 - (void)adViewDidReceiveAd:(DFPBannerView *)adView {
-    NSLog(@"adViewDidReceiveAd %@", adView);
+    //SLog(@"adViewDidReceiveAd %@", adView);
 }
 
 /// Called when an ad request failed.
 - (void)adView:(DFPBannerView *)adView didFailToReceiveAdWithError:(GADRequestError *)error {
-    NSLog(@"adViewDidFailToReceiveAdWithError: %@", [error localizedDescription]);
+    //SLog(@"adViewDidFailToReceiveAdWithError: %@", [error localizedDescription]);
 }
 
 /// Called just before presenting the user a full screen view, such as

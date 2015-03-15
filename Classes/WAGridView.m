@@ -64,6 +64,7 @@
  
         //Set collection view
         UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
+        layout.sectionInset =  UIEdgeInsetsMake(30, 30, 30, 30);
         currentCollectionView=[[UICollectionView alloc] initWithFrame:self.frame collectionViewLayout:layout];
         currentCollectionView.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
 

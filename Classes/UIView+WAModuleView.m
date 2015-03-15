@@ -97,13 +97,13 @@
 
 - (void) populateNibWithParser:(NSObject <WAParserProtocol>*)parser withButtonDelegate:(NSObject*)delegate withController:(UIViewController*)controller forRow:(int)row{
    	for (UIView * subView in self.subviews){
-        NSLog(@"Found subview with tag %i. and classs %@",subView.tag, subView.class);
+        //SLog(@"Found subview with tag %i. and classs %@",subView.tag, subView.class);
 		if (subView.tag>=0){
 			NSString * tempString;
             if (row==0) tempString=[parser getHeaderForDataCol:(int)subView.tag];//This is conventional
             else tempString=[parser getDataAtRow:row forDataCol:(int)subView.tag];
 
-            NSLog(@"Found tempString:%@",tempString);
+            //SLog(@"Found tempString:%@",tempString);
             //[parser getDataAtRow:row forQueryString:queryString forDataCol:subView.tag];Deprecated
 			if (!tempString){
 				subView.hidden = YES;
@@ -150,7 +150,7 @@
 					
 				}
                 else if ([subView conformsToProtocol:@protocol(WAModuleProtocol)]){
-                    NSLog(@"Conforms %@",subView);
+                    //SLog(@"Conforms %@",subView);
                     UIView <WAModuleProtocol>* moduleView = (UIView <WAModuleProtocol>*)subView;
                     moduleView.currentViewController = controller;
                     moduleView.urlString = tempString;

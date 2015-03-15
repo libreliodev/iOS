@@ -159,7 +159,7 @@
 #pragma mark Visibility 
 
 - (void) didBecomeVisible {
-    NSLog(@"Did become visible");
+    //SLog(@"Did become visible");
     //Check if the TiledView exists; if it does, it means that the page was already visible
     if (![self viewWithTag:999]){
         //There is a lot of work, stop the NSOperations to save memory
@@ -299,7 +299,7 @@
         if ([subView isKindOfClass:[WAButtonWithLink class]]) {
             link = [(WAButtonWithLink*)subView link];
         }
-        NSLog(@"link: %@",link);
+        //SLog(@"link: %@",link);
         if (link){
             if ([link valueOfParameterInUrlStringforKey:@"waorientation"]&&![self isOrientationFromUrlStringActive:link]) [subView removeFromSuperview];
             
