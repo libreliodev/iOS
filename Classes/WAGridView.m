@@ -62,7 +62,7 @@
     NSString * headerNibName = [UIView getNibName:headerNibTestName defaultNib:@"WAGridHeader" forOrientation:currentOrientation];
     UIView * headerNibView = [UIView getNibView:headerNibTestName defaultNib:@"WAGridHeader" forOrientation:currentOrientation];
     headerNibSize = headerNibView.frame.size;
-    if ([headerNibView viewWithTag:3]) rowInHeaderView=1; //If there is a cover in header nib, it means that header should contain first row
+    if ([headerNibView viewWithTag:3]||[headerNibView viewWithTag:20]) rowInHeaderView=1; //If there is a cover in header nib, it means that header should contain first row
     else rowInHeaderView=0;
     
     //Set collection view

@@ -232,7 +232,13 @@
         case DataColLogin:
             ret= [NSString stringWithFormat:@"Se connecter;"];
             break;
-         case DataColAd:
+        case DataColNewsstandCover:{
+            NSString * imgUrl = [noUnderscoreUrlString urlByChangingExtensionOfUrlStringToSuffix:@"_newsstand.png"];
+            NSString * imgPath = [[NSBundle mainBundle] pathOfFileWithUrl:imgUrl];
+            NSLog(@"Path for NS: %@ for url %@",imgPath,imgUrl);
+            ret = imgPath;
+            break;}
+        case DataColAd:
             ret= [NSString stringWithFormat:@"ad://localhost/%@", [urlString nameOfFileWithoutExtensionOfUrlString]];
             break;
           case DataColDetail:
@@ -344,6 +350,7 @@
 
     NSMutableArray *tempArray2= [NSMutableArray array];
     
+    int i = 1;
     for (NSDictionary * dic in enumerator){
         NSString *pdfUrl = [dic objectForKey: @"FileName"];
         pdfUrl = [pdfUrl urlByRemovingFinalUnderscoreInUrlString];//Remove underscore
@@ -351,6 +358,13 @@
         pdfUrl = [pdfUrl stringByReplacingOccurrencesOfString:@"TempWa//" withString:@""];//hack
         NSString * coverUrl = [pdfUrl urlByChangingExtensionOfUrlStringToSuffix:@".png"];
         [tempArray2 addObject:coverUrl];
+        if (i==[tempArray count]){
+            //Add the newsstand cover for the first row only
+            NSString * newsstandCoverUrl = [pdfUrl urlByChangingExtensionOfUrlStringToSuffix:@"_newsstand.png"];
+            [tempArray2 addObject:newsstandCoverUrl];
+            
+        }
+        i = i +1;
     }	
     
     return tempArray2;

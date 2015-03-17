@@ -182,7 +182,7 @@
             return nil;
         }
     }
-    NSLog (@"will return nibName:%@",nibName);
+    //SLog (@"will return nibName:%@",nibName);
     return nibName;
 
 }

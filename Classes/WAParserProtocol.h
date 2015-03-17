@@ -49,6 +49,7 @@ typedef enum {
     DataColClass=17,
     DataColNib=18,
     DataColLogin =19,
+    DataColNewsstandCover = 20,
     DataColAd=24,
     DataColDetail=25,
     DataColDismiss=26,

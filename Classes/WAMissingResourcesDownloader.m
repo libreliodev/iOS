@@ -36,7 +36,7 @@
      
     NSArray * imagesArray = [parser getRessources];
     
-    //SLog(@"Images Array:%@",imagesArray);
+    NSLog(@"Images Array:%@",imagesArray);
     //Add the absolute Url to tempArray
     NSString * forcedUrl = [urlString valueOfParameterInUrlStringforKey:@"waurl"];
     //SLog(@"Forced Url:%@",forcedUrl);

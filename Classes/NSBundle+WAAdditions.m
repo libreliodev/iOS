@@ -104,7 +104,7 @@
     if ((int)orientation!=999)//999 code conventionally means we do not care about orientation
     {
         NSString *filePathWithOrientationAndDeviceInBundle = [[[NSBundle mainBundle]bundlePath] stringByAppendingPathComponent:[filePathWithOrientationAndDeviceSuffix lastPathComponent]];
-        NSLog(@"filePathWithOrientationAndDeviceInBundle %@",filePathWithOrientationAndDeviceInBundle);
+        //SLog(@"filePathWithOrientationAndDeviceInBundle %@",filePathWithOrientationAndDeviceInBundle);
         if ([[NSFileManager defaultManager] fileExistsAtPath:filePathWithOrientationAndDeviceInBundle]) 	{
             NSLog(@"Should return device + or");
             return filePathWithOrientationAndDeviceInBundle;
