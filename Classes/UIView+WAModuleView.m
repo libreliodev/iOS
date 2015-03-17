@@ -175,14 +175,14 @@
     else {
         nibPath = [[NSBundle mainBundle]pathOfFileWithUrl:[defaultNibName stringByAppendingString:@".nib"] forOrientation:orientation];
         if (nibPath) {
-            nibName = defaultNibName;
+            nibName = [nibPath nameOfFileWithoutExtensionOfUrlString];
             
         }
         else{
             return nil;
         }
     }
-    //SLog (@"will return nibName:%@",nibName);
+    NSLog (@"will return nibName:%@",nibName);
     return nibName;
 
 }

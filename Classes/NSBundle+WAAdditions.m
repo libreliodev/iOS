@@ -103,8 +103,10 @@
 	//Now, check the ROOT LEVEL in the bundle directory
     if ((int)orientation!=999)//999 code conventionally means we do not care about orientation
     {
-        NSString *filePathWithOrientationAndDeviceInBundle = [[[NSBundle mainBundle]bundlePath] stringByAppendingPathComponent:[filePathWithOrientationAndDeviceSuffix lastPathComponent]]; 
+        NSString *filePathWithOrientationAndDeviceInBundle = [[[NSBundle mainBundle]bundlePath] stringByAppendingPathComponent:[filePathWithOrientationAndDeviceSuffix lastPathComponent]];
+        NSLog(@"filePathWithOrientationAndDeviceInBundle %@",filePathWithOrientationAndDeviceInBundle);
         if ([[NSFileManager defaultManager] fileExistsAtPath:filePathWithOrientationAndDeviceInBundle]) 	{
+            NSLog(@"Should return device + or");
             return filePathWithOrientationAndDeviceInBundle;
         }
         NSString *filePathWithOrientationInBundle = [[[NSBundle mainBundle]bundlePath] stringByAppendingPathComponent:[filePathWithOrientationSuffix lastPathComponent]]; 

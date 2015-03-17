@@ -42,93 +42,91 @@
 - (void) setUrlString: (NSString *) theString
 {
     //SLog(@"Will set urlString in GridView for %@ -",theString);
-    if (!urlString){
+    if (urlString) [urlString release];//Reinstantiate, to take new orientation into account
+        
         urlString = [[NSString alloc]initWithString: theString];
-        //Initial setup is needed
-        
-        self.separatorStyle = UITableViewCellSeparatorStyleNone;//We use a tableview because we want to have a refresh control, but we don't want it to be visible
-
-        NSString * cellNibTestName = [[urlString nameOfFileWithoutExtensionOfUrlString]stringByAppendingString:@"_cell"];
-        NSString * cellNibName = [UIView getNibName:cellNibTestName defaultNib:@"WAGridCell" forOrientation:999];
-        UIView * cellNibView = [UIView getNibView:cellNibTestName defaultNib:@"WAGridCell" forOrientation:999];
-        cellNibSize = cellNibView.frame.size;
-        //SLog(@"cellNibSize:%f,%f",cellNibView.frame.size.width,cellNibView.frame.size.height);
-        
-        //Set header view
-        NSString * headerNibTestName = [[urlString nameOfFileWithoutExtensionOfUrlString]stringByAppendingString:@"_header"];
-        NSString * headerNibName = [UIView getNibName:headerNibTestName defaultNib:@"WAGridHeader" forOrientation:999];
-        UIView * headerNibView = [UIView getNibView:headerNibTestName defaultNib:@"WAGridHeader" forOrientation:999];
-        headerNibSize = headerNibView.frame.size;
-        if ([headerNibView viewWithTag:3]) rowInHeaderView=1; //If there is a cover in header nib, it means that header should contain first row
-        else rowInHeaderView=0;
- 
-        //Set collection view
-        UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
-        layout.sectionInset =  UIEdgeInsetsMake(30, 30, 30, 30);
-        currentCollectionView=[[UICollectionView alloc] initWithFrame:self.frame collectionViewLayout:layout];
-        currentCollectionView.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
-
-        [currentCollectionView setDataSource:self];
-        [currentCollectionView setDelegate:self];
-        
-        [currentCollectionView registerNib:[UINib nibWithNibName:cellNibName bundle:nil] forCellWithReuseIdentifier:@"cellIdentifier"];
-         [currentCollectionView registerNib:[UINib nibWithNibName:headerNibName bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerIdentifier"];
-        
-        //[currentCollectionView setBackgroundColor:[UIColor redColor]];
-        
-        
-        [self addSubview:currentCollectionView];
-        
-        
-        
-        //Test if a background image was provided
-        NSString *bgUrlString = [[urlString nameOfFileWithoutExtensionOfUrlString] stringByAppendingString:@"_background.png"];
-        //SLog(@"bgUrlString:%@",bgUrlString);
-        NSString *bgPath = [[NSBundle mainBundle] pathOfFileWithUrl:bgUrlString];
-        if (bgPath){
-            UIImageView * background = [[UIImageView alloc] initWithFrame: self.bounds];
-            background.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-            background.contentMode = UIViewContentModeScaleAspectFill;
-            background.image = [UIImage imageWithContentsOfFile:bgPath];
-            currentCollectionView.backgroundView = background;
-            [background release];
-        }
-        
-        
-        
-        //Tracking
-        NSString * viewString = [urlString gaScreenForModuleWithName:@"Library" withPage:nil];
-        // May return nil if a tracker has not already been initialized with a
-        // property ID.
-        id tracker = [[GAI sharedInstance] defaultTracker];
-        
-        // This screen name value will remain set on the tracker and sent with
-        // hits until it is set to a new value or to nil.
-        [tracker set:kGAIScreenName
-               value:viewString];
-        
-        [tracker send:[[GAIDictionaryBuilder createAppView] build]];
-        //Refresh
-        //Add refresh view if waupdate parameter was present
-        NSString * mnString = [urlString valueOfParameterInUrlStringforKey:@"waupdate"];
-        if (mnString){
-            
-            refreshControl = [[UIRefreshControl alloc] init];
-            refreshControl.backgroundColor = [UIColor whiteColor];
-            [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
-            [self addSubview:refreshControl];
-        }
-        
-        
-        
-        
-        
+    //Initial setup is needed
+    
+    self.separatorStyle = UITableViewCellSeparatorStyleNone;//We use a tableview because we want to have a refresh control, but we don't want it to be visible
+    
+    
+    UIInterfaceOrientation * currentOrientation = self.frame.size.height<self.frame.size.width?UIInterfaceOrientationLandscapeLeft:UIInterfaceOrientationPortrait;//This is needed for xibs
+    NSString * cellNibTestName = [[urlString nameOfFileWithoutExtensionOfUrlString]stringByAppendingString:@"_cell"];
+    NSString * cellNibName = [UIView getNibName:cellNibTestName defaultNib:@"WAGridCell" forOrientation:currentOrientation];
+    UIView * cellNibView = [UIView getNibView:cellNibTestName defaultNib:@"WAGridCell" forOrientation:currentOrientation];
+    cellNibSize = cellNibView.frame.size;
+    //SLog(@"cellNibSize:%f,%f",cellNibView.frame.size.width,cellNibView.frame.size.height);
+    
+    //Set header view
+    NSString * headerNibTestName = [[urlString nameOfFileWithoutExtensionOfUrlString]stringByAppendingString:@"_header"];
+    NSString * headerNibName = [UIView getNibName:headerNibTestName defaultNib:@"WAGridHeader" forOrientation:currentOrientation];
+    UIView * headerNibView = [UIView getNibView:headerNibTestName defaultNib:@"WAGridHeader" forOrientation:currentOrientation];
+    headerNibSize = headerNibView.frame.size;
+    if ([headerNibView viewWithTag:3]) rowInHeaderView=1; //If there is a cover in header nib, it means that header should contain first row
+    else rowInHeaderView=0;
+    
+    //Set collection view
+    UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
+    layout.sectionInset =  UIEdgeInsetsMake(30, 30, 30, 30);
+    currentCollectionView=[[UICollectionView alloc] initWithFrame:self.frame collectionViewLayout:layout];
+    currentCollectionView.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
+    
+    [currentCollectionView setDataSource:self];
+    [currentCollectionView setDelegate:self];
+    
+    [currentCollectionView registerNib:[UINib nibWithNibName:cellNibName bundle:nil] forCellWithReuseIdentifier:@"cellIdentifier"];
+    [currentCollectionView registerNib:[UINib nibWithNibName:headerNibName bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerIdentifier"];
+    
+    //[currentCollectionView setBackgroundColor:[UIColor redColor]];
+    
+    
+    [self addSubview:currentCollectionView];
+    
+    
+    
+    //Test if a background image was provided
+    NSString *bgUrlString = [[urlString nameOfFileWithoutExtensionOfUrlString] stringByAppendingString:@"_background.png"];
+    //SLog(@"bgUrlString:%@",bgUrlString);
+    NSString *bgPath = [[NSBundle mainBundle] pathOfFileWithUrl:bgUrlString];
+    if (bgPath){
+        UIImageView * background = [[UIImageView alloc] initWithFrame: self.bounds];
+        background.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        background.contentMode = UIViewContentModeScaleAspectFill;
+        background.image = [UIImage imageWithContentsOfFile:bgPath];
+        currentCollectionView.backgroundView = background;
+        [background release];
     }
-    else {
-        urlString = [[NSString alloc]initWithString: theString];
+    
+    
+    
+    //Tracking
+    NSString * viewString = [urlString gaScreenForModuleWithName:@"Library" withPage:nil];
+    // May return nil if a tracker has not already been initialized with a
+    // property ID.
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    
+    // This screen name value will remain set on the tracker and sent with
+    // hits until it is set to a new value or to nil.
+    [tracker set:kGAIScreenName
+           value:viewString];
+    
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    //Refresh
+    //Add refresh view if waupdate parameter was present
+    NSString * mnString = [urlString valueOfParameterInUrlStringforKey:@"waupdate"];
+    if (mnString){
         
+        refreshControl = [[UIRefreshControl alloc] init];
+        refreshControl.backgroundColor = [UIColor whiteColor];
+        [refreshControl addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventValueChanged];
+        [self addSubview:refreshControl];
     }
-    [self initParser];
+    
+    
+    
+    
+    
+     [self initParser];
  
     
     
@@ -233,10 +231,11 @@
 - (void) openDetailView:(int)detailRow{
     //SLog(@"detailRow %i",detailRow);
  
-     
+    UIInterfaceOrientation * currentOrientation = self.frame.size.height<self.frame.size.width?UIInterfaceOrientationLandscapeLeft:UIInterfaceOrientationPortrait;//This is needed for xibs
+ 
     
     NSString * modalNibTestName = [[urlString nameOfFileWithoutExtensionOfUrlString]stringByAppendingString:@"_modal"];
-    UIView * modalNibView = [UIView getNibView:modalNibTestName defaultNib:@"WAGridModal" forOrientation:999];
+    UIView * modalNibView = [UIView getNibView:modalNibTestName defaultNib:@"WAGridModal" forOrientation:currentOrientation];
     //SLog(@"modalNibView %@",modalNibView);
     
     modalNibView.frame = self.frame;
@@ -291,10 +290,9 @@
     WAModuleViewController * moduleViewController = (WAModuleViewController *) [self traverseResponderChainForUIViewController];
     [moduleViewController checkUpdateIfNeeded];
     
-    //Update the table
-    [self initParser];
-    [currentCollectionView reloadData];
+    self.urlString = urlString;
     
+
     
     
 }
@@ -309,8 +307,7 @@
 
 - (void) moduleWillAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
     //Update the table
-    [self initParser];
-    [currentCollectionView reloadData];
+    self.urlString = urlString;
     
 }
 

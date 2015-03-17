@@ -111,12 +111,12 @@
 
 /// Called when an ad request loaded an ad.
 - (void)adViewDidReceiveAd:(DFPBannerView *)adView {
-    NSLog(@"adViewDidReceiveAd %@", adView);
+    //SLog(@"adViewDidReceiveAd %@", adView);
 }
 
 /// Called when an ad request failed.
 - (void)adView:(DFPBannerView *)adView didFailToReceiveAdWithError:(GADRequestError *)error {
-    NSLog(@"adViewDidFailToReceiveAdWithError: %@ for unit id %@ and size %@", [error localizedDescription],adView.adUnitID,NSStringFromCGSize(adView.adSize.size));
+    //SLog(@"adViewDidFailToReceiveAdWithError: %@ for unit id %@ and size %@", [error localizedDescription],adView.adUnitID,NSStringFromCGSize(adView.adSize.size));
 }
 
 /// Called just before presenting the user a full screen view, such as
