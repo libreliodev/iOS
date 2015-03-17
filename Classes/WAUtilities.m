@@ -534,5 +534,35 @@
 	
 }
 
+- (NSString *) subscribeString{
+    //First, check if the app offers subscriptions
+    NSString * ret = @"";
+    NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];
+    if (credentials){
+        NSString * sharedSecret = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"SharedSecret"];
+        NSString * userService = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"UserService"];
+        //If the app offers subscriptions, either sharedSecret or userService should be set
+        if (sharedSecret||userService){
+            //Now check if subscriptions are already active
+            NSString * nodownloadUrlString = @"http://localhost/wanodownload.pdf";
+            NSString * receipt = [nodownloadUrlString receiptForUrlString];
+            if (receipt){
+                //SLog(@"receipt found:%@",receipt);
+                //Subscriptions are already active, don't show button
+            }
+            else{
+                ret = [[NSBundle mainBundle]stringForKey:@"Subscription"];
+            }
+            
+            
+            
+        }
+        
+    }
+    return ret;
+    
+}
+
 
 @end
+

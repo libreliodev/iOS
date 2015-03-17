@@ -229,6 +229,13 @@
 				ret = nil;//File has not been downloaded, nothing to read!
 			}
 			break;
+        case DataColLogin:
+            ret= [NSString stringWithFormat:@"Se connecter;"];
+            break;
+        case DataColDetail:
+            ret= [NSString stringWithFormat:@";detail://%i",row];
+            break;
+
         case DataColAd:
             ret= [NSString stringWithFormat:@"ad://localhost/%@", [urlString nameOfFileWithoutExtensionOfUrlString]];
             break;
@@ -250,9 +257,27 @@
             break;
         case  DataColMonthlySubscriptionPrice:{
             NSString * price = [tempDic objectForKey:@"MonthlySubscription"];
-                
+            
             if (price) ret = [NSString stringWithFormat:@"%@;%@",price,buyUrlString];
-            }
+        }
+            break;
+        case  DataColQuarterlySubscriptionPrice:{
+            NSString * price = [tempDic objectForKey:@"QuarterlySubscription"];
+            
+            if (price) ret = [NSString stringWithFormat:@"%@;%@",price,buyUrlString];
+        }
+            break;
+        case  DataColHalfYearlySubscriptionPrice:{
+            NSString * price = [tempDic objectForKey:@"HalfYearlySubscription"];
+            
+            if (price) ret = [NSString stringWithFormat:@"%@;%@",price,buyUrlString];
+        }
+            break;
+        case  DataColYearlySubscriptionPrice:{
+            NSString * price = [tempDic objectForKey:@"YearlySubscription"];
+            
+            if (price) ret = [NSString stringWithFormat:@"%@;%@",price,buyUrlString];
+        }
             break;
             
         }

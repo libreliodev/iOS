@@ -274,33 +274,11 @@
     
     
     //Add subscribe button if relevant
-    //First, check if the app offers subscriptions
-    NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];
-    if (credentials){
-        NSString * sharedSecret = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"SharedSecret"];
-        NSString * userService = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"UserService"];
-        //If the app offers subscriptions, either sharedSecret or userService should be set
-        if (sharedSecret||userService){
-            //Now check if subscriptions are already active
-            NSString * nodownloadUrlString = @"http://localhost/wanodownload.pdf";
-            NSString * receipt = [nodownloadUrlString receiptForUrlString];
-            if (receipt){
-                //SLog(@"receipt found:%@",receipt);
-                //Subscriptions are already active, don't show button
-            }
-            else{
-                //Add button
-                NSString * subscriptionAndSpaces = [NSString stringWithFormat:@"%@   ",[[NSBundle mainBundle]stringForKey:@"Subscription"]];
-                [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"" orString:subscriptionAndSpaces andLink:@"buy://localhost/wanodownload.pdf"];
-            }
-            
-            
-            
-            
-        }
-        
-        
-        
+    NSString * subscribeString = [WAUtilities subscribeString];
+    if (subscribeString){
+        NSString * subscriptionAndSpaces = [NSString stringWithFormat:@"%@   ",subscribeString];
+        [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"" orString:subscriptionAndSpaces andLink:@"buy://localhost/wanodownload.pdf"];
+
     }
     
     

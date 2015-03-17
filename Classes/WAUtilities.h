@@ -49,4 +49,6 @@
 + (void) resizeNibView:(NSString*) nibName defaultNib:(NSString*) defaultNibName inView:(UIView*) containingView;
 + (CGSize) sizeForResizedNibView:(NSString*) nibName defaultNib:(NSString*) defaultNibName inRect:(CGRect)contaningRect;
 
++ (NSString *) subscribeString;
+
 @end

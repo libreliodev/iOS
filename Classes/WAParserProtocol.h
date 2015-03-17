@@ -48,6 +48,7 @@ typedef enum {
     DataColShare=16,
     DataColClass=17,
     DataColNib=18,
+    DataColLogin =19,
     DataColAd=24,
     DataColDetail=25,
     DataColDismiss=26,
