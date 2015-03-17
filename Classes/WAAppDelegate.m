@@ -139,9 +139,10 @@
     NSString * DfpPrefix = [app_Dic objectForKey:@"DfpPrefix"];
     if (DfpPrefix){
         self.startInterstitial = [[DFPInterstitial alloc] init];
-       // NSString * shortUnitId = @"i000";//i000 is the code for startup instertitials
-        //startInterstitial.adUnitID = [DfpPrefix completeAdUnitCodeForShortCode:shortUnitId];
-        self.startInterstitial.adUnitID = @"/6499/example/interstitial";
+        NSString * shortUnitId = @"startup";//startup is the code for startup instertitials
+        self.startInterstitial.adUnitID = [DfpPrefix completeAdUnitCodeForShortCode:shortUnitId];
+        //self.startInterstitial.adUnitID = @"/6499/example/interstitial";
+        //self.startInterstitial.adUnitID = @"/166877488/developer_wind_i000";
         //SLog(@"unitId:%@",startInterstitial.adUnitID);
         self.startInterstitial.delegate = self;
         [self.startInterstitial loadRequest:[DFPRequest request]];
@@ -624,14 +625,14 @@
 #pragma mark
 #pragma mark GADInterstitialDelegate implementation
 - (void)interstitialDidReceiveAd:(DFPInterstitial *)ad {
-    //SLog(@"Received ad successfully %@",ad);
+    NSLog(@"Received ad successfully %@",ad);
     [startInterstitial presentFromRootViewController:rootViewController];
 }
 
 
 - (void)interstitial:(DFPInterstitial *)interstitial
 didFailToReceiveAdWithError:(GADRequestError *)error {
-    //SLog(@"interstitialDidFailToReceiveAdWithError: %@ for interstitial%@", [error localizedDescription],interstitial);
+    NSLog(@"interstitialDidFailToReceiveAdWithError: %@ for interstitial adunit%@", [error localizedDescription],interstitial.adUnitID);
 }
 
 - (void)interstitialDidDismissScreen:(DFPInterstitial *)interstitial {

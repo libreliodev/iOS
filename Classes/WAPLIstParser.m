@@ -229,7 +229,10 @@
 				ret = nil;//File has not been downloaded, nothing to read!
 			}
 			break;
-        case DataColDetail:
+        case DataColAd:
+            ret= [NSString stringWithFormat:@"ad://localhost/%@", [urlString nameOfFileWithoutExtensionOfUrlString]];
+            break;
+          case DataColDetail:
             ret= [NSString stringWithFormat:@";detail://%i",row];
             break;
         case DataColDismiss:
@@ -292,18 +295,10 @@
 
 - (NSString*) getHeaderForDataCol:(DataCol)dataCol{
     NSString * ret;
-    switch (dataCol) {
-        case DataColAd:
-            ret= @"b000";
-            break;
-        default:
-            ret=nil;
-            
-    }
-	
+ 	
     
     
-    return ret;
+    return nil;
 	
 }
 

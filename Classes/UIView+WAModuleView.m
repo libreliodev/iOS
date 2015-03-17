@@ -109,6 +109,7 @@
 				subView.hidden = YES;
 			}
 			else {
+                //SLog(@"TestSubview:%@",subView);
                 subView.hidden = NO;
 				if ([subView isKindOfClass:[UIImageView class]]){
 					UIImageView * imView = (UIImageView*) subView; 
