@@ -534,7 +534,7 @@
 	
 }
 
-- (NSString *) subscribeString{
++ (NSString *) subscribeString{
     //First, check if the app offers subscriptions
     NSString * ret = @"";
     NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];

@@ -232,11 +232,7 @@
         case DataColLogin:
             ret= [NSString stringWithFormat:@"Se connecter;"];
             break;
-        case DataColDetail:
-            ret= [NSString stringWithFormat:@";detail://%i",row];
-            break;
-
-        case DataColAd:
+         case DataColAd:
             ret= [NSString stringWithFormat:@"ad://localhost/%@", [urlString nameOfFileWithoutExtensionOfUrlString]];
             break;
           case DataColDetail:
