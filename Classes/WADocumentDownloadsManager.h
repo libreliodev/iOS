@@ -18,5 +18,6 @@
 + (id)sharedManager;
 - (BOOL) isAlreadyInQueueIssueWithUrlString:(NSString*)theString;
 - (WADocumentDownloader*) issueWithUrlString:(NSString*)theString;
+- (void) removeDownloader:(NSObject*)downloader withUrlString:(NSString*) urlString;
 
 @end

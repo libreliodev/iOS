@@ -67,4 +67,12 @@ static WADocumentDownloadsManager *sharedWAIssuesManager = nil;
     return nil;
 }
 
+- (void) removeDownloader:(NSObject*)downloader withUrlString:(NSString*) urlString{
+    [issuesQueue removeObjectIdenticalTo:downloader];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didSucceedIssueDownload" object:urlString];
+
+    
+}
+
+
 @end

@@ -133,8 +133,8 @@
     
 }
 
-- (void) notifyDownloadFinished{
-    [super notifyDownloadFinished];
+- (void) willDealloc{
+    [super willDealloc];
     
     //Update cover in Newsstand
     

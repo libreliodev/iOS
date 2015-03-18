@@ -492,10 +492,9 @@
             
            
         }
+        [self willDealloc];//This is used by certain subclasses
         
-        [[[WADocumentDownloadsManager sharedManager] issuesQueue] removeObjectIdenticalTo:self];//This will release this instance if not owned by a download view; do it before notify Download Finished , because WAMissingResourecesDownloader may need to add itself again immediately after and will not otherwise
-        [self notifyDownloadFinished];
-        
+        [[WADocumentDownloadsManager sharedManager] removeDownloader:self withUrlString:urlString];
 
 
         
@@ -507,8 +506,7 @@
  	
 }
 
-- (void) notifyDownloadFinished{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"didSucceedIssueDownload" object:urlString];
+- (void) willDealloc{
     
 }
 

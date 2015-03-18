@@ -51,7 +51,7 @@ typedef enum {
 - (void) didDownloadMainFile;
 - (void) downloadNextResource;
 - (void) didDownloadAllResources;
-- (void) notifyDownloadFinished;
+- (void) willDealloc;
 - (void)didReceiveNotModifiedHeaderForConnection:(NSURLConnection *)connection ;
 - (void) deleteUnusedOldResources;
 
