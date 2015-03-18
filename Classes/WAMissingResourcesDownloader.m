@@ -36,7 +36,7 @@
      
     NSArray * imagesArray = [parser getRessources];
     
-    NSLog(@"Images Array:%@",imagesArray);
+    //SLog(@"Images Array:%@",imagesArray);
     //Add the absolute Url to tempArray
     NSString * forcedUrl = [urlString valueOfParameterInUrlStringforKey:@"waurl"];
     //SLog(@"Forced Url:%@",forcedUrl);
@@ -152,7 +152,7 @@
     
        
     //SLog(@"Will send didSucceedResourceDownload notification for connection %@",connection);
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"didSucceedResourceDownload" object:urlString];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didSucceedResourceDownload" object:currentUrlString];
 
 	
     

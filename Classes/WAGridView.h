@@ -34,7 +34,8 @@
 - (void) openModule:(NSString*)theUrlString inView:(UIView*)pageView inRect:(CGRect)rect;
 
 
-- (void) didFinishDownloadWithNotification:(NSNotification *) notification;
+- (void) didSucceedIssueDownloadWithNotification:(NSNotification *) notification;
+- (void) didSucceedResourceDownloadWithNotification:(NSNotification *) notification;
 
 - (void) openDetailView:(int)detailRow;
 - (void) dismissDetailView;

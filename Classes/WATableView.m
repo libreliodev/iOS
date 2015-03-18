@@ -21,9 +21,8 @@
 - (id)init {
 	if (self = [super init]) {
 		[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(moduleViewDidAppear) name:UIApplicationDidBecomeActiveNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishDownloadWithNotification:) name:@"didSucceedResourceDownload" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishDownloadWithNotification:) name:@"didFailIssueDownload" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishDownloadWithNotification:) name:@"didSuccedIssueDownload" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedResourceDownloadWithNotification:) name:@"didSucceedResourceDownload" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSuccedIssueDownloadWithNotification:) name:@"didSuccedIssueDownload" object:nil];
         
         
         
@@ -278,17 +277,44 @@
  
 }
 
-- (void) didFinishDownloadWithNotification:(NSNotification *) notification{
+- (void) didSucceedIssueDownloadWithNotification:(NSNotification *) notification{
     
     NSString *notificatedUrl = notification.object;
     //SLog(@"notification.object:%@",notification.object);
     if ([notificatedUrl respondsToSelector:@selector(noArgsPartOfUrlString)]){
         if ([[notificatedUrl noArgsPartOfUrlString]isEqualToString:[urlString noArgsPartOfUrlString]])     [self reloadData];
+        //SLog(@"Will reload data");
     }
     
     [refreshControl endRefreshing];
     
 }
+
+- (void) didSucceedResourceDownloadWithNotification:(NSNotification *) notification {
+    NSString *notificatedUrl = notification.object;
+    //SLog(@"notification.object:%@",notification.object);
+    if ([notificatedUrl respondsToSelector:@selector(noArgsPartOfUrlString)]){
+        
+            NSArray * visibleCells = [self visibleCells];
+            for (UITableViewCell* cell in visibleCells){
+                NSIndexPath * index = [self indexPathForCell:cell];
+                NSString * imageUrlString = [WAUtilities absoluteUrlOfRelativeUrl:[parser getDataAtRow:(int)index.row+1 forDataCol:DataColImage] relativeToUrl:urlString];
+                //SLog(@"will compare: %@ & %@",[imageUrlString noArgsPartOfUrlString],[notificatedUrl noArgsPartOfUrlString]);
+                if ([[notificatedUrl noArgsPartOfUrlString]isEqualToString:[imageUrlString noArgsPartOfUrlString]])
+                {
+                    //SLog(@"Matches!");
+                    cell.imageView.image = [[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:imageUrlString]]squareImageWithSize:CGSizeMake(100,100)] ;
+                    [self reloadRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationNone];
+
+                    
+                }
+
+ 
+            }
+    }
+    
+}
+
 
 - (void)refresh:(UIRefreshControl *)refreshControl {
     WAModuleViewController *vc = (WAModuleViewController *)[self firstAvailableUIViewController];

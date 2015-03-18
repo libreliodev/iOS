@@ -247,7 +247,7 @@
 
 - (NSArray*) getRessources{
     NSMutableArray *tempArray2= [NSMutableArray array];
-    for (int i = 0; i < [self countData]; i++) {
+    for (int i = [self countData]-1; i >=0; i--) {
         NSString * imgUrlString = [self getDataAtRow:(i+1) forDataCol:DataColImage];
         //SLog(@"Image URL: %@",imgUrlString);
         if (imgUrlString) [tempArray2 addObject:imgUrlString];

@@ -23,9 +23,8 @@
     //SLog(@"Will init covers");
     if (self = [super init]) {
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(moduleViewDidAppear) name:UIApplicationDidBecomeActiveNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishDownloadWithNotification:) name:@"didSucceedResourceDownload" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishDownloadWithNotification:) name:@"didFailIssueDownload" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didFinishDownloadWithNotification:) name:@"didSuccedIssueDownload" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSucceedResourceDownloadWithNotification:) name:@"didSucceedResourceDownload" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didSuccedIssueDownloadWithNotification:) name:@"didSuccedIssueDownload" object:nil];
         
         
         
@@ -164,6 +163,8 @@
 - (UICollectionReusableView *)collectionView: (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:
                                          UICollectionElementKindSectionHeader withReuseIdentifier:@"headerIdentifier" forIndexPath:indexPath];
+    NSLog(@"indexPath for header %@",indexPath);
+    headerView.tag = 998; //convention
     [headerView populateNibWithParser:parser withButtonDelegate:self withController:currentViewController forRow:rowInHeaderView];
     return headerView;
 }
@@ -317,7 +318,7 @@
 
 #pragma mark Notification handling methods
 
-- (void) didFinishDownloadWithNotification:(NSNotification *) notification{
+- (void) didSucceedIssueDownloadWithNotification:(NSNotification *) notification{
     
     NSString *notificatedUrl = notification.object;
     //SLog(@"notification.object:%@",notification.object);
@@ -330,6 +331,50 @@
     [refreshControl endRefreshing];
     
 }
+
+- (void) didSucceedResourceDownloadWithNotification:(NSNotification *) notification {
+    NSString *notificatedUrl = notification.object;
+    //SLog(@"notification.object:%@",notification.object);
+    if ([notificatedUrl respondsToSelector:@selector(noArgsPartOfUrlString)]){
+        
+        NSArray * visibleCells = [self.currentCollectionView visibleCells];
+        
+        //Refresh header if needed
+        if (rowInHeaderView){
+            NSString * imagePath1 = [parser getDataAtRow:rowInHeaderView forDataCol:DataColImage];
+            NSString * imagePath2 = [parser getDataAtRow:rowInHeaderView forDataCol:DataColNewsstandCover];
+            BOOL test1 = [imagePath1 isEqualToString:[[NSBundle mainBundle]pathOfFileWithUrl:notificatedUrl]];
+            BOOL test2 = [imagePath2 isEqualToString:[[NSBundle mainBundle]pathOfFileWithUrl:notificatedUrl]];
+            
+            if ((imagePath1||imagePath2)&& (test1||test2)){
+                NSLog(@"viewWithTag:%@",[self viewWithTag:998]);
+                [[self viewWithTag:998] populateNibWithParser:parser withButtonDelegate:self withController:currentViewController forRow:rowInHeaderView];
+                
+            }
+           
+        }
+        
+        //Refresh cells if needed
+        for (UICollectionViewCell* cell in visibleCells){
+            NSIndexPath * index = [self.currentCollectionView indexPathForCell:cell];
+            NSString * imagePath = [parser getDataAtRow:(int)index.row+1+rowInHeaderView forDataCol:DataColImage];
+            //SLog(@"image url: %@ relative to urlString %@",[parser getDataAtRow:(int)index.row+1 forDataCol:DataColImage],urlString);
+            //SLog(@"will compare: %@ & %@",imagePath,[[NSBundle mainBundle]pathOfFileWithUrl:notificatedUrl]);
+            if (imagePath&& [imagePath isEqualToString:[[NSBundle mainBundle]pathOfFileWithUrl:notificatedUrl]])
+            {
+                //SLog(@"Matches!");
+                [cell populateNibWithParser:parser withButtonDelegate:self withController:currentViewController   forRow:(int)index.row+1+rowInHeaderView];
+                [self.currentCollectionView reloadItemsAtIndexPaths:@[index]];
+                
+                
+            }
+            
+            
+        }
+    }
+    
+}
+
 
 #pragma mark Helper methods
 - (void)refresh:(UIRefreshControl *)refreshControl {

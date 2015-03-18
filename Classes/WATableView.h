@@ -24,7 +24,7 @@
 
 - (void) initParser;
 - (void) followDetailLink:(NSString *) detailLink;
-- (void) didFinishDownloadWithNotification:(NSNotification *) notification;
-
+- (void) didSucceedIssueDownloadWithNotification:(NSNotification *) notification;
+- (void) didSucceedResourceDownloadWithNotification:(NSNotification *) notification;
 
 @end

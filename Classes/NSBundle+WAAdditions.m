@@ -106,7 +106,7 @@
         NSString *filePathWithOrientationAndDeviceInBundle = [[[NSBundle mainBundle]bundlePath] stringByAppendingPathComponent:[filePathWithOrientationAndDeviceSuffix lastPathComponent]];
         //SLog(@"filePathWithOrientationAndDeviceInBundle %@",filePathWithOrientationAndDeviceInBundle);
         if ([[NSFileManager defaultManager] fileExistsAtPath:filePathWithOrientationAndDeviceInBundle]) 	{
-            NSLog(@"Should return device + or");
+            //SLog(@"Should return device + or");
             return filePathWithOrientationAndDeviceInBundle;
         }
         NSString *filePathWithOrientationInBundle = [[[NSBundle mainBundle]bundlePath] stringByAppendingPathComponent:[filePathWithOrientationSuffix lastPathComponent]]; 

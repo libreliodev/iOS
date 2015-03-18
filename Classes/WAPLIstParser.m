@@ -235,7 +235,7 @@
         case DataColNewsstandCover:{
             NSString * imgUrl = [noUnderscoreUrlString urlByChangingExtensionOfUrlStringToSuffix:@"_newsstand.png"];
             NSString * imgPath = [[NSBundle mainBundle] pathOfFileWithUrl:imgUrl];
-            NSLog(@"Path for NS: %@ for url %@",imgPath,imgUrl);
+            //SLog(@"Path for NS: %@ for url %@",imgPath,imgUrl);
             ret = imgPath;
             break;}
         case DataColAd:
