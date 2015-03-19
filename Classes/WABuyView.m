@@ -136,7 +136,7 @@
 		[numberFormatter release];
         
         //Append duration to description if needed
-        NSString * completeTitle = [product.localizedTitle titleWithSubscriptionLengthForId:product.productIdentifier] ;
+        NSString * completeTitle = [product.localizedTitle titleWithSubscriptionLengthForAppStoreProductId:product.productIdentifier] ;
         
 		[actionSheet addButtonWithTitle:[NSString stringWithFormat:@"%@: %@",completeTitle, formattedString]];
 		

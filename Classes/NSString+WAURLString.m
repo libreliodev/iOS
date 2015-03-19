@@ -580,15 +580,16 @@
 
 }
 
-- (NSString *) titleWithSubscriptionLengthForId:(NSString*)theId{
+- (NSString *) titleWithSubscriptionLengthForAppStoreProductId:(NSString*)theId{
 	NSArray *parts = [theId componentsSeparatedByString:@"."];
-	theId = [parts objectAtIndex:[parts count]-1];
+	NSString * shortId = [parts objectAtIndex:[parts count]-1];//For legacy reasons
     NSString * ret = self;
-    if ([theId isEqualToString:@"WeeklySubscription"] ) ret = [NSString stringWithFormat:@"%@ 1 %@",ret,[[NSBundle mainBundle]stringForKey:@"week"]];
-    if ([theId isEqualToString:@"MonthlySubscription"] ) ret = [NSString stringWithFormat:@"%@ 1 %@",ret,[[NSBundle mainBundle]stringForKey:@"month"]];
-    if ([theId isEqualToString:@"QuarterlySubscription"] ) ret = [NSString stringWithFormat:@"%@ 3 %@",ret,[[NSBundle mainBundle]stringForKey:@"months"]];
-    if ([theId isEqualToString:@"HalfYearlySubscription"]||[theId isEqualToString:@"HalfYearlySubscription2"]||[theId isEqualToString:@"HalfYearlySubscription3"] ) ret = [NSString stringWithFormat:@"%@ 6 %@",ret,[[NSBundle mainBundle]stringForKey:@"months"]];
-    if ([theId isEqualToString:@"YearlySubscription"]||[theId isEqualToString:@"YearlySubscription2"]  ) ret = [NSString stringWithFormat:@"%@ 1 %@",ret,[[NSBundle mainBundle]stringForKey:@"year"]];
+    
+    if ([theId isEqualToString:[@"WeeklySubscription" appStoreProductIDForLibrelioProductID]] ) ret = [NSString stringWithFormat:@"%@ 1 %@",ret,[[NSBundle mainBundle]stringForKey:@"week"]];
+    if ([theId isEqualToString:[@"MonthlySubscription" appStoreProductIDForLibrelioProductID]] ) ret = [NSString stringWithFormat:@"%@ 1 %@",ret,[[NSBundle mainBundle]stringForKey:@"month"]];
+    if ([theId isEqualToString:[@"QuarterlySubscription" appStoreProductIDForLibrelioProductID]] ) ret = [NSString stringWithFormat:@"%@ 3 %@",ret,[[NSBundle mainBundle]stringForKey:@"months"]];
+    if ([theId isEqualToString:[@"HalfYearlySubscription" appStoreProductIDForLibrelioProductID]]||[shortId isEqualToString:@"HalfYearlySubscription2"]||[theId isEqualToString:@"HalfYearlySubscription3"] ) ret = [NSString stringWithFormat:@"%@ 6 %@",ret,[[NSBundle mainBundle]stringForKey:@"months"]];
+    if ([theId isEqualToString:[@"YearlySubscription" appStoreProductIDForLibrelioProductID]]||[shortId isEqualToString:@"YearlySubscription2"]  ) ret = [NSString stringWithFormat:@"%@ 1 %@",ret,[[NSBundle mainBundle]stringForKey:@"year"]];
     return ret;
     
 }

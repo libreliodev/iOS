@@ -165,7 +165,7 @@
 }
 
 + (NSString *)getNibName:(NSString*) nibName defaultNib:(NSString*) defaultNibName forOrientation:(UIInterfaceOrientation)orientation{
-    //SLog(@"Getting nib %@ with default %@",nibName, defaultNibName);
+    NSLog(@"Getting nib %@ with default %@",nibName, defaultNibName);
     //Check if nibName.xib exists, otherwise use defaultNibName;
     NSString * nibUrlString = [nibName stringByAppendingString:@".nib"];//see http://stackoverflow.com/questions/923706/checking-if-a-nib-or-xib-file-exists for explanation of using "nib" extension instead of "xib"
     NSString * nibPath = [[NSBundle mainBundle]pathOfFileWithUrl:nibUrlString forOrientation:orientation];
@@ -181,7 +181,7 @@
             return nil;
         }
     }
-    //SLog (@"will return nibName:%@",nibName);
+    NSLog (@"will return nibName:%@",nibName);
     return nibName;
 
 }

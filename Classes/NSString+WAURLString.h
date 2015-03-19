@@ -37,7 +37,7 @@
 
 - (NSString*) appStoreProductIDForLibrelioProductID;
 - (NSSet*) relevantLibrelioProductIDsForUrlString;
-- (NSString *) titleWithSubscriptionLengthForId:(NSString*)theId;
+- (NSString *) titleWithSubscriptionLengthForAppStoreProductId:(NSString*)theId;
 
 /**
  Checks wether the product corresponding to urlString has already been purchased or if there is an active subscription; returns the corresponding receipt if yes
