@@ -97,7 +97,6 @@
 
 - (void) populateNibWithParser:(NSObject <WAParserProtocol>*)parser withButtonDelegate:(NSObject*)delegate withController:(UIViewController*)controller forRow:(int)row{
    	for (UIView * subView in self.subviews){
-        if (self.tag==998)NSLog(@"Found subview with tag %i. and classs %@",subView.tag, subView.class);
 		if (subView.tag>=0){
 			NSString * tempString;
             if (row==0) tempString=[parser getHeaderForDataCol:(int)subView.tag];//This is conventional

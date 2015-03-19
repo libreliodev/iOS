@@ -163,7 +163,7 @@
 - (UICollectionReusableView *)collectionView: (UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:
                                          UICollectionElementKindSectionHeader withReuseIdentifier:@"headerIdentifier" forIndexPath:indexPath];
-    NSLog(@"indexPath for header %@",indexPath);
+    //SLog(@"indexPath for header %@",indexPath);
     headerView.tag = 998; //convention
     [headerView populateNibWithParser:parser withButtonDelegate:self withController:currentViewController forRow:rowInHeaderView];
     return headerView;
@@ -347,7 +347,7 @@
             BOOL test2 = [imagePath2 isEqualToString:[[NSBundle mainBundle]pathOfFileWithUrl:notificatedUrl]];
             
             if ((imagePath1||imagePath2)&& (test1||test2)){
-                NSLog(@"viewWithTag:%@",[self viewWithTag:998]);
+                //SLog(@"viewWithTag:%@",[self viewWithTag:998]);
                 [[self viewWithTag:998] populateNibWithParser:parser withButtonDelegate:self withController:currentViewController forRow:rowInHeaderView];
                 
             }

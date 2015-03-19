@@ -232,6 +232,10 @@
         case DataColLogin:
             ret= [NSString stringWithFormat:@"Se connecter;"];
             break;
+        case DataColDownloadOrRead:{
+            ret= [self getDataAtRow:row forDataCol:DataColDownload];
+            if (!ret) ret = [self getDataAtRow:row forDataCol:DataColRead];
+            break;}
         case DataColNewsstandCover:{
             NSString * imgUrl = [noUnderscoreUrlString urlByChangingExtensionOfUrlStringToSuffix:@"_newsstand.png"];
             NSString * imgPath = [[NSBundle mainBundle] pathOfFileWithUrl:imgUrl];
