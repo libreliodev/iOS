@@ -229,9 +229,10 @@
 				ret = nil;//File has not been downloaded, nothing to read!
 			}
 			break;
-        case DataColLogin:
-            ret= [NSString stringWithFormat:@"Se connecter;"];
-            break;
+        case DataColLogin:{
+            NSString * txt = [[NSBundle mainBundle]stringForKey:@"Login"];
+           ret= [NSString stringWithFormat:@"%@;%@",txt,[buyUrlString urlByAddingParameterInUrlStringWithKey:@"walogin" withValue:@"-"]];
+            break;}
         case DataColDownloadOrRead:{
             ret= [self getDataAtRow:row forDataCol:DataColDownload];
             if (!ret) ret = [self getDataAtRow:row forDataCol:DataColRead];
@@ -264,25 +265,25 @@
         case  DataColMonthlySubscriptionPrice:{
             NSString * price = [tempDic objectForKey:@"MonthlySubscription"];
             
-            if (price) ret = [NSString stringWithFormat:@"%@;%@",price,buyUrlString];
+            if (price) ret = [NSString stringWithFormat:@"%@;%@",price,[buyUrlString urlByAddingParameterInUrlStringWithKey:@"waproductid" withValue:@"MonthlySubscription"]];
         }
             break;
         case  DataColQuarterlySubscriptionPrice:{
             NSString * price = [tempDic objectForKey:@"QuarterlySubscription"];
             
-            if (price) ret = [NSString stringWithFormat:@"%@;%@",price,buyUrlString];
+            if (price) ret = [NSString stringWithFormat:@"%@;%@",price,[buyUrlString urlByAddingParameterInUrlStringWithKey:@"waproductid" withValue:@"QuarterlySubscription"]];
         }
             break;
         case  DataColHalfYearlySubscriptionPrice:{
             NSString * price = [tempDic objectForKey:@"HalfYearlySubscription"];
             
-            if (price) ret = [NSString stringWithFormat:@"%@;%@",price,buyUrlString];
+            if (price) ret = [NSString stringWithFormat:@"%@;%@",price,[buyUrlString urlByAddingParameterInUrlStringWithKey:@"waproductid" withValue:@"HalfYearlySubscription"]];
         }
             break;
         case  DataColYearlySubscriptionPrice:{
             NSString * price = [tempDic objectForKey:@"YearlySubscription"];
             
-            if (price) ret = [NSString stringWithFormat:@"%@;%@",price,buyUrlString];
+            if (price) ret = [NSString stringWithFormat:@"%@;%@",price,[buyUrlString urlByAddingParameterInUrlStringWithKey:@"waproductid" withValue:@"YearlySubscription"]];
         }
             break;
             
@@ -325,7 +326,6 @@
 
 
 - (NSString*) getHeaderForDataCol:(DataCol)dataCol{
-    NSString * ret;
  	
     
     

@@ -21,5 +21,6 @@
 - (void) createPasswordAlert;
 - (void) createNotAllowedAlert;
 - (void) requestProducts;
+- (void) orderProduct:(SKProduct*)product;
 
 @end
