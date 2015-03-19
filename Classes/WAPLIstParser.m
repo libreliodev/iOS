@@ -347,6 +347,11 @@
 
 - (NSArray*) getRessources{
     //SLog (@"Will get resources for plist parser");
+    NSDictionary * app_Dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"]];
+    NSString * boolString = [app_Dic objectForKey:@"DownloadNewstandCovers"];
+
+    BOOL downloadNewsstandCovers = NO;//Default value
+    if ([boolString isEqualToString: @"Yes"]) downloadNewsstandCovers = YES;
     NSString *plistName = [urlString noArgsPartOfUrlString];
     NSString * plistPath = [[NSBundle mainBundle] pathOfFileWithUrl:plistName];
     NSArray * tempArray = [NSArray arrayWithContentsOfFile:plistPath];
@@ -354,7 +359,6 @@
 
     NSMutableArray *tempArray2= [NSMutableArray array];
     
-    int i = 1;
     for (NSDictionary * dic in enumerator){
         NSString *pdfUrl = [dic objectForKey: @"FileName"];
         pdfUrl = [pdfUrl urlByRemovingFinalUnderscoreInUrlString];//Remove underscore
@@ -362,14 +366,13 @@
         pdfUrl = [pdfUrl stringByReplacingOccurrencesOfString:@"TempWa//" withString:@""];//hack
         NSString * coverUrl = [pdfUrl urlByChangingExtensionOfUrlStringToSuffix:@".png"];
         [tempArray2 addObject:coverUrl];
-        if (i==[tempArray count]){
-            //Add the newsstand cover for the first row only
+        if (downloadNewsstandCovers){
+            //Add the newsstand cover only when specified in Application_.plist
             NSString * newsstandCoverUrl = [pdfUrl urlByChangingExtensionOfUrlStringToSuffix:@"_newsstand.png"];
             [tempArray2 addObject:newsstandCoverUrl];
             
         }
-        i = i +1;
-    }	
+    }
     
     return tempArray2;
 
