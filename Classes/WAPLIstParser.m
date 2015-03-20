@@ -230,7 +230,7 @@
 			}
 			break;
         case DataColLogin:{
-            NSString * txt = [[NSBundle mainBundle]stringForKey:@"Login"];
+            NSString * txt = [[NSBundle mainBundle]stringForKey:@"Log in"];
            ret= [NSString stringWithFormat:@"%@;%@",txt,[buyUrlString urlByAddingParameterInUrlStringWithKey:@"walogin" withValue:@"-"]];
             break;}
         case DataColDownloadOrRead:{
