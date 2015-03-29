@@ -57,7 +57,7 @@
     //SLog(@"NibView subviews:%i",[[nibView subviews]count]);
     nibView.frame = self.frame;
     [self addSubview:nibView];
-    [nibView populateNibWithParser:parser withButtonDelegate:self withController:currentViewController   forRow:1];
+    [nibView populateNibWithParser:parser withButtonDelegate:self withController:currentViewController   displayingImages:YES forRow:1];
 
     
     

@@ -8,7 +8,7 @@
 
 @class WAGridCell;
 
-@interface WAGridView : UITableView <UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate,WAModuleProtocol>
+@interface WAGridView : UITableView <UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, UIGestureRecognizerDelegate,WAModuleProtocol,UIScrollViewDelegate>
 {
 	NSString *urlString;
 	UIViewController* currentViewController;
@@ -39,6 +39,8 @@
 
 - (void) openDetailView:(int)detailRow;
 - (void) dismissDetailView;
+
+- (void)loadImagesForOnscreenRows;
 
 
 @end
