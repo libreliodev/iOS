@@ -97,8 +97,8 @@
         [self generateCacheForAllPagesAtSize:PDFPageViewSizeBig];
 
         
-     
-	
+    
+    extraInfoStatus = Needed;
 	
 	
 	
@@ -934,9 +934,94 @@
 
 }
 
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    if(currentConnFileHandle)
+        [currentConnFileHandle writeData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    if(currentConnFileHandle)
+    {
+        [currentConnFileHandle release];
+        extraInfoStatus = Downloaded;
+        [currentConnPath release];
+        
+        //fire notification
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"didGetExtraInformation" object:urlString];
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response
+{
+    if (([response statusCode]==304)||([response statusCode]==401)||([response statusCode]==402)||([response statusCode]==403)||([response statusCode]==461)||([response statusCode]==462)||([response statusCode]==463)){
+        //SLog(@"Connection error %i",[response statusCode]);
+        NSDictionary * userDic = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%li",(long)[response statusCode]] forKey:@"SSErrorHTTPStatusCodeKey"];
+        NSError * error = [NSError errorWithDomain:@"Librelio" code:2 userInfo:userDic];
+        
+        
+        [self connection:connection didFailWithError:error];
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    [currentConnFileHandle closeFile];
+    [currentConnFileHandle release];
+    if([[NSFileManager defaultManager] isDeletableFileAtPath:currentConnPath])
+        [[NSFileManager defaultManager] removeItemAtPath:currentConnPath error:&error];
+    currentConnFileHandle = nil;
+    [currentConnPath release];
+    currentConnPath = nil;
+    extraInfoStatus = Downloaded;
+    //fire notification
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didGetExtraInformation" object:urlString];
+}
+
 - (BOOL) shouldGetExtraInformation{
+    BOOL needed = extraInfoStatus == Needed || extraInfoStatus == Requested;
+    if(extraInfoStatus == Needed || extraInfoStatus == Downloaded)
+    {
+        NSString *updatesTmpUrl = [urlString urlByChangingExtensionOfUrlStringToSuffix:@"_updates.plist"];
+        NSString *updatesUrl;
+        NSArray *pc = [updatesTmpUrl pathComponents];
+        if([[pc objectAtIndex:0] isEqualToString:@"TempWa"])
+        {
+            
+            NSRange slr = (NSRange){ 1, [pc count] - 1 };
+            updatesUrl = [NSString stringWithFormat:@"/%@", [[pc subarrayWithRange:slr] componentsJoinedByString:@"/"]];
+        }
+        else if([pc count] > 1 && [[pc objectAtIndex:0] isEqualToString:@"/"] &&
+                [[pc objectAtIndex:1] isEqualToString:@"TempWa"])
+        {
+            NSRange slr = (NSRange){ 2, [pc count] - 2 };
+            updatesUrl = [NSString stringWithFormat:@"/%@", [[pc subarrayWithRange:slr] componentsJoinedByString:@"/"]];
+        }
+        NSString *updatesAbsUrl = [WAUtilities completeDownloadUrlforUrlString:updatesUrl];
+
+        
+        if(extraInfoStatus == Downloaded)
+        {
+            NSString *savePath = [updatesUrl noArgsPartOfUrlString];
+            NSString *updatesTmpPath = [[NSBundle mainBundle] pathOfFileWithUrl:updatesTmpUrl];
+            if(updatesTmpPath != nil)
+                [WAUtilities storeFileWithUrlString:savePath withFileAtPath:updatesTmpPath];
+            extraInfoStatus = NotNeeded;
+        }
+        else
+        {
+            [WAUtilities storeFileWithUrlString:updatesTmpUrl withData:nil];
+            NSString *updatesTmpPath = [[NSBundle mainBundle] pathOfFileWithUrl:updatesTmpUrl];
+            currentConnFileHandle = [[NSFileHandle fileHandleForWritingAtPath:updatesTmpPath] retain];
+            NSURLConnection *conn = [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:updatesAbsUrl]] delegate:self];
+            [conn start];
+            currentConnPath = [updatesTmpPath retain];
+            extraInfoStatus = Requested;
+        }
+    }
     
-    return NO;
+    return needed;
 }
 
 
