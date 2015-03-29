@@ -24,7 +24,7 @@
 
 @implementation WAPDFParser
 
-@synthesize intParam,numberOfPages,outlineArray,currentString;
+@synthesize intParam,numberOfPages,outlineArray,currentString,linksUpdate=_linksUpdate;
 #pragma mark -
 #pragma mark Lifecycle functions
 
@@ -135,6 +135,8 @@
 	[urlString release];
     [currentString release];
     [outlineArray release];
+    if(_linksUpdate)
+        [_linksUpdate release];
    [super dealloc];
 	
 }
@@ -145,7 +147,15 @@
 
 
 
-
+- (NSDictionary*) linksUpdate
+{
+    if(_linksUpdate == nil)
+    {
+        NSString *updatesPath = [[NSBundle mainBundle] pathOfFileWithUrl:[[urlString noArgsPartOfUrlString] urlByChangingExtensionOfUrlStringToSuffix:@"_updates.plist"]];
+        _linksUpdate = updatesPath ? [[NSDictionary dictionaryWithContentsOfFile:updatesPath] retain] : nil;
+    }
+    return _linksUpdate;
+}
 
 - (int) getPageNumber:(int)page{
 	//Gets the page number from the pdf document, which may be different from the pagination used in this class; for example, page 1 may be the third page of the pdf when it includes a cover
@@ -317,8 +327,6 @@
 
 - (NSArray*)getLinksOnPage:(int)page{
 	CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL(pdfURL);
-    NSString *updatesPath = [[NSBundle mainBundle] pathOfFileWithUrl:[[urlString noArgsPartOfUrlString] urlByChangingExtensionOfUrlStringToSuffix:@"_updates.plist"]];
-    NSDictionary *linksUpdate = updatesPath ? [NSDictionary dictionaryWithContentsOfFile:updatesPath] : nil;
 	NSMutableArray *tempArray= [NSMutableArray array];
 	int min= page;
 	int max=page;
@@ -335,7 +343,7 @@
         size_t annotsCount = CGPDFArrayGetCount(annotsArray);
         
         // update links at page `j`
-        NSDictionary *linksUpdateById = [self getLinksUpdateOnPageByIndexAtPage:j inLinksUpdate:linksUpdate];
+        NSDictionary *linksUpdateById = [self getLinksUpdateOnPageByIndexAtPage:j inLinksUpdate:self.linksUpdate];
         
         for (size_t i = 0; i < annotsCount ; i++) 
         {
@@ -479,7 +487,7 @@
         }
         
         // add update links
-        NSArray *links = linksUpdate ? [linksUpdate objectForKey:[NSString stringWithFormat:@"p%d", (int)j]] : nil;
+        NSArray *links = self.linksUpdate ? [self.linksUpdate objectForKey:[NSString stringWithFormat:@"p%d", (int)j]] : nil;
         if([links isKindOfClass:[NSArray class]])
         {
             for(NSDictionary *link in links)

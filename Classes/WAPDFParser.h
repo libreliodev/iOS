@@ -28,6 +28,7 @@ typedef enum {
 @property (nonatomic, retain) NSString * urlString;
 @property int numberOfPages;
 
+@property (nonatomic, retain) NSDictionary *linksUpdate;
 
 
 - (NSArray*)getLinksOnPage:(int)page;
