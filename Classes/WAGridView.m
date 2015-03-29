@@ -143,6 +143,7 @@
 
 
 
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     //SLog(@"number of items %i",MAX(parser.countData-rowInHeaderView,0));
@@ -152,8 +153,15 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
+    if (self.currentCollectionView.dragging == NO && self.currentCollectionView.decelerating == NO)
+    {
+        [cell populateNibWithParser:parser withButtonDelegate:self withController:currentViewController   displayingImages:YES forRow:(int)indexPath.row+1+rowInHeaderView];
+    }
+    else {
+        [cell populateNibWithParser:parser withButtonDelegate:self withController:currentViewController   displayingImages:NO forRow:(int)indexPath.row+1+rowInHeaderView];
+    }
+
     
-    [cell populateNibWithParser:parser withButtonDelegate:self withController:currentViewController   forRow:(int)indexPath.row+1+rowInHeaderView];
     //SLog(@"handling cell %i",indexPath.row+1+rowInHeaderView);
 
     return cell;
@@ -165,7 +173,7 @@
                                          UICollectionElementKindSectionHeader withReuseIdentifier:@"headerIdentifier" forIndexPath:indexPath];
     //SLog(@"indexPath for header %@",indexPath);
     headerView.tag = 998; //convention
-    [headerView populateNibWithParser:parser withButtonDelegate:self withController:currentViewController forRow:rowInHeaderView];
+    [headerView populateNibWithParser:parser withButtonDelegate:self withController:currentViewController displayingImages:YES forRow:rowInHeaderView];
     return headerView;
 }
 
@@ -244,7 +252,7 @@
     modalNibView.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
     //SLog(@"Will add subview %@",modalNibView);
     [self addSubview:modalNibView];
-    [modalNibView populateNibWithParser:parser withButtonDelegate:self withController:currentViewController   forRow:detailRow];
+    [modalNibView populateNibWithParser:parser withButtonDelegate:self withController:currentViewController   displayingImages:YES forRow:detailRow];
 
 
     
@@ -348,7 +356,7 @@
             
             if ((imagePath1||imagePath2)&& (test1||test2)){
                 //SLog(@"viewWithTag:%@",[self viewWithTag:998]);
-                [[self viewWithTag:998] populateNibWithParser:parser withButtonDelegate:self withController:currentViewController forRow:rowInHeaderView];
+                [[self viewWithTag:998] populateNibWithParser:parser withButtonDelegate:self withController:currentViewController displayingImages:YES forRow:rowInHeaderView];
                 
             }
            
@@ -363,7 +371,7 @@
             if (imagePath&& [imagePath isEqualToString:[[NSBundle mainBundle]pathOfFileWithUrl:notificatedUrl]])
             {
                 //SLog(@"Matches!");
-                [cell populateNibWithParser:parser withButtonDelegate:self withController:currentViewController   forRow:(int)index.row+1+rowInHeaderView];
+                [cell populateNibWithParser:parser withButtonDelegate:self withController:currentViewController   displayingImages:YES forRow:(int)index.row+1+rowInHeaderView];
                 [self.currentCollectionView reloadItemsAtIndexPaths:@[index]];
                 
                 
@@ -385,6 +393,51 @@
     
     
 }
+
+- (void)loadImagesForOnscreenRows
+{
+    NSArray * visibleCells = [self.currentCollectionView visibleCells];
+    
+    
+    //Refresh cells if needed
+    for (UICollectionViewCell* cell in visibleCells){
+        NSIndexPath * index = [self.currentCollectionView indexPathForCell:cell];
+            [cell populateNibWithParser:parser withButtonDelegate:self withController:currentViewController   displayingImages:YES forRow:(int)index.row+1+rowInHeaderView];
+            [self.currentCollectionView reloadItemsAtIndexPaths:@[index]];
+            
+        
+        
+    }
+
+}
+
+
+#pragma mark - UIScrollViewDelegate
+
+// -------------------------------------------------------------------------------
+//	scrollViewDidEndDragging:willDecelerate:
+//  Load images for all onscreen rows when scrolling is finished.
+// -------------------------------------------------------------------------------
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate)
+    {
+        NSLog(@"did en dragging");
+        [self loadImagesForOnscreenRows];
+    }
+}
+
+// -------------------------------------------------------------------------------
+//	scrollViewDidEndDecelerating:scrollView
+//  When scrolling stops, proceed to load the app icons that are on screen.
+// -------------------------------------------------------------------------------
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    NSLog(@"did en decelerating");
+    [self loadImagesForOnscreenRows];
+
+}
+
 
 
 @end

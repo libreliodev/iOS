@@ -95,7 +95,7 @@
 #pragma mark -
 #pragma mark Nib and Layout management methods
 
-- (void) populateNibWithParser:(NSObject <WAParserProtocol>*)parser withButtonDelegate:(NSObject*)delegate withController:(UIViewController*)controller forRow:(int)row{
+- (void) populateNibWithParser:(NSObject <WAParserProtocol>*)parser withButtonDelegate:(NSObject*)delegate withController:(UIViewController*)controller displayingImages:(BOOL)displayImages forRow:(int)row{
    	for (UIView * subView in self.subviews){
 		if (subView.tag>=0){
 			NSString * tempString;
@@ -111,17 +111,21 @@
                 //SLog(@"TestSubview:%@",subView);
                 subView.hidden = NO;
 				if ([subView isKindOfClass:[UIImageView class]]){
-					UIImageView * imView = (UIImageView*) subView; 
-					UIImage * img = [UIImage imageWithContentsOfFile:tempString];
-                    if (img){
-                        imView.image = img;
+                    if (displayImages){
+                        UIImageView * imView = (UIImageView*) subView;
+                        UIImage * img = [UIImage imageWithContentsOfFile:tempString];
+                        if (img){
+                            imView.image = img;
+                        }
+                        else{
+                            //Delete corrupted file
+                            [WAUtilities deleteCorruptedResourceWithPath:tempString ForMainFileWithUrlString:parser.urlString];
+                            subView.hidden = YES;
+                        }
+                        
                     }
                     else{
-                        //Delete corrupted file
-                        [WAUtilities deleteCorruptedResourceWithPath:tempString ForMainFileWithUrlString:parser.urlString];
                         subView.hidden = YES;
-
-                        
                     }
                     
                     
