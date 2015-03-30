@@ -121,9 +121,9 @@
     NSString * productId = [urlString valueOfParameterInUrlStringforKey:@"waproductid"];
     if (productId){
         for (SKProduct *product in response.products) {
-            NSLog(@"found %@, looking for %@",[product productIdentifier],productId);
+            //SLog(@"found %@, looking for %@",[product productIdentifier],productId);
             if ([[productId appStoreProductIDForLibrelioProductID]isEqualToString:[product productIdentifier]]){
-                NSLog(@"will try to buy %@",product);
+                //SLog(@"will try to buy %@",product);
                 [self orderProduct:product];
             }
             

@@ -574,8 +574,32 @@
 
 
 - (NSSet*) relevantLibrelioProductIDsForUrlString{
+    BOOL includeSubscriptions = YES;
     NSString * shortID = [[self urlByRemovingFinalUnderscoreInUrlString] nameOfFileWithoutExtensionOfUrlString];
+    //If product ID ends with _YYYYMMDD, we need to check if it will be possible to download it after buying a subscription.
+    NSRange range = [shortID rangeOfString:@"_" options:NSBackwardsSearch];
+    ////SLog(@"range: %lu  ",[shortID length]-range.location);
+    if ([shortID length]-range.location==9){
+        //SLog(@"==9");
+        NSRange range2 = NSMakeRange(range.location+1, 8);
+        NSString * dateString = [shortID substringWithRange:range2];
+        NSDateFormatter *df = [[[NSDateFormatter alloc] init]autorelease];
+        [df setDateFormat:@"yyyyMMdd"];
+        NSDate *date = [df dateFromString:dateString];
+        NSDate *now = [NSDate date];
+        
+        NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        NSDateComponents *components = [gregorianCalendar components:NSDayCalendarUnit
+                                                            fromDate:date
+                                                              toDate:now
+                                                             options:0];
+        if ([components day]>30) includeSubscriptions = NO;//Don't include subscriptions if issue is more than 30 days old
+
+        
+    }
+
 	NSSet * ret = [NSSet setWithObjects:shortID,@"MonthlySubscription",@"WeeklySubscription",@"QuarterlySubscription",@"YearlySubscription",@"HalfYearlySubscription",@"YearlySubscription2",@"HalfYearlySubscription2",@"HalfYearlySubscription3",@"FreeSubscription",nil];
+    if (!includeSubscriptions) ret = [NSSet setWithObjects:shortID,nil];
     return ret;
 
 }

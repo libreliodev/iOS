@@ -422,7 +422,7 @@
 {
     if (!decelerate)
     {
-        NSLog(@"did en dragging");
+        //SLog(@"did en dragging");
         [self loadImagesForOnscreenRows];
     }
 }
@@ -433,7 +433,7 @@
 // -------------------------------------------------------------------------------
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    NSLog(@"did en decelerating");
+    //SLog(@"did en decelerating");
     [self loadImagesForOnscreenRows];
 
 }
