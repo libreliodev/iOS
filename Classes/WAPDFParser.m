@@ -24,7 +24,7 @@
 
 @implementation WAPDFParser
 
-@synthesize intParam,numberOfPages,outlineArray,currentString;
+@synthesize intParam,numberOfPages,outlineArray,currentString,linksUpdate=_linksUpdate;
 #pragma mark -
 #pragma mark Lifecycle functions
 
@@ -97,8 +97,8 @@
         [self generateCacheForAllPagesAtSize:PDFPageViewSizeBig];
 
         
-     
-	
+    
+    extraInfoStatus = Needed;
 	
 	
 	
@@ -135,6 +135,8 @@
 	[urlString release];
     [currentString release];
     [outlineArray release];
+    if(_linksUpdate)
+        [_linksUpdate release];
    [super dealloc];
 	
 }
@@ -145,7 +147,15 @@
 
 
 
-
+- (NSDictionary*) linksUpdate
+{
+    if(_linksUpdate == nil)
+    {
+        NSString *updatesPath = [[NSBundle mainBundle] pathOfFileWithUrl:[[urlString noArgsPartOfUrlString] urlByChangingExtensionOfUrlStringToSuffix:@"_updates.plist"]];
+        _linksUpdate = updatesPath ? [[NSDictionary dictionaryWithContentsOfFile:updatesPath] retain] : nil;
+    }
+    return _linksUpdate;
+}
 
 - (int) getPageNumber:(int)page{
 	//Gets the page number from the pdf document, which may be different from the pagination used in this class; for example, page 1 may be the third page of the pdf when it includes a cover
@@ -298,6 +308,23 @@
 #pragma mark -
 #pragma mark Links handling
 
+- (NSDictionary*)getLinksUpdateOnPageByIndexAtPage:(int)pageNumber inLinksUpdate:(NSDictionary*)linksUpdate
+{
+    NSArray *links;
+    if(!linksUpdate || (links = [linksUpdate objectForKey:[NSString stringWithFormat:@"p%d", pageNumber]]) == nil)
+        return nil;
+    NSMutableDictionary *mret = [[[NSMutableDictionary alloc] init] retain];
+    for(NSDictionary *link in links)
+    {
+        id index = [link objectForKey:@"IndexAtPage"];
+        if(index != nil)
+            [mret setObject:link forKey:[NSString stringWithFormat:@"%@", index]];
+    }
+    NSDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:mret];
+    [mret release];
+    return dict;
+}
+
 - (NSArray*)getLinksOnPage:(int)page{
 	CGPDFDocumentRef pdf = CGPDFDocumentCreateWithURL(pdfURL);
 	NSMutableArray *tempArray= [NSMutableArray array];
@@ -314,13 +341,19 @@
 		CGPDFArrayRef		annotsArray;
 		if (!CGPDFDictionaryGetArray(pageDict, "Annots", &annotsArray)) continue;
         size_t annotsCount = CGPDFArrayGetCount(annotsArray);
+        
+        // update links at page `j`
+        NSDictionary *linksUpdateById = [self getLinksUpdateOnPageByIndexAtPage:j inLinksUpdate:self.linksUpdate];
+        
         for (size_t i = 0; i < annotsCount ; i++) 
         {
             NSDictionary * tempDic;
+            NSString * tempUrl = nil;
             CGPDFDictionaryRef annotDict;
             if (!CGPDFArrayGetDictionary(annotsArray, i, &annotDict)) continue;
             CGRect linkRect = [self getAnnotationRect:annotDict inPageRef:pageRef];
             NSValue *rectValue = [NSValue valueWithCGRect:linkRect];
+            
             
             
             //Check what type of annotation this is
@@ -332,24 +365,50 @@
                 CGPDFDictionaryRef aLink;
                 if (CGPDFDictionaryGetDictionary(annotDict, "A", &aLink)) 
                 {
-                    NSString * tempString = [self getLinkFromActionDictionary:aLink];
-                    //SLog(@"Link:%@",tempString);
-                    tempDic = [NSDictionary dictionaryWithObjectsAndKeys:rectValue,@"Rect",tempString,@"URL",nil];
-                    [tempArray addObject:tempDic];
-                    
+                    tempUrl = [self getLinkFromActionDictionary:aLink];
                 }
                 else {
                     CGPDFArrayRef anotherArray;
                     if (CGPDFDictionaryGetArray(annotDict, "Dest", &anotherArray))  
                     {
-                        NSString * tempString = [self getLinkFromDestArray:anotherArray];
-                        tempDic = [NSDictionary dictionaryWithObjectsAndKeys:rectValue,@"Rect",tempString,@"URL",nil];
-                        [tempArray addObject:tempDic];
-                        
-                        
+                        tempUrl = [self getLinkFromDestArray:anotherArray];
                     }						
                 }
                 
+                NSDictionary *updateLink = linksUpdateById ? [linksUpdateById objectForKey:[NSString stringWithFormat:@"%d", (int)i]] : nil;
+                // override data if updateLink exists
+                if(updateLink != nil)
+                {
+                    NSString *v = [updateLink objectForKey:@"Action"];
+                    if([v isKindOfClass:[NSString class]])
+                    {
+                        if([v isEqualToString:@"Remove"])
+                            continue;
+                        else if([v isKindOfClass:[NSString class]] && [v isEqualToString:@"Edit"])
+                        {
+                            v = [updateLink objectForKey:@"Rect"];
+                            if([v isKindOfClass:[NSString class]])
+                            {
+                                CGFloat rectArr[4], *fp = rectArr;
+                                for(NSString *str in [v componentsSeparatedByString:@" "])
+                                    *(fp++) = [str integerValue];
+                                if(fp - rectArr == 4)
+                                {
+                                    rectValue = [NSValue valueWithCGRect:[self CGRectFromPDFRect:rectArr inPageRef:pageRef]];
+                                }
+                            }
+                            v = [updateLink objectForKey:@"Link"];
+                            if([v isKindOfClass:[NSString class]])
+                                tempUrl = v;
+                        }
+                    }
+                }
+                
+                if(tempUrl != nil)
+                {
+                    tempDic = [NSDictionary dictionaryWithObjectsAndKeys:rectValue,@"Rect",tempUrl,@"URL",nil];
+                    [tempArray addObject:tempDic];
+                }
                 
             }
             else if  (!strcmp(subType, "RichMedia")) //Annotation  is a rich media
@@ -427,6 +486,41 @@
             
         }
         
+        // add update links
+        NSArray *links = self.linksUpdate ? [self.linksUpdate objectForKey:[NSString stringWithFormat:@"p%d", (int)j]] : nil;
+        if([links isKindOfClass:[NSArray class]])
+        {
+            for(NSDictionary *link in links)
+            {
+                NSValue *rectValue = nil;
+                NSString *tempUrl = nil;
+                NSString *v = [link objectForKey:@"Action"];
+                if([v isKindOfClass:[NSString class]] && [v isEqualToString:@"Add"])
+                {
+                    v = [link objectForKey:@"Rect"];
+                    if([v isKindOfClass:[NSString class]])
+                    {
+                        CGFloat rectArr[4], *fp = rectArr;
+                        for(NSString *str in [v componentsSeparatedByString:@" "])
+                            *(fp++) = [str integerValue];
+                        if(fp - rectArr == 4)
+                        {
+                            rectValue = [NSValue valueWithCGRect:[self CGRectFromPDFRect:rectArr inPageRef:pageRef]];
+                        }
+                    }
+                    v = [link objectForKey:@"Link"];
+                    if([v isKindOfClass:[NSString class]])
+                        tempUrl = v;
+                    
+                    
+                    if(tempUrl != nil && rectValue != nil)
+                    {
+                        NSDictionary *tempDic = [NSDictionary dictionaryWithObjectsAndKeys:rectValue,@"Rect",tempUrl,@"URL",nil];
+                        [tempArray addObject:tempDic];
+                    }
+                }
+            }
+        }
     }
 		
 		
@@ -435,7 +529,6 @@
 	//CGPDFPageRelease(pageRef);//This crashes the app
 	CGPDFDocumentRelease(pdf);
     
- 	
 	return tempArray;
 	
 		
@@ -518,10 +611,19 @@
     
 }
 
+- (CGRect)CGRectFromPDFRect:(CGFloat*)linkPoints inPageRef:(CGPDFPageRef)pageRef{
+    CGRect rect;
+    CGRect documentRect = CGPDFPageGetBoxRect(pageRef, kCGPDFCropBox);
+    rect.origin.x = linkPoints[0]- documentRect.origin.x;
+    rect.origin.y = documentRect.size.height+documentRect.origin.y - linkPoints[3];
+    rect.size.width = linkPoints[2] - linkPoints[0];
+    rect.size.height = linkPoints[3] - linkPoints[1];
+    return rect;
+}
+
 - (CGRect) getAnnotationRect:(CGPDFDictionaryRef) annotDict inPageRef:(CGPDFPageRef)pageRef{
 	CGFloat linkPoints[4] = {0.0,0.0,0.0,0.0};
 	CGPDFArrayRef anArray;
-	CGRect linkrect;
 	if (CGPDFDictionaryGetArray(annotDict, "Rect", &anArray))
 	{
 		for (size_t j = 0; j < 4; j++)
@@ -533,20 +635,9 @@
 			
 		}
 		
-		
-		CGRect documentRect = CGPDFPageGetBoxRect(pageRef, kCGPDFCropBox);
-		//SLog(@"documentRect: %f, %f, %f, %f", documentRect.origin.x,documentRect.origin.y,documentRect.size.width,documentRect.size.height);
-		//We need to make some conversions in order to match coordinate systems.
-		linkrect.origin.x = linkPoints[0]- documentRect.origin.x;
-		linkrect.origin.y = documentRect.size.height+documentRect.origin.y - linkPoints[3];
-		linkrect.size.width = linkPoints[2] - linkPoints[0];
-		linkrect.size.height = linkPoints[3] - linkPoints[1];
-		//SLog(@"Annot Rect: %f, %f, %f, %f", linkrect.origin.x,linkrect.origin.y,linkrect.size.width,linkrect.size.height);
-		
-		return linkrect;
+        return [self CGRectFromPDFRect:linkPoints inPageRef:pageRef];
 	}
-	
-	
+    CGRect linkrect;
 	return  linkrect;
 	
 	
@@ -851,9 +942,94 @@
 
 }
 
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    if(currentConnFileHandle)
+        [currentConnFileHandle writeData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    if(currentConnFileHandle)
+    {
+        [currentConnFileHandle release];
+        extraInfoStatus = Downloaded;
+        [currentConnPath release];
+        
+        //fire notification
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"didGetExtraInformation" object:urlString];
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response
+{
+    if (([response statusCode]==304)||([response statusCode]==401)||([response statusCode]==402)||([response statusCode]==403)||([response statusCode]==461)||([response statusCode]==462)||([response statusCode]==463)){
+        //SLog(@"Connection error %i",[response statusCode]);
+        NSDictionary * userDic = [NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"%li",(long)[response statusCode]] forKey:@"SSErrorHTTPStatusCodeKey"];
+        NSError * error = [NSError errorWithDomain:@"Librelio" code:2 userInfo:userDic];
+        
+        
+        [self connection:connection didFailWithError:error];
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    [currentConnFileHandle closeFile];
+    [currentConnFileHandle release];
+    if([[NSFileManager defaultManager] isDeletableFileAtPath:currentConnPath])
+        [[NSFileManager defaultManager] removeItemAtPath:currentConnPath error:&error];
+    currentConnFileHandle = nil;
+    [currentConnPath release];
+    currentConnPath = nil;
+    extraInfoStatus = Downloaded;
+    //fire notification
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"didGetExtraInformation" object:urlString];
+}
+
 - (BOOL) shouldGetExtraInformation{
+    BOOL needed = extraInfoStatus == Needed || extraInfoStatus == Requested;
+    if(extraInfoStatus == Needed || extraInfoStatus == Downloaded)
+    {
+        NSString *updatesTmpUrl = [urlString urlByChangingExtensionOfUrlStringToSuffix:@"_updates.plist"];
+        NSString *updatesUrl;
+        NSArray *pc = [updatesTmpUrl pathComponents];
+        if([[pc objectAtIndex:0] isEqualToString:@"TempWa"])
+        {
+            
+            NSRange slr = (NSRange){ 1, [pc count] - 1 };
+            updatesUrl = [NSString stringWithFormat:@"/%@", [[pc subarrayWithRange:slr] componentsJoinedByString:@"/"]];
+        }
+        else if([pc count] > 1 && [[pc objectAtIndex:0] isEqualToString:@"/"] &&
+                [[pc objectAtIndex:1] isEqualToString:@"TempWa"])
+        {
+            NSRange slr = (NSRange){ 2, [pc count] - 2 };
+            updatesUrl = [NSString stringWithFormat:@"/%@", [[pc subarrayWithRange:slr] componentsJoinedByString:@"/"]];
+        }
+        NSString *updatesAbsUrl = [WAUtilities completeDownloadUrlforUrlString:updatesUrl];
+
+        
+        if(extraInfoStatus == Downloaded)
+        {
+            NSString *savePath = [updatesUrl noArgsPartOfUrlString];
+            NSString *updatesTmpPath = [[NSBundle mainBundle] pathOfFileWithUrl:updatesTmpUrl];
+            if(updatesTmpPath != nil)
+                [WAUtilities storeFileWithUrlString:savePath withFileAtPath:updatesTmpPath];
+            extraInfoStatus = NotNeeded;
+        }
+        else
+        {
+            [WAUtilities storeFileWithUrlString:updatesTmpUrl withData:nil];
+            NSString *updatesTmpPath = [[NSBundle mainBundle] pathOfFileWithUrl:updatesTmpUrl];
+            currentConnFileHandle = [[NSFileHandle fileHandleForWritingAtPath:updatesTmpPath] retain];
+            NSURLConnection *conn = [NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:updatesAbsUrl]] delegate:self];
+            [conn start];
+            currentConnPath = [updatesTmpPath retain];
+            extraInfoStatus = Requested;
+        }
+    }
     
-    return NO;
+    return needed;
 }
 
 

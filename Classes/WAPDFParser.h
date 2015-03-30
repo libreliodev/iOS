@@ -1,16 +1,24 @@
 //  Copyright 2011 WidgetAvenue - Librelio. All rights reserved.
 
+#import <Foundation/Foundation.h>
 #import "WAParserProtocol.h"
 
+typedef enum {
+    Needed,
+    Requested,
+    Downloaded,
+    NotNeeded
+} ExtraInformationStatus;
 
-
-@interface WAPDFParser : NSObject <WAParserProtocol>{
+@interface WAPDFParser : NSObject <WAParserProtocol,NSURLConnectionDelegate,NSURLConnectionDataDelegate>{
 	int intParam,numberOfPages;
 	NSString * urlString;
 	CFURLRef pdfURL;//DO NOT USE CGPDFDocumentRef in an instance var, it produces crashes. Use CGPDFDocumentCreateWithURL every time you need it
     NSMutableArray * outlineArray;
 
-	
+    ExtraInformationStatus extraInfoStatus;
+    NSFileHandle *currentConnFileHandle;
+    NSString *currentConnPath;
 }
 
 @property (nonatomic, retain)  NSMutableArray * outlineArray;
@@ -20,6 +28,7 @@
 @property (nonatomic, retain) NSString * urlString;
 @property int numberOfPages;
 
+@property (nonatomic, retain) NSDictionary *linksUpdate;
 
 
 - (NSArray*)getLinksOnPage:(int)page;
