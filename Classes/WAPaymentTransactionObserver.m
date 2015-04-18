@@ -19,7 +19,11 @@
 		NSString * productId = transaction.payment.productIdentifier;
 		NSString *shortID = [productId librelioProductIDForAppStoreProductID];
 		NSString *tempKey = [NSString stringWithFormat:@"%@-receipt",shortID];
-		switch (transaction.transactionState)
+        NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
+        NSData *receipt = [NSData dataWithContentsOfURL:receiptURL];
+        //SLog(@"newjson: %@",[self encode:(uint8_t *)receipt.bytes length:receipt.length]);
+        
+        switch (transaction.transactionState)
 		{
 			case SKPaymentTransactionStatePurchased:{
 				//Store the receipt
