@@ -50,6 +50,7 @@
             //SLog (@"url: %@, short:%@",urlString,shortUnitId);
             self.adUnitID = [DfpPrefix completeAdUnitCodeForShortCode:shortUnitId];
             //self.adUnitID = @"/6499/example/banner";
+            //self.adUnitID = @"/166877488/test3";
             self.delegate = self;
             //SLog(@"self.adUnitID %@",self.adUnitID);
             //GADRequest *request = [GADRequest request];

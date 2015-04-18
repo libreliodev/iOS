@@ -2,6 +2,7 @@
 
 
 #import "WAPaymentTransactionObserver.h"
+#import "NSString+WAURLString.h"
 
 
 @implementation WAPaymentTransactionObserver
@@ -16,15 +17,14 @@
     for (SKPaymentTransaction *transaction in transactions)
 	{
 		NSString * productId = transaction.payment.productIdentifier;
-		NSArray *parts = [productId componentsSeparatedByString:@"."];
-		NSString *shortID = [parts objectAtIndex:[parts count]-1];
+		NSString *shortID = [productId librelioProductIDForAppStoreProductID];
 		NSString *tempKey = [NSString stringWithFormat:@"%@-receipt",shortID];
 		switch (transaction.transactionState)
 		{
 			case SKPaymentTransactionStatePurchased:{
 				//Store the receipt
 				NSString *jsonObjectString = [self encode:(uint8_t *)transaction.transactionReceipt.bytes length:transaction.transactionReceipt.length];  
-				//SLog(@"Transaction Succceded for product id %@",transaction.payment.productIdentifier);
+				//SLog(@"Transaction Succceded for product id %@ with json receipt %@",transaction.payment.productIdentifier,jsonObjectString);
 				[[NSUserDefaults standardUserDefaults] setObject:jsonObjectString forKey:tempKey];
 				// Remove the transaction from the payment queue.
 				[[SKPaymentQueue defaultQueue] finishTransaction: transaction];

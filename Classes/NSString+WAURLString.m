@@ -572,6 +572,29 @@
     
 }
 
+- (NSString*) librelioProductIDForAppStoreProductID{
+    NSArray *parts = [self componentsSeparatedByString:@"."];
+    NSString *ret = [parts objectAtIndex:[parts count]-1];
+
+     //Check if we have specific IDs
+    NSDictionary * app_Dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"]];
+    NSDictionary * specificIds = [app_Dic objectForKey:@"SpecificAppStoreIDs"];
+    if (specificIds) {
+        NSArray *temp = [specificIds allKeysForObject:ret];
+        if (temp){
+            ret = [temp objectAtIndex:0];
+           
+        }
+    }
+    
+    
+    
+    return ret;
+    
+    
+}
+
+
 
 - (NSSet*) relevantLibrelioProductIDsForUrlString{
     BOOL includeSubscriptions = YES;

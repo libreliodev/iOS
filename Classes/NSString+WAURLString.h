@@ -36,6 +36,8 @@
 - (BOOL) shouldUseNewsstandForUrlString;
 
 - (NSString*) appStoreProductIDForLibrelioProductID;
+- (NSString*) librelioProductIDForAppStoreProductID;
+
 - (NSSet*) relevantLibrelioProductIDsForUrlString;
 - (NSString *) titleWithSubscriptionLengthForAppStoreProductId:(NSString*)theId;
 
