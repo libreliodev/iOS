@@ -574,6 +574,7 @@
 
 - (NSString*) librelioProductIDForAppStoreProductID{
     NSArray *parts = [self componentsSeparatedByString:@"."];
+    //Slog(@"parts:%@",parts);
     NSString *ret = [parts objectAtIndex:[parts count]-1];
 
      //Check if we have specific IDs
@@ -581,7 +582,8 @@
     NSDictionary * specificIds = [app_Dic objectForKey:@"SpecificAppStoreIDs"];
     if (specificIds) {
         NSArray *temp = [specificIds allKeysForObject:ret];
-        if (temp){
+        if ([temp count]>0){
+            //Slog(@"temp:%@",temp);
             ret = [temp objectAtIndex:0];
            
         }

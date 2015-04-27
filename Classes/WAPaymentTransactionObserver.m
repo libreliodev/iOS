@@ -13,14 +13,14 @@
 
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
 {
-	//SLog(@"Updated transactions %@",transactions);
+	//Slog(@"Updated transactions %@",transactions);
     for (SKPaymentTransaction *transaction in transactions)
 	{
 		NSString * productId = transaction.payment.productIdentifier;
+        //Slog(@"product iD %@",productId);
 		NSString *shortID = [productId librelioProductIDForAppStoreProductID];
+        //Slog(@"short iD %@",shortID);
 		NSString *tempKey = [NSString stringWithFormat:@"%@-receipt",shortID];
-        NSURL *receiptURL = [[NSBundle mainBundle] appStoreReceiptURL];
-        NSData *receipt = [NSData dataWithContentsOfURL:receiptURL];
         //SLog(@"newjson: %@",[self encode:(uint8_t *)receipt.bytes length:receipt.length]);
         
         switch (transaction.transactionState)

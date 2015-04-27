@@ -566,6 +566,7 @@
 }
 
 - (void) orderProduct:(SKProduct*)product{
+    //Slog(@"Will order product %@ %@",product,product.productIdentifier);
      //NSString * itemID = product.productIdentifier;
     //SKPayment *payment = [SKPayment paymentWithProductIdentifier:itemID];
     SKPayment * payment = [SKPayment paymentWithProduct:product];
