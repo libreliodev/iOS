@@ -27,73 +27,73 @@
 
 - (void) setUrlString: (NSString *) theString
 {
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didStopMovie) name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
-	
-	
-	urlString = [[NSString alloc]initWithString: theString];
-	NSString * rectString = [urlString valueOfParameterInUrlStringforKey:@"warect"];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didStopMovie) name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
+    
+    
+    urlString = [[NSString alloc]initWithString: theString];
+    NSString * rectString = [urlString valueOfParameterInUrlStringforKey:@"warect"];
+    
     //Stop the queue in order to avoid memory issues
     [[[WAOperationsManager sharedManager] defaultQueue]setSuspended:YES];
-
-	//Check whether playf full screen is required
-	playFullScreen=NO;
-	if ([rectString isEqualToString:@"full"]) playFullScreen=YES;
-	
-	
-	NSRange httpRange = [urlString rangeOfString :@"http"];
-	NSURL * url = [NSURL URLWithString:urlString];
-	
-	if (httpRange.location == NSNotFound){
-		NSString * path = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
-		if (path) url = [NSURL fileURLWithPath:path];
-		
-	}
-	
-	if (url){
-			
-		
-			movieViewController = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
-			
-			if (playFullScreen){
-				[currentViewController presentMoviePlayerViewControllerAnimated:movieViewController];
-			}
-			else{
-                movieViewController.moviePlayer.controlStyle =  MPMovieControlStyleEmbedded;
-
-                movieViewController.moviePlayer.view.frame = CGRectMake (0,0,self.frame.size.width,self.frame.size.height);
-				movieViewController.moviePlayer.view.backgroundColor = [UIColor blackColor];
-				movieViewController.moviePlayer.backgroundView.backgroundColor = [UIColor blackColor];
-				movieViewController.moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
-				movieViewController.moviePlayer.view.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
-				[self addSubview:movieViewController.moviePlayer.view];
-
-			}
-			
-			[movieViewController.moviePlayer play];		
+    
+    //Check whether playf full screen is required
+    playFullScreen=NO;
+    if ([rectString isEqualToString:@"full"]) playFullScreen=YES;
+    
+    
+    NSRange httpRange = [urlString rangeOfString :@"http"];
+    NSURL * url = [NSURL URLWithString:urlString];
+    
+    if (httpRange.location == NSNotFound){
+        NSString * path = [[NSBundle mainBundle] pathOfFileWithUrl:urlString];
+        if (path) url = [NSURL fileURLWithPath:path];
+        
+    }
+    
+    if (url){
+        
+        
+        movieViewController = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
+        
+        if (playFullScreen){
+            [currentViewController presentMoviePlayerViewControllerAnimated:movieViewController];
+        }
+        else{
+            movieViewController.moviePlayer.controlStyle =  MPMovieControlStyleEmbedded;
+            
+            movieViewController.moviePlayer.view.frame = CGRectMake (0,0,self.frame.size.width,self.frame.size.height);
+            movieViewController.moviePlayer.view.backgroundColor = [UIColor blackColor];
+            movieViewController.moviePlayer.backgroundView.backgroundColor = [UIColor blackColor];
+            movieViewController.moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
+            movieViewController.moviePlayer.view.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
+            [self addSubview:movieViewController.moviePlayer.view];
+            
+        }
+        
+        [movieViewController.moviePlayer play];
         //SLog(@"Did start playing");
-			
-		
-		
-	}
-	
-	
-
+        
+        
+        
+    }
+    
+    
+    
 }
 
 
 
 - (void) didStopMovie{
-	//SLog(@"Did stop movie");
-	if ((playFullScreen)&&(movieViewController.moviePlayer.playbackState==MPMoviePlaybackStateStopped)) [self removeFromSuperview];//This will deallocate this instance
-
+    //SLog(@"Did stop movie");
+    if ((playFullScreen)&&(movieViewController.moviePlayer.playbackState==MPMoviePlaybackStateStopped)) [self removeFromSuperview];//This will deallocate this instance
+    
 }
 - (void)dealloc {
     //SLog(@"Will dealloc");
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [movieViewController.moviePlayer stop];
-	[movieViewController release];
-	[urlString release];
+    [movieViewController release];
+    [urlString release];
     [super dealloc];
 }
 
@@ -106,7 +106,7 @@
 }
 
 - (void) moduleViewWillDisappear:(BOOL)animated{
-   [movieViewController.moviePlayer pause];
+    [movieViewController.moviePlayer pause];
 }
 
 
