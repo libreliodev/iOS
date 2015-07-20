@@ -598,7 +598,7 @@
 
 
 
-- (NSSet*) relevantLibrelioProductIDsForUrlString{
+- (NSSet*) relevantLibrelioProductIDsForUrlStringForcingSubscriptions:(BOOL)forceSubscription{
     BOOL includeSubscriptions = YES;
     NSString * shortID = [[self urlByRemovingFinalUnderscoreInUrlString] nameOfFileWithoutExtensionOfUrlString];
     //If product ID ends with _YYYYMMDD, we need to check if it will be possible to download it after buying a subscription.
@@ -618,7 +618,7 @@
                                                             fromDate:date
                                                               toDate:now
                                                              options:0];
-        if ([components day]>30) includeSubscriptions = NO;//Don't include subscriptions if issue is more than 30 days old
+        if (([components day]>30) && (!forceSubscription)) includeSubscriptions = NO;//Don't include subscriptions if issue is more than 30 days old
 
         
     }
@@ -645,7 +645,7 @@
 
 - (NSString*) receiptForUrlString{
     //Check whether we have active subscriptions, or if we already bought this product, or if a subscription code was provided earlier
-    NSSet * relevantIDs = [self relevantLibrelioProductIDsForUrlString];
+    NSSet * relevantIDs = [self relevantLibrelioProductIDsForUrlStringForcingSubscriptions:YES];
     NSString * receipt = nil;
     for(NSString * currentID in relevantIDs){
         NSString *tempKey = [NSString stringWithFormat:@"%@-receipt",currentID];

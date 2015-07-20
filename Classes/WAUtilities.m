@@ -421,7 +421,7 @@
 
 + (NSString *) completeCheckAppStoreUrlforUrlString:(NSString*)urlString{
 	//Retrieve receipt if it has been stored
-    NSSet * relevantIDs = [urlString relevantLibrelioProductIDsForUrlString];
+    NSSet * relevantIDs = [urlString relevantLibrelioProductIDsForUrlStringForcingSubscriptions:NO];
     NSString * receipt = nil;
     NSString * userKey = nil;
     for(NSString * currentID in relevantIDs){
@@ -496,7 +496,7 @@
 
     
 	NSString * retUrl = [NSString stringWithFormat:kCheckUsernamePasswordUrl,username,password,encodedUrl,clientShortId,appShortId,userService,deviceid];
-	//SLog(@"retpassUrl=%@",retUrl);
+	NSLog(@"retpassUrl=%@",retUrl);
 	return retUrl;
 	
 }
