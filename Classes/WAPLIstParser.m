@@ -415,7 +415,7 @@
     //Add prices to plist
     NSMutableArray * newDataArray= [NSMutableArray arrayWithArray:dataArray];
     NSString * nullString = @"null";
-    NSSet * subscriptionIds = [nullString relevantLibrelioProductIDsForUrlStringForcingSubscriptions:YES];//This will return subscription IDs
+    NSOrderedSet * subscriptionIds = [nullString relevantLibrelioProductIDsForUrlString];//This will return subscription IDs
 
     [dataArray enumerateObjectsUsingBlock:^(NSDictionary *dic, NSUInteger idx, BOOL *stop) {
         //Find the unit price
@@ -469,7 +469,7 @@
         
         //Start by adding subscriptions
         NSString * nullString = @"null";
-        NSSet * acceptableLibrelioIDs = [nullString relevantLibrelioProductIDsForUrlStringForcingSubscriptions:NO];//This will return subscription IDs
+        NSOrderedSet * acceptableLibrelioIDs = [nullString relevantLibrelioProductIDsForUrlString];//This will return subscription IDs
         NSMutableSet * productIdentifiers = [NSMutableSet set];
         for (NSString * curentID in acceptableLibrelioIDs){
             NSString * appStoreID =  [curentID appStoreProductIDForLibrelioProductID];

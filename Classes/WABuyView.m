@@ -315,7 +315,7 @@
 - (void) transactionStatusDidChangeWithNotification:(NSNotification *) notification
 {
 	//Check whether the transaction is for a product requested here or a subscription
-	NSSet * acceptableLibrelioIDs = [urlString relevantLibrelioProductIDsForUrlStringForcingSubscriptions:NO];
+	NSOrderedSet * acceptableLibrelioIDs = [urlString relevantLibrelioProductIDsForUrlString];
     NSMutableSet * acceptableAppStoreIDs = [NSMutableSet set];
     for (NSString * curentID in acceptableLibrelioIDs){
         NSString * appStoreID =  [curentID appStoreProductIDForLibrelioProductID];
@@ -543,7 +543,7 @@
     if (credentials) sharedSecret = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"SharedSecret"];
     if (sharedSecret){
         NSMutableSet * productIdentifiers = [NSMutableSet set];
-        NSSet * relevantIDs = [urlString relevantLibrelioProductIDsForUrlStringForcingSubscriptions:NO];
+        NSOrderedSet * relevantIDs = [urlString relevantLibrelioProductIDsForUrlString];
         //SLog(@"Relevant ids:%@",relevantIDs);
         for (NSString * curentID in relevantIDs){
             NSString * tempID =  [curentID appStoreProductIDForLibrelioProductID];

@@ -598,33 +598,9 @@
 
 
 
-- (NSSet*) relevantLibrelioProductIDsForUrlStringForcingSubscriptions:(BOOL)forceSubscription{
-    BOOL includeSubscriptions = YES;
+- (NSOrderedSet*) relevantLibrelioProductIDsForUrlString{
     NSString * shortID = [[self urlByRemovingFinalUnderscoreInUrlString] nameOfFileWithoutExtensionOfUrlString];
-    //If product ID ends with _YYYYMMDD, we need to check if it will be possible to download it after buying a subscription.
-    NSRange range = [shortID rangeOfString:@"_" options:NSBackwardsSearch];
-    ////SLog(@"range: %lu  ",[shortID length]-range.location);
-    if ([shortID length]-range.location==9){
-        //SLog(@"==9");
-        NSRange range2 = NSMakeRange(range.location+1, 8);
-        NSString * dateString = [shortID substringWithRange:range2];
-        NSDateFormatter *df = [[[NSDateFormatter alloc] init]autorelease];
-        [df setDateFormat:@"yyyyMMdd"];
-        NSDate *date = [df dateFromString:dateString];
-        NSDate *now = [NSDate date];
-        
-        NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        NSDateComponents *components = [gregorianCalendar components:NSDayCalendarUnit
-                                                            fromDate:date
-                                                              toDate:now
-                                                             options:0];
-        if (([components day]>30) && (!forceSubscription)) includeSubscriptions = NO;//Don't include subscriptions if issue is more than 30 days old
-
-        
-    }
-
-	NSSet * ret = [NSSet setWithObjects:shortID,@"MonthlySubscription",@"WeeklySubscription",@"QuarterlySubscription",@"YearlySubscription",@"HalfYearlySubscription",@"YearlySubscription2",@"HalfYearlySubscription2",@"HalfYearlySubscription3",@"FreeSubscription",nil];
-    if (!includeSubscriptions) ret = [NSSet setWithObjects:shortID,nil];
+    NSOrderedSet * ret = [NSOrderedSet orderedSetWithObjects:shortID,@"MonthlySubscription",@"WeeklySubscription",@"QuarterlySubscription",@"YearlySubscription",@"HalfYearlySubscription",@"YearlySubscription2",@"HalfYearlySubscription2",@"HalfYearlySubscription3",@"FreeSubscription",nil];
     return ret;
 
 }
@@ -645,20 +621,25 @@
 
 - (NSString*) receiptForUrlString{
     //Check whether we have active subscriptions, or if we already bought this product, or if a subscription code was provided earlier
-    NSSet * relevantIDs = [self relevantLibrelioProductIDsForUrlStringForcingSubscriptions:YES];
+    NSOrderedSet * relevantIDs = [self relevantLibrelioProductIDsForUrlString];
+    NSString * shortID = [relevantIDs firstObject]; //The shortID is always first, then come the subscription IDs.
     NSString * receipt = nil;
+    NSString *tempKeyShort = [NSString stringWithFormat:@"%@-invalidreceipt",shortID];
+    NSString * invalidReceipt = [[NSUserDefaults standardUserDefaults] objectForKey:tempKeyShort];
     for(NSString * currentID in relevantIDs){
         NSString *tempKey = [NSString stringWithFormat:@"%@-receipt",currentID];
         NSString * tempReceipt = [[NSUserDefaults standardUserDefaults] objectForKey:tempKey];
         if (tempReceipt && ![tempReceipt isEqualToString:@""]){
-            receipt = tempReceipt;
+            //If this is a subscription receipt, check that it is not invalid for the current shortID
+            if ([currentID isEqual:shortID]) receipt = tempReceipt;
+            if (![tempReceipt isEqualToString:invalidReceipt])receipt = tempReceipt;
         }
     }
     //If no receipt was found, check whether user has entered a Subscription code
 	if (!receipt) receipt = [[NSUserDefaults standardUserDefaults] objectForKey:@"Subscription-code"];
     //If no receipt was found, finally check whether user has entered a username and password
 	if (!receipt) receipt = [[NSUserDefaults standardUserDefaults] objectForKey:@"Username"];
-    
+    //SLog( @"Will return receipt ___ %@ ____",receipt);
     return (receipt);
 
 

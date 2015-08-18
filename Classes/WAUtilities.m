@@ -13,7 +13,7 @@
 
 
 #define kDownloadUrl @"http://librelio-europe.s3.amazonaws.com"
-#define kCheckAppStoreUrl @"http://download.librelio.com/downloads/appstorev2.php?receipt=%@&sharedsecret=%@&urlstring=%@&userkey=%@"
+#define kCheckAppStoreUrl @"http://download.librelio.com/downloads/appstorev2.php?receipt=%@&sharedsecret=%@&urlstring=%@"
 #define kCheckPasswordUrl @"http://download.librelio.com/downloads/pswd.php?code=%@&service=%@&urlstring=%@&client=%@&app=%@&deviceid=%@"
 #define kCheckUsernamePasswordUrl @"http://download.librelio.com/downloads/subscribers.php?user=%@&pswd=%@&urlstring=%@&client=%@&app=%@&service=%@&deviceid=%@"
 
@@ -421,19 +421,7 @@
 
 + (NSString *) completeCheckAppStoreUrlforUrlString:(NSString*)urlString{
 	//Retrieve receipt if it has been stored
-    NSSet * relevantIDs = [urlString relevantLibrelioProductIDsForUrlStringForcingSubscriptions:NO];
-    NSString * receipt = nil;
-    NSString * userKey = nil;
-    for(NSString * currentID in relevantIDs){
-        NSString *tempKey = [NSString stringWithFormat:@"%@-receipt",currentID];
-        NSString * tempReceipt = [[NSUserDefaults standardUserDefaults] objectForKey:tempKey];
-        if (tempReceipt){
-            receipt = tempReceipt;
-            userKey = tempKey;
-        }
-    }
-	if (!receipt) return nil;//If there is no receipt, no need to check app store => return nil
-	
+    NSString * receipt = [urlString receiptForUrlString];
 	//Retrieve shared secret
 	NSString * sharedSecret = @"";
 	NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];
@@ -443,7 +431,7 @@
 	NSString * encodedUrl = [[urlString noArgsPartOfUrlString] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
 
 	
-	NSString * retUrl = [NSString stringWithFormat:kCheckAppStoreUrl,receipt,sharedSecret,encodedUrl,userKey];
+	NSString * retUrl = [NSString stringWithFormat:kCheckAppStoreUrl,receipt,sharedSecret,encodedUrl];
 	//SLog(@"retAppSUrl=%@",retUrl);
 	return retUrl;
 	
@@ -496,7 +484,7 @@
 
     
 	NSString * retUrl = [NSString stringWithFormat:kCheckUsernamePasswordUrl,username,password,encodedUrl,clientShortId,appShortId,userService,deviceid];
-	NSLog(@"retpassUrl=%@",retUrl);
+	//SLog(@"retpassUrl=%@",retUrl);
 	return retUrl;
 	
 }

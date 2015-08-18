@@ -828,7 +828,7 @@
 		14DD779F14A60D64004E06E5 /* WAZoomImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAZoomImage.h; sourceTree = "<group>"; };
 		14DD77A014A60D64004E06E5 /* WAZoomImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAZoomImage.m; sourceTree = "<group>"; };
 		14DF9B22145D4FE10031C52F /* NSString+WAURLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+WAURLString.h"; sourceTree = "<group>"; };
-		14DF9B23145D4FE10031C52F /* NSString+WAURLString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+WAURLString.m"; sourceTree = "<group>"; };
+		14DF9B23145D4FE10031C52F /* NSString+WAURLString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSString+WAURLString.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		14E002BB127077F6005514AA /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		14E007DF1274716F005514AA /* WAUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = WAUtilities.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		14E007E01274716F005514AA /* WAUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = WAUtilities.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -1805,7 +1805,7 @@
 				ORGANIZATIONNAME = "WidgetAvenue - Librelio";
 				TargetAttributes = {
 					1490867817E375D700943DD2 = {
-						DevelopmentTeam = 57YKSCS4YS;
+						DevelopmentTeam = 59A26UF37H;
 					};
 					14DB1158164BEDC3001FE76B = {
 						DevelopmentTeam = 2WU7L85G5E;

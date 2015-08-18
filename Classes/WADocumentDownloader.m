@@ -117,6 +117,7 @@
     NSDictionary * userInfo = error.userInfo;
     NSString * httpStatus = [NSString stringWithFormat:@"%@",[userInfo objectForKey:@"SSErrorHTTPStatusCodeKey"]];
     //SLog(@"Status %@",httpStatus);
+    
 	//If a 304 status code is received, trigger didReceiveNotModifiedHeaderForConnection
 	if ([httpStatus isEqualToString:@"304"]){
         [self didReceiveNotModifiedHeaderForConnection:connection];
@@ -156,12 +157,29 @@
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Password"];
     }
     
-    //Temporary: If a status code 462 is returned, wipe credentials so that issue can be bought
+    //If a status code 462 is returned, wipe credentials or store invalid receiptso that issue can be bought
 	if ([httpStatus isEqualToString:@"462"]){
 		[connection cancel];
+        
+        //Wipe credentials
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Subscription-code"];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Username"];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Password"];
+        
+        //Store invalid receipt
+        NSString * connectionUrlString = [[[connection originalRequest] URL] absoluteString];
+        NSString * connectionReceipt = [connectionUrlString valueOfParameterInUrlStringforKey:@"receipt"];
+        NSString * productUrlString = [connectionUrlString valueOfParameterInUrlStringforKey:@"urlstring"];
+        NSString * shortID = [productUrlString nameOfFileWithoutExtensionOfUrlString];
+        //SLog(@"invalid receipt for %@:%@",shortID,connectionReceipt);
+        if (shortID && connectionReceipt) {
+            NSString *tempKey = [NSString stringWithFormat:@"%@-invalidreceipt",shortID];
+            [[NSUserDefaults standardUserDefaults] setObject:connectionReceipt forKey:tempKey];
+        }
+       
+        
+
+        
     }
     
      

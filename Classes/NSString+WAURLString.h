@@ -38,7 +38,7 @@
 - (NSString*) appStoreProductIDForLibrelioProductID;
 - (NSString*) librelioProductIDForAppStoreProductID;
 
-- (NSSet*) relevantLibrelioProductIDsForUrlStringForcingSubscriptions:(BOOL)forceSubscription;
+- (NSOrderedSet*) relevantLibrelioProductIDsForUrlString;
 - (NSString *) titleWithSubscriptionLengthForAppStoreProductId:(NSString*)theId;
 
 /**
