@@ -33,3 +33,9 @@ ScriptTarget/path.txt
 ScriptTarget/Application.plist
 
 
+
+*.nib
+
+*.nib
+
+Classes/WATableContainerView.nib

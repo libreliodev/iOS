@@ -484,7 +484,7 @@
 
     
 	NSString * retUrl = [NSString stringWithFormat:kCheckUsernamePasswordUrl,username,password,encodedUrl,clientShortId,appShortId,userService,deviceid];
-	//SLog(@"retpassUrl=%@",retUrl);
+	//SLog(@"retUrl=%@",retUrl);
 	return retUrl;
 	
 }
