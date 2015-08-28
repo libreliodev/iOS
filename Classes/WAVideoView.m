@@ -85,12 +85,12 @@
 
 
 - (void) didStopMovie{
-    NSLog(@"Did stop movie");
+    //SLog(@"Did stop movie");
     if ((playFullScreen)&&(movieViewController.moviePlayer.playbackState==MPMoviePlaybackStateStopped)) [self removeFromSuperview];//This will deallocate this instance
     
 }
 - (void)dealloc {
-    NSLog(@"Will dealloc");
+    //SLog(@"Will dealloc");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [movieViewController.moviePlayer stop];
     [movieViewController release];

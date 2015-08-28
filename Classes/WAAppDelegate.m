@@ -138,9 +138,10 @@
     NSDictionary * app_Dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"]];
     NSString * DfpPrefix = [app_Dic objectForKey:@"DfpPrefix"];
     if (DfpPrefix){
-        self.startInterstitial = [[DFPInterstitial alloc] init];
         NSString * shortUnitId = @"startup";//startup is the code for startup instertitials
-        self.startInterstitial.adUnitID = [DfpPrefix completeAdUnitCodeForShortCode:shortUnitId];
+        self.startInterstitial = [[GADInterstitial alloc] initWithAdUnitID:[DfpPrefix completeAdUnitCodeForShortCode:shortUnitId]];
+        //self.startInterstitial = [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-3940256099942544/4411468910"];//For testing
+
         //self.startInterstitial.adUnitID = @"/6499/example/interstitial";
         //self.startInterstitial.adUnitID = @"/166877488/developer_wind_i000";
         //SLog(@"unitId:%@",startInterstitial.adUnitID);
