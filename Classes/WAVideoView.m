@@ -56,8 +56,9 @@
         movieViewController = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
         
         if (playFullScreen){
-            [currentViewController presentMoviePlayerViewControllerAnimated:movieViewController];
-        }
+            MPMoviePlayerViewController * movieViewController2 = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
+            [currentViewController presentMoviePlayerViewControllerAnimated:movieViewController2];
+         }
         else{
             movieViewController.moviePlayer.controlStyle =  MPMovieControlStyleEmbedded;
             
@@ -84,12 +85,12 @@
 
 
 - (void) didStopMovie{
-    //SLog(@"Did stop movie");
+    NSLog(@"Did stop movie");
     if ((playFullScreen)&&(movieViewController.moviePlayer.playbackState==MPMoviePlaybackStateStopped)) [self removeFromSuperview];//This will deallocate this instance
     
 }
 - (void)dealloc {
-    //SLog(@"Will dealloc");
+    NSLog(@"Will dealloc");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [movieViewController.moviePlayer stop];
     [movieViewController release];
