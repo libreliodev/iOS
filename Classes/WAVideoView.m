@@ -56,8 +56,9 @@
         movieViewController = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
         
         if (playFullScreen){
-            [currentViewController presentMoviePlayerViewControllerAnimated:movieViewController];
-        }
+            MPMoviePlayerViewController * movieViewController2 = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
+            [currentViewController presentMoviePlayerViewControllerAnimated:movieViewController2];
+         }
         else{
             movieViewController.moviePlayer.controlStyle =  MPMovieControlStyleEmbedded;
             

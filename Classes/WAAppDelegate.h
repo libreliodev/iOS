@@ -13,7 +13,7 @@
 @interface WAAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate,GADInterstitialDelegate> {
     UIWindow *window;
     UIViewController *rootViewController;
-    DFPInterstitial * startInterstitial;
+    GADInterstitial * startInterstitial;
     WAPaymentTransactionObserver *observer;
     WAAppSubDelegate * apnsSubDelegate;
     NSMetadataQuery * metadataQuery;
@@ -23,7 +23,7 @@
 
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) UITabBarController *rootViewController;
-@property (nonatomic, retain) DFPInterstitial * startInterstitial;
+@property (nonatomic, retain) GADInterstitial * startInterstitial;
 @property (nonatomic, retain) WAAppSubDelegate * apnsSubDelegate;
 @property (nonatomic, retain) NSMetadataQuery * metadataQuery;
 

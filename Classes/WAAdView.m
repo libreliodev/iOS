@@ -49,12 +49,9 @@
             NSString * shortUnitId = [[urlString noArgsPartOfUrlString] lastPathComponent];
             //SLog (@"url: %@, short:%@",urlString,shortUnitId);
             self.adUnitID = [DfpPrefix completeAdUnitCodeForShortCode:shortUnitId];
-            //self.adUnitID = @"/6499/example/banner";
-            //self.adUnitID = @"/166877488/test3";
+            //self.adUnitID = @"ca-app-pub-3940256099942544/2934735716";//This is for testing
             self.delegate = self;
             //SLog(@"self.adUnitID %@",self.adUnitID);
-            //GADRequest *request = [GADRequest request];
-            //request.testDevices = @[ GAD_SIMULATOR_ID ];
             [self loadRequest:[DFPRequest request]];
             
             
