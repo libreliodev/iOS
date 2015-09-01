@@ -127,7 +127,8 @@
 	//If a 403 status code is received, trigger didReceiveAuthenticationChallenge
 	//if ([response statusCode]==403) [self didReceiveAuthenticationChallenge:nil forConnection:connection];
     if ([httpStatus isEqualToString:@"403"]){
-        [self connection:connection didReceiveAuthenticationChallenge:nil];
+        NSURLAuthenticationChallenge * challengeNul;
+        [self connection:connection didReceiveAuthenticationChallenge:challengeNul];
         return;
     }
 	
