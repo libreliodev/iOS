@@ -42,13 +42,20 @@
 	urlString = [[NSString alloc]initWithString: theString];
 
 
-    NSString * receipt = [urlString receiptForUrlString];
+    NSString * credential = [urlString receiptForUrlString];
+    
+    //If no receipt was found, check whether user has entered a Subscription code
+    if (!credential) credential = [[NSUserDefaults standardUserDefaults] objectForKey:@"Subscription-code"];
+    //If no receipt was found, finally check whether user has entered a username and password
+    if (!credential) credential = [[NSUserDefaults standardUserDefaults] objectForKey:@"Username"];
+    //SLog( @"Will return receipt ___ %@ ____",receipt);
+
     
     NSString * login = [urlString valueOfParameterInUrlStringforKey:@"walogin"];
 
 	
-    if (receipt){
-		//We have a receipt, proceed to download
+    if (credential){
+		//We have a credential, proceed to download
 		[self startDownloadOrCheckCredentials];
 	}
 	else if ([WAUtilities featuresInApps]&&!login) {

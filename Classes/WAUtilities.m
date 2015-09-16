@@ -422,6 +422,7 @@
 + (NSString *) completeCheckAppStoreUrlforUrlString:(NSString*)urlString{
 	//Retrieve receipt if it has been stored
     NSString * receipt = [urlString receiptForUrlString];
+    if (!receipt) return nil;
 	//Retrieve shared secret
 	NSString * sharedSecret = @"";
 	NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];

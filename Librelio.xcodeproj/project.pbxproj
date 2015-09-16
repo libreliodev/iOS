@@ -1808,7 +1808,7 @@
 				ORGANIZATIONNAME = "WidgetAvenue - Librelio";
 				TargetAttributes = {
 					1490867817E375D700943DD2 = {
-						DevelopmentTeam = 59A26UF37H;
+						DevelopmentTeam = 57YKSCS4YS;
 					};
 					14DB1158164BEDC3001FE76B = {
 						DevelopmentTeam = 2WU7L85G5E;

@@ -635,12 +635,7 @@
             if (![tempReceipt isEqualToString:invalidReceipt])receipt = tempReceipt;
         }
     }
-    //If no receipt was found, check whether user has entered a Subscription code
-	if (!receipt) receipt = [[NSUserDefaults standardUserDefaults] objectForKey:@"Subscription-code"];
-    //If no receipt was found, finally check whether user has entered a username and password
-	if (!receipt) receipt = [[NSUserDefaults standardUserDefaults] objectForKey:@"Username"];
-    //SLog( @"Will return receipt ___ %@ ____",receipt);
-    return (receipt);
+     return (receipt);
 
 
 }
