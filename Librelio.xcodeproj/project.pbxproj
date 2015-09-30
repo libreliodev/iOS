@@ -722,7 +722,7 @@
 		148F208B1910CE7B008D44D6 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		1490866B17E332A200943DD2 /* rss.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = rss.png; path = Resources/rss.png; sourceTree = "<group>"; };
 		1490866C17E332A200943DD2 /* rss@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rss@2x.png"; path = "Resources/rss@2x.png"; sourceTree = "<group>"; };
-		1490873517E375D700943DD2 /* ScriptTempProductName.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScriptTempProductName.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1490873517E375D700943DD2 /* LibrelioApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LibrelioApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1490873717E37BE100943DD2 /* Application.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Application.plist; sourceTree = "<group>"; };
 		1490873C17E43B3B00943DD2 /* path.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = path.txt; sourceTree = "<group>"; };
 		1491964D1328A31C00DD54B1 /* WAModuleProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAModuleProtocol.h; sourceTree = "<group>"; };
@@ -804,7 +804,7 @@
 		14D46E381354A52000B388A8 /* HTMLTemplate.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HTMLTemplate.html; sourceTree = "<group>"; };
 		14D8296A19A2098E0059F3E0 /* WAURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WAURLProtocol.h; sourceTree = "<group>"; };
 		14D8296B19A2098E0059F3E0 /* WAURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WAURLProtocol.m; sourceTree = "<group>"; };
-		14DB1215164BEDC4001FE76B /* Wind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wind.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		14DB1215164BEDC4001FE76B /* .app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = .app; sourceTree = BUILT_PRODUCTS_DIR; };
 		14DB136E164C52C4001FE76B /* Application.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Application.plist; sourceTree = "<group>"; };
 		14DB136F164C52C4001FE76B /* Application_.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Application_.plist; sourceTree = "<group>"; };
 		14DB1370164C52C4001FE76B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -1667,8 +1667,8 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				14DB1215164BEDC4001FE76B /* Wind.app */,
-				1490873517E375D700943DD2 /* ScriptTempProductName.app */,
+				14DB1215164BEDC4001FE76B /* .app */,
+				1490873517E375D700943DD2 /* LibrelioApp.app */,
 				142EBBBA1A2B018C00BBDD97 /* Reader.app */,
 			);
 			name = Products;
@@ -1778,7 +1778,7 @@
 			);
 			name = Script;
 			productName = TabBarExTwo;
-			productReference = 1490873517E375D700943DD2 /* ScriptTempProductName.app */;
+			productReference = 1490873517E375D700943DD2 /* LibrelioApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		14DB1158164BEDC3001FE76B /* Wind */ = {
@@ -1795,7 +1795,7 @@
 			);
 			name = Wind;
 			productName = TabBarExTwo;
-			productReference = 14DB1215164BEDC4001FE76B /* Wind.app */;
+			productReference = 14DB1215164BEDC4001FE76B /* .app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2548,7 +2548,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = ScriptTempProductName;
+				PRODUCT_NAME = LibrelioApp;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2590,7 +2590,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = ScriptTempProductName;
+				PRODUCT_NAME = LibrelioApp;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2630,7 +2630,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = ScriptTempProductName;
+				PRODUCT_NAME = LibrelioApp;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
@@ -2687,7 +2687,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = Wind;
+				PRODUCT_NAME = "";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2728,7 +2728,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = Wind;
+				PRODUCT_NAME = "";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2767,7 +2767,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_NAME = Wind;
+				PRODUCT_NAME = "";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
