@@ -9,6 +9,9 @@ PATH_TO_SOURCE=$(<"${SRCROOT}/ScriptTarget/path.txt")
 echo "$PATH_TO_SOURCE"
 cd "$PATH_TO_SOURCE"
 
+#Copy Application.plist
+cp -f Application.plist "${SRCROOT}/ScriptTarget/Application.plist"
+
 #Compile xibs
 for f in $(find "./" -type f -name "*.xib")
 do
