@@ -239,10 +239,41 @@
         if (self.hidden ==NO){
             NSString * httpStatus = [notificatedDic objectForKey:@"httpStatus"];
             NSString * theMessage = [[NSBundle mainBundle]stringForKey:@"Download failed, please check your connection"];
-            if ([httpStatus isEqualToString:@"401"]) theMessage = [[NSBundle mainBundle]stringForKey:@"Invalid Code"];
-            if ([httpStatus isEqualToString:@"462"]) theMessage = [[NSBundle mainBundle]stringForKey:@"You don't own this issue"];
-            if ([httpStatus isEqualToString:@"461"]) theMessage = [[NSBundle mainBundle]stringForKey:@"Invalid Username Or Password"];
-            if ([httpStatus isEqualToString:@"463"]) theMessage = [[NSBundle mainBundle]stringForKey:@"Too Many Devices"];
+
+            switch([httpStatus integerValue]) {
+                case 401: {
+                    theMessage = [[NSBundle mainBundle]stringForKey:@"Invalid Code"];
+                }
+                    break;
+                    
+                case 462: {
+                    theMessage = [[NSBundle mainBundle]stringForKey:@"Download failed due to subscription ended"];
+                }
+                    break;
+                    
+                case 461: {
+                    theMessage = [[NSBundle mainBundle]stringForKey:@"Invalid Username Or Password"];
+                }
+                    break;
+                    
+                case 463: {
+                    theMessage = [[NSBundle mainBundle]stringForKey:@"Too Many Devices"];
+                }
+                    break;
+                    
+                case -999: {
+                    theMessage = [[NSBundle mainBundle]stringForKey:@"Download failed due to operation cancelled"];
+                }
+                    break;
+                    
+                case -1019: {
+                    theMessage = [[NSBundle mainBundle]stringForKey:@"Download failed, please check your connection"];
+                }
+                    break;
+                default:
+                    break;
+            }
+            
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil
                                                            message:theMessage
                                                           delegate:self 
