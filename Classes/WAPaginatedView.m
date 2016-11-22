@@ -96,7 +96,7 @@
         
         pdfDocument.intParam = pagesPerScreenInLandscape;//Needed in PDFParser to determine the size of big pages
         
-        numberOfScreensCached = 2;
+        numberOfScreensCached = 6;
 
 		self.backgroundColor = [UIColor whiteColor];
 		
