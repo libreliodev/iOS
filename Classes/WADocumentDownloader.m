@@ -126,14 +126,14 @@
     
 	//If a 403 status code is received, trigger didReceiveAuthenticationChallenge
 	//if ([response statusCode]==403) [self didReceiveAuthenticationChallenge:nil forConnection:connection];
-    if ([httpStatus isEqualToString:@"403"]){
+    else if ([httpStatus isEqualToString:@"403"]){
         NSURLAuthenticationChallenge * challengeNul;
         [self connection:connection didReceiveAuthenticationChallenge:challengeNul];
         return;
     }
 	
 	//If a status code 402 is returned, it comes from appstoreV2.php, and means that the credentails were not fine
-	if ([httpStatus isEqualToString:@"402"]){
+	else if ([httpStatus isEqualToString:@"402"]){
 		[connection cancel];
 		//Remove the json certificate from the standard user defaults, since it is not or no longer valid
 		NSString * connUrl = [WAUtilities completeCheckAppStoreUrlforUrlString:currentUrlString];
@@ -144,14 +144,14 @@
 	}
     
 	//If a status code 401 is returned, it comes from pswd.php, and means that the credentials were not fine
-	if ([httpStatus isEqualToString:@"401"]){
+	else if ([httpStatus isEqualToString:@"401"]){
 		[connection cancel];
 		//Remove the subscription code from the standard user defaults, since they are no longer valid
 		[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Subscription-code"];
     }
 
     //If a status code 461 is returned, it comes from subscribers.php, and means that the credentials were not fine
-	if ([httpStatus isEqualToString:@"461"]){
+	else if ([httpStatus isEqualToString:@"461"]){
 		[connection cancel];
 		//Remove the username and password from the standard user defaults, since they are no longer valid
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"Username"];
@@ -159,7 +159,7 @@
     }
     
     //If a status code 462 is returned, wipe credentials or store invalid receiptso that issue can be bought
-	if ([httpStatus isEqualToString:@"462"]){
+	else if ([httpStatus isEqualToString:@"462"]){
 		[connection cancel];
         
         //Wipe credentials
@@ -181,6 +181,10 @@
         
 
         
+    } else if (error.code == NSURLErrorCancelled) {
+        httpStatus = @"-999";
+    } else if (error.code == NSURLErrorNotConnectedToInternet) {
+        httpStatus = @"-1009";
     }
     
      
