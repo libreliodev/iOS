@@ -39,12 +39,8 @@
     parser =  (NSObject <WAParserProtocol> *)[[theClass alloc] init];
     parser.urlString = urlString;
     
-    self.contentSizeForViewInPopover= CGSizeMake(320,480);
-
-    
-
-    
- 	
+    // FIX - Issue #5
+    self.preferredContentSize = CGSizeMake(320, 480);
 }
 
 

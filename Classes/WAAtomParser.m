@@ -22,7 +22,11 @@
     //SLog(@"Started Atom parser");
     urlString = [[NSString alloc]initWithString: theString];
 	NSData * feedData = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:urlString]];
-	doc = xmlReadMemory([feedData bytes], [feedData length], "", NULL, HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR);
+    /*                         FIX : Issue #4
+     /  arc4random_uniform expects a 32 bit integer as its argument.
+     /  Adding a cast to an unsigned 32 bit integer to covert it.
+     */
+    doc = xmlReadMemory([feedData bytes], arc4random_uniform((uint32_t)[feedData length]), "", NULL, HTML_PARSE_NOWARNING | HTML_PARSE_NOERROR);
 	xpathCtx = xmlXPathNewContext(doc); 
     xmlXPathRegisterNs(xpathCtx, (xmlChar *)"a", (xmlChar *)"http://www.w3.org/2005/Atom");
 }
