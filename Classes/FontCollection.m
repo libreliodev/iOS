@@ -6,7 +6,9 @@
 /* Applier function for font dictionaries */
 void didScanFont(const char *key, CGPDFObjectRef object, void *collection)
 {
-	if (!CGPDFObjectGetType(object) == kCGPDFObjectTypeDictionary) return;
+    //Fix: https://github.com/libreliodev/iOS/issues/175
+    //Since ! is applied on CGPDFObjectGetType(object) comparision is perfomred between two incompatible values. Hence the warning.
+	if (CGPDFObjectGetType(object) != kCGPDFObjectTypeDictionary) return;
 	CGPDFDictionaryRef dict;
 	if (!CGPDFObjectGetValue(object, kCGPDFObjectTypeDictionary, &dict)) return;
 	Font *font = [Font fontWithDictionary:dict];
