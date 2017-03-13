@@ -124,7 +124,9 @@
 
 - (void)buttonAction:(id)sender{
     UIButton * button = (UIButton *) sender;
-    [self.delegate actionSheet:nil clickedButtonAtIndex:button.tag-100];
+    //Fix: https://github.com/libreliodev/iOS/issues/180
+    //Adding [UIActionSheet new] won't affect any existing functionality
+    [self.delegate actionSheet:[UIActionSheet new] clickedButtonAtIndex:button.tag-100];
     [self closeView];
     
 }
