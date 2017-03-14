@@ -23,11 +23,15 @@
 		NSString *tempKey = [NSString stringWithFormat:@"%@-receipt",shortID];
         //SLog(@"newjson: %@",[self encode:(uint8_t *)receipt.bytes length:receipt.length]);
         
+        
+        //Begin: Modified for fix #162
+        NSData *data = [self transactionReceiptForTransaction:transaction];
+        
         switch (transaction.transactionState)
 		{
 			case SKPaymentTransactionStatePurchased:{
 				//Store the receipt
-				NSString *jsonObjectString = [self encode:(uint8_t *)transaction.transactionReceipt.bytes length:transaction.transactionReceipt.length];  
+				NSString *jsonObjectString = [self encode:(uint8_t *)data.bytes length:data.length];
 				//SLog(@"Transaction Succceded for product id %@ with json receipt %@",transaction.payment.productIdentifier,jsonObjectString);
 				[[NSUserDefaults standardUserDefaults] setObject:jsonObjectString forKey:tempKey];
 				// Remove the transaction from the payment queue.
@@ -36,7 +40,7 @@
 			case SKPaymentTransactionStateRestored:{
 				//Store the  receipt
 				//NSString *jsonObjectString = [self encode:(uint8_t *)transaction.originalTransaction.transactionReceipt.bytes length:transaction.originalTransaction.transactionReceipt.length];  Do not use original receipt, an empty string is returned for some reason
-				NSString *jsonObjectString = [self encode:(uint8_t *)transaction.transactionReceipt.bytes length:transaction.transactionReceipt.length];  
+				NSString *jsonObjectString = [self encode:(uint8_t *)data.bytes length:data.length];
 				//SLog(@"Transaction restored  and for product id %@ and receipt %@ ",transaction.payment.productIdentifier,jsonObjectString);
 				[[NSUserDefaults standardUserDefaults] setObject:jsonObjectString forKey:tempKey];
 				// Remove the transaction from the payment queue.
@@ -50,6 +54,7 @@
 			default:
 				break;
 		}
+        //End: Modified for fix #162
  		//Send notification
 		[[NSNotificationCenter defaultCenter] postNotificationName:@"transactionStatusDidChange" object:transaction];
         
@@ -70,6 +75,22 @@
 - (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error{
     [[NSNotificationCenter defaultCenter] postNotificationName:@"restoreCompletedTransactionsFinished" object:error];
     
+}
+
+
+//Fix: https://github.com/libreliodev/iOS/issues/162
+//Added for fix #162
+- (NSData *)transactionReceiptForTransaction:(SKPaymentTransaction *)transaction {
+    NSData *data = nil;
+    if ([[NSBundle mainBundle] respondsToSelector:@selector(appStoreReceiptURL)]) {
+        //iOS 7 & above
+        data =[NSData dataWithContentsOfURL:[[NSBundle mainBundle] appStoreReceiptURL]];
+    }
+    if (data != nil) {
+        return data;
+    }
+    ///As per Apple guide lines, we can't completely avoid this call and must be a backup option for the new implementation above.
+    return transaction.transactionReceipt;
 }
 
 

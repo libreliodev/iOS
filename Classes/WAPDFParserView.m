@@ -217,7 +217,8 @@
         {
             //SLog(@"Found video");
             
-            if (videoView.movieViewController.moviePlayer.fullscreen)
+            //Modified for #163, in iOS 7 first condition still holds good. Where as iOS 8 & above where AVKit is used, movieViewController will be nil.
+            if (videoView.movieViewController.moviePlayer.fullscreen || ((videoView.movieViewController == nil) && videoView.playFullScreen))
             {
                 //SLog(@"Video is playing full screen");
                 return;

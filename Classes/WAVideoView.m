@@ -7,8 +7,18 @@
 #import "WAOperationsManager.h"
 #import "NSString+WAURLString.h"
 #import "NSBundle+WAAdditions.h"
+//https://github.com/libreliodev/iOS/issues/163
+#import <AVFoundation/AVFoundation.h>
+#import <AVKit/AVKit.h>
 
 
+@interface WAVideoView() {
+    AVPlayerViewController *avPlayerViewController;
+}
+
+@property (nonatomic, retain) AVPlayerViewController *avPlayerViewController;
+
+@end
 
 @implementation WAVideoView
 
@@ -27,9 +37,6 @@
 
 - (void) setUrlString: (NSString *) theString
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didStopMovie) name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
-    
-    
     urlString = [[NSString alloc]initWithString: theString];
     NSString * rectString = [urlString valueOfParameterInUrlStringforKey:@"warect"];
     
@@ -50,28 +57,53 @@
         
     }
     
+    ///Modified for fixing 163
+    
     if (url){
         
-        
-        movieViewController = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
-        
         if (playFullScreen){
-            MPMoviePlayerViewController * movieViewController2 = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
-            [currentViewController presentMoviePlayerViewControllerAnimated:movieViewController2];
+            //Fix: https://github.com/libreliodev/iOS/issues/163
+            if (NSClassFromString(@"AVPlayerViewController")) {
+                AVPlayer *player = [[AVPlayer alloc] initWithURL:url];
+                AVPlayerViewController *playerController = [[AVPlayerViewController alloc] init];
+                playerController.player = player;
+                [currentViewController presentViewController:playerController animated:YES completion:^{
+                    [playerController.player play];
+                }];
+                player = nil;
+            } else {
+                ///Since we are still using iOS 7 as deployment target we can't avoid this.
+                [self registerMPMoviePlayerNotification];
+                MPMoviePlayerViewController * movieViewController2 = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
+                [currentViewController presentMoviePlayerViewControllerAnimated:movieViewController2];
+            }
          }
         else{
-            movieViewController.moviePlayer.controlStyle =  MPMovieControlStyleEmbedded;
-            
-            movieViewController.moviePlayer.view.frame = CGRectMake (0,0,self.frame.size.width,self.frame.size.height);
-            movieViewController.moviePlayer.view.backgroundColor = [UIColor blackColor];
-            movieViewController.moviePlayer.backgroundView.backgroundColor = [UIColor blackColor];
-            movieViewController.moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
-            movieViewController.moviePlayer.view.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
-            [self addSubview:movieViewController.moviePlayer.view];
-            
+            if (NSClassFromString(@"AVPlayerViewController")) {
+                ///Todo - Something similar here
+                //https://github.com/libreliodev/iOS/issues/163
+                
+                AVPlayerViewController *playerViewController =
+                [[AVPlayerViewController alloc] init];
+                playerViewController.player = [AVPlayer playerWithURL:url];
+                playerViewController.view.frame = self.bounds;
+                [self addSubview:playerViewController.view];
+                self.autoresizesSubviews = TRUE;
+                self.avPlayerViewController = playerViewController;
+                [self.avPlayerViewController.player play];
+            } else {
+                [self registerMPMoviePlayerNotification];
+                movieViewController = [[MPMoviePlayerViewController alloc] initWithContentURL:url];
+                movieViewController.moviePlayer.controlStyle =  MPMovieControlStyleEmbedded;
+                movieViewController.moviePlayer.view.frame = CGRectMake (0,0,self.frame.size.width,self.frame.size.height);
+                movieViewController.moviePlayer.view.backgroundColor = [UIColor blackColor];
+                movieViewController.moviePlayer.backgroundView.backgroundColor = [UIColor blackColor];
+                movieViewController.moviePlayer.scalingMode = MPMovieScalingModeAspectFit;
+                movieViewController.moviePlayer.view.autoresizingMask = (UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleRightMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleTopMargin);
+                [self addSubview:movieViewController.moviePlayer.view];
+                [movieViewController.moviePlayer play];
+            }
         }
-        
-        [movieViewController.moviePlayer play];
         //SLog(@"Did start playing");
         
         
@@ -83,6 +115,24 @@
 }
 
 
+- (void)registerMPMoviePlayerNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didStopMovie) name:MPMoviePlayerPlaybackStateDidChangeNotification object:nil];
+}
+
+
+- (void)registerAVPlayerNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(movieStopped) name:AVPlayerItemDidPlayToEndTimeNotification object:self.avPlayerViewController.player.currentItem];
+}
+
+
+- (void)movieStopped:(NSNotification *)aNotification {
+    ///Equivalent to below method.
+    //When full screen & status of video is either unknown or failed, remove video view.
+    if ((playFullScreen)&&(avPlayerViewController.player.currentItem.status != AVPlayerItemStatusReadyToPlay)) {
+        [self removeFromSuperview];
+    }
+}
+
 
 - (void) didStopMovie{
     //SLog(@"Did stop movie");
@@ -91,9 +141,19 @@
 }
 - (void)dealloc {
     //SLog(@"Will dealloc");
+    ///Fix for 163
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [movieViewController.moviePlayer stop];
-    [movieViewController release];
+    if (avPlayerViewController) {
+        [avPlayerViewController.player pause];
+        [avPlayerViewController release];
+        avPlayerViewController = nil;
+    }
+    
+    if (movieViewController) {
+        [movieViewController.moviePlayer stop];
+        [movieViewController release];
+        movieViewController = nil;
+    }
     [urlString release];
     [super dealloc];
 }
@@ -107,7 +167,14 @@
 }
 
 - (void) moduleViewWillDisappear:(BOOL)animated{
-    [movieViewController.moviePlayer pause];
+    ///Fix for 163
+    if (movieViewController) {
+        [movieViewController.moviePlayer pause];
+    }
+    
+    if (self.avPlayerViewController) {
+        [self.avPlayerViewController.player pause];
+    }
 }
 
 
