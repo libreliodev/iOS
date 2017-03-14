@@ -1,4 +1,4 @@
-//  Copyright 2011 WidgetAvenue - Librelio. All rights reserved.
+	//  Copyright 2011 WidgetAvenue - Librelio. All rights reserved.
 
 
 #import "WABuyView.h"
@@ -176,8 +176,10 @@
         
         //Add a Code Enter button in case we have a CodeService key in Application_.plist
         NSString * codeService = nil ;
-        if (credentials) codeService = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"CodeService"];
-        if (codeService) {
+		if (credentials) {
+			codeService = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"CodeService"];
+		}
+		if (codeService) {
             //SLog(@"Code Hash:%@",codeHash);
             subscriberCodeTitle = [[NSBundle mainBundle]stringForKey:@"I have a subscriber code"];
             [actionSheet addButtonWithTitle:subscriberCodeTitle];
