@@ -1,4 +1,4 @@
-//  Copyright 2011 WidgetAvenue - Librelio. All rights reserved.
+ //  Copyright 2011 WidgetAvenue - Librelio. All rights reserved.
 
 
 #import "WAAppDelegate.h"
@@ -33,6 +33,8 @@
 @synthesize startInterstitial;
 @synthesize apnsSubDelegate;
 @synthesize metadataQuery;
+
+static bool neverBecameActive = true;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -137,20 +139,21 @@
     //Request ad if appropriate; this needs to be done here (and not in "didFinishLaunchingWithOptions") so that the ad is also displayed when the app awakes from background
     NSDictionary * app_Dic = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"]];
     NSString * DfpPrefix = [app_Dic objectForKey:@"DfpPrefix"];
-    if (DfpPrefix){
+    if (DfpPrefix && neverBecameActive){
+		neverBecameActive = false;
         NSString * shortUnitId = @"startup";//startup is the code for startup instertitials
-        self.startInterstitial = [[GADInterstitial alloc] initWithAdUnitID:[DfpPrefix completeAdUnitCodeForShortCode:shortUnitId]];
+		self.startInterstitial = [[DFPInterstitial alloc] initWithAdUnitID:[DfpPrefix completeAdUnitCodeForShortCode:shortUnitId]];
+		//self.startInterstitial = [[DFPInterstitial alloc] initWithAdUnitID:@"/6499/example/interstitial"];
+		
         //self.startInterstitial = [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-3940256099942544/4411468910"];//For testing
 
         //self.startInterstitial.adUnitID = @"/6499/example/interstitial";
         //self.startInterstitial.adUnitID = @"/166877488/developer_wind_i000";
         //SLog(@"unitId:%@",startInterstitial.adUnitID);
-        self.startInterstitial.delegate = self;
-        [self.startInterstitial loadRequest:[DFPRequest request]];
-        
-        
-        
-        
+		self.startInterstitial.delegate = self;
+		GADRequest *request = [GADRequest request];
+		// Requests test ads on simulators.
+        [self.startInterstitial loadRequest:request];
     }
     
     
@@ -626,14 +629,15 @@
 #pragma mark
 #pragma mark GADInterstitialDelegate implementation
 - (void)interstitialDidReceiveAd:(DFPInterstitial *)ad {
-    //SLog(@"Received ad successfully %@",ad);
-    [startInterstitial presentFromRootViewController:rootViewController];
+	//SLog(@"Received ad successfully %@",ad);
+	[ad presentFromRootViewController:rootViewController];
+	//	[startInterstitial]
 }
 
 
 - (void)interstitial:(DFPInterstitial *)interstitial
 didFailToReceiveAdWithError:(GADRequestError *)error {
-    //SLog(@"interstitialDidFailToReceiveAdWithError: %@ for interstitial adunit%@", [error localizedDescription],interstitial.adUnitID);
+    NSLog(@"interstitialDidFailToReceiveAdWithError: %@ for interstitial adunit%@", [error localizedDescription],interstitial.adUnitID);
 }
 
 - (void)interstitialDidDismissScreen:(DFPInterstitial *)interstitial {

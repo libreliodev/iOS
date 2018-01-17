@@ -98,6 +98,7 @@ static SHKActivityIndicator *_currentIndicator = nil;
 	self.alpha = 1;
 	
 	[UIView commitAnimations];
+	self.mustBeShown = true;
 }
 
 - (void)hideAfterDelay
@@ -115,6 +116,7 @@ static SHKActivityIndicator *_currentIndicator = nil;
 	self.alpha = 0;
 	
 	[UIView commitAnimations];
+	self.mustBeShown = false;
 }
 
 - (void)persist
@@ -151,6 +153,16 @@ static SHKActivityIndicator *_currentIndicator = nil;
 	else
 		[self persist];
 }
+
+- (void)maintain {
+		if (self.mustBeShown){
+			[self show];
+			[NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(maintain) userInfo:nil repeats:NO];
+		} else {
+			[self hide];
+		}
+}
+
 
 - (void)displayCompleted:(NSString *)m
 {	

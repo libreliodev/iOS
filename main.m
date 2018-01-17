@@ -8,4 +8,4 @@ int main(int argc, char *argv[]) {
     int retVal = UIApplicationMain(argc, argv,@"UIApplication",@"WAAppDelegate");//We are not using a Xib
     [pool release];
     return retVal;
-}
+}	

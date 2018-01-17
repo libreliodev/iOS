@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>fr_FR</string>
+	<key>CFBundleDisplayName</key>
+	<string>BigBike</string>
+	<key>CFBundleExecutable</key>
+	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Icon.png</string>
+		<string>Icon-72.png</string>
+		<string>Icon@2x.png</string>
+		<string>Icon-72@2x.png</string>
+	</array>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>Icon.png</string>
+				<string>Icon-72.png</string>
+				<string>Icon@2x.png</string>
+				<string>Icon-72@2x.png</string>
+				<string>Icon-60@2x.png</string>
+				<string>Icon-76.png</string>
+				<string>Icon-76@2x.png</string>
+			</array>
+		</dict>
+		<key>UINewsstandIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>generic.png</string>
+			</array>
+			<key>UINewsstandBindingEdge</key>
+			<string>UINewsstandBindingEdgeLeft</string>
+			<key>UINewsstandBindingType</key>
+			<string>UINewsstandBindingTypeMagazine</string>
+		</dict>
+	</dict>
+	<key>CFBundleIdentifier</key>
+	<string>com.niveales.bigbike</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>BigBike</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>3.3.9</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>337</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSMainNibFile</key>
+	<string></string>
+	<key>NSMainNibFile~ipad</key>
+	<string></string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>newsstand-content</string>
+	</array>
+	<key>UINewsstandApp</key>
+	<true/>
+	<key>UIStatusBarHidden</key>
+	<true/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>EULAUrl</key>
+	<string>http://www.bigbike-magazine.com/edition-numerique</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>The application use the calendar to help with the publication date</string>
+	<key>EULAStr</key>
+	<string>Abonnez-vous à Big Bike  :
+- Formules d&apos;abonnements auto-renouvelé  :
+1 an pour 21,99 €
+
+- Le paiement sera directement prélevé sur votre compte iTunes après la confirmation d&apos;achat.
+- Votre abonnement sera renouvelé automatiquement à la fin de la période par prélèvement sur votre compte iTunes, 24 heures avant la fin de la période en cours, et le prix du renouvellement sera indiqué.
+- Les abonnements auto-renouvelés peuvent être gérés par l&apos;utilisateur et le renouvellement automatique peut être désactivé en accédant aux paramètres de compte après l&apos;achat et au plus tard 24h avant la fin de votre abonnement.
+- Il n&apos;est pas possible d&apos;annuler un abonnement pendant sa période de validité.
+- Toute partie inutilisée d&apos;une période d&apos;essai gratuite, si elle est offerte, sera abandonnée lorsque l&apos;utilisateur achètera un abonnement à cette publication.</string>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+</dict>
+</plist>

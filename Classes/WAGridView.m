@@ -284,13 +284,11 @@
     //Add subscribe button if relevant
     NSString * subscribeString = [WAUtilities subscribeString];
     if (subscribeString){
-        NSString * subscriptionAndSpaces = [NSString stringWithFormat:@"%@   ",subscribeString];
-        [vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"" orString:subscriptionAndSpaces andLink:@"buy://localhost/wanodownload.pdf"];
-
+		//NSString * subscriptionAndSpaces = [NSString stringWithFormat:@"%@   ",subscribeString];
+		//[vc addButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace orImageNamed:@"" orString:subscriptionAndSpaces andLink:@"buy://localhost/wanodownload.pdf"];
+		[vc addMenuButtonWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace];
+		
     }
-    
-    
-    
 }
 
 - (void) moduleViewDidAppear{

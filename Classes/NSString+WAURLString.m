@@ -614,7 +614,7 @@
     if ([theId isEqualToString:[@"MonthlySubscription" appStoreProductIDForLibrelioProductID]] ) ret = [NSString stringWithFormat:@"%@ 1 %@",ret,[[NSBundle mainBundle]stringForKey:@"month"]];
     if ([theId isEqualToString:[@"QuarterlySubscription" appStoreProductIDForLibrelioProductID]] ) ret = [NSString stringWithFormat:@"%@ 3 %@",ret,[[NSBundle mainBundle]stringForKey:@"months"]];
     if ([theId isEqualToString:[@"HalfYearlySubscription" appStoreProductIDForLibrelioProductID]]||[shortId isEqualToString:@"HalfYearlySubscription2"]||[theId isEqualToString:@"HalfYearlySubscription3"] ) ret = [NSString stringWithFormat:@"%@ 6 %@",ret,[[NSBundle mainBundle]stringForKey:@"months"]];
-    if ([theId isEqualToString:[@"YearlySubscription" appStoreProductIDForLibrelioProductID]]||[shortId isEqualToString:@"YearlySubscription2"]  ) ret = [NSString stringWithFormat:@"%@ 1 %@",ret,[[NSBundle mainBundle]stringForKey:@"year"]];
+    if ([theId isEqualToString:[@"YearlySubscription" appStoreProductIDForLibrelioProductID]]||[shortId isEqualToString:@"YearlySubscription2"]  ) ret = [NSString stringWithFormat:@"%@ 1 %@",ret,[[NSBundle mainBundle]stringForKey:@"year"]]; 
     return ret;
     
 }

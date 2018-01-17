@@ -258,59 +258,199 @@
 }
 
 -(void) addButtonWithBarButtonSystemItem:(UIBarButtonSystemItem)systemItem orImageNamed:(NSString*)imageName orString:(NSString*)buttonString  andLink:(NSString*)linkString;{
-    // create the button
-    NSMutableArray* buttons = [[NSMutableArray alloc] initWithArray:rightToolBar.items];
-    WABarButtonItemWithLink* bi = [[WABarButtonItemWithLink alloc]
-                                   initWithBarButtonSystemItem:systemItem target:self action:@selector(performButtonAction:)];
-    bi.style = UIBarButtonItemStyleBordered;
-    if (systemItem == UIBarButtonSystemItemFixedSpace){
-        //Conventionally, in this case, we take either an image and a string button
-        if (![imageName isEqualToString:@""]){
-            UIImage * btnImage = [UIImage imageNamed:imageName];
-            bi = [[WABarButtonItemWithLink alloc]initWithImage:btnImage style:UIBarButtonItemStyleBordered target:self action:@selector(performButtonAction:)];
-        }
-        else{
-            bi = [[WABarButtonItemWithLink alloc]initWithTitle:buttonString style:UIBarButtonItemStyleBordered target:self action:@selector(performButtonAction:)];
-        }
-        
-    }
-    bi.link = linkString;
-    [buttons addObject:bi];
-     [bi release];
-
-    
-    // create a spacer
-    WABarButtonItemWithLink* bi2 = [[WABarButtonItemWithLink alloc]
-          initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    [buttons addObject:bi2];
-     [bi2 release];
-    
-    [rightToolBar setItems:buttons animated:NO];
+	// create the button
+	NSMutableArray* buttons = [[NSMutableArray alloc] initWithArray:rightToolBar.items];
+	WABarButtonItemWithLink* bi = [[WABarButtonItemWithLink alloc]
+								   initWithBarButtonSystemItem:systemItem target:self action:@selector(performButtonAction:)];
+	bi.style = UIBarButtonItemStyleBordered;
+	if (systemItem == UIBarButtonSystemItemFixedSpace){
+		//Conventionally, in this case, we take either an image and a string button
+		if (![imageName isEqualToString:@""]){
+			UIImage * btnImage = [UIImage imageNamed:imageName];
+			bi = [[WABarButtonItemWithLink alloc]initWithImage:btnImage style:UIBarButtonItemStyleBordered target:self action:@selector(performButtonAction:)];
+		}
+		else{
+			bi = [[WABarButtonItemWithLink alloc]initWithTitle:buttonString style:UIBarButtonItemStyleBordered target:self action:@selector(performButtonAction:)];
+		}
+		
+	}
+	bi.link = linkString;
+	[buttons addObject:bi];
+	[bi release];
+	
+	
+	// create a spacer
+	WABarButtonItemWithLink* bi2 = [[WABarButtonItemWithLink alloc]
+									initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+	[buttons addObject:bi2];
+	[bi2 release];
+	
+	[rightToolBar setItems:buttons animated:NO];
  
-    //Calculate the width needed
-    CGFloat widthNeeded = 4.0;
-    for (WABarButtonItemWithLink* button in buttons){
-        UIView *view = [button valueForKey:@"view"];
-        CGFloat width = view? [view frame].size.width : (CGFloat)0.0;
-        //SLog(@"Button  width:%f" , width);
-        widthNeeded += width;
-        
-    }
-    
-    rightToolBar.frame = CGRectMake(rightToolBar.frame.origin.x, rightToolBar.frame.origin.y, widthNeeded, self.navigationController.navigationBar.frame.size.height+0.01);
-  
-    
+	//Calculate the width needed
+	CGFloat widthNeeded = 4.0;
+	for (WABarButtonItemWithLink* button in buttons){
+		UIView *view = [button valueForKey:@"view"];
+		CGFloat width = view? [view frame].size.width : (CGFloat)0.0;
+		//SLog(@"Button  width:%f" , width);
+		widthNeeded += width;
+		
+	}
+	
+	rightToolBar.frame = CGRectMake(rightToolBar.frame.origin.x, rightToolBar.frame.origin.y, widthNeeded, self.navigationController.navigationBar.frame.size.height+0.01);
+	
+	
  
-    
-   
-    [buttons release];
+	
+	
+	[buttons release];
+	
+	
+}
 
-    
+-(void) addMenuButtonWithBarButtonSystemItem:(UIBarButtonSystemItem)systemItem {
+	// create the button
+	NSMutableArray* buttons = [[NSMutableArray alloc] initWithArray:rightToolBar.items];
+	WABarButtonItemWithLink* bi = [[WABarButtonItemWithLink alloc]
+								   initWithBarButtonSystemItem:systemItem target:self action:@selector(displayMainMenu:)];
+	bi.style = UIBarButtonItemStyleBordered;
+	if (systemItem == UIBarButtonSystemItemFixedSpace) {
+		//Conventionally, in this case, we take either an image and a string button
+		bi = [[WABarButtonItemWithLink alloc]initWithTitle:@"    Menu    " style:UIBarButtonItemStyleBordered target:self action:@selector(displayMainMenu:)];
+	}
+	[buttons addObject:bi];
+	[bi release];
+	
+	
+	// create a spacer
+	WABarButtonItemWithLink* bi2 = [[WABarButtonItemWithLink alloc]
+									initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+	[buttons addObject:bi2];
+	[bi2 release];
+	
+	[rightToolBar setItems:buttons animated:NO];
+ 
+	//Calculate the width needed
+	CGFloat widthNeeded = 4.0;
+	for (WABarButtonItemWithLink* button in buttons){
+		UIView *view = [button valueForKey:@"view"];
+		CGFloat width = view? [view frame].size.width : (CGFloat)0.0;
+		//SLog(@"Button  width:%f" , width);
+		widthNeeded += width;
+		
+	}
+	
+	rightToolBar.frame = CGRectMake(rightToolBar.frame.origin.x, rightToolBar.frame.origin.y, widthNeeded, self.navigationController.navigationBar.frame.size.height+0.01);
+	
+	[buttons release];
+}
+
+- (void) displayMainMenu:(id)sender{
+	self.lastSender = sender;
+	NSString* EULAUrl = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"EULAUrl"];
+	UIActionSheet *popup;
+	if (EULAUrl == nil) {
+		popup = [[UIActionSheet alloc] initWithTitle:@"Menu"
+														   delegate:self
+												  cancelButtonTitle:@"Annuler"
+											 destructiveButtonTitle:nil
+												  otherButtonTitles:[WAUtilities subscribeString], nil];
+	} else {
+		popup = [[UIActionSheet alloc] initWithTitle:@"Menu"
+														   delegate:self
+												  cancelButtonTitle:@"Annuler"
+											 destructiveButtonTitle:nil
+												  otherButtonTitles:[WAUtilities subscribeString], @"CGU", nil];
+	}
+	[popup showInView:self.view];
+	/*UIActionSheet *popup = [[UIActionSheet alloc] initWithTitle:@"Menu"
+													   delegate:self
+											  cancelButtonTitle:@"Annuler"
+										 destructiveButtonTitle:nil
+	 [popup showInView:self.view];*/
+
+}
+
+- (void)actionSheet:(UIActionSheet *)popup clickedButtonAtIndex:(NSInteger)buttonIndex {
+	NSString* EULAStr = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"EULAStr"];
+	UIAlertView *alert;
+	switch (buttonIndex) {
+		case 0:
+			if (EULAStr != nil) {
+				 alert = [[UIAlertView alloc] initWithTitle:@"Conditions générales d'utilisation"
+																message:EULAStr
+															   delegate:self
+													  cancelButtonTitle:@"Refuser"
+													  otherButtonTitles:@"OK", nil];
+				[alert show];
+			}
+			break;
+		case 1:
+			if ([popup numberOfButtons] > buttonIndex + 1) {
+				NSLog(@"%@",@"EULAUrl");
+				NSString* EULAUrl = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"EULAUrl"];
+				/*NSString* EULAUrl = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"EULAUrla"];
+				if (EULAUrl == nil) {
+					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"erreur"
+																	message:@"L'article dépasse la taille autorisée, il est impossible de l'envoyer" delegate:self cancelButtonTitle:@"OK"
+														  otherButtonTitles:nil, nil];
+					[alert show];
+				} else {
+					[self performMenuButtonActionsFromURL:EULAUrl];
+				}*/
+				[self performMenuButtonActionsFromURL:EULAUrl];
+			}
+			break;
+		default:
+			break;
+	}
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+	switch (buttonIndex) {
+		case 1:
+			[self performMenuButtonActionsFromURL:@"buy://localhost/wanodownload.pdf"];
+			[[SHKActivityIndicator currentIndicator] maintain];
+			break;
+		default:
+			break;
+	}
+}
+
+- (void) performMenuButtonActionsFromURL:(NSString*) url {
+	
+	WABarButtonItemWithLink * buttonItem = ( WABarButtonItemWithLink *) self.lastSender;
+	//SLog(@"Performing action for button %@ with link: %@",buttonItem.title,buttonItem.link);
+	
+	
+	WAModuleViewController * moduleViewController = [[WAModuleViewController alloc]init];
+	moduleViewController.moduleUrlString= url;
+	
+	//Release existing module if any
+	UIView * modView = [self.navigationItem.rightBarButtonItem.customView viewWithTag:999];
+	if (modView) [modView removeFromSuperview];
+	
+	if ([[url substringToIndex:7]isEqualToString:@"refresh"]) {
+		[self checkUpdate:YES];
+		
+	}
+	else{
+		moduleViewController.initialViewController= self;
+		//moduleViewController.containingView= buttonItem.customView;
+		UIView * bView = [buttonItem valueForKey:@"view"]; //See http://stackoverflow.com/questions/5066847/get-the-width-of-a-uibarbuttonitem
+		moduleViewController.containingView= self.navigationItem.rightBarButtonItem.customView;
+		moduleViewController.containingRect= CGRectMake(bView.frame.origin.x,bView.frame.origin.y,bView.frame.size.width,1.0f);//Hack: we need to set height to 1.0 for popover to display correctly
+		[moduleViewController pushViewControllerIfNeededAndLoadModuleView];
+		moduleViewController.moduleView.tag = 999;
+		[moduleViewController release];
+		
+		
+	}
 }
 
 - (void) viewWillAppear:(BOOL)animated{
     //Default navBar settings:
-    self.navigationController.navigationBarHidden = NO;	
+    self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;//Using this style   AND setting translucent property to NO prevents the navigationBar  from covering the upper part of the view.
     self.navigationController.navigationBar.translucent = NO;
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];

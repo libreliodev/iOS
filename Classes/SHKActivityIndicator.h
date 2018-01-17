@@ -40,6 +40,7 @@
 @property (nonatomic, retain) UILabel *subMessageLabel;
 
 @property (nonatomic, retain) UIActivityIndicatorView *spinner;
+@property (nonatomic, assign) Boolean mustBeShown;
 
 
 + (SHKActivityIndicator *)currentIndicator;
@@ -57,5 +58,6 @@
 - (void)hideSpinner;
 - (void)setProperRotation;
 - (void)setProperRotation:(BOOL)animated;
+- (void)maintain;
 
 @end

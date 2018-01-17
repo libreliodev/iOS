@@ -13,7 +13,7 @@
 
 
 #define kDownloadUrl @"http://librelio-europe.s3.amazonaws.com"
-#define kCheckAppStoreUrl @"http://download.librelio.com/downloads/appstorev2.php?receipt=%@&sharedsecret=%@&urlstring=%@"
+#define kCheckAppStoreUrl @"http://download.librelio.com/downloads/appstorev3.php?receipt=%@&sharedsecret=%@&urlstring=%@"
 #define kCheckPasswordUrl @"http://download.librelio.com/downloads/pswd.php?code=%@&service=%@&urlstring=%@&client=%@&app=%@&deviceid=%@"
 #define kCheckUsernamePasswordUrl @"http://download.librelio.com/downloads/subscribers.php?user=%@&pswd=%@&urlstring=%@&client=%@&app=%@&service=%@&deviceid=%@"
 
@@ -402,8 +402,14 @@
     else{
         NSString * appShortId = [[NSBundle mainBundle] getLibrelioAppId];
         NSString * clientShortId = [[NSBundle mainBundle] getLibrelioClientId];
-        
+		
+		//Handle very special case of Air & Cosmos
+		/*if ([appShortId isEqualToString:@"airetcomsosliseuse"]) {
+			appShortId = @"airetcosmos";
+			clientShortId = @"discom";
+		}*/
         NSString * completeUrl = [NSString stringWithFormat:@"%@/%@/%@%@",kDownloadUrl, clientShortId,appShortId,[urlString noArgsPartOfUrlString]];
+		
         //SLog(@"completeUrl %@",completeUrl);
         return completeUrl;
     }
@@ -422,14 +428,15 @@
 + (NSString *) completeCheckAppStoreUrlforUrlString:(NSString*)urlString{
 	//Retrieve receipt if it has been stored
     NSString * receipt = [urlString receiptForUrlString];
-    if (!receipt) return nil;
+	NSLog(@"receipt=%@",receipt);
+	if (!receipt) return nil;
 	//Retrieve shared secret
 	NSString * sharedSecret = @"";
 	NSString * credentials = [[NSBundle mainBundle] pathOfFileWithUrl:@"Application_.plist"];
 	if (credentials) sharedSecret = [[NSDictionary dictionaryWithContentsOfFile:credentials]objectForKey:@"SharedSecret"];
 	
 	//Encode UrlString without args
-	NSString * encodedUrl = [[urlString noArgsPartOfUrlString] stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+	NSString * encodedUrl = [[urlString noArgsPartOfUrlString] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLHostAllowedCharacterSet]];
 
 	
 	NSString * retUrl = [NSString stringWithFormat:kCheckAppStoreUrl,receipt,sharedSecret,encodedUrl];

@@ -46,6 +46,8 @@
 
 @property (nonatomic, retain) WATransparentToolbar* rightToolBar;
 
+@property (nonatomic, retain) id lastSender;
+
 
 - (void)pushViewControllerIfNeededAndLoadModuleView;
 - (void) initModuleView;
