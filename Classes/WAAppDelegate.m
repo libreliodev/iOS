@@ -14,7 +14,8 @@
 #import "WADocumentDownloadsManager.h"
 #import "WANewsstandIssueDownloader.h"
 
-
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
@@ -120,7 +121,7 @@ static bool neverBecameActive = true;
     [self createRootViewController];
     //SLog(@"Did updateRootViewController");
     
-    
+	[Fabric with:@[[Crashlytics class]]];
     
     //Notify appirater that launching is finished
     [Appirater appLaunched:YES];

@@ -1,4 +1,4 @@
-	//  Copyright 2011 WidgetAvenue - Librelio. All rights reserved.
+		//  Copyright 2011 WidgetAvenue - Librelio. All rights reserved.
 
 
 #import "WABuyView.h"
@@ -9,6 +9,7 @@
 #import "UIView+WAModuleView.m"
 #import "WADocumentDownloadsManager.h"
 
+#import "ChevalMag-Swift.h"
 
 
 #import "SHKActivityIndicator.h"
@@ -131,7 +132,7 @@
             //SLog(@"found %@, looking for %@",[product productIdentifier],productId);
             if ([[productId appStoreProductIDForLibrelioProductID]isEqualToString:[product productIdentifier]]){
                 //SLog(@"will try to buy %@",product);
-                [self orderProduct:product];
+                [self confirmOrder:product];
             }
             
      
@@ -166,9 +167,6 @@
             NSString * completeTitle = [product.localizedTitle titleWithSubscriptionLengthForAppStoreProductId:product.productIdentifier] ;
             
             [actionSheet addButtonWithTitle:[NSString stringWithFormat:@"%@: %@",completeTitle, formattedString]];
-            
-            
-            ;
         }
         //Add a Restore my purchases button
         NSString * locTitle0 = [[NSBundle mainBundle]stringForKey:@"Restore my purchases"];//This is the default title
@@ -248,7 +246,10 @@
 #pragma mark UIActionSheet protocol
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
+	/*selectedProductIndex = buttonIndex;
+	subscriptionPressedButtonLabel = [actionSheet buttonTitleAtIndex:buttonIndex];
+	[self diplayCGUAlert];*/
+	
     NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
 	if (buttonIndex == actionSheet.numberOfButtons-1){
 		//The cancel button was clicked
@@ -264,12 +265,30 @@
             //The enter username and password button was clicked
             [self createUsernamePasswordAlert];
     } else {
-        [self orderProduct:[products objectAtIndex:buttonIndex]];
-		
+        [self confirmOrder:[products objectAtIndex:buttonIndex]];
 	}
+}
 
-				
+
+
+- (void)diplayCGUAlert:(SKProduct*)product
+{
+	NSString* EULAStr = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"EULAStr"];
+	UIAlertController* alert = [UIAlertController alertControllerWithTitle:[[NSBundle mainBundle]stringForKey:@"CGU"]
+								message:EULAStr
+								preferredStyle:UIAlertControllerStyleAlert];
 	
+	UIAlertAction* okAction = [UIAlertAction actionWithTitle:[[NSBundle mainBundle]stringForKey:@"J'accepte"] style:UIAlertActionStyleDefault
+													 handler:^(UIAlertAction * action) {
+														[self orderProduct:product];
+													 }];
+	UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:[[NSBundle mainBundle]stringForKey:@"Annuler"] style:UIAlertActionStyleCancel
+														 handler:^(UIAlertAction * action) {
+															 
+														 }];
+	[alert addAction:cancelAction];
+	[alert addAction:okAction];
+	[currentViewController presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark -
@@ -280,24 +299,23 @@
 		//Cancel button was clicked
 		[self removeFromSuperview];
 	}
-    
-    if (alertView.tag == 1 && buttonIndex == 1) {
+	
+	if (alertView.tag == 1 && buttonIndex == 1) {
 		//OK button was clicked in password only alert
-            UITextField *psField  = [alertView textFieldAtIndex:0];
-            [[NSUserDefaults standardUserDefaults] setObject:[psField text] forKey:@"Subscription-code"];
+			UITextField *psField  = [alertView textFieldAtIndex:0];
+			[[NSUserDefaults standardUserDefaults] setObject:[psField text] forKey:@"Subscription-code"];
 
- 		[self startDownloadOrCheckCredentials];
+		[self startDownloadOrCheckCredentials];
 	}
-    if (alertView.tag == 2 && buttonIndex == 1) {
+	if (alertView.tag == 2 && buttonIndex == 1) {
 		//OK button was clicked in username + password alart
-            UITextField *usernameField = [alertView textFieldAtIndex:0];
-            UITextField *passwordField = [alertView textFieldAtIndex:1];
-            [[NSUserDefaults standardUserDefaults] setObject:[usernameField text] forKey:@"Username"];
-            [[NSUserDefaults standardUserDefaults] setObject:[passwordField text] forKey:@"Password"];
+			UITextField *usernameField = [alertView textFieldAtIndex:0];
+			UITextField *passwordField = [alertView textFieldAtIndex:1];
+			[[NSUserDefaults standardUserDefaults] setObject:[usernameField text] forKey:@"Username"];
+			[[NSUserDefaults standardUserDefaults] setObject:[passwordField text] forKey:@"Password"];
  
 		[self startDownloadOrCheckCredentials];
 	}
-	
 }
 
 - (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView
@@ -574,16 +592,40 @@
     
 }
 
+- (void) confirmOrder:(SKProduct*)product {
+	if ([[product.productIdentifier lowercaseString] containsString:@"subscription"]) {
+		[self performSelector:@selector(showConfirmOrder:) withObject:product afterDelay:0.0];
+		//[currentViewController presentViewController:alert animated:YES completion:nil];
+	} else {
+		[self orderProduct:product];
+	}
+}
+
+- (void)showConfirmOrder:(SKProduct*) product
+{
+	cguViewController *cgu = [[cguViewController alloc] initWithNibName:@"cguViewController" bundle:nil];
+	cgu.product = product;
+	cgu.buyView = self;
+	
+	//Format the price
+	NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+	[numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+	[numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+	[numberFormatter setLocale:product.priceLocale];
+	NSString *formattedString = [numberFormatter stringFromNumber:product.price];
+	[numberFormatter release];
+	//Append duration to description if needed
+	NSString * completeTitle = [product.localizedTitle titleWithSubscriptionLengthForAppStoreProductId:product.productIdentifier] ;
+	
+	cgu.titleProduct  = [NSString stringWithFormat:@"%@: %@",completeTitle, formattedString];
+	
+	[currentViewController presentViewController:cgu animated:YES completion:nil];
+}
+
 - (void) orderProduct:(SKProduct*)product{
-    //Slog(@"Will order product %@ %@",product,product.productIdentifier);
-     //NSString * itemID = product.productIdentifier;
-    //SKPayment *payment = [SKPayment paymentWithProductIdentifier:itemID];
-    SKPayment * payment = [SKPayment paymentWithProduct:product];
+	SKPayment * payment = [SKPayment paymentWithProduct:product];
     // Add storeObserver in LibrelioAppDelegate
     [[SKPaymentQueue defaultQueue] addPayment:payment];
-
-    
-    
 }
 
 
